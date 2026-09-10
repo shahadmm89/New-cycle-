@@ -1,0 +1,14 @@
+node_modules/
+.cache/
+.remotion/
+*.log
+
+# Neural voice model (~63 MB). Fetched on demand by scripts/build-voiceover.mjs
+assets/tts/voices/
+
+# Per-line narration takes. Re-created by `npm run voiceover:build`;
+# the assembled assets/audio/voiceover.wav is committed instead.
+assets/audio/lines/
+
+# Review frames only - the rendered MP4s in output/ are committed.
+output/stills/

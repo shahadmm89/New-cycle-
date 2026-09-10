@@ -1,0 +1,33 @@
+{
+  "name": "salary-cycle-explainer",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Animated HR explainer video: Salary & Bonus Cycle update (Remotion)",
+  "license": "UNLICENSED",
+  "scripts": {
+    "preview": "remotion studio src/index.ts",
+    "studio": "remotion studio src/index.ts",
+    "render": "node render/render.mjs production",
+    "render:preview": "node render/render.mjs preview",
+    "render:all": "node render/render.mjs all",
+    "captions": "node scripts/make-captions.mjs",
+    "voiceover:script": "node scripts/make-vo-script.mjs",
+    "voiceover:build": "node scripts/build-voiceover.mjs",
+    "still": "node render/still.mjs",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@remotion/bundler": "4.0.523",
+    "@remotion/cli": "4.0.523",
+    "@remotion/renderer": "4.0.523",
+    "react": "19.0.0",
+    "react-dom": "19.0.0",
+    "remotion": "4.0.523",
+    "roughjs": "4.6.6"
+  },
+  "devDependencies": {
+    "@types/react": "19.0.0",
+    "@types/react-dom": "19.0.0",
+    "typescript": "5.6.3"
+  }
+}
