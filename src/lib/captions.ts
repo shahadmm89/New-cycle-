@@ -65,10 +65,15 @@ export const buildCues = (): Cue[] => {
 const pad = (n: number, len = 2) => String(Math.floor(n)).padStart(len, '0');
 
 export const formatTimestamp = (seconds: number, msSeparator = ','): string => {
-  const h = Math.floor(seconds / 3600);
-  const m = Math.floor((seconds % 3600) / 60);
-  const s = Math.floor(seconds % 60);
-  const ms = Math.round((seconds - Math.floor(seconds)) * 1000);
+  // Round to whole milliseconds FIRST, then split. Rounding after the split
+  // lets a value like 49.9996 produce ",1000", which is not a legal SRT/VTT
+  // timestamp and which some players reject outright.
+  const totalMs = Math.max(0, Math.round(seconds * 1000));
+  const ms = totalMs % 1000;
+  const totalSeconds = (totalMs - ms) / 1000;
+  const s = totalSeconds % 60;
+  const m = Math.floor(totalSeconds / 60) % 60;
+  const h = Math.floor(totalSeconds / 3600);
   return `${pad(h)}:${pad(m)}:${pad(s)}${msSeparator}${pad(ms, 3)}`;
 };
 
