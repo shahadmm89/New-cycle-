@@ -22,27 +22,41 @@ export const voiceover = {
   tts: {
     engine: 'piper',
     /**
-     * Warm, confident US-English male. "High" quality model - noticeably more
-     * natural than the medium models, which matters when the brief is
-     * "senior HR colleague, not an AI reading a document".
-     * Alternatives that drop straight in: en_US-hfc_female-medium,
-     * en_GB-cori-high, en_US-lessac-high.
+     * Mature, measured US-English male. Chosen by measurement rather than by
+     * ear: it sits at roughly 102 Hz - about seven semitones below the voice
+     * this replaced - while still moving across ten semitones within a phrase.
+     * That combination is what reads as "senior colleague" rather than
+     * "narrator": deep and settled, but not flat.
+     *
+     * Alternatives that drop straight in, with their measured profile:
+     *   en_US-hfc_male-medium   114 Hz / 11.1 st  - lighter, a little warmer
+     *   en_US-joe-medium         99 Hz / 18.8 st  - deeper but theatrical
+     *   en_US-bryce-medium      141 Hz /  7.7 st  - brighter, flatter
      */
-    voice: 'en_US-ryan-high',
+    voice: 'en_US-norman-medium',
     /**
      * Base delivery speed. Individual phrases override this with `rate` in
-     * scenes.ts - that is where the emphasis comes from: the lines that matter
-     * are said slower and heavier than the connective tissue around them.
+     * scenes.ts - that is where the emphasis lives. Slightly above 1 gives the
+     * unhurried, deliberate pace of someone who is not selling anything.
      */
-    lengthScale: 1.0,
+    lengthScale: 1.05,
     /** The fastest the fitter may go when a phrase has to be squeezed. */
-    minLengthScale: 0.88,
+    minLengthScale: 0.9,
     /**
-     * Expressiveness. Slightly above the Piper default, which gives more pitch
-     * movement across a phrase and reads as engaged rather than flat.
+     * Expressiveness. Above the Piper defaults (0.667 / 0.8), which widens the
+     * pitch movement across a phrase and is most of what separates a delivery
+     * that sounds considered from one that sounds read out.
      */
-    noiseScale: 0.72,
-    noiseW: 0.85,
+    noiseScale: 0.75,
+    noiseW: 0.88,
+    /**
+     * Optional final pitch trim, in semitones, applied with asetrate +
+     * atempo so the duration is preserved. The chosen voice already lands in
+     * the target range, so this is 0; keep any adjustment within about two
+     * semitones, beyond which the formants smear and it starts to sound
+     * processed.
+     */
+    pitchShiftSemitones: 0,
     sampleRate: 48000,
     /** Narration loudness, EBU R128 integrated. */
     loudnessTarget: -16,

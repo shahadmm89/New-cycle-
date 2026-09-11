@@ -33,7 +33,7 @@ import {Scene04TheChange} from './scenes/Scene04TheChange';
 import {Scene05April} from './scenes/Scene05April';
 import {Scene06March} from './scenes/Scene06March';
 import {Scene07NoChange} from './scenes/Scene07NoChange';
-import {Scene08BeforeAfter} from './scenes/Scene08BeforeAfter';
+import {Scene08Summary} from './scenes/Scene08Summary';
 import {Scene09Why} from './scenes/Scene09Why';
 import {Scene10Close} from './scenes/Scene10Close';
 
@@ -47,7 +47,7 @@ const SCENE_COMPONENTS: Record<string, React.FC> = {
   april: Scene05April,
   march: Scene06March,
   'no-change': Scene07NoChange,
-  'before-after': Scene08BeforeAfter,
+  summary: Scene08Summary,
   why: Scene09Why,
   close: Scene10Close,
 };
@@ -80,24 +80,37 @@ const GLOW_KEYS: GlowKey[] = [
   {scene: 'hook', at: 0, x: 960, y: 470, v: 0.4},
   {scene: 'old-cycle', at: 0, x: 500, y: 520, v: 0.14},
   {scene: 'today', at: 0, x: 960, y: 430, v: 0.12},
+  {scene: 'today', at: 9.5, x: 960, y: 560, v: 0.35},   // the KPIs roll up
   {scene: 'the-change', at: 0, x: 480, y: 520, v: 0.18},
-  {scene: 'the-change', at: 4.0, x: 480, y: 520, v: 0.55},
-  {scene: 'the-change', at: 6.6, x: 1250, y: 470, v: 0.95},
-  {scene: 'the-change', at: 9.5, x: 1250, y: 470, v: 0.85},
-  {scene: 'april', at: 0.5, x: 960, y: 420, v: 0.9},
-  {scene: 'march', at: 3.0, x: 960, y: 600, v: 0.7},
-  {scene: 'march', at: 5.5, x: 960, y: 600, v: 0.85},
+  {scene: 'the-change', at: 2.0, x: 480, y: 520, v: 0.55}, // ring spins up
+  {scene: 'the-change', at: 3.3, x: 1250, y: 470, v: 0.95}, // APR -> MAR lands
+  {scene: 'the-change', at: 4.8, x: 1250, y: 470, v: 0.85},
+  {scene: 'april', at: 0.4, x: 960, y: 420, v: 0.9},
+  {scene: 'march', at: 1.4, x: 960, y: 600, v: 0.7},
+  {scene: 'march', at: 2.6, x: 960, y: 600, v: 0.85},
   {scene: 'no-change', at: 0, x: 960, y: 500, v: 0.3},
-  {scene: 'before-after', at: 2.0, x: 960, y: 380, v: 0.55},
+  {scene: 'summary', at: 0.6, x: 960, y: 420, v: 0.75},
   {scene: 'why', at: 0, x: 700, y: 520, v: 0.35},
   {scene: 'close', at: 0.4, x: 960, y: 330, v: 0.75},
 ];
+
 
 const StageWithGlow: React.FC = () => {
   const frame = useCurrentFrame();
   const {fps} = useVideoConfig();
   const t = frame / fps;
   const ts = GLOW_KEYS.map((k) => sceneStart(k.scene) + k.at);
+  // Re-timing a scene can push a key past the next scene's, which interpolate()
+  // reports as an opaque monotonicity error. Say what actually went wrong.
+  const outOfOrder = ts.findIndex((v, i) => i > 0 && v <= ts[i - 1]);
+  if (outOfOrder > 0) {
+    const k = GLOW_KEYS[outOfOrder];
+    throw new Error(
+      `GLOW_KEYS is out of order at scene "${k.scene}" +${k.at}s (absolute ${ts[outOfOrder]}s, ` +
+        `which is not after the previous key at ${ts[outOfOrder - 1]}s). ` +
+        `A scene duration in scenes.ts probably shrank below one of its own glow keys.`,
+    );
+  }
   return (
     <Stage
       glowX={interpolate(t, ts, GLOW_KEYS.map((k) => k.x), {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'})}

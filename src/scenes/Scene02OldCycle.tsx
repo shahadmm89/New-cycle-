@@ -54,7 +54,7 @@ export const Scene02OldCycle: React.FC = () => {
           position: 'absolute',
           left: 760,
           top: 288,
-          width: 1040,
+          width: 1010,
           display: 'flex',
           flexDirection: 'column',
           gap: 46,
@@ -68,7 +68,7 @@ export const Scene02OldCycle: React.FC = () => {
           <MonthRail
             months={monthsCalendar}
             progress={pRail}
-            width={1040}
+            width={1010}
             playhead={pFlow > 0.01 ? playhead : null}
             color={colors.primary}
             tilt={10}

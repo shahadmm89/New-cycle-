@@ -156,3 +156,102 @@ export const RangePlate: React.FC<{
     </div>
   );
 };
+
+/**
+ * The timeline reorganising itself.
+ *
+ * Every month holds its identity and flies from its slot in the calendar year
+ * to its slot in the salary year - JAN falls back to tenth place, APR comes
+ * forward to first. Mid-flight the tiles lift, tilt and blur, so it reads as
+ * the year being physically re-ordered rather than one list dissolving into
+ * another.
+ */
+export const ReorderingRail: React.FC<{
+  /** Months in their original order, left to right. */
+  from: readonly string[];
+  /** The same months in their new order. */
+  to: readonly string[];
+  /** 0 -> 1 entrance of the rail in its original order. */
+  progress: number;
+  /** 0 -> 1 of the re-order itself. */
+  morph: number;
+  width: number;
+  fromColor?: string;
+  toColor?: string;
+  tileHeight?: number;
+  fontSize?: number;
+}> = ({
+  from,
+  to,
+  progress,
+  morph,
+  width,
+  fromColor = colors.primary,
+  toColor = colors.accent,
+  tileHeight = 76,
+  fontSize = 26,
+}) => {
+  const n = from.length;
+  const gap = 10;
+  const tileW = (width - gap * (n - 1)) / n;
+  const step = tileW + gap;
+  const m = clamp(morph);
+  // Peaks mid-flight: nothing is lifted at either end of the move.
+  const flight = Math.sin(Math.PI * m);
+
+  return (
+    <div style={{position: 'relative', width, height: tileHeight + 70}}>
+      {from.map((month, oldIndex) => {
+        const newIndex = to.indexOf(month);
+        const local = clamp(progress * (n + 6) - oldIndex);
+        // How far this month actually has to travel, normalised - the ones that
+        // move furthest lift highest and arrive last.
+        const distance = Math.abs(newIndex - oldIndex) / (n - 1);
+        const eased = clamp((m - distance * 0.12) / (1 - distance * 0.12));
+        const x = (oldIndex + (newIndex - oldIndex) * eased) * step;
+
+        const isNewStart = newIndex === 0;
+        const isNewEnd = newIndex === n - 1;
+        const lit = m > 0.55 && (isNewStart || isNewEnd);
+
+        return (
+          <div
+            key={month}
+            style={{
+              position: 'absolute',
+              left: 0,
+              top: 34,
+              width: tileW,
+              height: tileHeight,
+              opacity: local,
+              transform:
+                `perspective(${depth.perspective}px) ` +
+                `translate3d(${x}px, ${-flight * (26 + distance * 54)}px, ${flight * 120}px) ` +
+                `rotateX(${flight * 16}deg) rotateZ(${flight * (newIndex - oldIndex) * 1.1}deg)`,
+              filter: flight > 0.08 ? `blur(${flight * 2.4}px)` : undefined,
+              borderRadius: 12,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              background: lit
+                ? `linear-gradient(160deg, ${toColor}, ${toColor}bb)`
+                : `linear-gradient(160deg, ${colors.surfaceLit}cc, ${colors.surface}ee)`,
+              border: `1.5px solid ${lit ? toColor : m > 0.55 ? `${toColor}55` : `${fromColor}66`}`,
+              boxShadow: lit
+                ? `0 20px 52px ${toColor}55, inset 0 2px 0 rgba(255,255,255,0.35)`
+                : `0 ${10 + flight * 26}px ${26 + flight * 40}px rgba(0,0,0,0.5), inset 0 1.5px 0 ${colors.surfaceLit}`,
+              fontFamily: fonts.body,
+              fontWeight: lit ? 800 : 700,
+              fontSize,
+              letterSpacing: 1.6,
+              color: lit ? colors.background : colors.textSoft,
+              willChange: 'transform, opacity, filter',
+            }}
+          >
+            {month}
+          </div>
+        );
+      })}
+    </div>
+  );
+};

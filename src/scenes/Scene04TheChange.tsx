@@ -11,12 +11,12 @@
 import React from 'react';
 import {AbsoluteFill, interpolate, useCurrentFrame, useVideoConfig, Easing} from 'remotion';
 import {YearRing} from '../components/YearRing';
-import {RangePlate} from '../components/MonthRail';
+import {RangePlate, ReorderingRail} from '../components/MonthRail';
 import {Label, Display, Rise, Punch} from '../components/Type';
 import {Plinth} from '../components/Card3D';
 import {useProgress, useBeat, useScene} from '../lib/timing';
 import {colors} from '../lib/theme';
-import {monthsCalendar, cycle} from '../config/copy';
+import {monthsCalendar, monthsSalaryYear, cycle} from '../config/copy';
 
 /** April is the fourth month, so the dial turns three months past January. */
 const APRIL_INDEX = 3;
@@ -49,16 +49,21 @@ export const Scene04TheChange: React.FC = () => {
   // Motion blur peaks mid-spin and is gone by the time it lands.
   const spinBlur = Math.sin(Math.PI * spinT) * (spinT < 0.92 ? 1 : 0);
 
+  // The rail re-orders itself in step with the ring landing: the dial says the
+  // year now starts in April, the rail shows the year physically re-arranged.
+  const pRail = useProgress('railIn', 0.8);
+  const pMorph = useProgress('railScatter', 1.7, Easing.bezier(0.55, 0, 0.25, 1));
+
   const pHandover = useProgress('handover', 0.5);
   const pNewArc = useProgress('newRingIn', 1.5);
   const pNewLabel = useProgress('newLabelIn', 0.6);
   const pReveal = useProgress('bigReveal', 0.8);
 
-  // "Yes - April to March": a single emphatic pulse, not a new element.
-  const yesBeat = useBeat('yesBeat');
+  // A single emphatic pulse as the range lands, timed to "From April to March".
+  const revealBeat = useBeat('bigReveal');
   const pulse = interpolate(
     frame,
-    [yesBeat, yesBeat + Math.round(0.22 * fps), yesBeat + Math.round(0.9 * fps)],
+    [revealBeat, revealBeat + Math.round(0.26 * fps), revealBeat + Math.round(1.0 * fps)],
     [0, 1, 0],
     {extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: Easing.out(Easing.quad)},
   );
@@ -78,9 +83,9 @@ export const Scene04TheChange: React.FC = () => {
       <div
         style={{
           position: 'absolute',
-          left: 88,
-          top: 250,
-          transform: `scale(${0.88 + pulse * 0.02})`,
+          left: 86,
+          top: 214,
+          transform: `scale(${0.69 + pulse * 0.015})`,
           transformOrigin: 'center',
         }}
       >
@@ -102,10 +107,10 @@ export const Scene04TheChange: React.FC = () => {
       <div
         style={{
           position: 'absolute',
-          left: 756,
-          top: 326,
-          width: 1060,
-          height: 470,
+          left: 640,
+          top: 292,
+          width: 1210,
+          height: 400,
         }}
       >
         {/* OLD - drops away as the ring spins up */}
@@ -122,7 +127,7 @@ export const Scene04TheChange: React.FC = () => {
             <Label size={32} color={colors.muted}>{t.oldLabel}</Label>
           </Rise>
           <div style={{marginTop: 34}}>
-            <RangePlate progress={pOldLabel} from={cycle.oldCycleFrom} to={cycle.oldCycleTo} quiet size={120} />
+            <RangePlate progress={pOldLabel} from={cycle.oldCycleFrom} to={cycle.oldCycleTo} quiet size={110} />
           </div>
         </div>
 
@@ -138,16 +143,27 @@ export const Scene04TheChange: React.FC = () => {
           <Label size={34} color={colors.accent}>{t.newLabel}</Label>
           <div style={{marginTop: 30, transform: `scale(${1 + pulse * 0.045})`, transformOrigin: 'left center'}}>
             <Punch progress={pReveal} from={0.8}>
-              <RangePlate progress={pReveal} from={cycle.newCycleFrom} to={cycle.newCycleTo} size={172} />
+              <RangePlate progress={pReveal} from={cycle.newCycleFrom} to={cycle.newCycleTo} size={150} />
             </Punch>
           </div>
-          <Plinth progress={pReveal} width={700} color={colors.accent} style={{marginTop: 26}} />
+          <Plinth progress={pReveal} width={820} color={colors.accent} style={{marginTop: 22}} />
           <div style={{marginTop: 30, opacity: pLock}}>
             <Display size={40} weight={700} color={colors.textSoft}>
               {cycle.newCycleFromLong} &nbsp;to&nbsp; {cycle.newCycleToLong}
             </Display>
           </div>
         </div>
+      </div>
+
+      {/* The year, re-ordering itself. */}
+      <div style={{position: 'absolute', left: 120, top: 740, width: 1680}}>
+        <ReorderingRail
+          from={monthsCalendar}
+          to={monthsSalaryYear}
+          progress={pRail}
+          morph={pMorph}
+          width={1680}
+        />
       </div>
     </AbsoluteFill>
   );

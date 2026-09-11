@@ -33,15 +33,28 @@ concrete, so if you move the cycle start you must rotate `monthsSalaryYear` to
 match, and update `APRIL_INDEX` in `src/scenes/Scene04TheChange.tsx` - that
 constant is how far the year ring turns.
 
-The three anchors the film exists to plant are also here:
+The three anchors the film exists to plant are also here, in the order they
+fall within the new salary year rather than in order of importance:
 
 ```ts
 export const anchors = [
-  {month: 'APRIL',    what: 'MERIT + PROMOTION',        tone: 'new'},
-  {month: 'MARCH',    what: 'BONUS',                    tone: 'new'},
-  {month: 'DECEMBER', what: 'PERFORMANCE CYCLE CLOSES', tone: 'steady'},
+  {month: 'APRIL',    what: 'Merit + Promotion',             tone: 'new'},
+  {month: 'DECEMBER', what: 'Performance Appraisal Closes',  tone: 'steady'},
+  {month: 'MARCH',    what: 'Bonus',                         tone: 'new'},
 ];
 ```
+
+`tone: 'steady'` is what colours December differently in every scene it appears
+in. It is a clarification, not a change, and the palette says so.
+
+The key company KPIs the bonus is measured against sit alongside them:
+
+```ts
+export const kpis = ['HSE', 'FINANCE', 'PERFORMANCE'] as const;
+```
+
+They are named once in the narration and never explained - the three icons and
+the bracket that gathers them into COMPANY PERFORMANCE do the rest.
 
 > After changing a date, re-run `npm run voiceover:build` so the narration says
 > the new one, then `npm run captions` and `npm run render`.
@@ -92,6 +105,14 @@ Move the number in `beats`. Components ask for beats by name
 (`useProgress('bonusCard', 0.6)`), so there is never a frame number to hunt for.
 Removing a beat that a scene still uses fails loudly with a message naming the
 scene and the beat.
+
+### Keeping repetition out
+
+The narration deliberately says each thing once. "Salary Cycle" is spoken in
+scene 1 and never again - scene 2 says "it", scene 4 says "a new cycle".
+"Performance appraisal" appears once, in scene 7. If you add a line, check it
+against what is already said: the screen is what repeats the key dates, not the
+voice.
 
 ### Changing the pacing
 This film is signage: it should never feel like it is waiting. `TRANSITION`

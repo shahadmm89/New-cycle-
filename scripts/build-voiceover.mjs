@@ -226,12 +226,27 @@ const run = async () => {
     rawVoice,
   ]);
 
-  const measured = measureLoudness(rawVoice);
-  const TRUE_PEAK_CEILING = -1.5;
-  let gainDb = tts.loudnessTarget - measured.integrated;
-  if (measured.truePeak + gainDb > TRUE_PEAK_CEILING) {
-    gainDb = TRUE_PEAK_CEILING - measured.truePeak;
+  // Optional pitch trim: resample to shift pitch, then restore the original
+  // duration with atempo so nothing downstream has to be re-timed.
+  const semis = tts.pitchShiftSemitones ?? 0;
+  if (Math.abs(semis) > 0.01) {
+    const ratio = Math.pow(2, semis / 12);
+    const shifted = path.join(LINES_DIR, '_pitched.wav');
+    console.log(`> pitch trim ${semis > 0 ? '+' : ''}${semis} semitones`);
+    ffmpeg([
+      '-y', '-i', rawVoice,
+      '-af',
+      `asetrate=${Math.round(tts.sampleRate * ratio)},aresample=${tts.sampleRate},atempo=${(1 / ratio).toFixed(6)}`,
+      '-c:a', 'pcm_s16le', shifted,
+    ]);
+    fs.renameSync(shifted, rawVoice);
   }
+
+  // Bring the narration to the target. Peaks are left alone here - the mix
+  // stage limits them, which is what lets the level actually reach the target
+  // instead of being held down by the single loudest consonant.
+  const measured = measureLoudness(rawVoice);
+  const gainDb = tts.loudnessTarget - measured.integrated;
   console.log(
     `  measured ${measured.integrated.toFixed(1)} LUFS / ${measured.truePeak.toFixed(1)} dBTP ` +
       `-> applying ${gainDb >= 0 ? '+' : ''}${gainDb.toFixed(1)} dB`,
@@ -265,6 +280,8 @@ const run = async () => {
       String(music.duckDb),
       String(music.fadeIn),
       String(music.fadeOut),
+      String(tts.loudnessTarget),
+      '-1.5',
     ]);
   } else {
     fs.copyFileSync(OUT_VOICE, OUT_MIX);

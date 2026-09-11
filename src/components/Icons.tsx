@@ -4,7 +4,7 @@
  * that it competes with the type.
  */
 import React from 'react';
-import {colors, fonts} from '../lib/theme';
+import {colors, fonts, depth} from '../lib/theme';
 
 const clamp = (n: number) => Math.min(1, Math.max(0, n));
 
@@ -177,52 +177,151 @@ export const ForecastChart: React.FC<{
   );
 };
 
-/** Four KPI bars - the company performance dashboard, reduced to its essence. */
-export const KpiTiles: React.FC<{
+/** HSE: a shield with a check. Safety, said without words. */
+export const HseIcon: React.FC<{color?: string}> = ({color = colors.primary}) => (
+  <svg width="100%" height="100%" viewBox="0 0 48 48" fill="none">
+    <path
+      d="M 24 4 L 41 11 V 24 C 41 34 33.5 41 24 44 C 14.5 41 7 34 7 24 V 11 Z"
+      fill={`${color}22`}
+      stroke={color}
+      strokeWidth={3.2}
+      strokeLinejoin="round"
+    />
+    <path d="M 16 24 L 21.5 30 L 32 18" stroke={color} strokeWidth={4} strokeLinecap="round" strokeLinejoin="round" />
+  </svg>
+);
+
+/** Finance: a coin over a rising column. */
+export const FinanceIcon: React.FC<{color?: string}> = ({color = colors.primary}) => (
+  <svg width="100%" height="100%" viewBox="0 0 48 48" fill="none">
+    <circle cx="24" cy="17" r="12" fill={`${color}22`} stroke={color} strokeWidth={3.2} />
+    <path d="M 24 11 V 23 M 20.5 13.8 h 6 a 3 3 0 0 1 0 6 h -5 a 3 3 0 0 0 0 6 h 6"
+      stroke={color} strokeWidth={2.6} strokeLinecap="round" fill="none" />
+    <rect x="9" y="35" width="9" height="9" rx="2" fill={`${color}33`} stroke={color} strokeWidth={2.6} />
+    <rect x="19.5" y="31" width="9" height="13" rx="2" fill={`${color}44`} stroke={color} strokeWidth={2.6} />
+    <rect x="30" y="27" width="9" height="17" rx="2" fill={`${color}55`} stroke={color} strokeWidth={2.6} />
+  </svg>
+);
+
+/** Performance: a gauge reading high. */
+export const PerformanceKpiIcon: React.FC<{color?: string}> = ({color = colors.primary}) => (
+  <svg width="100%" height="100%" viewBox="0 0 48 48" fill="none">
+    <path d="M 6 35 A 18 18 0 1 1 42 35" fill={`${color}18`} stroke={color} strokeWidth={3.2} strokeLinecap="round" />
+    <path d="M 24 35 L 35 19" stroke={color} strokeWidth={4} strokeLinecap="round" />
+    <circle cx="24" cy="35" r="4" fill={color} />
+    <path d="M 11 28 l 3 1.5 M 24 15 v 3.4 M 37 28 l -3 1.5" stroke={color} strokeWidth={2.6} strokeLinecap="round" />
+  </svg>
+);
+
+/**
+ * The three key company KPIs the bonus is measured against, as floating cards
+ * that converge into one plate. The convergence is the point: three separate
+ * measures becoming a single company-performance figure.
+ */
+export const KpiTrio: React.FC<{
   labels: readonly string[];
-  progress: number;
-  width: number;
+  /** One 0 -> 1 entrance per card. */
+  cards: number[];
+  /** 0 -> 1: the three cards sliding together under a single heading. */
+  combine: number;
+  combinedLabel: string;
   color?: string;
-}> = ({labels, progress, width, color = colors.primary}) => {
-  const heights = [0.55, 0.82, 0.42, 0.68];
-  const gap = 16;
-  const barArea = 108;
-  const w = (width - gap * (labels.length - 1)) / labels.length;
+  accent?: string;
+}> = ({labels, cards, combine, combinedLabel, color = colors.primary, accent = colors.accent}) => {
+  const c = clamp(combine);
+  const glyphs = [HseIcon, FinanceIcon, PerformanceKpiIcon];
+  // The cards do NOT converge horizontally - at these label widths they would
+  // collide. The roll-up is carried by the bracket beneath them instead.
+  const spread = 330;
+  const tone = c > 0.4 ? accent : color;
+
   return (
-    <div style={{display: 'flex', gap, alignItems: 'flex-end'}}>
-      {labels.map((l, i) => {
-        const p = clamp(progress * (labels.length + 2) - i);
-        return (
-          <div key={l} style={{width: w, display: 'flex', flexDirection: 'column', gap: 12}}>
-            {/* fixed-height well, so every bar grows from the same baseline */}
-            <div style={{height: barArea, display: 'flex', alignItems: 'flex-end'}}>
-              <div
-                style={{
-                  width: '100%',
-                  height: barArea * heights[i % heights.length] * p,
-                  borderRadius: 8,
-                  background: `linear-gradient(180deg, ${color}, ${color}55)`,
-                  boxShadow: `0 0 22px ${color}55`,
-                }}
-              />
-            </div>
+    <div style={{position: 'relative', display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+      <div style={{display: 'flex', justifyContent: 'center', alignItems: 'flex-end', height: 244}}>
+        {labels.map((l, i) => {
+          const p = clamp(cards[i] ?? 0);
+          const Glyph = glyphs[i % glyphs.length];
+          const offset = (i - 1) * spread;
+          return (
             <div
+              key={l}
               style={{
-                fontFamily: fonts.body,
-                fontSize: 22,
-                fontWeight: 700,
-                letterSpacing: 1,
-                color: colors.textSoft,
+                position: 'absolute',
+                transform:
+                  `perspective(${depth.perspective}px) ` +
+                  `translate3d(${offset}px, ${(1 - p) * 40 - c * 14}px, ${c * 34}px) ` +
+                  `rotateY(${(i - 1) * -7 * (1 - c)}deg) scale(${0.9 + 0.1 * p + c * 0.04})`,
                 opacity: p,
-                whiteSpace: 'nowrap',
-                textAlign: 'center',
+                width: 244,
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                gap: 18,
+                willChange: 'transform, opacity',
               }}
             >
-              {l}
+              <div
+                style={{
+                  width: 132,
+                  height: 132,
+                  padding: 30,
+                  borderRadius: 26,
+                  background: `linear-gradient(155deg, ${colors.surfaceLit}, ${colors.surface})`,
+                  border: `2px solid ${tone}55`,
+                  boxShadow: `0 20px 48px rgba(0,0,0,0.5), inset 0 2px 0 ${tone}44, 0 0 44px ${tone}22`,
+                  boxSizing: 'border-box',
+                }}
+              >
+                <Glyph color={tone} />
+              </div>
+              <div
+                style={{
+                  fontFamily: fonts.body,
+                  fontWeight: 800,
+                  fontSize: 27,
+                  letterSpacing: 2,
+                  color: c > 0.4 ? accent : colors.text,
+                  whiteSpace: 'nowrap',
+                }}
+              >
+                {l}
+              </div>
             </div>
-          </div>
-        );
-      })}
+          );
+        })}
+      </div>
+
+      {/* A bracket gathers the three into one figure. This is the roll-up:
+          three separate measures becoming the number the bonus is set from. */}
+      <div style={{marginTop: 18, opacity: c, display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+        <svg width={760} height={54} viewBox="0 0 760 54" style={{overflow: 'visible'}}>
+          <path
+            d="M 40 4 V 22 Q 40 32 50 32 H 370 M 720 4 V 22 Q 720 32 710 32 H 390 M 380 32 V 50"
+            fill="none"
+            stroke={accent}
+            strokeWidth={3}
+            strokeLinecap="round"
+            pathLength={1}
+            strokeDasharray="1 1"
+            strokeDashoffset={1 - c}
+            style={{filter: `drop-shadow(0 0 12px ${accent}88)`}}
+          />
+        </svg>
+        <div
+          style={{
+            marginTop: 8,
+            fontFamily: fonts.body,
+            fontWeight: 800,
+            fontSize: 30,
+            letterSpacing: 4,
+            color: colors.text,
+            whiteSpace: 'nowrap',
+            transform: `translate3d(0, ${(1 - c) * 16}px, 0)`,
+          }}
+        >
+          {combinedLabel}
+        </div>
+      </div>
     </div>
   );
 };

@@ -52,16 +52,21 @@ export const monthsSalaryYear = [
   'OCT', 'NOV', 'DEC', 'JAN', 'FEB', 'MAR',
 ] as const;
 
-export const kpis = ['Sales', 'Production', 'Financial', 'Business'] as const;
+/**
+ * The key company KPIs the bonus is measured against. Named, not explained -
+ * the narration mentions them once and the visual carries the rest.
+ */
+export const kpis = ['HSE', 'FINANCE', 'PERFORMANCE'] as const;
 
 /**
- * The three anchors the video exists to plant. These appear in scene 8 and
- * scene 10, and are echoed by scenes 5, 6 and 7.
+ * The three anchors the film exists to plant, in the order they fall within the
+ * new salary year: April starts it, December closes the appraisal, March ends
+ * the cycle and pays the bonus.
  */
 export const anchors = [
-  {month: 'APRIL', what: 'MERIT + PROMOTION', tone: 'new' as const},
-  {month: 'MARCH', what: 'BONUS', tone: 'new' as const},
-  {month: 'DECEMBER', what: 'PERFORMANCE CYCLE CLOSES', tone: 'steady' as const},
+  {month: 'APRIL', what: 'Merit + Promotion', tone: 'new' as const},
+  {month: 'DECEMBER', what: 'Performance Appraisal Closes', tone: 'steady' as const},
+  {month: 'MARCH', what: 'Bonus', tone: 'new' as const},
 ];
 
 export const videoTitle = 'Our Salary Cycle Is Changing';

@@ -1,6 +1,6 @@
 # Salary Cycle Change - employee announcement video
 
-A self-contained pipeline that renders an **~89-second, 1920×1080, 30 fps MP4**
+A self-contained pipeline that renders a **~60-second, 1920×1080, 30 fps MP4**
 announcing that the company's **salary cycle year is moving from January–December
 to April–March**.
 
@@ -70,19 +70,29 @@ npm run voiceover:build     # re-generate narration + music (needs `pip install 
 
 | # | Scene | In | Length | What it shows |
 |---|---|---|---|---|
-| 1 | Did you know? | 0:00 | 7.0s | Oversized question, **SALARY CYCLE** lit in the accent |
-| 2 | The current cycle | 0:07 | 8.9s | Year ring + month rail, JAN → DEC, a playhead walking the year |
-| 3 | How it works today | 0:16 | 10.7s | Merit (forecast line) and Bonus (KPI bars), both "based on estimates" |
-| 4 | **THE CHANGE** | 0:27 | 12.7s | The year ring **spins** and lands on APRIL; APR → MAR revealed |
-| 5 | April | 0:39 | 10.4s | **APRIL** at 190px, merit + promotion rising, EFFECTIVE APRIL 1 |
-| 6 | March | 0:50 | 9.0s | Playhead travels the new salary year APR…MAR, lands on **MARCH**, bonus |
-| 7 | What does NOT change | 0:59 | 9.2s | Two parallel rows: PERFORMANCE JAN → DEC ✓ NO CHANGE / SALARY APR → MAR NEW |
-| 8 | Before becomes after | 1:08 | 10.8s | The BEFORE plate rotates away and NOW rotates in; three anchors stack |
-| 9 | Why the change | 1:19 | 6.0s | Market alignment, more relevant information |
-| 10 | Final message | 1:25 | 4.6s | APR → MAR, the three anchors, HR contact, logo |
+| 1 | Did you know? | 0:00 | 3.7s | Oversized question, **SALARY CYCLE** lit in the accent |
+| 2 | The current cycle | 0:03 | 4.5s | Year ring + month rail, JAN → DEC |
+| 3 | How it works today | 0:08 | 12.8s | Merit's forecast line; then HSE, Finance and Performance rolling up into one company-performance figure |
+| 4 | **THE CHANGE** | 0:21 | 5.6s | The ring **spins** to April while the rail **re-orders itself** into APR…MAR |
+| 5 | April | 0:26 | 6.0s | **APRIL** at 190px, merit + promotion rising, EFFECTIVE APRIL 1 |
+| 6 | March | 0:32 | 3.6s | Playhead runs the new salary year and lands on **MARCH**, bonus |
+| 7 | What does NOT change | 0:36 | 6.2s | Two parallel rows: PERFORMANCE APPRAISAL JAN → DEC ✓ NO CHANGE / SALARY CYCLE APR → MAR NEW |
+| 8 | **The summary** | 0:42 | 3.4s | Silent. APRIL → MARCH over three markers. The frame to remember |
+| 9 | Why the change | 0:45 | 9.3s | Market alignment, more relevant information |
+| 10 | Final message | 0:55 | 5.0s | Have questions? HR is ready to help, contact, logo |
 
-Scenes overlap by 0.55s, so the next visual is always building while the previous
-line finishes. Nothing cuts to an empty stage.
+Scenes overlap by 0.55s, so the next visual is always building while the
+previous phrase finishes.
+
+### Pacing
+
+The narration is 42 seconds of speech across 15 phrases. Every gap between
+phrases is between 0.2s and 1.3s, which is what the film's length is set by -
+holding longer would simply reinsert silence. The one exception is scene 8,
+which is deliberately silent so the summary can be read rather than talked over.
+
+`npm run voiceover:build` prints the measured length of every phrase against the
+room it has and warns by name if one no longer fits.
 
 ---
 

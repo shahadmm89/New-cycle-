@@ -71,6 +71,27 @@ There is no SSML. Emphasis is produced two ways, both in `src/config/scenes.ts`:
 }
 ```
 
+### Choosing a voice by measurement
+
+The voice was not picked by browsing a list. `scripts/lib/pitch.py`-style
+analysis was run over candidates saying the same line, measuring median
+fundamental frequency (how deep) and the semitone spread within a phrase (how
+monotone). That turns "sounds robotic" into something you can check:
+
+| Voice | Median F0 | Pitch range | Read |
+|---|---|---|---|
+| en_US-norman-medium | 102 Hz | 10.0 st | **in use** - deep, settled, still moving |
+| en_US-hfc_male-medium | 114 Hz | 11.1 st | lighter, a little warmer |
+| en_US-john-medium | 113 Hz | 9.3 st | neutral |
+| en_US-joe-medium | 99 Hz | 18.8 st | deeper but theatrical |
+| en_US-bryce-medium | 141 Hz | 7.7 st | brighter and flatter |
+| en_GB-alan-medium | 98 Hz | 4.7 st | deep but close to monotone |
+| en_US-ryan-high | 155 Hz | 11.2 st | the previous voice - too high to read as senior |
+
+Target for a senior-HR read: **100-115 Hz with 9-11 semitones of movement**.
+Below about 6 semitones a voice reads as robotic no matter how deep it is; above
+about 15 it starts to sound like an advertisement.
+
 ### Voice settings
 
 `src/config/voiceover.ts`:
@@ -137,6 +158,16 @@ durations. To re-sync them, edit the numbers in `src/config/voiceover.timing.ts`
 - one entry per line ID, in seconds - and run `npm run captions`.
 
 ---
+
+### Pitch trim
+
+If you swap to a voice that sits outside the target range, nudge it with
+`pitchShiftSemitones`. It resamples to shift the pitch and then restores the
+original duration with `atempo`, so nothing downstream needs re-timing.
+
+Keep it within about **two semitones**. Beyond that the formants smear and the
+result sounds processed - at which point you want a different voice, not more
+shift.
 
 ## The music bed
 
