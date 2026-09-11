@@ -1,9 +1,10 @@
 /**
- * The whole 90-second film.
+ * The whole film.
  *
  * Scenes are laid out from the durations in src/config/scenes.ts, so the only
- * place timing lives is that config file. Each scene overlaps the next by
- * TRANSITION seconds' worth of cross-fade, handled inside <SceneHost>.
+ * place timing lives is that config file. Consecutive scenes overlap by
+ * TRANSITION seconds, which is what keeps the film continuous - the next
+ * visual is already building while the previous line finishes.
  */
 import React from 'react';
 import {
@@ -16,40 +17,97 @@ import {
   useVideoConfig,
   Easing,
 } from 'remotion';
-import {scenes, sceneStarts, FPS, TRANSITION, OUTRO_FADE} from './config/scenes';
+import {scenes, sceneStarts, sceneStart, FPS, TRANSITION, OUTRO_FADE} from './config/scenes';
 import {voiceover} from './config/voiceover';
 import {SceneHost} from './components/SceneTransition';
-import {Paper} from './components/Paper';
+import {Stage} from './components/Stage';
 import {Chrome} from './components/Chrome';
 import {Captions} from './components/Captions';
 import {loadProjectFonts} from './lib/fonts';
-import {colors} from './lib/theme';
+import {colors, fonts} from './lib/theme';
 
-import {Scene01Opening} from './scenes/Scene01Opening';
-import {Scene02Merit} from './scenes/Scene02Merit';
-import {Scene03Bonus} from './scenes/Scene03Bonus';
-import {Scene04WhyChange} from './scenes/Scene04WhyChange';
-import {Scene05NewCycle} from './scenes/Scene05NewCycle';
-import {Scene06NoChange} from './scenes/Scene06NoChange';
-import {Scene07Comparison} from './scenes/Scene07Comparison';
-import {Scene08Benefits} from './scenes/Scene08Benefits';
-import {Scene09Closing} from './scenes/Scene09Closing';
+import {Scene01Hook} from './scenes/Scene01Hook';
+import {Scene02OldCycle} from './scenes/Scene02OldCycle';
+import {Scene03Today} from './scenes/Scene03Today';
+import {Scene04TheChange} from './scenes/Scene04TheChange';
+import {Scene05April} from './scenes/Scene05April';
+import {Scene06March} from './scenes/Scene06March';
+import {Scene07NoChange} from './scenes/Scene07NoChange';
+import {Scene08BeforeAfter} from './scenes/Scene08BeforeAfter';
+import {Scene09Why} from './scenes/Scene09Why';
+import {Scene10Close} from './scenes/Scene10Close';
 
 loadProjectFonts();
 
 const SCENE_COMPONENTS: Record<string, React.FC> = {
-  opening: Scene01Opening,
-  merit: Scene02Merit,
-  bonus: Scene03Bonus,
-  'why-change': Scene04WhyChange,
-  'new-cycle': Scene05NewCycle,
-  'no-change': Scene06NoChange,
-  comparison: Scene07Comparison,
-  benefits: Scene08Benefits,
-  closing: Scene09Closing,
+  hook: Scene01Hook,
+  'old-cycle': Scene02OldCycle,
+  today: Scene03Today,
+  'the-change': Scene04TheChange,
+  april: Scene05April,
+  march: Scene06March,
+  'no-change': Scene07NoChange,
+  'before-after': Scene08BeforeAfter,
+  why: Scene09Why,
+  close: Scene10Close,
 };
 
-/** Fades the finished frame - scenes, logo, progress line and all - to clean paper. */
+/**
+ * Where the accent glow sits, and how strong it is, over the whole film.
+ * It swells on the hero moment and on each anchor month, which is what makes
+ * the stage feel lit rather than flat.
+ */
+type GlowKey = {
+  /** Scene id the key belongs to, so it moves when that scene moves. */
+  scene: string;
+  /** Seconds from the start of that scene. */
+  at: number;
+  x: number;
+  y: number;
+  /** 0 -> 1 intensity. */
+  v: number;
+};
+
+/**
+ * Where the accent glow sits over the course of the film, and how strong it is.
+ * It swells on the hero moment and on each anchor month, which is what makes
+ * the stage feel lit rather than flat.
+ *
+ * Keys are anchored to scenes rather than absolute times, so re-timing a scene
+ * in scenes.ts moves its lighting with it.
+ */
+const GLOW_KEYS: GlowKey[] = [
+  {scene: 'hook', at: 0, x: 960, y: 470, v: 0.4},
+  {scene: 'old-cycle', at: 0, x: 500, y: 520, v: 0.14},
+  {scene: 'today', at: 0, x: 960, y: 430, v: 0.12},
+  {scene: 'the-change', at: 0, x: 480, y: 520, v: 0.18},
+  {scene: 'the-change', at: 4.0, x: 480, y: 520, v: 0.55},
+  {scene: 'the-change', at: 6.6, x: 1250, y: 470, v: 0.95},
+  {scene: 'the-change', at: 9.5, x: 1250, y: 470, v: 0.85},
+  {scene: 'april', at: 0.5, x: 960, y: 420, v: 0.9},
+  {scene: 'march', at: 3.0, x: 960, y: 600, v: 0.7},
+  {scene: 'march', at: 5.5, x: 960, y: 600, v: 0.85},
+  {scene: 'no-change', at: 0, x: 960, y: 500, v: 0.3},
+  {scene: 'before-after', at: 2.0, x: 960, y: 380, v: 0.55},
+  {scene: 'why', at: 0, x: 700, y: 520, v: 0.35},
+  {scene: 'close', at: 0.4, x: 960, y: 330, v: 0.75},
+];
+
+const StageWithGlow: React.FC = () => {
+  const frame = useCurrentFrame();
+  const {fps} = useVideoConfig();
+  const t = frame / fps;
+  const ts = GLOW_KEYS.map((k) => sceneStart(k.scene) + k.at);
+  return (
+    <Stage
+      glowX={interpolate(t, ts, GLOW_KEYS.map((k) => k.x), {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'})}
+      glowY={interpolate(t, ts, GLOW_KEYS.map((k) => k.y), {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'})}
+      glow={interpolate(t, ts, GLOW_KEYS.map((k) => k.v), {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'})}
+    />
+  );
+};
+
+/** Fades the finished frame - scenes, chrome and all - to the navy stage. */
 const Outro: React.FC = () => {
   const frame = useCurrentFrame();
   const {fps, durationInFrames} = useVideoConfig();
@@ -60,12 +118,26 @@ const Outro: React.FC = () => {
     easing: Easing.inOut(Easing.quad),
   });
   if (opacity <= 0) return null;
-  return <AbsoluteFill style={{backgroundColor: colors.background, opacity, pointerEvents: 'none'}} />;
+  return <AbsoluteFill style={{backgroundColor: colors.backgroundDeep, opacity, pointerEvents: 'none'}} />;
+};
+
+/** The closing scene presents its own logo, so the corner slot steps aside. */
+const ChromeGate: React.FC = () => {
+  const frame = useCurrentFrame();
+  const {fps} = useVideoConfig();
+  const closeStart = sceneStarts[scenes.length - 1] * fps;
+  return <Chrome hidden={frame >= closeStart - 8} />;
 };
 
 export const SalaryCycleVideo: React.FC<{showCaptions?: boolean}> = ({showCaptions = true}) => (
-  <AbsoluteFill style={{backgroundColor: colors.background}}>
-    <Paper />
+  <AbsoluteFill
+    style={{
+      backgroundColor: colors.background,
+      // A default so nothing anywhere can fall back to the browser serif.
+      fontFamily: fonts.body,
+    }}
+  >
+    <StageWithGlow />
 
     {scenes.map((scene, i) => {
       const Component = SCENE_COMPONENTS[scene.id];
@@ -88,7 +160,7 @@ export const SalaryCycleVideo: React.FC<{showCaptions?: boolean}> = ({showCaptio
       );
     })}
 
-    <Chrome />
+    <ChromeGate />
     {showCaptions ? <Captions /> : null}
     <Outro />
 

@@ -35,8 +35,8 @@ const PROFILES = {
     crf: 17,
     jpegQuality: 95,
     file: 'salary-cycle-update.mp4',
-    // Lossless frames: hand-drawn line art is exactly the sort of high-contrast
-    // edge that JPEG's chroma subsampling smears.
+    // Lossless frames: large flat type on a dark field is exactly the sort of
+    // high-contrast edge that JPEG's chroma subsampling smears.
     imageFormat: 'png',
   },
   preview: {

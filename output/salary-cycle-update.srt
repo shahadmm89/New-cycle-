@@ -1,115 +1,175 @@
 1
-00:00:01,250 --> 00:00:02,902
-Do you know how our salary cycle
+00:00:00,350 --> 00:00:01,196
+Did you know our
 
 2
-00:00:02,922 --> 00:00:04,222
-currently works?
+00:00:01,216 --> 00:00:03,018
+SALARY CYCLE is changing?
 
 3
-00:00:08,400 --> 00:00:10,702
-Today, merit recommendations are based on
+00:00:03,500 --> 00:00:05,192
+Here's what it means for you.
 
 4
-00:00:10,722 --> 00:00:13,041
-projected market salary movement.
+00:00:07,200 --> 00:00:09,667
+Until now, our salary cycle has followed
 
 5
-00:00:13,600 --> 00:00:16,124
-That means we use estimated market movement,
+00:00:09,687 --> 00:00:11,020
+JANUARY to DECEMBER
 
 6
-00:00:16,144 --> 00:00:19,420
-rather than the actual movement in market salaries.
+00:00:11,100 --> 00:00:12,647
+Twelve months. One cycle.
 
 7
-00:00:19,500 --> 00:00:21,661
-And our bonus is based on estimated
+00:00:12,667 --> 00:00:14,220
+Starting in January.
 
 8
-00:00:21,681 --> 00:00:24,188
-company performance against KPIs.
+00:00:14,300 --> 00:00:16,070
+That's the cycle you know today.
 
 9
-00:00:27,600 --> 00:00:29,948
-To better align with market best practices,
+00:00:16,150 --> 00:00:17,034
+MERIT
 
 10
-00:00:29,968 --> 00:00:33,007
-we are shifting the timing of our salary cycle.
+00:00:17,054 --> 00:00:20,320
+Projected market movement
 
 11
-00:00:36,400 --> 00:00:38,529
-Going forward, our cycle will shift
+00:00:20,400 --> 00:00:21,206
+BONUS
 
 12
-00:00:38,549 --> 00:00:41,720
-from the January–December timing to March–April.
+00:00:21,226 --> 00:00:24,620
+Estimated company performance
 
 13
-00:00:41,800 --> 00:00:43,438
-This means your bonus will be paid
+00:00:24,700 --> 00:00:26,659
+Both built on estimates.
 
 14
-00:00:43,458 --> 00:00:44,932
-in the March payroll.
+00:00:26,800 --> 00:00:29,620
+We're changing the SALARY CYCLE
 
 15
-00:00:46,100 --> 00:00:49,045
-And any new merit increase will be effective April 1,
+00:00:29,700 --> 00:00:31,717
+From JANUARY to DECEMBER…
 
 16
-00:00:49,065 --> 00:00:51,473
-and reflected in the April payroll.
+00:00:32,100 --> 00:00:33,943
+…to APRIL to MARCH
 
 17
-00:00:53,600 --> 00:00:55,402
-But here is the important part:
+00:00:35,100 --> 00:00:36,908
+Yes — APRIL to MARCH.
 
 18
-00:00:55,422 --> 00:00:58,752
-your performance appraisal cycle does not change.
+00:00:37,500 --> 00:00:39,366
+That's our new salary cycle.
 
 19
-00:00:58,900 --> 00:01:01,409
-Performance appraisal will continue as usual,
+00:00:39,600 --> 00:00:41,499
+MERIT + PROMOTION
 
 20
-00:01:01,429 --> 00:01:04,296
-and the cycle will still close in December.
+00:00:41,519 --> 00:00:43,820
+take effect APRIL 1
 
 21
-00:01:06,500 --> 00:01:09,376
-So, your performance cycle stays the same.
+00:00:43,900 --> 00:00:45,114
+April is where your
 
 22
-00:01:09,600 --> 00:01:11,041
-What changes is the timing
+00:00:45,134 --> 00:00:47,020
+new salary year begins.
 
 23
-00:01:11,061 --> 00:01:13,533
-of the bonus and the merit increase.
+00:00:47,100 --> 00:00:48,343
+Merit. Promotion.
 
 24
-00:01:16,400 --> 00:01:18,590
-This shift lets us make salary decisions
+00:00:48,363 --> 00:00:49,920
+Effective APRIL 1.
 
 25
-00:01:18,610 --> 00:01:21,020
-using more relevant market information,
+00:00:49,1000 --> 00:00:50,529
+BONUS
 
 26
-00:01:21,100 --> 00:01:23,007
-and align our cycle more closely
+00:00:50,549 --> 00:00:52,714
+paid in the MARCH payroll
 
 27
-00:01:23,027 --> 00:01:25,103
-with market best practices.
+00:00:53,800 --> 00:00:54,709
+March closes the
 
 28
-00:01:25,350 --> 00:01:26,245
-Have questions?
+00:00:54,729 --> 00:00:56,166
+new salary cycle.
 
 29
-00:01:26,265 --> 00:01:28,668
-HR will be ready to answer them.
+00:00:56,600 --> 00:00:58,757
+Bonus. MARCH PAYROLL.
+
+30
+00:00:58,950 --> 00:01:00,573
+Your PERFORMANCE cycle
+
+31
+00:01:00,593 --> 00:01:01,920
+does NOT change
+
+32
+00:01:01,1000 --> 00:01:03,407
+It continues as usual,
+
+33
+00:01:03,427 --> 00:01:05,620
+and still closes in DECEMBER.
+
+34
+00:01:05,700 --> 00:01:07,973
+Only the SALARY cycle moves.
+
+35
+00:01:08,100 --> 00:01:09,804
+Here's the whole picture.
+
+36
+00:01:09,900 --> 00:01:12,420
+SALARY CYCLE:  APR → MAR
+
+37
+00:01:12,500 --> 00:01:14,920
+APRIL — merit + promotion
+
+38
+00:01:14,1000 --> 00:01:16,220
+MARCH — bonus
+
+39
+00:01:16,300 --> 00:01:18,770
+DECEMBER — performance closes
+
+40
+00:01:18,850 --> 00:01:21,420
+Closer to market best practice
+
+41
+00:01:21,500 --> 00:01:23,119
+More relevant information
+
+42
+00:01:23,139 --> 00:01:25,096
+behind salary decisions
+
+43
+00:01:26,300 --> 00:01:27,195
+Have questions?
+
+44
+00:01:27,215 --> 00:01:28,886
+HR is ready to help.

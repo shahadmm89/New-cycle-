@@ -1,6 +1,9 @@
 /**
- * Scene wrapper: supplies the scene's config to the timing hooks and applies a
- * short cross-fade + drift at the seams so cuts never feel abrupt.
+ * Scene wrapper: supplies the scene's config to the timing hooks and handles
+ * the seam between scenes.
+ *
+ * Scenes cross-fade with a small push, so one visual is always arriving as
+ * another leaves. Nothing ever cuts to an empty stage.
  */
 import React from 'react';
 import {AbsoluteFill, useCurrentFrame, useVideoConfig, interpolate, Easing} from 'remotion';
@@ -16,32 +19,35 @@ export const SceneHost: React.FC<{scene: SceneConfig; children: React.ReactNode}
   const {fps, durationInFrames} = useVideoConfig();
   const fade = Math.max(1, Math.round(TRANSITION * fps));
 
-  const opacity = Math.min(
-    interpolate(frame, [0, fade], [0, 1], {extrapolateRight: 'clamp', easing: Easing.out(Easing.quad)}),
-    interpolate(frame, [durationInFrames - fade, durationInFrames], [1, 0], {
-      extrapolateLeft: 'clamp',
-      easing: Easing.in(Easing.quad),
-    }),
-  );
-
-  // A few pixels of drift keeps consecutive scenes from feeling like slides.
-  const drift = interpolate(frame, [0, fade], [16, 0], {
+  const inP = interpolate(frame, [0, fade], [0, 1], {
+    extrapolateLeft: 'clamp',
     extrapolateRight: 'clamp',
     easing: Easing.out(Easing.cubic),
   });
+  const outP = interpolate(frame, [durationInFrames - fade, durationInFrames], [0, 1], {
+    extrapolateLeft: 'clamp',
+    extrapolateRight: 'clamp',
+    easing: Easing.in(Easing.cubic),
+  });
+
+  const opacity = Math.min(inP, 1 - outP);
+  // A small push through Z on the way in and out: the scenes feel like they
+  // occupy space rather than stack like slides.
+  const scale = 0.985 + inP * 0.015 + outP * 0.022;
+  const blur = (1 - inP) * 7 + outP * 7;
 
   return (
     <SceneContext.Provider value={scene}>
-      <AbsoluteFill style={{opacity, transform: `translateX(${drift}px)`}}>{children}</AbsoluteFill>
+      <AbsoluteFill
+        style={{
+          opacity,
+          transform: `scale(${scale})`,
+          filter: blur > 0.25 ? `blur(${blur}px)` : undefined,
+          willChange: 'transform, opacity, filter',
+        }}
+      >
+        {children}
+      </AbsoluteFill>
     </SceneContext.Provider>
   );
 };
-
-/** Full-frame stage with the standard safe-area padding. */
-export const Stage: React.FC<{children: React.ReactNode}> = ({children}) => (
-  <AbsoluteFill>
-    <svg width="1920" height="1080" viewBox="0 0 1920 1080" style={{position: 'absolute', overflow: 'visible'}}>
-      {children}
-    </svg>
-  </AbsoluteFill>
-);

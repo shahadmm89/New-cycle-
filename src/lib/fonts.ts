@@ -8,8 +8,8 @@
 import {continueRender, delayRender, staticFile} from 'remotion';
 
 const FACES = [
-  {family: 'Nunito', file: 'fonts/Nunito-Variable.woff2', weight: '100 900'},
-  {family: 'Caveat', file: 'fonts/Caveat-Variable.woff2', weight: '400 700'},
+  {family: 'Inter', file: 'fonts/Inter-Variable.woff2', weight: '100 900'},
+  {family: 'Manrope', file: 'fonts/Manrope-Variable.woff2', weight: '400 800'},
 ];
 
 let started = false;

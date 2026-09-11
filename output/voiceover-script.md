@@ -1,6 +1,6 @@
-# Voice-over script - Our New Salary & Bonus Cycle
+# Voice-over script - Our Salary Cycle Is Changing
 
-Total running time: **90 seconds** (9 scenes, 30 fps).
+Total running time: **89.29999999999998 seconds** (10 scenes, 30 fps).
 
 Tone: warm, confident, conversational - a friendly HR colleague explaining a
 change, not a policy announcement. Moderate pace, with a clear pause between
@@ -11,130 +11,215 @@ Record each line as its own take and name the file after the LINE ID below
 
 | Line ID | In | Slot | Scene | Words |
 |---|---|---|---|---|
-| `s1-l1` | 00:01.25 | 7.0s | 1 - Opening | 9 |
-| `s2-l1` | 00:08.40 | 5.0s | 2 - Current merit process | 10 |
-| `s2-l2` | 00:13.60 | 5.7s | 2 - Current merit process | 15 |
-| `s3-l1` | 00:19.50 | 7.9s | 3 - Current bonus process | 11 |
-| `s4-l1` | 00:27.60 | 8.6s | 4 - Why are we changing? | 16 |
-| `s5-l1` | 00:36.40 | 5.2s | 5 - The new timing | 12 |
-| `s5-l2` | 00:41.80 | 4.1s | 5 - The new timing | 11 |
-| `s5-l3` | 00:46.10 | 7.3s | 5 - The new timing | 16 |
-| `s6-l1` | 00:53.60 | 5.1s | 6 - What does NOT change | 13 |
-| `s6-l2` | 00:58.90 | 7.4s | 6 - What does NOT change | 14 |
-| `s7-l1` | 01:06.50 | 2.9s | 7 - Before vs now | 7 |
-| `s7-l2` | 01:09.60 | 6.6s | 7 - Before vs now | 12 |
-| `s8-l1` | 01:16.40 | 4.5s | 8 - Why this helps | 12 |
-| `s8-l2` | 01:21.10 | 4.1s | 8 - Why this helps | 10 |
-| `s9-l1` | 01:25.35 | 4.5s | 9 - HR closing | 9 |
+| `s1-l1` | 00:00.35 | 3.0s | 1 - Did you know? | 8 |
+| `s1-l2` | 00:03.50 | 3.5s | 1 - Did you know? | 6 |
+| `s2-l1` | 00:07.20 | 3.7s | 2 - The current cycle | 10 |
+| `s2-l2` | 00:11.10 | 3.0s | 2 - The current cycle | 7 |
+| `s2-l3` | 00:14.30 | 1.7s | 2 - The current cycle | 6 |
+| `s3-l1` | 00:16.15 | 4.1s | 3 - How merit & bonus work today | 10 |
+| `s3-l2` | 00:20.40 | 4.1s | 3 - How merit & bonus work today | 8 |
+| `s3-l3` | 00:24.70 | 1.9s | 3 - How merit & bonus work today | 4 |
+| `s4-l1` | 00:26.80 | 2.7s | 4 - THE CHANGE (hero) | 7 |
+| `s4-l2` | 00:29.70 | 2.2s | 4 - THE CHANGE (hero) | 4 |
+| `s4-l3` | 00:32.10 | 2.8s | 4 - THE CHANGE (hero) | 4 |
+| `s4-l4` | 00:35.10 | 2.2s | 4 - THE CHANGE (hero) | 5 |
+| `s4-l5` | 00:37.50 | 1.9s | 4 - THE CHANGE (hero) | 5 |
+| `s5-l1` | 00:39.60 | 4.1s | 5 - What happens in April | 10 |
+| `s5-l2` | 00:43.90 | 3.0s | 5 - What happens in April | 8 |
+| `s5-l3` | 00:47.10 | 2.7s | 5 - What happens in April | 5 |
+| `s6-l1` | 00:50.00 | 3.6s | 6 - What happens in March | 10 |
+| `s6-l2` | 00:53.80 | 2.6s | 6 - What happens in March | 6 |
+| `s6-l3` | 00:56.60 | 2.2s | 6 - What happens in March | 3 |
+| `s7-l1` | 00:58.95 | 2.9s | 7 - What does NOT change | 7 |
+| `s7-l2` | 01:02.00 | 3.5s | 7 - What does NOT change | 9 |
+| `s7-l3` | 01:05.70 | 2.2s | 7 - What does NOT change | 5 |
+| `s8-l1` | 01:08.10 | 1.6s | 8 - Before becomes after | 4 |
+| `s8-l2` | 01:09.90 | 2.4s | 8 - Before becomes after | 5 |
+| `s8-l3` | 01:12.50 | 2.3s | 8 - Before becomes after | 5 |
+| `s8-l4` | 01:15.00 | 1.1s | 8 - Before becomes after | 3 |
+| `s8-l5` | 01:16.30 | 2.4s | 8 - Before becomes after | 4 |
+| `s9-l1` | 01:18.85 | 2.5s | 9 - Why the change | 8 |
+| `s9-l2` | 01:21.50 | 4.6s | 9 - Why the change | 7 |
+| `s10-l1` | 01:26.30 | 2.8s | 10 - Final message | 7 |
 
 ---
 
-## 1 - Opening
+## 1 - Did you know?
 
-**00:00.00 - 00:08.00** (8s)
+**00:00.00 - 00:07.00** (7s)
 
-**`s1-l1`** - in at 00:01.25
+**`s1-l1`** - in at 00:00.35
 
-> Do you know how our salary cycle currently works?
+> Did you know our Salary Cycle is changing?
 
-## 2 - Current merit process
+**`s1-l2`** - in at 00:03.50
 
-**00:08.00 - 00:19.00** (11s)
+> Here's what it means for you.
 
-**`s2-l1`** - in at 00:08.40
+## 2 - The current cycle
 
-> Today, merit recommendations are based on projected market salary movement.
+**00:07.00 - 00:15.90** (8.9s)
 
-**`s2-l2`** - in at 00:13.60
+**`s2-l1`** - in at 00:07.20
 
-> That means we use estimated market movement, rather than the actual movement in market salaries.
+> Until now, our salary cycle has followed January to December.
 
-## 3 - Current bonus process
+**`s2-l2`** - in at 00:11.10
 
-**00:19.00 - 00:27.00** (8s)
+> Twelve months. One cycle. Starting in January.
 
-**`s3-l1`** - in at 00:19.50
+**`s2-l3`** - in at 00:14.30
 
-> And our bonus is based on estimated company performance against KPIs.
+> That's the cycle you know today.
 
-_Say it as:_ And our bonus is based on estimated company performance against K P Is.
+## 3 - How merit & bonus work today
 
-## 4 - Why are we changing?
+**00:15.90 - 00:26.60** (10.7s)
 
-**00:27.00 - 00:36.00** (9s)
+**`s3-l1`** - in at 00:16.15
 
-**`s4-l1`** - in at 00:27.60
+> Merit recommendations have been based on projected market salary movement.
 
-> To better align with market best practices, we are shifting the timing of our salary cycle.
+**`s3-l2`** - in at 00:20.40
 
-## 5 - The new timing
+> And bonus, on estimated company performance against KPIs.
 
-**00:36.00 - 00:53.00** (17s)
+_Say it as:_ And bonus, on estimated company performance against K P Is.
 
-**`s5-l1`** - in at 00:36.40
+**`s3-l3`** - in at 00:24.70
 
-> Going forward, our cycle will shift from the January–December timing to March–April.
+> Both built on estimates.
 
-_Say it as:_ Going forward, our cycle will shift from the January to December timing, to March and April.
+## 4 - THE CHANGE (hero)
 
-**`s5-l2`** - in at 00:41.80
+**00:26.60 - 00:39.30** (12.7s)
 
-> This means your bonus will be paid in the March payroll.
+**`s4-l1`** - in at 00:26.80
 
-**`s5-l3`** - in at 00:46.10
+> Going forward, we're changing the Salary Cycle.
 
-> And any new merit increase will be effective April 1, and reflected in the April payroll.
+**`s4-l2`** - in at 00:29.70
 
-_Say it as:_ And any new merit increase will be effective April first, and reflected in the April payroll.
+> From January to December...
 
-## 6 - What does NOT change
+**`s4-l3`** - in at 00:32.10
 
-**00:53.00 - 01:06.00** (13s)
+> ...to April to March.
 
-**`s6-l1`** - in at 00:53.60
+_Say it as:_ to April, to March.
 
-> But here is the important part: your performance appraisal cycle does not change.
+**`s4-l4`** - in at 00:35.10
 
-**`s6-l2`** - in at 00:58.90
+> Yes - April to March.
 
-> Performance appraisal will continue as usual, and the cycle will still close in December.
+_Say it as:_ Yes. April to March.
 
-## 7 - Before vs now
+**`s4-l5`** - in at 00:37.50
 
-**01:06.00 - 01:16.00** (10s)
+> That's our new salary cycle.
 
-**`s7-l1`** - in at 01:06.50
+## 5 - What happens in April
 
-> So, your performance cycle stays the same.
+**00:39.30 - 00:49.70** (10.4s)
 
-**`s7-l2`** - in at 01:09.60
+**`s5-l1`** - in at 00:39.60
 
-> What changes is the timing of the bonus and the merit increase.
+> Starting April first, new merit increases and promotions take effect.
 
-## 8 - Why this helps
+**`s5-l2`** - in at 00:43.90
 
-**01:16.00 - 01:25.00** (9s)
+> April is where your new salary year begins.
 
-**`s8-l1`** - in at 01:16.40
+**`s5-l3`** - in at 00:47.10
 
-> This shift lets us make salary decisions using more relevant market information,
+> Merit. Promotion. Effective April first.
 
-**`s8-l2`** - in at 01:21.10
+## 6 - What happens in March
 
-> and align our cycle more closely with market best practices.
+**00:49.70 - 00:58.70** (9s)
 
-## 9 - HR closing
+**`s6-l1`** - in at 00:50.00
 
-**01:25.00 - 01:30.00** (5s)
+> And your bonus will be paid in the March payroll.
 
-**`s9-l1`** - in at 01:25.35
+**`s6-l2`** - in at 00:53.80
 
-> Have questions? HR will be ready to answer them.
+> March closes the new salary cycle.
 
-_Say it as:_ Have questions? H R will be ready to answer them.
+**`s6-l3`** - in at 00:56.60
+
+> Bonus. March payroll.
+
+## 7 - What does NOT change
+
+**00:58.70 - 01:07.90** (9.2s)
+
+**`s7-l1`** - in at 00:58.95
+
+> Your performance appraisal cycle does not change.
+
+**`s7-l2`** - in at 01:02.00
+
+> It continues as usual, and still closes in December.
+
+**`s7-l3`** - in at 01:05.70
+
+> Only the salary cycle moves.
+
+## 8 - Before becomes after
+
+**01:07.90 - 01:18.70** (10.8s)
+
+**`s8-l1`** - in at 01:08.10
+
+> Here's the whole picture.
+
+**`s8-l2`** - in at 01:09.90
+
+> Salary cycle: April to March.
+
+**`s8-l3`** - in at 01:12.50
+
+> April - merit and promotion.
+
+_Say it as:_ April: merit, and promotion.
+
+**`s8-l4`** - in at 01:15.00
+
+> March - bonus.
+
+_Say it as:_ March: bonus.
+
+**`s8-l5`** - in at 01:16.30
+
+> December - performance closes.
+
+_Say it as:_ December: performance closes.
+
+## 9 - Why the change
+
+**01:18.70 - 01:24.70** (6s)
+
+**`s9-l1`** - in at 01:18.85
+
+> This brings us closer to market best practice,
+
+**`s9-l2`** - in at 01:21.50
+
+> with more relevant information behind salary decisions.
+
+## 10 - Final message
+
+**01:24.70 - 01:29.30** (4.6s)
+
+**`s10-l1`** - in at 01:26.30
+
+> Have questions? HR is ready to help.
+
+_Say it as:_ Have questions? H R is ready to help.
 
 ---
 
 ## Full script, uninterrupted
 
-Do you know how our salary cycle currently works? Today, merit recommendations are based on projected market salary movement. That means we use estimated market movement, rather than the actual movement in market salaries. And our bonus is based on estimated company performance against KPIs. To better align with market best practices, we are shifting the timing of our salary cycle. Going forward, our cycle will shift from the January–December timing to March–April. This means your bonus will be paid in the March payroll. And any new merit increase will be effective April 1, and reflected in the April payroll. But here is the important part: your performance appraisal cycle does not change. Performance appraisal will continue as usual, and the cycle will still close in December. So, your performance cycle stays the same. What changes is the timing of the bonus and the merit increase. This shift lets us make salary decisions using more relevant market information, and align our cycle more closely with market best practices. Have questions? HR will be ready to answer them.
+Did you know our Salary Cycle is changing? Here's what it means for you. Until now, our salary cycle has followed January to December. Twelve months. One cycle. Starting in January. That's the cycle you know today. Merit recommendations have been based on projected market salary movement. And bonus, on estimated company performance against KPIs. Both built on estimates. Going forward, we're changing the Salary Cycle. From January to December... ...to April to March. Yes - April to March. That's our new salary cycle. Starting April first, new merit increases and promotions take effect. April is where your new salary year begins. Merit. Promotion. Effective April first. And your bonus will be paid in the March payroll. March closes the new salary cycle. Bonus. March payroll. Your performance appraisal cycle does not change. It continues as usual, and still closes in December. Only the salary cycle moves. Here's the whole picture. Salary cycle: April to March. April - merit and promotion. March - bonus. December - performance closes. This brings us closer to market best practice, with more relevant information behind salary decisions. Have questions? HR is ready to help.

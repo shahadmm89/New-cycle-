@@ -2,41 +2,53 @@
 
 Two files, and nothing else.
 
-## Dates and recurring phrases → `src/config/copy.ts`
+## Dates and the cycle definition → `src/config/copy.ts`
 
-Every date and month name in the film comes from one object:
+The central idea of the film - which months the salary cycle runs between -
+lives in one object:
 
 ```ts
 export const cycle = {
-  performanceClose: 'December',        // when the appraisal cycle closes (unchanged)
-  performanceCloseShort: 'DEC',
+  oldCycleFrom: 'JAN',   oldCycleTo: 'DEC',    // the cycle being left behind
+  oldCycleFromLong: 'JANUARY', oldCycleToLong: 'DECEMBER',
 
-  bonusMonth: 'March',                 // payroll month the bonus is paid
-  bonusMonthShort: 'MAR',
-  bonusPayrollLabel: 'MARCH PAYROLL',
+  newCycleFrom: 'APR',   newCycleTo: 'MAR',    // the new salary cycle
+  newCycleFromLong: 'APRIL',  newCycleToLong: 'MARCH',
 
-  meritEffectiveDate: 'April 1',       // when merit increases take effect
-  meritEffectiveLabel: 'EFFECTIVE APRIL 1',
-
-  meritPayroll: 'April',               // payroll month the new salary appears in
-  meritPayrollShort: 'APR',
-  meritPayrollLabel: 'APRIL PAYROLL',
-
-  oldCycleWindow: 'January–December',
-  newCycleWindow: 'March–April',
+  meritEffectiveDate: 'APRIL 1',               // merit + promotion take effect
+  bonusPayrollLabel: 'MARCH PAYROLL',          // bonus is paid
+  performanceClose: 'DECEMBER',                // appraisal closes - unchanged
 };
 ```
 
-Change a value here and it updates **the animation, the narration script and the
-subtitles together** - they all read the same object. The KPI names
-(`kpis`) and the month strip (`months`) live in the same file.
+Two month orders sit alongside it, and both are used on screen:
+
+```ts
+monthsCalendar   // JAN..DEC - the cycle we are leaving
+monthsSalaryYear // APR..MAR - the new salary year
+```
+
+Seeing the same rail with a different first month is what makes the change
+concrete, so if you move the cycle start you must rotate `monthsSalaryYear` to
+match, and update `APRIL_INDEX` in `src/scenes/Scene04TheChange.tsx` - that
+constant is how far the year ring turns.
+
+The three anchors the film exists to plant are also here:
+
+```ts
+export const anchors = [
+  {month: 'APRIL',    what: 'MERIT + PROMOTION',        tone: 'new'},
+  {month: 'MARCH',    what: 'BONUS',                    tone: 'new'},
+  {month: 'DECEMBER', what: 'PERFORMANCE CYCLE CLOSES', tone: 'steady'},
+];
+```
 
 > After changing a date, re-run `npm run voiceover:build` so the narration says
 > the new one, then `npm run captions` and `npm run render`.
 
-Note the two `spoken:` overrides in `src/config/scenes.ts` (scene 5 and scene 9):
-they exist so the narrator says "April **first**" and "H R" rather than
-"April 1" and "hr". If you change those dates, update the override to match.
+Note the `spoken:` overrides in `src/config/scenes.ts` - they exist so the
+narrator says "April **first**" and "H R" rather than "April 1" and "hr". If you
+change those dates, update the override to match.
 
 ## On-screen copy, narration and timing → `src/config/scenes.ts`
 
@@ -44,21 +56,22 @@ This is the master timeline. Each scene looks like this:
 
 ```ts
 {
-  id: 'new-cycle',
-  title: '5 - The new timing',
-  duration: 17,                       // SECONDS
+  id: 'the-change',
+  title: '4 - THE CHANGE (hero)',
+  duration: 12.7,                     // SECONDS
   beats: {                            // named animation cues, seconds into the scene
-    railDraw: 0.5,
-    marchHighlight: 5.7,
-    bonusCard: 6.4,
+    spinUp: 2.6,
+    newRingIn: 5.4,
+    bigReveal: 6.4,
     …
   },
   voice: [
     {
-      id: 's5-l2',
-      start: 5.8,                     // seconds into the scene
-      text: 'This means your bonus will be paid in the March payroll.',
-      captions: ['This means your bonus will be paid', 'in the March payroll.'],
+      id: 's4-l3',
+      start: 5.5,                     // seconds into the scene
+      text: '...to April to March.',
+      rate: 1.16,                     // slower = heavier = emphasis
+      captions: ['…to APRIL to MARCH'],
     },
   ],
   text: { … },                        // everything written on screen in this scene
@@ -79,6 +92,12 @@ Move the number in `beats`. Components ask for beats by name
 (`useProgress('bonusCard', 0.6)`), so there is never a frame number to hunt for.
 Removing a beat that a scene still uses fails loudly with a message naming the
 scene and the beat.
+
+### Changing the pacing
+This film is signage: it should never feel like it is waiting. `TRANSITION`
+(0.55s) is how far consecutive scenes overlap, so the next visual builds while
+the previous phrase finishes. Keep beats dense - if a scene has more than about
+a second with nothing moving, move a beat earlier rather than adding filler.
 
 ### Changing what the narrator says
 Edit `text` in the `voice` array, and keep `captions` in step - those short

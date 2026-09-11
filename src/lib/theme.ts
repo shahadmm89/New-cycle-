@@ -1,14 +1,27 @@
-import {colors, fonts, sketch, brand} from '../config/branding';
+import {colors, fonts, depth, brand} from '../config/branding';
 
-export {colors, fonts, sketch, brand};
+export {colors, fonts, depth, brand};
 
-/** Layout constants for the 1920x1080 canvas. */
+/** Layout constants for the 1920x1080 stage. */
 export const stage = {
   width: 1920,
   height: 1080,
-  /** Safe area padding - nothing important should sit outside this. */
-  padX: 130,
-  padTop: 96,
-  /** Everything above this line stays clear of the caption bar. */
+  /** Nothing important sits outside this margin. */
+  pad: 120,
+  /** Content must stay above this line so captions never cover a graphic. */
   captionSafeY: 900,
+} as const;
+
+/**
+ * Type scale, tuned for a screen several metres away.
+ * Nothing in this film is smaller than `label`.
+ */
+export const type = {
+  hero: 190,
+  display: 132,
+  title: 84,
+  headline: 64,
+  subhead: 46,
+  body: 34,
+  label: 28,
 } as const;

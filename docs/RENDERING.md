@@ -21,7 +21,7 @@ npm run render -- --concurrency=4        # cap the worker count on a small machi
 |---|---|---|
 | Resolution | 1920×1080 | 960×540 |
 | Frame rate | 30 fps | 30 fps |
-| Duration | 90.0s (2700 frames) | same |
+| Duration | 89.2s (2676 frames) | same |
 | Video | H.264, `yuv420p` Rec.709, CRF 17, `slow` preset, PNG source frames | H.264, CRF 26, `veryfast`, JPEG frames |
 | Audio | AAC 192 kbps, 48 kHz stereo | same |
 
@@ -30,9 +30,10 @@ npm run render -- --concurrency=4        # cap the worker count on a small machi
 **Microsoft Teams, SharePoint, Outlook, PowerPoint** and every browser, with no
 transcoding step, no colour shift, and no "this file can't be played" surprises.
 
-The production profile renders frames as PNG rather than JPEG: hand-drawn line
-art is exactly the sort of high-contrast edge that JPEG chroma subsampling
-smears. It costs a little render time and nothing else.
+The production profile renders frames as PNG rather than JPEG: large flat type
+on a dark field is exactly the sort of high-contrast edge that JPEG chroma
+subsampling smears, and this film is almost entirely large flat type. It costs a
+little render time and nothing else.
 
 ## Subtitles
 
@@ -81,7 +82,12 @@ check the path and that it is `.woff2`.
 
 **A scene feels rushed / a line is cut off.** Lengthen that scene's `duration` in
 `src/config/scenes.ts`; everything after it shifts automatically. Then re-run
-`npm run voiceover:build`.
+`npm run voiceover:build` - it prints every phrase's measured length against the
+room it has, and warns by name if one no longer fits.
+
+**Text runs off the right edge.** The stage is 1920 wide with a 120px margin;
+anything past x=1800 will be cropped on some players. Render a still
+(`npm run still -- 1020`) rather than trusting Studio's zoomed-out preview.
 
 ## Distributing it
 
@@ -89,6 +95,10 @@ check the path and that it is `.woff2`.
   rendered with `--no-captions`.
 - **Email**: link to the portal copy rather than attaching - the file is a few MB
   but many mail systems strip video attachments.
+- **Digital signage / lobby screens**: this is what the film is designed for.
+  It needs no audio to make sense, the type is sized for several metres, and
+  every scene states its point within a few seconds of starting, so someone
+  walking past still catches something.
 - **Town hall**: the burned-in captions and the high-contrast palette are legible
-  from the back of a room; the film needs no audio to make sense.
+  from the back of a room.
 - **Intranet**: serve the MP4 with `.vtt` on an HTML5 `<track kind="captions">`.

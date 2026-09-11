@@ -8,32 +8,43 @@ one file is the whole job. Re-render afterwards with `npm run render`.
 
 ```ts
 export const colors = {
-  primary:   '#2F5FE0',   // headings, key strokes, primary highlights
-  secondary: '#12B5A5',   // supporting shapes, the "new" side of comparisons
-  accent:    '#F5A524',   // spotlight colour for the three key dates
-  success:   '#1F9D63',   // checkmarks, the "NO CHANGE" stamp
-  background:'#FBFAF6',   // the paper the whole film is drawn on
-  surface:   '#FFFFFF',   // cards and panels
-  text:      '#1F2933',   // body text AND the "pen" colour of every sketch line
-  textSoft:  '#5C6B7A',   // secondary labels
-  line:      '#DFE3E8',   // notebook grid, dividers
-  neutral:   '#8C9AA8',   // the calm "current state" colour
-  captionBg: 'rgba(31, 41, 51, 0.88)',
-  captionText: '#FFFFFF',
+  background: '#061024',   // deep navy stage - everything is drawn on this
+  backgroundDeep: '#030913',
+  surface: '#0E2044',      // raised cards
+  surfaceLit: '#1B3A72',   // the lit top edge of a raised surface
+
+  primary: '#5B8DEF',      // structural soft blue: rails, frames, secondary labels
+  primaryDim: '#2C4C86',
+
+  accent: '#FFC24B',       // THE energetic accent - see below
+  accentDeep: '#E8A01F',
+  accentGlow: 'rgba(255, 194, 75, 0.30)',
+
+  steady: '#3DDC97',       // the "NO CHANGE" tick. Nothing else.
+  muted: '#5E77A3',        // the OLD cycle: legible, deliberately quieter
+
+  text: '#FFFFFF',
+  textSoft: '#A9BEDE',
+  line: '#1A3160',
 };
 ```
 
-Replace the hex values with your corporate palette. A few things worth knowing:
+The palette is deliberately small. Four colours do all the work, and the
+discipline is what makes it read as premium rather than busy:
 
-- **`text` is also the ink.** Every hand-drawn stroke uses it. Keep it dark;
-  a mid-grey will make the sketch look washed out.
-- **`accent` carries the three key dates.** Pick something that stands out
-  against `background` - it is what the eye lands on in scene 5.
-- **`background`** should stay very light. The captions and the paper grid
-  assume a light stage.
-- **Contrast:** keep `text` and `textSoft` at 4.5:1 or better against
-  `background`, and white at 4.5:1 against `primary`/`success`, which both
-  carry white text.
+- **`accent` is reserved.** It means "this is the change" - the new cycle,
+  April, March, the key dates. If you spend it on decoration it stops meaning
+  anything, and the hero moment in scene 4 loses its punch.
+- **`muted` is the old cycle.** Scenes 2, 3 and the BEFORE face of scene 8 are
+  deliberately cooler and quieter, so the accent arriving in scene 4 feels like
+  a lift. Keep the contrast between the two.
+- **`steady` appears exactly once**, on the NO CHANGE tick in scene 7. That is
+  what makes it read as reassurance rather than another highlight.
+- **`background` should stay dark.** The type, the glow and the card shadows all
+  assume a dark stage.
+
+Contrast: this is signage, so keep white at 7:1 or better against `background`,
+and `textSoft` at 4.5:1 minimum. `accent` on `background` is currently ~9:1.
 
 Nothing else needs touching - the scenes read these tokens, they never contain
 literal colours.
@@ -73,29 +84,42 @@ The project ships two typefaces in `assets/fonts/`:
 
 | Role | Font | Used for |
 |---|---|---|
-| `body` | Nunito | all headings, labels and captions |
-| `hand` | Caveat | handwritten annotations |
+| `display` | Manrope 800 | months, dates, ranges - the big type |
+| `body` | Inter | labels, captions, everything else |
 
 To swap one:
 
 1. Put the `.woff2` in `assets/fonts/`.
 2. Update the matching entry in `FACES` in `src/lib/fonts.ts`.
-3. Update `fonts.body` / `fonts.hand` in `src/config/branding.ts`.
+3. Update `fonts.display` / `fonts.body` in `src/config/branding.ts`.
 
 Rendering is blocked until the fonts load, so no frame is ever rendered in a
 fallback face. Always keep a real fallback stack in the CSS value.
 
-## 5. The hand-drawn look
+## 5. Depth
 
 ```ts
-export const sketch = {
-  roughness: 1.05,   // 0 = clean vector lines, 2+ = very scruffy
-  bowing: 1.2,       // how much straight lines bow
-  strokeWidth: 3,
-  seed: 20260401,    // change to reshuffle every wobble in the film
+export const depth = {
+  perspective: 2000,   // every 3D transform shares this vanishing point
+  shadowSoft:  '0 18px 50px rgba(0, 0, 0, 0.45)',
+  shadowStrong:'0 30px 90px rgba(0, 0, 0, 0.60)',
+  glow:        '0 0 90px rgba(255, 194, 75, 0.22)',
 };
 ```
 
-Setting `roughness: 0` turns the whole film into crisp vector line art if a more
-formal look is wanted. The `seed` is what keeps the wobble identical on every
-frame - without it the sketch would boil.
+The film uses subtle, consistent 3D: one light source (top-left), one
+perspective distance, two shadow strengths. Raising `perspective` flattens the
+tilt on cards and rails; lowering it exaggerates it. Keep every scene on the
+same value - mismatched perspective is what makes motion graphics look
+assembled rather than designed.
+
+## 6. Type scale
+
+`src/lib/theme.ts` holds the scale, tuned for a screen several metres away:
+
+```ts
+hero: 190, display: 132, title: 84, headline: 64, subhead: 46, body: 34, label: 28
+```
+
+Nothing in the film is smaller than `label`. If you add a scene, pick from this
+scale rather than inventing a size.

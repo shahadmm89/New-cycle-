@@ -1,9 +1,8 @@
 /**
- * Burned-in subtitles.
+ * Burned-in subtitles, sized for a screen across the room.
  *
- * They sit in a reserved band at the bottom of the frame that no scene draws
- * into, so they can never cover a graphic. A matching .srt/.vtt file is written
- * by `npm run captions` from exactly the same cue list.
+ * They sit in a band no scene draws into, and a matching .srt/.vtt is written
+ * from exactly the same cue list, so the two can never disagree.
  */
 import React, {useMemo} from 'react';
 import {useCurrentFrame, useVideoConfig, interpolate} from 'remotion';
@@ -20,9 +19,13 @@ export const Captions: React.FC = () => {
   if (!cue) return null;
 
   const fade = Math.min(
-    interpolate(t, [cue.start, cue.start + 0.12], [0, 1], {extrapolateRight: 'clamp', extrapolateLeft: 'clamp'}),
-    interpolate(t, [cue.end - 0.12, cue.end], [1, 0], {extrapolateRight: 'clamp', extrapolateLeft: 'clamp'}),
+    interpolate(t, [cue.start, cue.start + 0.1], [0, 1], {extrapolateRight: 'clamp', extrapolateLeft: 'clamp'}),
+    interpolate(t, [cue.end - 0.1, cue.end], [1, 0], {extrapolateRight: 'clamp', extrapolateLeft: 'clamp'}),
   );
+  const rise = interpolate(t, [cue.start, cue.start + 0.18], [10, 0], {
+    extrapolateRight: 'clamp',
+    extrapolateLeft: 'clamp',
+  });
 
   return (
     <div
@@ -30,7 +33,7 @@ export const Captions: React.FC = () => {
         position: 'absolute',
         left: 0,
         right: 0,
-        bottom: 52,
+        bottom: 46,
         display: 'flex',
         justifyContent: 'center',
         pointerEvents: 'none',
@@ -38,19 +41,22 @@ export const Captions: React.FC = () => {
     >
       <div
         style={{
-          maxWidth: 1520,
+          maxWidth: 1560,
           background: colors.captionBg,
           color: colors.captionText,
           fontFamily: fonts.body,
           fontWeight: 700,
-          fontSize: 46,
-          lineHeight: 1.28,
-          letterSpacing: 0.2,
-          padding: '16px 34px',
-          borderRadius: 14,
+          fontSize: 44,
+          lineHeight: 1.22,
+          letterSpacing: 0.3,
+          padding: '14px 38px',
+          borderRadius: 12,
+          border: `1px solid ${colors.line}`,
           textAlign: 'center',
           opacity: fade,
+          transform: `translateY(${rise}px)`,
           textWrap: 'balance',
+          backdropFilter: 'blur(6px)',
         }}
       >
         {cue.text}

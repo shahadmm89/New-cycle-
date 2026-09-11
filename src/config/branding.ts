@@ -3,69 +3,84 @@
  * ----------------------
  * Everything visual that a company would want to swap lives here.
  * Replace the hex values with your corporate palette and the placeholder
- * strings with your real HR details - nothing else in the project needs to change.
+ * strings with your real HR details - nothing else needs to change.
  *
- * See docs/BRANDING.md for a step-by-step guide.
+ * The palette is deliberately disciplined: a deep navy stage, white type,
+ * one soft blue for structure, and ONE energetic accent that is reserved for
+ * the new cycle and the key dates. Restraint is what makes it read as premium
+ * on a large screen.
+ *
+ * See docs/BRANDING.md
  */
 
 export const colors = {
-  /** Main brand colour. Used for headings, key strokes, primary highlights. */
-  primary: '#2F5FE0',
-  /** Supporting colour. Used for secondary shapes, the "new" side of comparisons. */
-  secondary: '#12B5A5',
-  /** Attention colour. Used sparingly to spotlight the three key dates. */
-  accent: '#F5A524',
-  /** Positive confirmation colour. Checkmarks, "no change" badges. */
-  success: '#1F9D63',
-  /** Page background ("paper"). */
-  background: '#FBFAF6',
-  /** Cards / panels drawn on top of the background. */
-  surface: '#FFFFFF',
-  /** Primary text + the "pen" colour used for hand-drawn strokes. */
-  text: '#1F2933',
-  /** De-emphasised text: captions of labels, secondary annotation. */
-  textSoft: '#5C6B7A',
-  /** Very light lines: the notebook grid, dividers, inactive months. */
-  line: '#DFE3E8',
-  /** Neutral used for the "current state" side. Deliberately calm, not negative. */
-  neutral: '#8C9AA8',
-  /** Caption bar background (semi-transparent over the video). */
-  captionBg: 'rgba(31, 41, 51, 0.88)',
-  /** Caption text. */
+  /** Deep navy stage. Everything is drawn on this. */
+  background: '#061024',
+  /** Darker navy for vignette edges and depth. */
+  backgroundDeep: '#030913',
+  /** Raised card surfaces. */
+  surface: '#0E2044',
+  /** The lit top edge / highlight of a raised surface. */
+  surfaceLit: '#1B3A72',
+
+  /** Structural soft blue. Rails, frames, secondary labels. */
+  primary: '#5B8DEF',
+  primaryDim: '#2C4C86',
+
+  /**
+   * THE energetic accent. Reserved for the NEW cycle, April, March, and the
+   * key dates. Used sparingly so it always means "this is the change".
+   */
+  accent: '#FFC24B',
+  accentDeep: '#E8A01F',
+  accentGlow: 'rgba(255, 194, 75, 0.30)',
+
+  /** Affirmation only - the "NO CHANGE" tick. Nothing else. */
+  steady: '#3DDC97',
+
+  /** The OLD cycle. Present, legible, but deliberately quieter. */
+  muted: '#5E77A3',
+  mutedDim: '#33486C',
+
+  text: '#FFFFFF',
+  textSoft: '#A9BEDE',
+  line: '#1A3160',
+
+  captionBg: 'rgba(3, 9, 19, 0.82)',
   captionText: '#FFFFFF',
 } as const;
 
 export const fonts = {
-  /** Clean, friendly UI/body typeface. */
-  body: "'Nunito', 'Trebuchet MS', system-ui, sans-serif",
-  /** Handwritten typeface for annotations and sketch labels. */
-  hand: "'Caveat', 'Comic Sans MS', cursive",
+  /** Big display type: months, dates, headlines. */
+  display: "'Manrope', 'Inter', 'Segoe UI', system-ui, sans-serif",
+  /** Everything else. */
+  body: "'Inter', 'Segoe UI', system-ui, sans-serif",
+} as const;
+
+/**
+ * Depth. The video uses subtle, consistent 3D: a shared light source from the
+ * top-left, one perspective distance, and two shadow strengths.
+ */
+export const depth = {
+  /** CSS perspective used by every 3D transform, so they share a vanishing point. */
+  perspective: 2000,
+  shadowSoft: '0 18px 50px rgba(0, 0, 0, 0.45)',
+  shadowStrong: '0 30px 90px rgba(0, 0, 0, 0.60)',
+  /** Accent glow behind hero elements. */
+  glow: '0 0 90px rgba(255, 194, 75, 0.22)',
 } as const;
 
 /**
  * Placeholders that HR replaces before publishing.
- * `logoSrc` accepts a path inside /assets (e.g. 'logo/acme.svg') or a data URI.
- * Leave it null to keep showing the [COMPANY LOGO] placeholder box.
+ * `logoSrc` accepts a path inside /assets (e.g. 'logo/acme.svg') or null to
+ * keep the [COMPANY LOGO] placeholder visible.
  */
 export const brand = {
   companyName: '[COMPANY NAME]',
   logoSrc: null as string | null,
   logoPlaceholderLabel: '[COMPANY LOGO]',
-  hrContactName: '[HR CONTACT]',
-  hrEmail: '[HR EMAIL]',
+  hrContact: '[HR CONTACT]',
   hrPortal: '[HR PORTAL]',
-} as const;
-
-/**
- * Hand-drawn look. Increase `roughness` for a scruffier sketch,
- * decrease towards 0 for clean vector lines.
- */
-export const sketch = {
-  roughness: 1.05,
-  bowing: 1.2,
-  strokeWidth: 3,
-  /** Global seed - change it to reshuffle every hand-drawn wobble in the video. */
-  seed: 20260401,
 } as const;
 
 export type Colors = typeof colors;
