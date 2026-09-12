@@ -21,13 +21,68 @@ export const voiceover = {
 
   tts: {
     /**
-     * Kokoro, rather than Piper. The difference is not depth or clarity - it
-     * is sentence rhythm and word linking, which is most of what separates a
-     * read that sounds like a person from one that sounds like a narrator
-     * working through a list.
+     * WHICH ENGINE SAYS THE SCRIPT.
+     *
+     *   'elevenlabs'  the requested voice (Arthur). Needs ELEVENLABS_API_KEY in
+     *                 the environment and outbound access to api.elevenlabs.io.
+     *                 Uses the account's own licensed voice - nothing is cloned
+     *                 or imitated.
+     *   'kokoro'      the local fallback, and what the committed mix was made
+     *                 with. Runs offline.
+     *   'piper'       the older local engine. Still supported.
+     *
+     * To switch to ElevenLabs:
+     *
+     *   export ELEVENLABS_API_KEY=...
+     *   # set engine: 'elevenlabs' below
+     *   npm run voiceover:build
+     *   npm run voiceover:plan -- --write   # re-time the scenes to the new read
+     *   npm run captions && npm run render
+     *
+     * The re-timing step is not optional. A different voice says the same words
+     * at different lengths, and every beat in scenes.ts is placed against a word.
      */
-    engine: 'kokoro',
+    engine: 'kokoro' as 'elevenlabs' | 'kokoro' | 'piper',
 
+    /**
+     * The requested voice: Arthur, from the ElevenLabs voice library.
+     * Used through the account that owns the key - `voiceId` is a reference to
+     * their licensed copy, not a recreation of it.
+     */
+    elevenlabs: {
+      voiceId: 'TtRFBnwQdH1k01vR0hMz',
+      voiceName: 'Arthur',
+      /** Their most natural English model at time of writing. */
+      modelId: 'eleven_multilingual_v2',
+      /** Forces the American pronunciations the script depends on. */
+      languageCode: 'en',
+      /**
+       * Lower stability lets the read vary sentence to sentence, which is what
+       * stops it sounding like a narrator working through a list. Too low and
+       * it starts acting.
+       */
+      stability: 0.45,
+      similarityBoost: 0.8,
+      /** 0 is a plain read. Anything higher starts performing. */
+      style: 0,
+      speakerBoost: true,
+      /**
+       * 1.0 = the voice's own natural pace. Do NOT lower this to slow the read
+       * down - generate naturally and let `npm run voiceover:plan` re-time the
+       * scenes around the result. Per-line `rate` in scenes.ts nudges this
+       * within the API's own 0.7-1.2 limit.
+       */
+      speed: 1.0,
+    },
+
+    /**
+     * KOKORO SETTINGS (the local fallback).
+     *
+     * Kokoro rather than Piper: the difference is not depth or clarity, it is
+     * sentence rhythm and word linking, which is most of what separates a read
+     * that sounds like a person from one that sounds like a narrator working
+     * through a list.
+     */
     /**
      * am_echo. Chosen by measurement from the nine American male voices:
      * 108 Hz median with 11.4 semitones of movement within a phrase.

@@ -290,8 +290,8 @@ export const scenes: SceneConfig[] = [
       landMarch: 3.0,
       monthIn: 3.05,
       payrollIn: 3.45,
-      noteIn: 4.6,
-      closesNote: 4.7,
+      noteIn: 6.45,
+      closesNote: 4.75,
     },
     voice: [
       {
@@ -490,9 +490,9 @@ export const scenes: SceneConfig[] = [
       chartIn: 0.35,
       dataIn: 0.9,
       line1: 2.5,
-      line2: 5.9,
+      line2: 7.45,
       // The forecast line draws slowly underneath the closing sentence.
-      alignIn: 6.2,
+      alignIn: 3.4,
     },
     voice: [
       {

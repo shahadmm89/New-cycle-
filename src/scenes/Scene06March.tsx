@@ -23,7 +23,9 @@ export const Scene06March: React.FC = () => {
   const pMonth = useProgress('monthIn', 0.7);
   const pBonus = useProgress('bonusIn', 0.7);
   const pPayroll = useProgress('payrollIn', 0.6);
-  const pNote = useProgress('closesNote', 0.6);
+  // Rises slowly, so it is still arriving while the narrator finishes the
+  // sentence rather than landing and leaving the frame static.
+  const pNote = useProgress('closesNote', 1.4);
   const pEyebrow = useProgress('noteIn', 0.6);
 
   const last = monthsSalaryYear.length - 1;

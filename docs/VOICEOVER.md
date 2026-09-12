@@ -15,6 +15,81 @@ assets/audio/music.wav       the background bed, before ducking
 assets/audio/mix.wav         what the video mounts  ← narration + ducked bed
 ```
 
+## Which engine says it
+
+`engine` in `src/config/voiceover.ts` picks one of three:
+
+| `engine` | Voice | Needs |
+|---|---|---|
+| `elevenlabs` | **Arthur** (`TtRFBnwQdH1k01vR0hMz`) | `ELEVENLABS_API_KEY`, and outbound HTTPS to `api.elevenlabs.io` |
+| `kokoro` | am_echo, local | `pip install sherpa-onnx` + the model. **What the committed mix was made with.** |
+| `piper` | any Piper voice, local | `pip install piper-tts` |
+
+The ElevenLabs path calls the account's own licensed voice by id. It does not
+clone, sample or approximate anyone: if the key's account cannot use that voice,
+the API refuses and the build stops with the refusal rather than quietly
+substituting something else.
+
+```bash
+export ELEVENLABS_API_KEY=...
+# set engine: 'elevenlabs' in src/config/voiceover.ts
+npm run voiceover:build
+npm run voiceover:plan -- --write     # re-time the scenes to the new read
+npm run captions && npm run render
+```
+
+**The re-timing step is not optional.** See "Re-timing after a voice change"
+below.
+
+### If the host is blocked
+
+Some sandboxes and CI networks do not allow `api.elevenlabs.io`. The build says
+so plainly - the proxy's own words come back in the error:
+
+```
+ElevenLabs returned HTTP 403 - this account may not have access to Arthur
+  Host not in allowlist: api.elevenlabs.io. Add this host to your network
+  egress settings to allow access.
+```
+
+That is a network-policy problem, not a credentials problem. Allow the host, or
+render with `engine: 'kokoro'` in the meantime.
+
+---
+
+## Re-timing after a voice change
+
+Every beat in `scenes.ts` is pinned to the moment a particular word is said. A
+different voice says the same words at different lengths, so the absolute times
+stop meaning anything - but the *pacing* does not. How long the narrator waits
+after each thought is the thing worth keeping.
+
+That is what `src/config/voiceover.pacing.ts` stores, and it is measured
+speech-to-speech, with each clip's own leading and trailing silence excluded, so
+the numbers mean the same thing whichever engine produced the audio:
+
+```
+hook        lead 0.35  pauses [0.62]                          tail 0.74
+example     lead 0.41  pauses [0.51, 0.71, 0.65, 0.55, 0.71]  tail 0.98
+close       lead 0.50  pauses [0.39]                          tail 1.38
+```
+
+```bash
+npm run voiceover:plan                # what the current audio implies
+npm run voiceover:plan -- --write     # apply it to scenes.ts
+npm run voiceover:plan -- --snapshot  # re-capture, after approving a new cut
+```
+
+`--write` sets every line's `start`, every scene's `duration`, and shifts each
+beat by the delta of the phrase it belongs to. **That last part is a first
+approximation, not an answer** - it gets a beat into the right phrase, not onto
+the right word. The tool prints every beat it moved so each can be checked.
+
+Run against the audio it was captured from, the tool is a no-op to the
+centisecond - which is the test that its arithmetic is right.
+
+---
+
 ## Option A - regenerate with the built-in voice
 
 The project ships a complete local text-to-speech pipeline. The script lives in
@@ -158,9 +233,9 @@ Target for a senior-HR read: **100-118 Hz with 9-12 semitones of movement**.
 Below about 6 semitones a voice reads as robotic no matter how deep it is; above
 about 15 it starts to sound like an advertisement.
 
-### Voice settings
+### Local voice settings
 
-`src/config/voiceover.ts`:
+`src/config/voiceover.ts`, under `engine: 'kokoro'`:
 
 ```ts
 tts: {

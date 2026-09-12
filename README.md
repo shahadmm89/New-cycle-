@@ -52,7 +52,7 @@ That is the whole build. The finished audio mix is committed
 ```bash
 npm run preview             # Remotion Studio - scrub and jump between scenes
 npm run captions            # rewrite the .srt / .vtt sidecars
-npm run voiceover:build     # re-generate narration + music (needs `pip install sherpa-onnx`)
+npm run voiceover:build     # re-generate narration + music (see docs/VOICEOVER.md)
 ```
 
 | Command | What it does |
@@ -64,6 +64,8 @@ npm run voiceover:build     # re-generate narration + music (needs `pip install 
 | `npm run still -- 1020` | Render single frames to `output/stills/` |
 | `npm run voiceover:build` | Synthesise narration, build the music bed, duck and mix |
 | `npm run voiceover:script` | Write the narration script to `output/voiceover-script.md` |
+| `npm run voiceover:plan` | Re-time every scene around a new read (after a voice change) |
+| `npm run check:sync` | Audit narration against animation - fails if either runs ahead |
 | `npm run typecheck` | Type-check the project |
 
 ---
@@ -99,6 +101,11 @@ phrase, so the range plate lands on *"January to December"*, the dial lands on
 *"April"*, the KPI tiles arrive one per name, and **6.25%** appears as it is
 said.
 
+Nothing runs ahead of the voice and nothing waits for it either: no phrase is
+cut by a scene boundary, and no scene stops moving while the narrator is still
+talking. `scripts/plan-timing.mjs` and the audit behind it are what keep that
+true when the read changes.
+
 `npm run voiceover:build` prints the measured length of every phrase against the
 room it has and warns by name if one no longer fits.
 
@@ -116,8 +123,9 @@ src/
     scenes.ts             ← MASTER TIMELINE: durations, beats, narration, on-screen copy
     copy.ts               ← the cycle definition, month orders, anchors, the worked example
     branding.ts           ← palette, fonts, depth tokens, logo + HR placeholders
-    voiceover.ts          ← voice, delivery, music bed and ducking
+    voiceover.ts          ← which engine, which voice, delivery, music and ducking
     voiceover.timing.ts   ← measured phrase durations (auto-generated)
+    voiceover.pacing.ts   ← the approved pauses, so a voice swap can be re-timed
   components/
     Stage.tsx             ← navy stage, perspective floor, moving accent glow
     YearRing.tsx          ← the year counter - the mechanism the film turns on

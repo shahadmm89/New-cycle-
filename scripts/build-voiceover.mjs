@@ -28,6 +28,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import https from 'node:https';
 import {ROOT, loadConfig, flatVoiceLines} from './lib/config.mjs';
+import {synthesise as elevenLabsSay} from './lib/tts_elevenlabs.mjs';
 import {readWavInfo} from './lib/wav.mjs';
 
 const LINES_DIR = path.join(ROOT, 'assets', 'audio', 'lines');
@@ -89,6 +90,17 @@ const measureLoudness = (file) => {
 const MIRROR = 'https://github.com/k2-fsa/sherpa-onnx/releases/download/tts-models';
 
 const ensureVoice = async () => {
+  if (tts.engine === 'elevenlabs') {
+    if (!process.env.ELEVENLABS_API_KEY) {
+      throw new Error(
+        `ELEVENLABS_API_KEY is not set, and engine is "elevenlabs".\n` +
+          `  It is needed for the account licensed to use ${tts.elevenlabs.voiceName}.\n` +
+          `    export ELEVENLABS_API_KEY=...\n` +
+          `  Or set engine: 'kokoro' in src/config/voiceover.ts to use the local voice.`,
+      );
+    }
+    return null;
+  }
   if (tts.engine === 'kokoro') {
     const dir = path.join(ROOT, 'assets', 'tts', 'kokoro');
     if (!fs.existsSync(path.join(dir, 'model.onnx'))) {
@@ -140,7 +152,19 @@ const ensureVoice = async () => {
  * re-synthesised at that rate rather than time-stretched afterwards - which is
  * what keeps a slower delivery sounding natural instead of dragged out.
  */
-const synthesise = (model, text, out, pace) => {
+const synthesise = async (model, text, out, pace) => {
+  if (tts.engine === 'elevenlabs') {
+    // `pace` arrives in the local engines' convention, where the base is the
+    // configured speed. ElevenLabs takes a multiplier of the voice's own pace,
+    // so send the ratio rather than the absolute number.
+    const {pcm, sampleRate} = await elevenLabsSay(text, {
+      cfg: tts.elevenlabs,
+      speed: (pace / tts.elevenlabs.speed) * tts.elevenlabs.speed,
+      apiKey: process.env.ELEVENLABS_API_KEY,
+    });
+    writeWav(out, pcm, sampleRate);
+    return;
+  }
   const args =
     tts.engine === 'kokoro'
       ? [path.join(ROOT, 'scripts', 'lib', 'tts_kokoro.py'), model, out, String(tts.speakerId), String(pace)]
@@ -149,6 +173,25 @@ const synthesise = (model, text, out, pace) => {
   if (res.status !== 0) {
     throw new Error(`Text-to-speech failed:\n${res.stderr?.toString()}`);
   }
+};
+
+/** Wraps raw mono 16-bit PCM as a WAV, so every engine hands back the same thing. */
+const writeWav = (out, pcm, sampleRate) => {
+  const header = Buffer.alloc(44);
+  header.write('RIFF', 0);
+  header.writeUInt32LE(36 + pcm.length, 4);
+  header.write('WAVE', 8);
+  header.write('fmt ', 12);
+  header.writeUInt32LE(16, 16);
+  header.writeUInt16LE(1, 20);          // PCM
+  header.writeUInt16LE(1, 22);          // mono
+  header.writeUInt32LE(sampleRate, 24);
+  header.writeUInt32LE(sampleRate * 2, 28);
+  header.writeUInt16LE(2, 32);
+  header.writeUInt16LE(16, 34);
+  header.write('data', 36);
+  header.writeUInt32LE(pcm.length, 40);
+  fs.writeFileSync(out, Buffer.concat([header, pcm]));
 };
 
 const run = async () => {
@@ -162,7 +205,15 @@ const run = async () => {
     console.log('> assemble-only: using the WAVs already in assets/audio/lines');
   } else {
     const model = await ensureVoice();
-    console.log(`> voice: ${tts.engine === 'kokoro' ? `${tts.speakerName} (kokoro #${tts.speakerId})` : tts.voice}`);
+    console.log(
+      `> voice: ${
+        tts.engine === 'elevenlabs'
+          ? `${tts.elevenlabs.voiceName} (elevenlabs ${tts.elevenlabs.voiceId})`
+          : tts.engine === 'kokoro'
+            ? `${tts.speakerName} (kokoro #${tts.speakerId})`
+            : tts.voice
+      }`,
+    );
     for (const line of lines) {
       const out = path.join(LINES_DIR, `${line.id}.wav`);
       const text = line.spoken ?? line.text;
@@ -171,21 +222,29 @@ const run = async () => {
       // carry the message are delivered slower and heavier than the rest.
       // Kokoro's control is a speed multiplier (lower is slower); Piper's is a
       // length scale (higher is slower), so the direction differs.
-      const base = tts.engine === 'kokoro' ? tts.speed : tts.lengthScale;
-      let scale = tts.engine === 'kokoro' ? base / (line.rate ?? 1) : base * (line.rate ?? 1);
-      synthesise(model, text, out, scale);
+      const base =
+        tts.engine === 'kokoro' ? tts.speed
+        : tts.engine === 'elevenlabs' ? tts.elevenlabs.speed
+        : tts.lengthScale;
+      // Higher `rate` means a heavier, slower delivery. For the two engines whose
+      // control is a speed that means dividing; for Piper's length scale, multiplying.
+      let scale =
+        tts.engine === 'piper' ? base * (line.rate ?? 1) : base / (line.rate ?? 1);
+      await synthesise(model, text, out, scale);
       let info = readWavInfo(out);
 
       // If the line would spill into the next one, say it a little faster -
       // but never faster than the configured floor.
       if (info.duration > line.window) {
-        const ceiling = tts.engine === 'kokoro' ? tts.minSpeed : tts.minLengthScale * (line.rate ?? 1);
-        const wanted =
-          tts.engine === 'kokoro'
-            ? Math.min(ceiling, scale * (info.duration / line.window) * 1.02)
-            : Math.max(ceiling, scale * (line.window / info.duration) * 0.98);
-        if (tts.engine === 'kokoro' ? wanted > scale : wanted < scale) {
-          synthesise(model, text, out, wanted);
+        const speedControlled = tts.engine !== 'piper';
+        const ceiling = speedControlled
+          ? (tts.engine === 'elevenlabs' ? 1.2 : tts.minSpeed)
+          : tts.minLengthScale * (line.rate ?? 1);
+        const wanted = speedControlled
+          ? Math.min(ceiling, scale * (info.duration / line.window) * 1.02)
+          : Math.max(ceiling, scale * (line.window / info.duration) * 0.98);
+        if (speedControlled ? wanted > scale : wanted < scale) {
+          await synthesise(model, text, out, wanted);
           info = readWavInfo(out);
           scale = wanted;
         }
