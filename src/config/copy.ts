@@ -70,6 +70,29 @@ export const kpis = ['HSE', 'FINANCE', 'PERFORMANCE'] as const;
 export const kpiTerm = 'Company Performance KPIs';
 
 /**
+ * The same term, spelled for the speech engine only - never shown.
+ *
+ * A bare "KPIs" is read as "K-P-is" - the last two letters become the word
+ * "is". The apostrophe form is the one spelling that comes out as the three
+ * letters plus a plural /z/.
+ *
+ * How that was checked: the letter I is the diphthong /ai/, whose nucleus is a
+ * wide-open vowel; "is" has no open vowel in it at all. So scan the end of the
+ * phrase for the highest F1 and see whether an open nucleus is there. Measured
+ * against reference takes of "kay pee eyes" (882 Hz) and "kay pee is" (497 Hz):
+ *
+ *   written      peak F1   reading
+ *   KPIs           518     the word "is"
+ *   K.P.I.s        572     the word "is"
+ *   KPI's          832     K-P-I-s          <- in use
+ *
+ * Do NOT measure this by taking the last voiced stretch of the clip: that lands
+ * on the diphthong's offglide, which is close and front, and reports a correct
+ * take as wrong.
+ */
+export const kpiTermSpoken = "Company Performance KPI's";
+
+/**
  * The three anchors the film exists to plant, in the order they fall within the
  * new salary year: April starts it, December closes the appraisal, March ends
  * the cycle and pays the bonus.

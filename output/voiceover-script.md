@@ -1,6 +1,6 @@
 # Voice-over script - Our Salary Cycle Is Changing
 
-Total running time: **115.79 seconds** (11 scenes, 30 fps).
+Total running time: **105.49000000000001 seconds** (11 scenes, 30 fps).
 
 Voice: a professional American male presenter - mature, calm, warm, confident.
 Not a commercial voice-over, not a news anchor, not a trailer.
@@ -16,59 +16,59 @@ Record each line as its own take and name the file after the LINE ID below
 
 | Line ID | In | Slot | Scene | Words |
 |---|---|---|---|---|
-| `s1-l1` | 00:00.30 | 3.5s | 1 - Did you know? | 8 |
-| `s1-l2` | 00:03.94 | 2.9s | 1 - Did you know? | 6 |
-| `s2-l1` | 00:07.06 | 4.4s | 2 - The current cycle | 10 |
-| `s2-l2` | 00:11.63 | 3.4s | 2 - The current cycle | 4 |
-| `s3-l1` | 00:15.16 | 5.1s | 3 - How merit & bonus are set today | 10 |
-| `s3-l2` | 00:20.43 | 4.5s | 3 - How merit & bonus are set today | 8 |
-| `s3-l3` | 00:25.06 | 4.4s | 3 - How merit & bonus are set today | 4 |
-| `s4-l1` | 00:29.67 | 3.2s | 4 - THE CHANGE (hero) | 7 |
-| `s4-l2` | 00:33.02 | 3.6s | 4 - THE CHANGE (hero) | 4 |
-| `s5-l1` | 00:36.76 | 5.4s | 5 - April | 10 |
-| `s5-l2` | 00:42.34 | 3.4s | 5 - April | 6 |
-| `s6-l1` | 00:45.94 | 3.9s | 6 - March | 10 |
-| `s6-l2` | 00:50.04 | 3.7s | 6 - March | 8 |
-| `s7-l1` | 00:53.90 | 3.0s | 7 - What does NOT change | 6 |
-| `s7-l2` | 00:57.04 | 3.9s | 7 - What does NOT change | 8 |
-| `s7-l3` | 01:01.07 | 4.2s | 7 - What does NOT change | 6 |
-| `s8-l1` | 01:05.41 | 2.7s | 8 - The implementation year | 6 |
-| `s8-l2` | 01:08.32 | 3.7s | 8 - The implementation year | 6 |
-| `s8-l3` | 01:12.17 | 5.8s | 8 - The implementation year | 12 |
-| `s8-l4` | 01:18.18 | 5.7s | 8 - The implementation year | 9 |
-| `s8-l5` | 01:24.03 | 3.5s | 8 - The implementation year | 5 |
-| `s8-l6` | 01:27.67 | 5.5s | 8 - The implementation year | 5 |
-| `s9-l1` | 01:33.36 | 2.7s | 9 - The visual summary | 5 |
-| `s9-l2` | 01:36.26 | 3.2s | 9 - The visual summary | 5 |
-| `s10-l1` | 01:39.67 | 1.9s | 10 - Why the change | 3 |
-| `s10-l2` | 01:41.78 | 3.2s | 10 - Why the change | 8 |
-| `s10-l3` | 01:45.15 | 4.7s | 10 - Why the change | 11 |
-| `s11-l1` | 01:50.05 | 2.0s | 11 - Final message | 4 |
-| `s11-l2` | 01:52.22 | 3.4s | 11 - Final message | 5 |
+| `s1-l1` | 00:00.31 | 2.8s | 1 - Did you know? | 8 |
+| `s1-l2` | 00:03.31 | 2.4s | 1 - Did you know? | 6 |
+| `s2-l1` | 00:05.89 | 3.9s | 2 - The current cycle | 10 |
+| `s2-l2` | 00:09.94 | 3.3s | 2 - The current cycle | 4 |
+| `s3-l1` | 00:13.41 | 4.7s | 3 - How merit & bonus are set today | 10 |
+| `s3-l2` | 00:18.33 | 4.4s | 3 - How merit & bonus are set today | 8 |
+| `s3-l3` | 00:22.95 | 5.4s | 3 - How merit & bonus are set today | 4 |
+| `s4-l1` | 00:28.53 | 2.8s | 4 - THE CHANGE (hero) | 7 |
+| `s4-l2` | 00:31.55 | 3.2s | 4 - THE CHANGE (hero) | 4 |
+| `s5-l1` | 00:34.89 | 4.4s | 5 - April | 10 |
+| `s5-l2` | 00:39.50 | 3.6s | 5 - April | 6 |
+| `s6-l1` | 00:43.29 | 3.6s | 6 - March | 10 |
+| `s6-l2` | 00:47.09 | 3.5s | 6 - March | 8 |
+| `s7-l1` | 00:50.79 | 2.6s | 7 - What does NOT change | 6 |
+| `s7-l2` | 00:53.61 | 3.2s | 7 - What does NOT change | 8 |
+| `s7-l3` | 00:57.00 | 3.2s | 7 - What does NOT change | 6 |
+| `s8-l1` | 01:00.41 | 2.5s | 8 - The implementation year | 6 |
+| `s8-l2` | 01:03.08 | 3.1s | 8 - The implementation year | 6 |
+| `s8-l3` | 01:06.40 | 6.5s | 8 - The implementation year | 12 |
+| `s8-l4` | 01:13.09 | 5.0s | 8 - The implementation year | 9 |
+| `s8-l5` | 01:18.31 | 2.7s | 8 - The implementation year | 5 |
+| `s8-l6` | 01:21.21 | 4.5s | 8 - The implementation year | 5 |
+| `s9-l1` | 01:25.84 | 2.0s | 9 - The visual summary | 5 |
+| `s9-l2` | 01:27.98 | 2.7s | 9 - The visual summary | 5 |
+| `s10-l1` | 01:30.84 | 1.4s | 10 - Why the change | 3 |
+| `s10-l2` | 01:32.39 | 3.0s | 10 - Why the change | 8 |
+| `s10-l3` | 01:35.58 | 4.5s | 10 - Why the change | 11 |
+| `s11-l1` | 01:40.28 | 1.6s | 11 - Final message | 4 |
+| `s11-l2` | 01:42.05 | 3.3s | 11 - Final message | 5 |
 
 ---
 
 ## 1 - Did you know?
 
-**00:00.00 - 00:06.78** (6.78s)
+**00:00.00 - 00:05.54** (5.54s)
 
-**`s1-l1`** - in at 00:00.30
+**`s1-l1`** - in at 00:00.31
 
 > Did you know our salary cycle is changing?
 
-**`s1-l2`** - in at 00:03.94
+**`s1-l2`** - in at 00:03.31
 
 > Here's what it means for you.
 
 ## 2 - The current cycle
 
-**00:06.78 - 00:14.84** (8.06s)
+**00:05.54 - 00:12.99** (7.45s)
 
-**`s2-l1`** - in at 00:07.06
+**`s2-l1`** - in at 00:05.89
 
 > Up to now, it's followed a January to December cycle.
 
-**`s2-l2`** - in at 00:11.63
+**`s2-l2`** - in at 00:09.94
 
 > 12 months, one cycle.
 
@@ -76,19 +76,19 @@ _Say it as:_ Twelve months, one cycle.
 
 ## 3 - How merit & bonus are set today
 
-**00:14.84 - 00:29.39** (14.55s)
+**00:12.99 - 00:28.19** (15.2s)
 
-**`s3-l1`** - in at 00:15.16
+**`s3-l1`** - in at 00:13.41
 
 > Merit recommendations have been based on projected market salary movement.
 
-**`s3-l2`** - in at 00:20.43
+**`s3-l2`** - in at 00:18.33
 
 > And bonus, on our estimated Company Performance KPIs.
 
-_Say it as:_ And bonus, on our estimated Company Performance KPIs,
+_Say it as:_ And bonus, on our estimated Company Performance KPI's,
 
-**`s3-l3`** - in at 00:25.06
+**`s3-l3`** - in at 00:22.95
 
 > HSE, Finance, and Performance.
 
@@ -96,13 +96,13 @@ _Say it as:_ H-S-E, Finance, and Performance.
 
 ## 4 - THE CHANGE (hero)
 
-**00:29.39 - 00:36.48** (7.09s)
+**00:28.19 - 00:34.54** (6.35s)
 
-**`s4-l1`** - in at 00:29.67
+**`s4-l1`** - in at 00:28.53
 
 > Now, we're moving to a new cycle.
 
-**`s4-l2`** - in at 00:33.02
+**`s4-l2`** - in at 00:31.55
 
 > From April to March.
 
@@ -110,79 +110,79 @@ _Say it as:_ From April, to March.
 
 ## 5 - April
 
-**00:36.48 - 00:45.49** (9.01s)
+**00:34.54 - 00:42.77** (8.23s)
 
-**`s5-l1`** - in at 00:36.76
+**`s5-l1`** - in at 00:34.89
 
 > Merit increases and promotions will take effect on April 1.
 
 _Say it as:_ Merit increases and promotions will take effect on April first.
 
-**`s5-l2`** - in at 00:42.34
+**`s5-l2`** - in at 00:39.50
 
 > That's where the cycle now begins.
 
 ## 6 - March
 
-**00:45.49 - 00:53.62** (8.13s)
+**00:42.77 - 00:50.46** (7.69s)
 
-**`s6-l1`** - in at 00:45.94
+**`s6-l1`** - in at 00:43.29
 
 > And your bonus will be paid in the March payroll.
 
-**`s6-l2`** - in at 00:50.04
+**`s6-l2`** - in at 00:47.09
 
 > March is the last month of the cycle.
 
 ## 7 - What does NOT change
 
-**00:53.62 - 01:05.06** (11.44s)
+**00:50.46 - 01:00.05** (9.59s)
 
-**`s7-l1`** - in at 00:53.90
+**`s7-l1`** - in at 00:50.79
 
 > Now, one thing that isn't changing.
 
-**`s7-l2`** - in at 00:57.04
+**`s7-l2`** - in at 00:53.61
 
 > Your performance appraisal stays on the same schedule,
 
-**`s7-l3`** - in at 01:01.07
+**`s7-l3`** - in at 00:57.00
 
 > and it'll still close in December.
 
 ## 8 - The implementation year
 
-**01:05.06 - 01:32.96** (27.9s)
+**01:00.05 - 01:25.34** (25.29s)
 
-**`s8-l1`** - in at 01:05.41
+**`s8-l1`** - in at 01:00.41
 
 > There's one more thing worth knowing.
 
-**`s8-l2`** - in at 01:08.32
+**`s8-l2`** - in at 01:03.08
 
 > Say your merit increase is 5%.
 
 _Say it as:_ Say your merit increase is five percent.
 
-**`s8-l3`** - in at 01:12.17
+**`s8-l3`** - in at 01:06.40
 
 > During the implementation year, the calculation covers 15 months, instead of 12.
 
 _Say it as:_ During the implementation year, the calculation covers fifteen months, instead of twelve.
 
-**`s8-l4`** - in at 01:18.18
+**`s8-l4`** - in at 01:13.09
 
 > 5% divided by 12 is about 0.417% a month.
 
 _Say it as:_ Five percent divided by twelve is about zero point four one seven percent a month.
 
-**`s8-l5`** - in at 01:24.03
+**`s8-l5`** - in at 01:18.31
 
 > Multiply that by 15 months,
 
 _Say it as:_ Multiply that by fifteen months,
 
-**`s8-l6`** - in at 01:27.67
+**`s8-l6`** - in at 01:21.21
 
 > and the equivalent becomes 6.25%.
 
@@ -190,43 +190,43 @@ _Say it as:_ and the equivalent becomes six point two five percent.
 
 ## 9 - The visual summary
 
-**01:32.96 - 01:39.37** (6.41s)
+**01:25.34 - 01:30.52** (5.18s)
 
-**`s9-l1`** - in at 01:33.36
+**`s9-l1`** - in at 01:25.84
 
 > So - April to March.
 
 _Say it as:_ So, April to March.
 
-**`s9-l2`** - in at 01:36.26
+**`s9-l2`** - in at 01:27.98
 
 > That's the one to remember.
 
 ## 10 - Why the change
 
-**01:39.37 - 01:49.60** (10.23s)
+**01:30.52 - 01:39.75** (9.23s)
 
-**`s10-l1`** - in at 01:39.67
+**`s10-l1`** - in at 01:30.84
 
 > Why the change?
 
-**`s10-l2`** - in at 01:41.78
+**`s10-l2`** - in at 01:32.39
 
 > It brings us closer to market best practice,
 
-**`s10-l3`** - in at 01:45.15
+**`s10-l3`** - in at 01:35.58
 
 > and it gives us more relevant information when we set salaries.
 
 ## 11 - Final message
 
-**01:49.60 - 01:55.79** (6.19s)
+**01:39.75 - 01:45.49** (5.74s)
 
-**`s11-l1`** - in at 01:50.05
+**`s11-l1`** - in at 01:40.28
 
 > If you have questions,
 
-**`s11-l2`** - in at 01:52.22
+**`s11-l2`** - in at 01:42.05
 
 > HR is ready to help.
 

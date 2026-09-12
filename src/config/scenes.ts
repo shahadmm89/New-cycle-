@@ -18,7 +18,7 @@
  *
  * All times are SECONDS. Beat times are relative to the start of their scene.
  */
-import {cycle, implementation, kpiTerm, kpis, monthsCalendar, monthsSalaryYear} from './copy';
+import {cycle, implementation, kpiTerm, kpiTermSpoken, kpis, monthsCalendar, monthsSalaryYear} from './copy';
 
 export const FPS = 30;
 export const WIDTH = 1920;
@@ -71,26 +71,26 @@ export const scenes: SceneConfig[] = [
   {
     id: 'hook',
     title: '1 - Did you know?',
-    duration: 6.78,
+    duration: 5.54,
     beats: {
-      ringIn: 0,
-      monthsSweep: 0.1,
-      headlineIn: 0.3,
-      highlightPhrase: 1.3,
-      subIn: 3.9,
-      pushIn: 2.2,
+      ringIn: 0.05,
+      monthsSweep: 0.11,
+      headlineIn: 0.31,
+      highlightPhrase: 1.1,
+      subIn: 3.31,
+      pushIn: 2.21,
     },
     voice: [
       {
         id: 's1-l1',
-        start: 0.3,
+        start: 0.31,
         text: 'Did you know our salary cycle is changing?',
         rate: 1.02,
         captions: ['Did you know our', 'SALARY CYCLE is changing?'],
       },
       {
         id: 's1-l2',
-        start: 3.94,
+        start: 3.31,
         text: "Here's what it means for you.",
         rate: 1.04,
         captions: ["Here's what it means for you."],
@@ -106,29 +106,29 @@ export const scenes: SceneConfig[] = [
   {
     id: 'old-cycle',
     title: '2 - The current cycle',
-    duration: 8.06,
+    duration: 7.45,
     beats: {
-      label: 0.05,
-      ringIn: 0.15,
-      railIn: 0.7,
+      label: 0.12,
+      ringIn: 0.22,
+      railIn: 0.77,
       // The sweep runs while he names the two endpoints, and the range plate
       // lands on the words "January to December".
-      monthsFlow: 1.95,
-      endpointsIn: 2.1,
-      bannerIn: 5.0,
-      settle: 5.6,
+      monthsFlow: 1.9,
+      endpointsIn: 1.99,
+      bannerIn: 4.4,
+      settle: 5.15,
     },
     voice: [
       {
         id: 's2-l1',
-        start: 0.28,
+        start: 0.35,
         text: "Up to now, it's followed a January to December cycle.",
         rate: 1.02,
         captions: ['Up to now, it has followed', 'a JANUARY-to-DECEMBER cycle'],
       },
       {
         id: 's2-l2',
-        start: 4.85,
+        start: 4.4,
         text: '12 months, one cycle.',
         spoken: 'Twelve months, one cycle.',
         rate: 1.08,
@@ -145,41 +145,41 @@ export const scenes: SceneConfig[] = [
   {
     id: 'today',
     title: '3 - How merit & bonus are set today',
-    duration: 14.55,
+    duration: 15.2,
     beats: {
-      label: 0.05,
-      meritCard: 0.3,
-      meritChart: 1.1,
-      meritForecast: 3.35,
-      meritLabel: 3.9,
-      bonusCard: 5.6,
+      label: 0.15,
+      meritCard: 0.47,
+      meritChart: 1.2,
+      meritForecast: 2.5,
+      meritLabel: 2.98,
+      bonusCard: 5.44,
       // One KPI per name, as he says it.
-      kpi1: 10.3,
-      kpi2: 11.65,
-      kpi3: 12.9,
-      kpiCombine: 13.55,
+      kpi1: 9.99,
+      kpi2: 12.27,
+      kpi3: 13.26,
+      kpiCombine: 14.06,
     },
     voice: [
       {
         id: 's3-l1',
-        start: 0.32,
+        start: 0.42,
         text: 'Merit recommendations have been based on projected market salary movement.',
         rate: 1.0,
         captions: ['MERIT', 'Projected market salary movement'],
       },
       {
         id: 's3-l2',
-        start: 5.59,
+        start: 5.34,
         text: `And bonus, on our estimated ${kpiTerm}.`,
-        // Only the closing punctuation differs - "KPIs" itself is handed to the
-        // engine exactly as written. See the note on kpiTerm in copy.ts.
-        spoken: `And bonus, on our estimated ${kpiTerm},`,
+        // The acronym is respelled for the engine only - see kpiTermSpoken in
+        // copy.ts for the measurements behind that spelling.
+        spoken: `And bonus, on our estimated ${kpiTermSpoken},`,
         rate: 1.0,
         captions: ['BONUS', 'Estimated Company Performance KPIs'],
       },
       {
         id: 's3-l3',
-        start: 10.22,
+        start: 9.96,
         text: 'HSE, Finance, and Performance.',
         spoken: 'H-S-E, Finance, and Performance.',
         rate: 1.06,
@@ -199,33 +199,33 @@ export const scenes: SceneConfig[] = [
   {
     id: 'the-change',
     title: '4 - THE CHANGE (hero)',
-    duration: 7.09,
+    duration: 6.35,
     beats: {
-      oldRingIn: 0,
-      oldLabel: 0.1,
-      railIn: 0.3,
+      oldRingIn: 0.06,
+      oldLabel: 0.16,
+      railIn: 0.36,
       // The dial starts turning on "we're moving", and lands on APRIL exactly
       // as he says the word.
-      spinUp: 1.3,
-      railScatter: 1.7,
-      handover: 3.7,
-      newRingIn: 3.9,
-      railReorder: 3.9,
-      newLabelIn: 4.0,
-      bigReveal: 4.15,
-      lockIn: 5.1,
+      spinUp: 1.36,
+      railScatter: 1.76,
+      handover: 3.43,
+      newRingIn: 3.63,
+      railReorder: 3.63,
+      newLabelIn: 3.73,
+      bigReveal: 3.71,
+      lockIn: 4.46,
     },
     voice: [
       {
         id: 's4-l1',
-        start: 0.28,
+        start: 0.34,
         text: "Now, we're moving to a new cycle.",
         rate: 1.04,
         captions: ["Now, we're moving to a new cycle."],
       },
       {
         id: 's4-l2',
-        start: 3.63,
+        start: 3.36,
         text: 'From April to March.',
         spoken: 'From April, to March.',
         rate: 1.12,
@@ -242,21 +242,21 @@ export const scenes: SceneConfig[] = [
   {
     id: 'april',
     title: '5 - April',
-    duration: 9.01,
+    duration: 8.23,
     beats: {
-      monthIn: 0.15,
+      monthIn: 0.22,
       meritIn: 0.4,
-      promotionIn: 2.05,
-      liftOff: 3.0,
+      promotionIn: 1.92,
+      liftOff: 3.07,
       // The date chip lands on "April first".
-      effectiveIn: 4.45,
-      monthSettle: 5.95,
-      restate: 6.1,
+      effectiveIn: 3.45,
+      monthSettle: 4.96,
+      restate: 5.11,
     },
     voice: [
       {
         id: 's5-l1',
-        start: 0.28,
+        start: 0.35,
         text: 'Merit increases and promotions will take effect on April 1.',
         spoken: 'Merit increases and promotions will take effect on April first.',
         rate: 1.04,
@@ -264,7 +264,7 @@ export const scenes: SceneConfig[] = [
       },
       {
         id: 's5-l2',
-        start: 5.86,
+        start: 4.96,
         text: "That's where the cycle now begins.",
         rate: 1.02,
         captions: ["That's where the cycle now begins."],
@@ -281,29 +281,29 @@ export const scenes: SceneConfig[] = [
   {
     id: 'march',
     title: '6 - March',
-    duration: 8.13,
+    duration: 7.69,
     beats: {
-      railIn: 0,
+      railIn: 0.08,
       // The playhead reaches MARCH on the words "March payroll".
-      travel: 0.8,
-      bonusIn: 0.95,
-      landMarch: 3.0,
-      monthIn: 3.05,
-      payrollIn: 3.45,
-      noteIn: 6.45,
-      closesNote: 4.75,
+      travel: 0.87,
+      bonusIn: 1.07,
+      landMarch: 2.72,
+      monthIn: 2.77,
+      payrollIn: 2.97,
+      noteIn: 6.02,
+      closesNote: 4.42,
     },
     voice: [
       {
         id: 's6-l1',
-        start: 0.45,
+        start: 0.52,
         text: 'And your bonus will be paid in the March payroll.',
         rate: 1.04,
         captions: ['BONUS', 'paid in the MARCH payroll'],
       },
       {
         id: 's6-l2',
-        start: 4.55,
+        start: 4.32,
         text: 'March is the last month of the cycle.',
         rate: 1.02,
         captions: ['MARCH is the last month', 'of the cycle'],
@@ -319,36 +319,36 @@ export const scenes: SceneConfig[] = [
   {
     id: 'no-change',
     title: '7 - What does NOT change',
-    duration: 11.44,
+    duration: 9.59,
     beats: {
       // Nothing appears until he says "your performance appraisal".
-      perfRowIn: 3.6,
-      perfRailIn: 3.9,
-      tickIn: 5.4,
+      perfRowIn: 3.45,
+      perfRailIn: 3.75,
+      tickIn: 4.77,
       // The salary row arrives last, as the comparison.
-      salaryRowIn: 8.6,
-      salaryRailIn: 8.9,
-      contrast: 9.3,
-      newBadge: 9.8,
+      salaryRowIn: 7.69,
+      salaryRailIn: 7.99,
+      contrast: 8.39,
+      newBadge: 8.89,
     },
     voice: [
       {
         id: 's7-l1',
-        start: 0.28,
+        start: 0.33,
         text: "Now, one thing that isn't changing.",
         rate: 1.02,
         captions: ["One thing that isn't changing"],
       },
       {
         id: 's7-l2',
-        start: 3.42,
+        start: 3.15,
         text: 'Your performance appraisal stays on the same schedule,',
         rate: 1.02,
         captions: ['Your PERFORMANCE APPRAISAL', 'stays on the same schedule'],
       },
       {
         id: 's7-l3',
-        start: 7.45,
+        start: 6.54,
         text: "and it'll still close in December.",
         rate: 1.06,
         captions: ['and it will still close', 'in DECEMBER'],
@@ -366,32 +366,32 @@ export const scenes: SceneConfig[] = [
   {
     id: 'example',
     title: '8 - The implementation year',
-    duration: 27.9,
+    duration: 25.29,
     beats: {
-      labelIn: 0.4,
+      labelIn: 0.41,
       // Each term of the equation arrives on the words that describe it.
-      meritIn: 3.4,
-      meritValue: 5.6,
-      railIn: 7.3,
-      railCount: 10.8,
-      insteadOf: 11.7,
-      divide: 14.0,
-      perMonth: 15.5,
-      multiply: 19.1,
-      equivalent: 25.4,
-      settle: 27.0,
+      meritIn: 3.13,
+      meritValue: 4.12,
+      railIn: 6.4,
+      railCount: 9.83,
+      insteadOf: 11.17,
+      divide: 13.84,
+      perMonth: 15.87,
+      multiply: 18.34,
+      equivalent: 22.66,
+      settle: 24.06,
     },
     voice: [
       {
         id: 's8-l1',
-        start: 0.35,
+        start: 0.36,
         text: "There's one more thing worth knowing.",
         rate: 1.02,
         captions: ['One more thing worth knowing'],
       },
       {
         id: 's8-l2',
-        start: 3.26,
+        start: 3.03,
         text: 'Say your merit increase is 5%.',
         spoken: 'Say your merit increase is five percent.',
         rate: 1.04,
@@ -399,7 +399,7 @@ export const scenes: SceneConfig[] = [
       },
       {
         id: 's8-l3',
-        start: 7.11,
+        start: 6.35,
         text: 'During the implementation year, the calculation covers 15 months, instead of 12.',
         spoken:
           'During the implementation year, the calculation covers fifteen months, instead of twelve.',
@@ -408,7 +408,7 @@ export const scenes: SceneConfig[] = [
       },
       {
         id: 's8-l4',
-        start: 13.12,
+        start: 13.04,
         text: '5% divided by 12 is about 0.417% a month.',
         spoken: 'Five percent divided by twelve is about zero point four one seven percent a month.',
         rate: 1.0,
@@ -416,7 +416,7 @@ export const scenes: SceneConfig[] = [
       },
       {
         id: 's8-l5',
-        start: 18.97,
+        start: 18.26,
         text: 'Multiply that by 15 months,',
         spoken: 'Multiply that by fifteen months,',
         rate: 1.04,
@@ -424,7 +424,7 @@ export const scenes: SceneConfig[] = [
       },
       {
         id: 's8-l6',
-        start: 22.61,
+        start: 21.16,
         text: 'and the equivalent becomes 6.25%.',
         spoken: 'and the equivalent becomes six point two five percent.',
         rate: 1.1,
@@ -449,20 +449,20 @@ export const scenes: SceneConfig[] = [
   {
     id: 'summary',
     title: '9 - The visual summary',
-    duration: 6.41,
+    duration: 5.18,
     beats: {
-      labelIn: 0.45,
-      rangeIn: 1.15,
-      ruleIn: 1.9,
-      anchor1: 3.4,
-      anchor2: 4.0,
-      anchor3: 4.6,
-      settle: 5.0,
+      labelIn: 0.55,
+      rangeIn: 1.03,
+      ruleIn: 1.7,
+      anchor1: 2.74,
+      anchor2: 3.34,
+      anchor3: 3.94,
+      settle: 4.34,
     },
     voice: [
       {
         id: 's9-l1',
-        start: 0.4,
+        start: 0.5,
         text: 'So - April to March.',
         spoken: 'So, April to March.',
         rate: 1.1,
@@ -470,7 +470,7 @@ export const scenes: SceneConfig[] = [
       },
       {
         id: 's9-l2',
-        start: 3.3,
+        start: 2.64,
         text: "That's the one to remember.",
         rate: 1.04,
         captions: ["That's the one to remember."],
@@ -485,33 +485,33 @@ export const scenes: SceneConfig[] = [
   {
     id: 'why',
     title: '10 - Why the change',
-    duration: 10.23,
+    duration: 9.23,
     beats: {
-      chartIn: 0.35,
-      dataIn: 0.9,
-      line1: 2.5,
-      line2: 7.45,
+      chartIn: 0.37,
+      dataIn: 0.92,
+      line1: 1.97,
+      line2: 6.01,
       // The forecast line draws slowly underneath the closing sentence.
-      alignIn: 3.4,
+      alignIn: 3.68,
     },
     voice: [
       {
         id: 's10-l1',
-        start: 0.3,
+        start: 0.32,
         text: 'Why the change?',
         rate: 1.06,
         captions: ['Why the change?'],
       },
       {
         id: 's10-l2',
-        start: 2.41,
+        start: 1.87,
         text: 'It brings us closer to market best practice,',
         rate: 1.0,
         captions: ['Closer to market best practice'],
       },
       {
         id: 's10-l3',
-        start: 5.78,
+        start: 5.06,
         text: 'and it gives us more relevant information when we set salaries.',
         rate: 1.0,
         captions: ['More relevant information', 'when we set salaries'],
@@ -525,23 +525,23 @@ export const scenes: SceneConfig[] = [
   {
     id: 'close',
     title: '11 - Final message',
-    duration: 6.19,
+    duration: 5.74,
     beats: {
-      questionsIn: 0.5,
-      contactIn: 2.7,
-      logoIn: 4.8,
+      questionsIn: 0.59,
+      contactIn: 2.35,
+      logoIn: 4.48,
     },
     voice: [
       {
         id: 's11-l1',
-        start: 0.45,
+        start: 0.53,
         text: 'If you have questions,',
         rate: 1.02,
         captions: ['If you have questions,'],
       },
       {
         id: 's11-l2',
-        start: 2.62,
+        start: 2.3,
         text: 'HR is ready to help.',
         spoken: 'H R is ready to help.',
         rate: 1.04,

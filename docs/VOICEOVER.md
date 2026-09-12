@@ -84,6 +84,24 @@ example     lead 0.41  pauses [0.51, 0.71, 0.65, 0.55, 0.71]  tail 0.98
 close       lead 0.50  pauses [0.39]                          tail 1.38
 ```
 
+### The voices auditioned
+
+Measured the same way as the local ones, on an identical line
+(`output/voice-candidates.mp3` is the audition):
+
+| Voice | Median F0 | Pitch range | Word rate | Read |
+|---|---|---|---|---|
+| **Alexander** | 115 Hz | 11.8 st | 164 wpm | **in use** - grounded baritone, corporate |
+| Travis Hill | 102 Hz | 9.0 st | 186 wpm | deepest, but flat and very fast |
+| Jacob L. | 145 Hz | 10.2 st | 182 wpm | description fits, pitch does not |
+| Dan | 133 Hz | 7.3 st | 156 wpm | too monotone |
+| Alexander, v3 + `[calm, measured]` | 94 Hz | 6.5 st | 148 wpm | deeper, but the tag flattened it |
+| am_echo (local) | 109 Hz | 10.9 st | 139 wpm | the voice it replaced |
+
+Two things that table settles. A direction tag is not a pace control - it moved
+pitch and left the rate alone. And every hosted voice here speaks faster than
+the local one, which is what the pause scaling below exists for.
+
 ### Pace from the pauses
 
 A hosted voice speaks at whatever pace it speaks at. Alexander reads at about
@@ -92,7 +110,7 @@ read sound dragged rather than calm, so the words keep their natural rate and
 the unhurried feeling is recovered from the silence around them:
 
 ```bash
-npm run voiceover:plan -- --pause-scale 1.35 --write
+npm run voiceover:plan -- --pause-scale 1.15 --write
 ```
 
 Every gap between phrases, and every scene lead-in and closing hold, gets that
@@ -100,10 +118,20 @@ much longer. Inter-phrase gaps are capped at 1.25s so none of them can turn into
 dead air; lead-ins and tails are not capped, because a scene's opening and
 closing holds are deliberate.
 
-Picking the number: roughly 1.15 restores the film's original length, and
-anything above about 1.5 starts to feel like waiting. 1.35 is the sensible
-starting point - median gap around 0.8s - but it wants an ear on the result
-rather than arithmetic. `voiceover:plan` prints the word rate and the resulting
+Picking the number, measured on the real assembled track rather than guessed:
+
+| scale | runtime | median silence | longest | gaps over 1.5s |
+|---|---|---|---|---|
+| 1.0 | 101.7s | 0.66s | 1.61s | 3 |
+| **1.15** | **105.5s** | **0.75s** | **1.82s** | 6 |
+| 1.25 | 108.0s | 0.81s | 1.96s | 7 |
+| 1.5 | 114.3s | 0.96s | 2.32s | 10 |
+
+1.15 is in use: it puts the median squarely inside the 0.4-0.8s the brief asks
+for, while 1.5 - which matched the old runtime - opened 2.3s holes at the scene
+transitions. Note that the *configured* gaps in `scenes.ts` are about 0.2s
+shorter than this, because each clip carries its own leading and trailing
+silence; these figures are the silence you actually hear. `voiceover:plan` prints the word rate and the resulting
 gap distribution so the number can be judged:
 
 ```
@@ -256,7 +284,7 @@ The nine American male Kokoro voices, measured:
 
 | Speaker | id | Median F0 | Pitch range | Read |
 |---|---|---|---|---|
-| am_echo | 12 | 108 Hz | 11.2 st | **in use** - settled, warm, still moving |
+| am_echo | 12 | 108 Hz | 11.2 st | the local fallback - settled, warm, still moving |
 | am_michael | 16 | 118 Hz | 8.2 st | balanced, a little lighter |
 | am_onyx | 17 | 89 Hz | 6.4 st | deeper, but close to monotone |
 | am_adam | 11 | 123 Hz | 6.8 st | flat |

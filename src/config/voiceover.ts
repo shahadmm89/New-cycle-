@@ -42,7 +42,7 @@ export const voiceover = {
      * The re-timing step is not optional. A different voice says the same words
      * at different lengths, and every beat in scenes.ts is placed against a word.
      */
-    engine: 'kokoro' as 'elevenlabs' | 'kokoro' | 'piper',
+    engine: 'elevenlabs' as 'elevenlabs' | 'kokoro' | 'piper',
 
     /**
      * The requested voice: Arthur, from the ElevenLabs voice library.
