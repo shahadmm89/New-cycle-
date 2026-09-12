@@ -59,6 +59,17 @@ export const monthsSalaryYear = [
 export const kpis = ['HSE', 'FINANCE', 'PERFORMANCE'] as const;
 
 /**
+ * THE AGREED TERM for what the bonus is measured against. Written out in full
+ * every time, in the narration and on screen: "KPIs" on its own says nothing.
+ *
+ * The narrator is given this spelling verbatim. "KPIs" is phonemised as the
+ * three letters K-P-I with a plural /z/ - the natural American reading.
+ * Do NOT respell it as "K P Is": that makes the engine read the last two
+ * letters as the word "is", which is what the first cut of this film said.
+ */
+export const kpiTerm = 'Company Performance KPIs';
+
+/**
  * The three anchors the film exists to plant, in the order they fall within the
  * new salary year: April starts it, December closes the appraisal, March ends
  * the cycle and pays the bonus.

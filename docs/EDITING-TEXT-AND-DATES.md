@@ -47,14 +47,28 @@ export const anchors = [
 `tone: 'steady'` is what colours December differently in every scene it appears
 in. It is a clarification, not a change, and the palette says so.
 
-The key company KPIs the bonus is measured against sit alongside them:
+The key measures the bonus is set from sit alongside them:
 
 ```ts
+export const kpiTerm = 'Company Performance KPIs';
 export const kpis = ['HSE', 'FINANCE', 'PERFORMANCE'] as const;
 ```
 
-They are named once in the narration and never explained - the three icons and
-the bracket that gathers them into COMPANY PERFORMANCE do the rest.
+`kpiTerm` is the agreed wording and is used verbatim - spoken by the narrator,
+printed under BONUS, and printed again under the bracket that gathers the three
+measures. It is always written out in full: "KPIs" on its own says nothing.
+
+The three are named once in the narration and never explained - the icons and
+the bracket do the rest.
+
+Two rules if you change any of this:
+
+- **Write acronyms normally.** `KPIs` is phonemised as the three letters with a
+  plural /z/. Respelling it `K P Is` makes the engine say the word *is*; see
+  docs/VOICEOVER.md for how to check.
+- **Uppercase the acronym by hand.** `kpiTerm.toUpperCase()` gives
+  "COMPANY PERFORMANCE KPI**S**", which is wrong - the plural s stays lower
+  case.
 
 ### The worked example
 

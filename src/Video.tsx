@@ -82,7 +82,7 @@ const GLOW_KEYS: GlowKey[] = [
   {scene: 'hook', at: 0, x: 960, y: 470, v: 0.4},
   {scene: 'old-cycle', at: 0, x: 500, y: 520, v: 0.14},
   {scene: 'today', at: 0, x: 960, y: 430, v: 0.12},
-  {scene: 'today', at: 14.5, x: 960, y: 560, v: 0.35},  // the KPIs roll up
+  {scene: 'today', at: 13.6, x: 960, y: 560, v: 0.35},  // the KPIs roll up
   {scene: 'the-change', at: 0, x: 480, y: 520, v: 0.18},
   {scene: 'the-change', at: 2.2, x: 480, y: 520, v: 0.55}, // ring spins up
   {scene: 'the-change', at: 4.25, x: 1250, y: 470, v: 0.95}, // APR -> MAR lands

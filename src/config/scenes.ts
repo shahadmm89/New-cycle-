@@ -18,7 +18,7 @@
  *
  * All times are SECONDS. Beat times are relative to the start of their scene.
  */
-import {cycle, implementation, kpis, monthsCalendar, monthsSalaryYear} from './copy';
+import {cycle, implementation, kpiTerm, kpis, monthsCalendar, monthsSalaryYear} from './copy';
 
 export const FPS = 30;
 export const WIDTH = 1920;
@@ -145,7 +145,7 @@ export const scenes: SceneConfig[] = [
   {
     id: 'today',
     title: '3 - How merit & bonus are set today',
-    duration: 15.5,
+    duration: 14.55,
     beats: {
       label: 0.05,
       meritCard: 0.3,
@@ -154,10 +154,10 @@ export const scenes: SceneConfig[] = [
       meritLabel: 3.9,
       bonusCard: 5.6,
       // One KPI per name, as he says it.
-      kpi1: 11.25,
-      kpi2: 12.6,
-      kpi3: 13.85,
-      kpiCombine: 14.5,
+      kpi1: 10.3,
+      kpi2: 11.65,
+      kpi3: 12.9,
+      kpiCombine: 13.55,
     },
     voice: [
       {
@@ -170,14 +170,16 @@ export const scenes: SceneConfig[] = [
       {
         id: 's3-l2',
         start: 5.59,
-        text: 'And bonus, on estimated company performance across our key KPIs -',
-        spoken: 'And bonus, on estimated company performance across our key K P Is,',
+        text: `And bonus, on our estimated ${kpiTerm}.`,
+        // Only the closing punctuation differs - "KPIs" itself is handed to the
+        // engine exactly as written. See the note on kpiTerm in copy.ts.
+        spoken: `And bonus, on our estimated ${kpiTerm},`,
         rate: 1.0,
-        captions: ['BONUS', 'Estimated company performance'],
+        captions: ['BONUS', 'Estimated Company Performance KPIs'],
       },
       {
         id: 's3-l3',
-        start: 11.17,
+        start: 10.22,
         text: 'HSE, Finance, and Performance.',
         spoken: 'H-S-E, Finance, and Performance.',
         rate: 1.06,
@@ -189,9 +191,9 @@ export const scenes: SceneConfig[] = [
       meritTitle: 'MERIT',
       meritValue: 'Projected Market Movement',
       bonusTitle: 'BONUS',
-      bonusValue: 'Estimated Company Performance',
+      bonusValue: `Estimated ${kpiTerm}`,
       kpis: [...kpis],
-      combined: 'COMPANY PERFORMANCE',
+      combined: 'COMPANY PERFORMANCE KPIs',
     },
   },
   {

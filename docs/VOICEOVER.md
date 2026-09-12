@@ -77,6 +77,57 @@ There is no SSML. Emphasis is produced two ways, both in `src/config/scenes.ts`:
 Keep `rate` inside roughly 0.95-1.15. Past that the pace stops reading as
 emphasis and starts reading as a different speaker.
 
+### Acronyms
+
+Write the acronym normally and let the engine phonemise it. `KPIs` comes out as
+the three letters K-P-I with a plural /z/, which is what an American speaker
+says.
+
+**Do not respell an acronym with spaces or hyphens to "help" it.** `K P Is` is
+what the first cut of this film used, and the engine read the last two letters
+as the word *is* - "kay pee **iz**". Measured against a reference recording of
+"kay pee is", that take came back at a distance of 0.002 on a mel-DTW: not close
+to wrong, identical to it.
+
+The two readings are easy to tell apart without listening, because they differ
+in one vowel and that vowel is wide open in one case and close in the other:
+
+| | final vowel F1 | F2 | reading |
+|---|---|---|---|
+| reference "…kay pee eyes" | 695 Hz | 1174 Hz | /aɪz/ |
+| reference "…kay pee is" | 509 Hz | 2018 Hz | /ɪz/ |
+| `K P Is` (the old cut) | **224 Hz** | **2743 Hz** | /ɪz/ — wrong |
+| `KPIs` (shipping) | **876 Hz** | **1143 Hz** | /aɪz/ — right |
+
+A high F1 with a low F2 is the open `/aɪ/` nucleus of the letter I. A low F1
+with a high F2 is the close `/ɪ/` of *is*. Anything above about 550 Hz F1 is the
+letter; anything near 400 Hz is the word.
+
+`HSE` was checked the same way and needs no help either - it renders identically
+to a spelled-out "aitch ess ee" (distance 0.002). The `H-S-E` spelling in
+`scenes.ts` is kept only because it is what the approved take used; plain `HSE`
+measures the same.
+
+If you do ever need to force a pronunciation, the Kokoro lexicon accepts extra
+files: pass `lexicon` a comma-separated list in `scripts/lib/tts_kokoro.py` and
+add `word p h o n e m e s` lines in the same format as `lexicon-us-en.txt`.
+Reach for that only after measuring, not instead of it.
+
+### Checking the American vowels
+
+The `lexicon-us-en.txt` the pipeline passes to Kokoro is what keeps the read
+American, and two words give it away immediately:
+
+```
+schedule   s k ˈ ɛ ʤ ˌ u l          "SKED-jool", not "SHED-yool"
+january    ʤ ˈ æ n j ə w ˌ ɛ ɹ i    four syllables, not "JAN-yoo-ree"
+```
+
+Everything the film leans on is in there and rhotic - `performance`
+p ə **ɹ** f ˈ ɔ **ɹ** m ə n s, `market` m ˈ ɑ **ɹ** k ə t, `first`
+f ˈ ɜ **ɹ** s t. If a word starts sounding British, check whether it is in the
+lexicon at all: anything missing falls through to espeak's own rules.
+
 ### Choosing a voice by measurement
 
 The voice was not picked by browsing a list. Candidates were made to say the

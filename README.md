@@ -30,6 +30,7 @@ output/voiceover-script.md                 the narration script, for a human rea
 > | **APRIL** | Merit + promotion take effect (April 1) |
 > | **MARCH** | Bonus paid in the March payroll |
 > | **DECEMBER** | Performance appraisal cycle closes — **no change** |
+| Bonus is measured against | **Company Performance KPIs** — HSE, Finance, Performance |
 | **The implementation year** | The changeover period runs 15 months, so a 5% merit increase is worth **6.25%** over it |
 
 The performance appraisal cycle does **not** move. Scene 7 exists solely to make
@@ -73,22 +74,22 @@ npm run voiceover:build     # re-generate narration + music (needs `pip install 
 |---|---|---|---|---|
 | 1 | Did you know? | 0:00 | 6.8s | Oversized question, **SALARY CYCLE** lit in the accent |
 | 2 | The current cycle | 0:07 | 8.1s | Year ring + month rail, JAN → DEC |
-| 3 | How it works today | 0:15 | 15.5s | Merit's forecast line; then HSE, Finance and Performance rolling up into one company-performance figure |
-| 4 | **THE CHANGE** | 0:30 | 7.1s | The ring **spins** to April while the rail **re-orders itself** into APR…MAR |
-| 5 | April | 0:37 | 9.0s | **APRIL** at 190px, merit + promotion rising, EFFECTIVE APRIL 1 |
-| 6 | March | 0:46 | 8.1s | Playhead runs the new salary year and lands on **MARCH**, bonus |
-| 7 | What does NOT change | 0:55 | 11.4s | Two parallel rows: PERFORMANCE APPRAISAL JAN → DEC ✓ NO CHANGE / SALARY CYCLE APR → MAR NEW |
-| 8 | **The implementation year** | 1:06 | 27.9s | The 15-month changeover rail, and one equation built term by term: 5% ÷ 12 × 15 = **6.25%** |
-| 9 | **The summary** | 1:34 | 6.4s | APRIL → MARCH over three markers. The frame to remember |
-| 10 | Why the change | 1:41 | 10.2s | Market alignment, more relevant information |
-| 11 | Final message | 1:51 | 6.2s | Have questions? HR is ready to help, contact, logo |
+| 3 | How it works today | 0:15 | 14.6s | Merit's forecast line; then HSE, Finance and Performance rolling up into COMPANY PERFORMANCE KPIs |
+| 4 | **THE CHANGE** | 0:29 | 7.1s | The ring **spins** to April while the rail **re-orders itself** into APR…MAR |
+| 5 | April | 0:36 | 9.0s | **APRIL** at 190px, merit + promotion rising, EFFECTIVE APRIL 1 |
+| 6 | March | 0:45 | 8.1s | Playhead runs the new salary year and lands on **MARCH**, bonus |
+| 7 | What does NOT change | 0:54 | 11.4s | Two parallel rows: PERFORMANCE APPRAISAL JAN → DEC ✓ NO CHANGE / SALARY CYCLE APR → MAR NEW |
+| 8 | **The implementation year** | 1:05 | 27.9s | The 15-month changeover rail, and one equation built term by term: 5% ÷ 12 × 15 = **6.25%** |
+| 9 | **The summary** | 1:33 | 6.4s | APRIL → MARCH over three markers. The frame to remember |
+| 10 | Why the change | 1:40 | 10.2s | Market alignment, more relevant information |
+| 11 | Final message | 1:50 | 6.2s | Have questions? HR is ready to help, contact, logo |
 
 Scenes overlap by 0.55s, so the next visual is always building while the
 previous phrase finishes.
 
 ### Pacing
 
-The narration is 202 words across 29 phrases, delivered at about 132 words per
+The narration is 199 words across 29 phrases, delivered at about 132 words per
 minute. Every gap between phrases sits between 0.3s and 1.5s (median 0.6s); the
 longest three are scene transitions where a reveal is still landing on screen.
 
