@@ -337,7 +337,18 @@ const run = async () => {
 
   // --- background bed + duck ----------------------------------------------
   const music = config.voiceover.music;
-  if (music.enabled) {
+  if (!music.enabled) {
+    // Still goes through mix.py: the loudness pass and the limiter live there,
+    // and they own the ceiling. A straight copy would be free to clip.
+    console.log('> narration only - no background bed');
+    exec('python3', [
+      path.join(ROOT, 'scripts', 'lib', 'mix.py'),
+      OUT_VOICE, 'none', OUT_MIX,
+      '-200', String(music.duckDb), String(music.fadeIn), String(music.fadeOut),
+      String(tts.loudnessTarget), '-1.5',
+    ]);
+    fs.rmSync(OUT_MUSIC, {force: true});
+  } else {
     console.log('> generating background bed…');
     exec('python3', [
       path.join(ROOT, 'scripts', 'lib', 'music.py'),
@@ -358,9 +369,6 @@ const run = async () => {
       String(tts.loudnessTarget),
       '-1.5',
     ]);
-  } else {
-    fs.copyFileSync(OUT_VOICE, OUT_MIX);
-    console.log('  music disabled - mix is narration only');
   }
 
   const final = readWavInfo(OUT_MIX);

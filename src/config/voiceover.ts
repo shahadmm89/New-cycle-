@@ -142,7 +142,11 @@ export const voiceover = {
    * Set `enabled: false` for a narration-only mix.
    */
   music: {
-    enabled: true,
+    /**
+     * Off: the film runs on narration alone. mix.py still does the loudness
+     * pass and the limiting - see the note there.
+     */
+    enabled: false,
     /**
      * Bed level. Tuned by ear against the narration: this leaves the voice
      * roughly 20 dB above the music while speaking - clearly dominant, but the

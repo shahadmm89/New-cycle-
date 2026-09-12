@@ -10,7 +10,11 @@ off to keep the loudest consonant under the ceiling, which leaves the whole
 track several dB quieter than it should be - the peaks in speech sit far above
 its average, so a flat gain is always governed by the worst half-second.
 
-Usage: python3 mix.py <voice.wav> <music.wav> <out.wav> <bed_db> <duck_db>
+Pass "none" as <music.wav> for a narration-only mix. The bed is then silent,
+but the loudness pass and the limiter still run - which is the point: they own
+the output ceiling, and skipping them would leave the track free to clip.
+
+Usage: python3 mix.py <voice.wav> <music.wav|none> <out.wav> <bed_db> <duck_db>
                       <fade_in> <fade_out> [target_lufs] [ceiling_dbtp]
 """
 import sys
@@ -35,7 +39,10 @@ def read_wav(path):
 
 
 voice, rate = read_wav(voice_path)
-music, mrate = read_wav(music_path)
+if music_path == "none":
+    music, mrate = np.zeros_like(voice), rate
+else:
+    music, mrate = read_wav(music_path)
 assert mrate == rate, f"sample rate mismatch: {rate} vs {mrate}"
 
 n = len(voice)

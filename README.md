@@ -62,7 +62,7 @@ npm run voiceover:build     # re-generate narration + music (see docs/VOICEOVER.
 | `npm run render:all` | Both, preview first |
 | `npm run render -- --no-captions` | No burned-in subtitles; ship the `.srt` |
 | `npm run still -- 1020` | Render single frames to `output/stills/` |
-| `npm run voiceover:build` | Synthesise narration, build the music bed, duck and mix |
+| `npm run voiceover:build` | Synthesise the narration, normalise and limit the mix |
 | `npm run voiceover:script` | Write the narration script to `output/voiceover-script.md` |
 | `npm run voiceover:plan` | Re-time every scene around a new read (after a voice change) |
 | `npm run check:sync` | Audit narration against animation - fails if either runs ahead |

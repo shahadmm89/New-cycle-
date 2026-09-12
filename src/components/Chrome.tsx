@@ -1,11 +1,13 @@
 /**
- * Persistent furniture: the logo slot and a thin progress line.
- * Both are deliberately quiet - on signage, chrome must never compete with the
- * message. The closing scene hides them so it can present the logo properly.
+ * Persistent furniture: a thin progress line, and nothing else.
+ *
+ * There was a logo slot in the top-right corner too. It is gone: the closing
+ * scene presents the logo properly, and a second one sitting in the corner for
+ * the whole film competed with the message rather than supporting it.
  */
 import React from 'react';
-import {AbsoluteFill, useCurrentFrame, useVideoConfig, Img, staticFile} from 'remotion';
-import {colors, fonts, brand} from '../lib/theme';
+import {AbsoluteFill, useCurrentFrame, useVideoConfig} from 'remotion';
+import {colors} from '../lib/theme';
 
 export const Chrome: React.FC<{hidden?: boolean}> = ({hidden = false}) => {
   const frame = useCurrentFrame();
@@ -36,26 +38,6 @@ export const Chrome: React.FC<{hidden?: boolean}> = ({hidden = false}) => {
         </div>
       </div>
 
-      <div style={{position: 'absolute', top: 52, right: 96, opacity: 0.9}}>
-        {brand.logoSrc ? (
-          <Img src={staticFile(brand.logoSrc)} style={{height: 52, objectFit: 'contain'}} />
-        ) : (
-          <div
-            style={{
-              border: `1.5px dashed ${colors.line}`,
-              borderRadius: 10,
-              padding: '10px 20px',
-              color: colors.muted,
-              fontFamily: fonts.body,
-              fontWeight: 700,
-              fontSize: 19,
-              letterSpacing: 1.6,
-            }}
-          >
-            {brand.logoPlaceholderLabel}
-          </div>
-        )}
-      </div>
     </AbsoluteFill>
   );
 };

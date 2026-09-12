@@ -145,7 +145,7 @@ export const scenes: SceneConfig[] = [
   {
     id: 'today',
     title: '3 - How merit & bonus are set today',
-    duration: 15.2,
+    duration: 14.24,
     beats: {
       label: 0.15,
       meritCard: 0.47,
@@ -155,9 +155,9 @@ export const scenes: SceneConfig[] = [
       bonusCard: 5.44,
       // One KPI per name, as he says it.
       kpi1: 9.99,
-      kpi2: 12.27,
-      kpi3: 13.26,
-      kpiCombine: 14.06,
+      kpi2: 11.38,
+      kpi3: 12.35,
+      kpiCombine: 13.12,
     },
     voice: [
       {
@@ -179,9 +179,12 @@ export const scenes: SceneConfig[] = [
       },
       {
         id: 's3-l3',
-        start: 9.96,
+        start: 9.97,
         text: 'HSE, Finance, and Performance.',
-        spoken: 'H-S-E, Finance, and Performance.',
+        // No hyphens: they made the voice spell the letters out one at a time,
+        // which took 1.77s against 1.06s written plainly. Both readings give the
+        // three letters - checked against each other - but this one keeps up.
+        spoken: 'HSE, Finance, and Performance.',
         rate: 1.06,
         captions: ['HSE  ·  FINANCE  ·  PERFORMANCE'],
       },

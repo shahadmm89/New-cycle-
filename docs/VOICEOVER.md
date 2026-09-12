@@ -394,7 +394,7 @@ do not feel like dead air.
 
 ```ts
 music: {
-  enabled: true,
+  enabled: false,   // currently off
   bedGainDb: -14,   // bed level relative to the narration
   duckDb: -6,       // extra attenuation while the narrator is speaking
   fadeIn: 1.6,
@@ -402,7 +402,14 @@ music: {
 }
 ```
 
-Set `enabled: false` for a narration-only mix. To use your own track, drop a
+**Currently off** - the film runs on narration alone. Turning it back on is one
+flag; the rest of the pipeline is unchanged either way, because `mix.py` still
+performs the loudness pass and the limiting when the bed is silent. Those two
+own the output ceiling, so skipping them would leave the track free to clip:
+the narration alone measured -4.5 dBTP before its +4.7 dB gain, which is exactly
+0 dBTP without a limiter.
+
+To use your own track, drop a
 48 kHz mono WAV at `assets/audio/music.wav` and run
 `npm run voiceover:build -- --assemble-only`; the ducking and mix still apply.
 
