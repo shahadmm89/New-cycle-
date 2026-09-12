@@ -18,9 +18,14 @@ let out = `# Voice-over script - ${config.copy.videoTitle}
 
 Total running time: **${config.totalDuration} seconds** (${config.scenes.length} scenes, ${config.FPS} fps).
 
-Tone: warm, confident, conversational - a friendly HR colleague explaining a
-change, not a policy announcement. Moderate pace, with a clear pause between
-scenes. Nothing needs to be rushed: every line has been timed with room to breathe.
+Voice: a professional American male presenter - mature, calm, warm, confident.
+Not a commercial voice-over, not a news anchor, not a trailer.
+
+Tone: conversational and unhurried, with contractions and words linked together
+rather than read one at a time. The reference read is about 132 words per minute.
+Nothing needs to be rushed: every line has been timed with room to breathe, and
+the gaps between phrases (0.4-0.8s, up to about 1.2s before a big visual) are
+part of the timeline rather than something to fill.
 
 Record each line as its own take and name the file after the LINE ID below
 (\`s5-l2.wav\` and so on), or record one continuous take - see docs/VOICEOVER.md.

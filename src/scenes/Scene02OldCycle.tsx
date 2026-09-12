@@ -18,11 +18,11 @@ export const Scene02OldCycle: React.FC = () => {
 
   const pLabel = useProgress('label', 0.5);
   const pRing = useProgress('ringIn', 0.9);
-  const pFlow = useProgress('monthsFlow', 3.4);
+  const pFlow = useProgress('monthsFlow', 2.4);
   const pRail = useProgress('railIn', 1.2);
   const pEnds = useProgress('endpointsIn', 0.8);
   const pBanner = useProgress('bannerIn', 0.7);
-  const settle = useSpan(6.6, 9);
+  const settle = useSpan(5.6, 7.6);
 
   // The playhead walks the whole year while the narrator describes it.
   const playhead = pFlow * 11;

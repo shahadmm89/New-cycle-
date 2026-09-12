@@ -1,5 +1,5 @@
 /**
- * SCENE 9 - WHY THE CHANGE
+ * SCENE 10 - WHY THE CHANGE
  * Short by design. Two claims, one chart, then out.
  */
 import React from 'react';
@@ -10,13 +10,13 @@ import {Card3D, Plinth} from '../components/Card3D';
 import {useProgress, useScene} from '../lib/timing';
 import {colors} from '../lib/theme';
 
-export const Scene09Why: React.FC = () => {
+export const Scene10Why: React.FC = () => {
   const scene = useScene();
   const t = scene.text as Record<string, string>;
 
   const pChart = useProgress('chartIn', 0.6);
   const pData = useProgress('dataIn', 1.2);
-  const pAlign = useProgress('alignIn', 0.8);
+  const pAlign = useProgress('alignIn', 2.2);
   const p1 = useProgress('line1', 0.6);
   const p2 = useProgress('line2', 0.6);
 

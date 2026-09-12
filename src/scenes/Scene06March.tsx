@@ -24,6 +24,7 @@ export const Scene06March: React.FC = () => {
   const pBonus = useProgress('bonusIn', 0.7);
   const pPayroll = useProgress('payrollIn', 0.6);
   const pNote = useProgress('closesNote', 0.6);
+  const pEyebrow = useProgress('noteIn', 0.6);
 
   const last = monthsSalaryYear.length - 1;
   const playhead = pTravel * last;
@@ -31,7 +32,7 @@ export const Scene06March: React.FC = () => {
   return (
     <AbsoluteFill>
       <div style={{position: 'absolute', left: 120, top: 108}}>
-        <Rise progress={pRail} distance={22}>
+        <Rise progress={pEyebrow} distance={22}>
           <Label size={30} color={colors.primary}>{t.note}</Label>
         </Rise>
       </div>
@@ -54,9 +55,13 @@ export const Scene06March: React.FC = () => {
         <div style={{display: 'flex', alignItems: 'center', gap: 70}}>
           <BonusIcon progress={pBonus} size={168} color={colors.accent} />
           <div style={{display: 'flex', flexDirection: 'column', gap: 12}}>
-            <Punch progress={pMonth} from={0.74}>
-              <Display size={152} color={colors.accent} glow>{t.month}</Display>
-            </Punch>
+            {/* MARCH arrives on the word, so its height is reserved - without
+                this the BONUS row below shifts upward for the first two seconds. */}
+            <div style={{height: 149}}>
+              <Punch progress={pMonth} from={0.74}>
+                <Display size={152} color={colors.accent} glow>{t.month}</Display>
+              </Punch>
+            </div>
             <Plinth progress={pMonth} width={560} color={colors.accent} />
             <div style={{marginTop: 26, display: 'flex', gap: 22, alignItems: 'center'}}>
               <Rise progress={pBonus} distance={24}>

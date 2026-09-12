@@ -1,6 +1,6 @@
 # Salary Cycle Change - employee announcement video
 
-A self-contained pipeline that renders a **~60-second, 1920×1080, 30 fps MP4**
+A self-contained pipeline that renders a **~2-minute, 1920×1080, 30 fps MP4**
 announcing that the company's **salary cycle year is moving from January–December
 to April–March**.
 
@@ -30,6 +30,7 @@ output/voiceover-script.md                 the narration script, for a human rea
 > | **APRIL** | Merit + promotion take effect (April 1) |
 > | **MARCH** | Bonus paid in the March payroll |
 > | **DECEMBER** | Performance appraisal cycle closes — **no change** |
+| **The implementation year** | The changeover period runs 15 months, so a 5% merit increase is worth **6.25%** over it |
 
 The performance appraisal cycle does **not** move. Scene 7 exists solely to make
 that distinction structural: two identical rows, same rail, different months,
@@ -50,7 +51,7 @@ That is the whole build. The finished audio mix is committed
 ```bash
 npm run preview             # Remotion Studio - scrub and jump between scenes
 npm run captions            # rewrite the .srt / .vtt sidecars
-npm run voiceover:build     # re-generate narration + music (needs `pip install piper-tts`)
+npm run voiceover:build     # re-generate narration + music (needs `pip install sherpa-onnx`)
 ```
 
 | Command | What it does |
@@ -66,30 +67,36 @@ npm run voiceover:build     # re-generate narration + music (needs `pip install 
 
 ---
 
-## The ten scenes
+## The eleven scenes
 
 | # | Scene | In | Length | What it shows |
 |---|---|---|---|---|
-| 1 | Did you know? | 0:00 | 3.7s | Oversized question, **SALARY CYCLE** lit in the accent |
-| 2 | The current cycle | 0:03 | 4.5s | Year ring + month rail, JAN → DEC |
-| 3 | How it works today | 0:08 | 12.8s | Merit's forecast line; then HSE, Finance and Performance rolling up into one company-performance figure |
-| 4 | **THE CHANGE** | 0:21 | 5.6s | The ring **spins** to April while the rail **re-orders itself** into APR…MAR |
-| 5 | April | 0:26 | 6.0s | **APRIL** at 190px, merit + promotion rising, EFFECTIVE APRIL 1 |
-| 6 | March | 0:32 | 3.6s | Playhead runs the new salary year and lands on **MARCH**, bonus |
-| 7 | What does NOT change | 0:36 | 6.2s | Two parallel rows: PERFORMANCE APPRAISAL JAN → DEC ✓ NO CHANGE / SALARY CYCLE APR → MAR NEW |
-| 8 | **The summary** | 0:42 | 3.4s | Silent. APRIL → MARCH over three markers. The frame to remember |
-| 9 | Why the change | 0:45 | 9.3s | Market alignment, more relevant information |
-| 10 | Final message | 0:55 | 5.0s | Have questions? HR is ready to help, contact, logo |
+| 1 | Did you know? | 0:00 | 6.8s | Oversized question, **SALARY CYCLE** lit in the accent |
+| 2 | The current cycle | 0:07 | 8.1s | Year ring + month rail, JAN → DEC |
+| 3 | How it works today | 0:15 | 15.5s | Merit's forecast line; then HSE, Finance and Performance rolling up into one company-performance figure |
+| 4 | **THE CHANGE** | 0:30 | 7.1s | The ring **spins** to April while the rail **re-orders itself** into APR…MAR |
+| 5 | April | 0:37 | 9.0s | **APRIL** at 190px, merit + promotion rising, EFFECTIVE APRIL 1 |
+| 6 | March | 0:46 | 8.1s | Playhead runs the new salary year and lands on **MARCH**, bonus |
+| 7 | What does NOT change | 0:55 | 11.4s | Two parallel rows: PERFORMANCE APPRAISAL JAN → DEC ✓ NO CHANGE / SALARY CYCLE APR → MAR NEW |
+| 8 | **The implementation year** | 1:06 | 27.9s | The 15-month changeover rail, and one equation built term by term: 5% ÷ 12 × 15 = **6.25%** |
+| 9 | **The summary** | 1:34 | 6.4s | APRIL → MARCH over three markers. The frame to remember |
+| 10 | Why the change | 1:41 | 10.2s | Market alignment, more relevant information |
+| 11 | Final message | 1:51 | 6.2s | Have questions? HR is ready to help, contact, logo |
 
 Scenes overlap by 0.55s, so the next visual is always building while the
 previous phrase finishes.
 
 ### Pacing
 
-The narration is 42 seconds of speech across 15 phrases. Every gap between
-phrases is between 0.2s and 1.3s, which is what the film's length is set by -
-holding longer would simply reinsert silence. The one exception is scene 8,
-which is deliberately silent so the summary can be read rather than talked over.
+The narration is 202 words across 29 phrases, delivered at about 132 words per
+minute. Every gap between phrases sits between 0.3s and 1.5s (median 0.6s); the
+longest three are scene transitions where a reveal is still landing on screen.
+
+Visuals **follow** the narration rather than leading it. The beat times in
+`src/config/scenes.ts` were set from the measured onsets inside each recorded
+phrase, so the range plate lands on *"January to December"*, the dial lands on
+*"April"*, the KPI tiles arrive one per name, and **6.25%** appears as it is
+said.
 
 `npm run voiceover:build` prints the measured length of every phrase against the
 room it has and warns by name if one no longer fits.
@@ -106,7 +113,7 @@ seconds, and components ask for a beat by name.
 src/
   config/
     scenes.ts             ← MASTER TIMELINE: durations, beats, narration, on-screen copy
-    copy.ts               ← the cycle definition, month orders, the three anchors
+    copy.ts               ← the cycle definition, month orders, anchors, the worked example
     branding.ts           ← palette, fonts, depth tokens, logo + HR placeholders
     voiceover.ts          ← voice, delivery, music bed and ducking
     voiceover.timing.ts   ← measured phrase durations (auto-generated)
@@ -115,7 +122,7 @@ src/
     YearRing.tsx          ← the year counter - the mechanism the film turns on
     MonthRail.tsx         ← months in perspective + the FROM → TO range plate
     Card3D.tsx  Type.tsx  Icons.tsx  Captions.tsx  Chrome.tsx  SceneTransition.tsx
-  scenes/                 ← Scene01Hook … Scene10Close
+  scenes/                 ← Scene01Hook … Scene11Close
   lib/                    ← timing hooks, caption cues, fonts, theme
 render/                   ← render.mjs (MP4), still.mjs (PNG frames)
 scripts/                  ← voice-over + music pipeline, caption and script writers
@@ -140,7 +147,9 @@ glow keyframes are anchored to scene ids rather than absolute times.
 ## Requirements
 
 - **Node.js 18+** (developed on Node 22)
-- **Python 3.9+** with `piper-tts` and `numpy` - only needed to *regenerate* audio
+- **Python 3.9+** with `sherpa-onnx` and `numpy` - only needed to *regenerate* audio.
+  The Kokoro voice model (384 MB) is git-ignored; `npm run voiceover:build` prints
+  the two commands that fetch it
 - Remotion downloads a Chrome Headless Shell on first render. Where that is
   blocked, point `REMOTION_BROWSER_EXECUTABLE` at any local Chromium;
   `render/browser.mjs` also finds a Playwright-installed one automatically.

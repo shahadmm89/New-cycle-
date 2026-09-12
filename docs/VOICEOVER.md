@@ -30,11 +30,12 @@ What that does, in order:
 
 1. **Says each line on its own** with a local neural voice.
 2. **Measures it.** If a line would run past its slot, it is re-said slightly
-   faster - never below `minLengthScale`, so it can never turn into a rushed
-   mumble. If it still does not fit, you get a warning naming the scene to
-   lengthen.
-3. **Lays the lines onto one silent 90-second bed** at exactly the times the
-   animation expects.
+   faster - never past `minSpeed`, so it can never turn into a rushed mumble.
+   If it still does not fit, you get a warning naming the scene to lengthen.
+   In the current cut nothing is squeezed: every line is delivered at its
+   configured pace.
+3. **Lays the lines onto one silent bed** at exactly the times the animation
+   expects.
 4. **Normalises loudness.** ffmpeg's single-pass `loudnorm` is a *dynamic*
    normaliser and drifts badly on a track that is a third silence, so the
    script measures first and applies one flat gain - hitting the target exactly
@@ -57,38 +58,52 @@ There is no SSML. Emphasis is produced two ways, both in `src/config/scenes.ts`:
   `"…to April to March."` are separate phrases precisely so there is a beat
   between them.
 - **Per-phrase `rate`.** Above 1 is slower and heavier, below 1 is brisker.
-  The lines that carry the message (`Yes - April to March.` at 1.12) are
-  delivered noticeably slower than the connective tissue around them.
+  The lines that carry the message (`From April to March.` at 1.12) are
+  delivered noticeably slower than the connective tissue around them. The
+  engine re-synthesises at that pace - nothing is time-stretched afterwards,
+  which is what keeps a slow line sounding unhurried rather than dragged.
 
 ```ts
 {
-  id: 's4-l4',
-  start: 8.5,
-  text: 'Yes - April to March.',
-  spoken: 'Yes. April to March.',   // what the engine is given
+  id: 's4-l2',
+  start: 3.63,
+  text: 'From April to March.',
+  spoken: 'From April, to March.',  // what the engine is given
   rate: 1.12,                       // slower = heavier = emphasis
-  captions: ['Yes — APRIL to MARCH.'],
+  captions: ['From APRIL to MARCH'],
 }
 ```
 
+Keep `rate` inside roughly 0.95-1.15. Past that the pace stops reading as
+emphasis and starts reading as a different speaker.
+
 ### Choosing a voice by measurement
 
-The voice was not picked by browsing a list. `scripts/lib/pitch.py`-style
-analysis was run over candidates saying the same line, measuring median
-fundamental frequency (how deep) and the semitone spread within a phrase (how
-monotone). That turns "sounds robotic" into something you can check:
+The voice was not picked by browsing a list. Candidates were made to say the
+same line and measured for median fundamental frequency (how deep) and the
+semitone spread within a phrase (how monotone). That turns "sounds robotic"
+into something you can check.
 
-| Voice | Median F0 | Pitch range | Read |
-|---|---|---|---|
-| en_US-norman-medium | 102 Hz | 10.0 st | **in use** - deep, settled, still moving |
-| en_US-hfc_male-medium | 114 Hz | 11.1 st | lighter, a little warmer |
-| en_US-john-medium | 113 Hz | 9.3 st | neutral |
-| en_US-joe-medium | 99 Hz | 18.8 st | deeper but theatrical |
-| en_US-bryce-medium | 141 Hz | 7.7 st | brighter and flatter |
-| en_GB-alan-medium | 98 Hz | 4.7 st | deep but close to monotone |
-| en_US-ryan-high | 155 Hz | 11.2 st | the previous voice - too high to read as senior |
+**Engine first.** Depth and clarity were never the problem - sentence rhythm
+and word linking were, and those are a property of the model, not the speaker.
+Piper says a sentence as a run of correctly pronounced words; Kokoro phrases it.
+That is the single biggest reason the current read sounds less synthetic.
 
-Target for a senior-HR read: **100-115 Hz with 9-11 semitones of movement**.
+The nine American male Kokoro voices, measured:
+
+| Speaker | id | Median F0 | Pitch range | Read |
+|---|---|---|---|---|
+| am_echo | 12 | 108 Hz | 11.2 st | **in use** - settled, warm, still moving |
+| am_michael | 16 | 118 Hz | 8.2 st | balanced, a little lighter |
+| am_onyx | 17 | 89 Hz | 6.4 st | deeper, but close to monotone |
+| am_adam | 11 | 123 Hz | 6.8 st | flat |
+| am_puck | 18 | 132 Hz | 7.6 st | flat and brighter |
+| am_liam | 15 | 128 Hz | 14.3 st | lively - too animated for this |
+| am_fenrir | 14 | 154 Hz | 10.6 st | too high to read as senior |
+| am_eric | 13 | 163 Hz | 13.0 st | too high to read as senior |
+| am_santa | 19 | 181 Hz | 13.7 st | character voice |
+
+Target for a senior-HR read: **100-118 Hz with 9-12 semitones of movement**.
 Below about 6 semitones a voice reads as robotic no matter how deep it is; above
 about 15 it starts to sound like an advertisement.
 
@@ -98,26 +113,37 @@ about 15 it starts to sound like an advertisement.
 
 ```ts
 tts: {
-  engine: 'piper',
-  voice: 'en_US-hfc_female-medium',  // warm, natural US-English female
-  lengthScale: 1.06,                 // >1 is slower; 1.06 is a calm HR pace
-  minLengthScale: 0.9,               // the floor when a line must be squeezed
-  noiseScale: 0.667,
-  noiseW: 0.8,
+  engine: 'kokoro',
+  speakerId: 12,          // am_echo
+  speakerName: 'am_echo',
+  speed: 0.82,            // LOWER is slower - measured at 132 wpm
+  minSpeed: 0.92,         // the briskest the fitter may go
+  pitchShiftSemitones: 0,
   sampleRate: 48000,
-  loudnessTarget: -16,               // LUFS
+  loudnessTarget: -16,    // LUFS
 }
 ```
 
-Other voices drop straight in - `en_US-hfc_female-medium` (warm female),
-`en_GB-cori-high` (British female), `en_US-lessac-high` (neutral, newsreader).
-The `-high` models are noticeably more natural than `-medium` and worth the
-extra download. Change `voice` and re-run
-`npm run voiceover:build`; the model (~63 MB) is fetched automatically on first
-use and cached in `assets/tts/voices/` (git-ignored).
+**Mind the direction.** Kokoro's control is a *speed multiplier*, so lower is
+slower. Piper's is a *length scale*, so higher is slower. The build script
+handles both, but the numbers are not interchangeable between engines.
 
-**Requirement:** `pip install piper-tts`. This is only needed to *generate*
-narration - rendering the video needs nothing but Node.
+Pace is worth measuring rather than guessing. Over this script, `speed: 0.92`
+came out at 152 words per minute, which reads as brisk; `0.82` comes out at
+132 wpm, which is an unhurried presenting pace. Somewhere around 125-140 wpm is
+the range that sounds like a person talking to a room.
+
+**Requirement:** `pip install sherpa-onnx`, plus the Kokoro model in
+`assets/tts/kokoro/` (384 MB, git-ignored). `npm run voiceover:build` prints the
+exact two commands to fetch it if it is missing. This is only needed to
+*generate* narration - rendering the video needs nothing but Node.
+
+### Still using Piper
+
+The Piper path has not been removed. Set `engine: 'piper'` with a `voice`,
+`lengthScale`, `minLengthScale`, `noiseScale` and `noiseW`, and the pipeline
+behaves exactly as before - the model (~63 MB) is fetched on first use into
+`assets/tts/voices/`. It needs `pip install piper-tts`.
 
 ---
 
@@ -145,7 +171,7 @@ read. If a take overruns its slot, lengthen that scene's `duration` in
 
 ---
 
-## Option C - drop in one finished 90-second track
+## Option C - drop in one finished track
 
 Simplest, if you already have a mixed narration bed.
 
@@ -201,12 +227,21 @@ in. The MP4 keeps a silent AAC track so players that expect audio behave.
 
 - Warm, confident, conversational. A friendly HR colleague explaining a change -
   not a policy announcement, and not a newsreader.
-- Moderate pace. The whole script is 177 words over 90 seconds (~118 wpm), which
-  is deliberately unhurried; every line has slack.
-- Take a real breath between scenes. The gaps are built into the timeline.
+- A professional American male presenter talking to colleagues. Not a
+  commercial voice-over, not a news anchor, not a trailer.
+- Moderate pace. The script is 202 words over 117 seconds; the narration itself
+  runs at about 132 wpm with real pauses between phrases, which is deliberately
+  unhurried. Every line has slack.
+- Use contractions and link words together. Reading the line word by word is
+  what makes a read sound synthetic, whoever is doing it.
+- Take a real breath between scenes. The gaps are built into the timeline -
+  0.4-0.8s after a statement, up to about 1.2s before a major visual reveal.
+- Land these, without pushing them: **January to December**, **April to March**,
+  **15 months**, **April 1**, **merit and promotion**, **March payroll**,
+  **December**, and **5% → 6.25%**.
 - Scene 3 is neutral, not apologetic - the current process is simply the current
   process.
-- Scene 6 is the reassurance beat. Slow down slightly on
-  *"your performance appraisal cycle does not change."*
-- Scene 5 carries the three facts people will repeat afterwards. Land
-  **March payroll**, **April 1** and **April payroll** clearly.
+- Scene 7 is the reassurance beat. Slow down slightly on
+  *"your performance appraisal stays on the same schedule."*
+- Scene 8 is the only arithmetic in the film. Explain it, do not teach it: the
+  tone is "here is something useful to know", not a lesson.

@@ -1,5 +1,5 @@
 /**
- * SCENE 8 - THE VISUAL SUMMARY
+ * SCENE 9 - THE VISUAL SUMMARY
  *
  * The frame employees are meant to remember, and the only one with no
  * narration - it is stronger read in silence than talked over.
@@ -48,7 +48,7 @@ const Marker: React.FC<{progress: number; month: string; what: string; steady: b
   );
 };
 
-export const Scene08Summary: React.FC = () => {
+export const Scene09Summary: React.FC = () => {
   const scene = useScene();
   const t = scene.text as Record<string, string>;
 

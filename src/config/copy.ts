@@ -69,4 +69,40 @@ export const anchors = [
   {month: 'MARCH', what: 'Bonus', tone: 'new' as const},
 ];
 
+/**
+ * THE IMPLEMENTATION YEAR.
+ *
+ * Moving the start of the cycle from January to April means the changeover
+ * period runs January through to March of the following year - fifteen months,
+ * not twelve. Merit is therefore calculated across fifteen months in that one
+ * year, so a 5% increase is worth 6.25% over the period.
+ *
+ * All five numbers below are derived from `meritExample` and `months`. If HR
+ * wants a different worked example, change those two and the arithmetic on
+ * screen stays correct.
+ */
+const IMPLEMENTATION_MONTHS = 15;
+const MERIT_EXAMPLE_PCT = 5;
+
+export const implementation = {
+  label: 'IMPLEMENTATION YEAR',
+  /** Jan of the changeover year through to Mar of the next. Fifteen tiles. */
+  months: [
+    'JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN',
+    'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC',
+    'JAN', 'FEB', 'MAR',
+  ] as const,
+  meritLabel: 'YOUR MERIT INCREASE',
+  merit: `${MERIT_EXAMPLE_PCT}%`,
+  dividedBy: '\u00F7 12',
+  perMonth: `${(MERIT_EXAMPLE_PCT / 12).toFixed(3)}%`,
+  perMonthLabel: 'PER MONTH',
+  multipliedBy: `\u00D7 ${IMPLEMENTATION_MONTHS}`,
+  equivalent: `${((MERIT_EXAMPLE_PCT / 12) * IMPLEMENTATION_MONTHS).toFixed(2)}%`,
+  equivalentLabel: 'EQUIVALENT INCREASE',
+  monthsChip: `${IMPLEMENTATION_MONTHS} MONTHS`,
+  insteadOf: 'INSTEAD OF 12',
+  note: 'ONE YEAR ONLY \u00B7 THE CHANGEOVER PERIOD',
+} as const;
+
 export const videoTitle = 'Our Salary Cycle Is Changing';

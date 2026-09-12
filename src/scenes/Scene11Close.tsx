@@ -1,5 +1,5 @@
 /**
- * SCENE 10 - FINAL MESSAGE
+ * SCENE 11 - FINAL MESSAGE
  *
  * Just the offer of help, the contact and the logo. The summary immediately
  * before this scene already carries the cycle and the three markers; repeating
@@ -12,7 +12,7 @@ import {Plinth} from '../components/Card3D';
 import {useProgress, useScene} from '../lib/timing';
 import {colors, brand} from '../lib/theme';
 
-export const Scene10Close: React.FC = () => {
+export const Scene11Close: React.FC = () => {
   const scene = useScene();
   const t = scene.text as Record<string, string>;
 

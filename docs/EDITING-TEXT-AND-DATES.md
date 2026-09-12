@@ -56,6 +56,24 @@ export const kpis = ['HSE', 'FINANCE', 'PERFORMANCE'] as const;
 They are named once in the narration and never explained - the three icons and
 the bracket that gathers them into COMPANY PERFORMANCE do the rest.
 
+### The worked example
+
+Scene 8 explains the implementation year: because the cycle start moves from
+January to April, the changeover period runs fifteen months rather than twelve,
+so merit is calculated across fifteen.
+
+```ts
+const IMPLEMENTATION_MONTHS = 15;
+const MERIT_EXAMPLE_PCT = 5;
+```
+
+Every number on screen - `0.417%`, `6.25%`, the `15 MONTHS` chip, the length of
+the rail - is derived from those two constants, so changing the example cannot
+leave the arithmetic on screen wrong. Change them, then re-run
+`npm run voiceover:build`: the spoken version of each figure lives in the
+`spoken:` overrides of that scene's voice lines and has to be updated by hand
+("six point two five percent").
+
 > After changing a date, re-run `npm run voiceover:build` so the narration says
 > the new one, then `npm run captions` and `npm run render`.
 
@@ -71,20 +89,21 @@ This is the master timeline. Each scene looks like this:
 {
   id: 'the-change',
   title: '4 - THE CHANGE (hero)',
-  duration: 12.7,                     // SECONDS
+  duration: 7.09,                     // SECONDS
   beats: {                            // named animation cues, seconds into the scene
-    spinUp: 2.6,
-    newRingIn: 5.4,
-    bigReveal: 6.4,
+    spinUp: 1.3,
+    newRingIn: 3.9,
+    bigReveal: 4.15,
     …
   },
   voice: [
     {
-      id: 's4-l3',
-      start: 5.5,                     // seconds into the scene
-      text: '...to April to March.',
-      rate: 1.16,                     // slower = heavier = emphasis
-      captions: ['…to APRIL to MARCH'],
+      id: 's4-l2',
+      start: 3.63,                    // seconds into the scene
+      text: 'From April to March.',
+      spoken: 'From April, to March.',
+      rate: 1.12,                     // slower = heavier = emphasis
+      captions: ['From APRIL to MARCH'],
     },
   ],
   text: { … },                        // everything written on screen in this scene
@@ -106,19 +125,30 @@ Move the number in `beats`. Components ask for beats by name
 Removing a beat that a scene still uses fails loudly with a message naming the
 scene and the beat.
 
+**The rule these numbers follow: the visual never arrives before the words.**
+A beat lands on, or just after, the moment the narrator says the thing it shows.
+To place one precisely, find where the word actually falls inside its recorded
+phrase - `assets/audio/lines/<line-id>.wav` - rather than estimating from the
+phrase's start. Guessing tends to run half a second early, which is exactly the
+amount that makes a film feel like the pictures are racing the voice.
+
 ### Keeping repetition out
 
-The narration deliberately says each thing once. "Salary Cycle" is spoken in
+The narration deliberately says each thing once. "Salary cycle" is spoken in
 scene 1 and never again - scene 2 says "it", scene 4 says "a new cycle".
 "Performance appraisal" appears once, in scene 7. If you add a line, check it
 against what is already said: the screen is what repeats the key dates, not the
 voice.
 
 ### Changing the pacing
-This film is signage: it should never feel like it is waiting. `TRANSITION`
-(0.55s) is how far consecutive scenes overlap, so the next visual builds while
-the previous phrase finishes. Keep beats dense - if a scene has more than about
-a second with nothing moving, move a beat earlier rather than adding filler.
+This film is signage: it should never feel like it is waiting, and it should
+never feel rushed either. `TRANSITION` (0.55s) is how far consecutive scenes
+overlap, so the next visual builds while the previous phrase finishes.
+
+The gaps between phrases are the pacing. Aim for 0.4-0.8s after a statement and
+up to about 1.2s before a major reveal; anything longer wants something still
+moving on screen to cover it. If a scene feels slow, shorten a gap - do not
+speed the voice up, and never stretch a scene with a beat that does nothing.
 
 ### Changing what the narrator says
 Edit `text` in the `voice` array, and keep `captions` in step - those short

@@ -66,7 +66,9 @@ export const MonthRail: React.FC<{
 
         return (
           <div
-            key={m}
+            // The implementation-year rail repeats JAN/FEB/MAR, so the index is
+            // part of the key.
+            key={`${m}-${i}`}
             style={{
               width: tileW,
               height: tileHeight,

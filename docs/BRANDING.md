@@ -63,7 +63,7 @@ export const brand = {
 1. Drop your file into `assets/logo/` (SVG or a transparent PNG).
 2. Set `logoSrc: 'logo/your-logo.svg'` - the path is relative to `assets/`.
 
-The logo then appears top-right for the whole 90 seconds, scaled to 60px tall.
+The logo then appears top-right for the whole film, scaled to 60px tall.
 While `logoSrc` is `null`, the dashed `[COMPANY LOGO]` placeholder box is shown
 instead, so it is obvious the film is not finished.
 

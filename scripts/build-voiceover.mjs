@@ -3,14 +3,14 @@
  * VOICE-OVER PIPELINE
  * -------------------
  * Turns the script in src/config/scenes.ts into assets/audio/voiceover.wav,
- * a single 90-second track in which every line already sits at the exact
+ * a single track in which every line already sits at the exact
  * moment the animation expects it.
  *
  * Steps:
  *   1. synthesise each line on its own (local neural TTS - no data leaves the machine)
  *   2. measure it, and if it would run past its slot, re-say it slightly faster
  *      (never below `minLengthScale`, so it can't turn into a rushed mumble)
- *   3. lay the lines onto one silent 90-second bed at their configured times
+ *   3. lay the lines onto one silent bed at their configured times
  *   4. normalise loudness and write the track
  *   5. write the measured durations back to src/config/voiceover.timing.ts so
  *      the subtitles land on the narration
@@ -89,6 +89,18 @@ const measureLoudness = (file) => {
 const MIRROR = 'https://github.com/k2-fsa/sherpa-onnx/releases/download/tts-models';
 
 const ensureVoice = async () => {
+  if (tts.engine === 'kokoro') {
+    const dir = path.join(ROOT, 'assets', 'tts', 'kokoro');
+    if (!fs.existsSync(path.join(dir, 'model.onnx'))) {
+      throw new Error(
+        `Kokoro model not found at ${dir}.\n` +
+          `Fetch it with:\n` +
+          `  curl -L -o /tmp/kokoro.tar.bz2 ${MIRROR}/kokoro-multi-lang-v1_0.tar.bz2\n` +
+          `  mkdir -p ${dir} && tar xjf /tmp/kokoro.tar.bz2 -C ${dir} --strip-components=1`,
+      );
+    }
+    return dir;
+  }
   const model = path.join(VOICES_DIR, `${tts.voice}.onnx`);
   if (fs.existsSync(model)) return model;
 
@@ -123,19 +135,17 @@ const ensureVoice = async () => {
   return model;
 };
 
-const synthesise = (model, text, out, lengthScale) => {
-  const res = spawnSync(
-    'python3',
-    [
-      path.join(ROOT, 'scripts', 'lib', 'tts.py'),
-      model,
-      out,
-      String(lengthScale),
-      String(tts.noiseScale),
-      String(tts.noiseW),
-    ],
-    {input: text, cwd: ROOT, stdio: ['pipe', 'pipe', 'pipe']},
-  );
+/**
+ * Says one phrase. `pace` is the engine's own speed control, so the phrase is
+ * re-synthesised at that rate rather than time-stretched afterwards - which is
+ * what keeps a slower delivery sounding natural instead of dragged out.
+ */
+const synthesise = (model, text, out, pace) => {
+  const args =
+    tts.engine === 'kokoro'
+      ? [path.join(ROOT, 'scripts', 'lib', 'tts_kokoro.py'), model, out, String(tts.speakerId), String(pace)]
+      : [path.join(ROOT, 'scripts', 'lib', 'tts.py'), model, out, String(pace), String(tts.noiseScale), String(tts.noiseW)];
+  const res = spawnSync('python3', args, {input: text, cwd: ROOT, stdio: ['pipe', 'pipe', 'pipe']});
   if (res.status !== 0) {
     throw new Error(`Text-to-speech failed:\n${res.stderr?.toString()}`);
   }
@@ -152,23 +162,29 @@ const run = async () => {
     console.log('> assemble-only: using the WAVs already in assets/audio/lines');
   } else {
     const model = await ensureVoice();
-    console.log(`> voice: ${tts.voice}`);
+    console.log(`> voice: ${tts.engine === 'kokoro' ? `${tts.speakerName} (kokoro #${tts.speakerId})` : tts.voice}`);
     for (const line of lines) {
       const out = path.join(LINES_DIR, `${line.id}.wav`);
       const text = line.spoken ?? line.text;
 
       // `rate` in scenes.ts is what creates the emphasis: the phrases that
       // carry the message are delivered slower and heavier than the rest.
-      let scale = tts.lengthScale * (line.rate ?? 1);
+      // Kokoro's control is a speed multiplier (lower is slower); Piper's is a
+      // length scale (higher is slower), so the direction differs.
+      const base = tts.engine === 'kokoro' ? tts.speed : tts.lengthScale;
+      let scale = tts.engine === 'kokoro' ? base / (line.rate ?? 1) : base * (line.rate ?? 1);
       synthesise(model, text, out, scale);
       let info = readWavInfo(out);
 
       // If the line would spill into the next one, say it a little faster -
       // but never faster than the configured floor.
       if (info.duration > line.window) {
-        const floor = tts.minLengthScale * (line.rate ?? 1);
-        const wanted = Math.max(floor, scale * (line.window / info.duration) * 0.98);
-        if (wanted < scale) {
+        const ceiling = tts.engine === 'kokoro' ? tts.minSpeed : tts.minLengthScale * (line.rate ?? 1);
+        const wanted =
+          tts.engine === 'kokoro'
+            ? Math.min(ceiling, scale * (info.duration / line.window) * 1.02)
+            : Math.max(ceiling, scale * (line.window / info.duration) * 0.98);
+        if (tts.engine === 'kokoro' ? wanted > scale : wanted < scale) {
           synthesise(model, text, out, wanted);
           info = readWavInfo(out);
           scale = wanted;
@@ -183,7 +199,7 @@ const run = async () => {
       durations[line.id] = Number(info.duration.toFixed(3));
       console.log(
         `  ${line.id.padEnd(7)} ${info.duration.toFixed(2)}s / ${line.window.toFixed(2)}s  ` +
-          `(rate ${scale.toFixed(2)})`,
+          `(pace ${scale.toFixed(3)})`,
       );
     }
   }

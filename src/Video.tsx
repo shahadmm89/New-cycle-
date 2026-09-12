@@ -33,9 +33,10 @@ import {Scene04TheChange} from './scenes/Scene04TheChange';
 import {Scene05April} from './scenes/Scene05April';
 import {Scene06March} from './scenes/Scene06March';
 import {Scene07NoChange} from './scenes/Scene07NoChange';
-import {Scene08Summary} from './scenes/Scene08Summary';
-import {Scene09Why} from './scenes/Scene09Why';
-import {Scene10Close} from './scenes/Scene10Close';
+import {Scene08Example} from './scenes/Scene08Example';
+import {Scene09Summary} from './scenes/Scene09Summary';
+import {Scene10Why} from './scenes/Scene10Why';
+import {Scene11Close} from './scenes/Scene11Close';
 
 loadProjectFonts();
 
@@ -47,9 +48,10 @@ const SCENE_COMPONENTS: Record<string, React.FC> = {
   april: Scene05April,
   march: Scene06March,
   'no-change': Scene07NoChange,
-  summary: Scene08Summary,
-  why: Scene09Why,
-  close: Scene10Close,
+  example: Scene08Example,
+  summary: Scene09Summary,
+  why: Scene10Why,
+  close: Scene11Close,
 };
 
 /**
@@ -80,15 +82,17 @@ const GLOW_KEYS: GlowKey[] = [
   {scene: 'hook', at: 0, x: 960, y: 470, v: 0.4},
   {scene: 'old-cycle', at: 0, x: 500, y: 520, v: 0.14},
   {scene: 'today', at: 0, x: 960, y: 430, v: 0.12},
-  {scene: 'today', at: 9.5, x: 960, y: 560, v: 0.35},   // the KPIs roll up
+  {scene: 'today', at: 14.5, x: 960, y: 560, v: 0.35},  // the KPIs roll up
   {scene: 'the-change', at: 0, x: 480, y: 520, v: 0.18},
-  {scene: 'the-change', at: 2.0, x: 480, y: 520, v: 0.55}, // ring spins up
-  {scene: 'the-change', at: 3.3, x: 1250, y: 470, v: 0.95}, // APR -> MAR lands
-  {scene: 'the-change', at: 4.8, x: 1250, y: 470, v: 0.85},
+  {scene: 'the-change', at: 2.2, x: 480, y: 520, v: 0.55}, // ring spins up
+  {scene: 'the-change', at: 4.25, x: 1250, y: 470, v: 0.95}, // APR -> MAR lands
+  {scene: 'the-change', at: 5.6, x: 1250, y: 470, v: 0.85},
   {scene: 'april', at: 0.4, x: 960, y: 420, v: 0.9},
-  {scene: 'march', at: 1.4, x: 960, y: 600, v: 0.7},
-  {scene: 'march', at: 2.6, x: 960, y: 600, v: 0.85},
+  {scene: 'march', at: 3.05, x: 960, y: 600, v: 0.7},
+  {scene: 'march', at: 4.3, x: 960, y: 600, v: 0.85},
   {scene: 'no-change', at: 0, x: 960, y: 500, v: 0.3},
+  {scene: 'example', at: 0, x: 760, y: 560, v: 0.16},
+  {scene: 'example', at: 25.5, x: 1470, y: 600, v: 0.8},  // 6.25% lands
   {scene: 'summary', at: 0.6, x: 960, y: 420, v: 0.75},
   {scene: 'why', at: 0, x: 700, y: 520, v: 0.35},
   {scene: 'close', at: 0.4, x: 960, y: 330, v: 0.75},
