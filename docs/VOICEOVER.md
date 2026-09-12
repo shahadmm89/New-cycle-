@@ -21,7 +21,7 @@ assets/audio/mix.wav         what the video mounts  ← narration + ducked bed
 
 | `engine` | Voice | Needs |
 |---|---|---|
-| `elevenlabs` | **Arthur** (`TtRFBnwQdH1k01vR0hMz`) | `ELEVENLABS_API_KEY`, and outbound HTTPS to `api.elevenlabs.io` |
+| `elevenlabs` | **Alexander** (`hIru3zkEJ3dBYHTbMy2V`) | `ELEVENLABS_API_KEY` + outbound HTTPS to `api.elevenlabs.io`, or the ElevenLabs connector |
 | `kokoro` | am_echo, local | `pip install sherpa-onnx` + the model. **What the committed mix was made with.** |
 | `piper` | any Piper voice, local | `pip install piper-tts` |
 
@@ -29,6 +29,16 @@ The ElevenLabs path calls the account's own licensed voice by id. It does not
 clone, sample or approximate anyone: if the key's account cannot use that voice,
 the API refuses and the build stops with the refusal rather than quietly
 substituting something else.
+
+**Why Alexander and not Arthur.** The voice originally asked for
+(`TtRFBnwQdH1k01vR0hMz`) needs a Creator-tier subscription this account does not
+have - the API answers `You need to be on the creator tier or above to use this
+voice`. It is also, by its own library description, "a vibrant, fun, and dynamic
+young adult" social-media voice, which is the opposite of the mature, calm,
+"not overly energetic" read the rest of the brief asks for. Alexander was picked
+from the library against that brief and measured the same way as the local
+voice; `output/voice-candidates.mp3` is the audition, and the numbers are in the
+table below.
 
 ```bash
 export ELEVENLABS_API_KEY=...
@@ -72,6 +82,33 @@ the numbers mean the same thing whichever engine produced the audio:
 hook        lead 0.35  pauses [0.62]                          tail 0.74
 example     lead 0.41  pauses [0.51, 0.71, 0.65, 0.55, 0.71]  tail 0.98
 close       lead 0.50  pauses [0.39]                          tail 1.38
+```
+
+### Pace from the pauses
+
+A hosted voice speaks at whatever pace it speaks at. Alexander reads at about
+150 wpm; this film wants 125-140. Slowing the rendered audio is what makes a
+read sound dragged rather than calm, so the words keep their natural rate and
+the unhurried feeling is recovered from the silence around them:
+
+```bash
+npm run voiceover:plan -- --pause-scale 1.35 --write
+```
+
+Every gap between phrases, and every scene lead-in and closing hold, gets that
+much longer. Inter-phrase gaps are capped at 1.25s so none of them can turn into
+dead air; lead-ins and tails are not capped, because a scene's opening and
+closing holds are deliberate.
+
+Picking the number: roughly 1.15 restores the film's original length, and
+anything above about 1.5 starts to feel like waiting. 1.35 is the sensible
+starting point - median gap around 0.8s - but it wants an ear on the result
+rather than arithmetic. `voiceover:plan` prints the word rate and the resulting
+gap distribution so the number can be judged:
+
+```
+word rate 150 wpm (unchanged - the words are never slowed)
+pauses between phrases: median 0.78s, longest 1.06s  [--pause-scale 1.35, capped at 1.25s]
 ```
 
 ```bash

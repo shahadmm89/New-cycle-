@@ -50,8 +50,20 @@ export const voiceover = {
      * their licensed copy, not a recreation of it.
      */
     elevenlabs: {
-      voiceId: 'TtRFBnwQdH1k01vR0hMz',
-      voiceName: 'Arthur',
+      /**
+       * Alexander - "a clear and grounded male baritone ... neutral tone with
+       * natural pacing", American, middle-aged.
+       *
+       * NOT the originally requested Arthur (TtRFBnwQdH1k01vR0hMz). That voice
+       * needs a Creator-tier subscription this account does not have, and the
+       * library describes it as a vibrant young-adult social-media voice, which
+       * is the opposite of the mature, calm read the brief asks for. Alexander
+       * was chosen from the library by the same measurement used for the local
+       * voice: 126 Hz median with 11.3 semitones of movement, the closest fit
+       * of the candidates auditioned (see output/voice-candidates.mp3).
+       */
+      voiceId: 'hIru3zkEJ3dBYHTbMy2V',
+      voiceName: 'Alexander',
       /** Their most natural English model at time of writing. */
       modelId: 'eleven_multilingual_v2',
       /** Forces the American pronunciations the script depends on. */
@@ -67,10 +79,15 @@ export const voiceover = {
       style: 0,
       speakerBoost: true,
       /**
-       * 1.0 = the voice's own natural pace. Do NOT lower this to slow the read
-       * down - generate naturally and let `npm run voiceover:plan` re-time the
-       * scenes around the result. Per-line `rate` in scenes.ts nudges this
-       * within the API's own 0.7-1.2 limit.
+       * 1.0 = the voice's own natural pace, and it stays there.
+       *
+       * This voice speaks at about 150 wpm against the 125-140 the brief asks
+       * for. The words are NOT slowed to close that gap - the instruction is to
+       * generate naturally. The calm is recovered from the silences instead:
+       *
+       *   npm run voiceover:plan -- --pause-scale 1.5 --write
+       *
+       * See "Pace from the pauses" in docs/VOICEOVER.md.
        */
       speed: 1.0,
     },

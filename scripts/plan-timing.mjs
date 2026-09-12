@@ -33,6 +33,32 @@ const LINES_DIR = path.join(ROOT, 'assets', 'audio', 'lines');
 const snapshot = process.argv.includes('--snapshot');
 const write = process.argv.includes('--write');
 
+/**
+ * PACE FROM THE PAUSES.
+ *
+ * A hosted voice speaks at whatever pace it speaks at, and slowing the audio
+ * afterwards is what makes a read sound dragged rather than calm. So the words
+ * keep their natural rate and the unhurried feeling is recovered from the
+ * silence around them instead.
+ *
+ * --pause-scale 1.5 makes every gap between phrases half again as long. Lead-ins
+ * and tails scale too, so a scene still opens and closes at the same rhythm.
+ */
+const PAUSE_CAP = 1.25;
+const pauseScaleArg = process.argv.findIndex((a) => a === '--pause-scale');
+const pauseScale = pauseScaleArg >= 0 ? Number(process.argv[pauseScaleArg + 1]) : 1;
+if (!Number.isFinite(pauseScale) || pauseScale <= 0) {
+  console.error('--pause-scale needs a positive number, e.g. --pause-scale 1.5');
+  process.exit(1);
+}
+/**
+ * Longer, but never long enough to read as dead air. The cap applies only
+ * BETWEEN phrases: a scene's opening lead-in and closing hold are deliberate
+ * and are scaled without one.
+ */
+const stretch = (gap) => Math.min(PAUSE_CAP, +(gap * pauseScale).toFixed(3));
+const scale = (gap) => +(gap * pauseScale).toFixed(3);
+
 const cfg = loadConfig();
 const lines = flatVoiceLines(cfg);
 
@@ -158,15 +184,15 @@ for (const scene of cfg.scenes) {
   const starts = {};
   // First word lands leadIn after the scene opens; the clip's own lead silence
   // has to be taken off, because that silence is part of the file.
-  let t = pace.leadIn - clips[own[0].id].lead;
+  let t = scale(pace.leadIn) - clips[own[0].id].lead;
   for (let k = 0; k < own.length; k++) {
     const c = clips[own[k].id];
     starts[own[k].id] = +t.toFixed(2);
     if (k < own.length - 1) {
-      const gap = pace.pauses[k] ?? 0.45;
+      const gap = stretch(pace.pauses[k] ?? 0.45);
       t += c.duration - c.tail + gap - clips[own[k + 1].id].lead;
     } else {
-      t += c.duration - c.tail + pace.tail;
+      t += c.duration - c.tail + scale(pace.tail);
     }
   }
   plan.push({id: scene.id, duration: +t.toFixed(2), starts, start: cursor});
@@ -193,6 +219,27 @@ for (const p of plan) {
   );
 }
 console.log(`\ntotal ${cursor.toFixed(2)}s (was ${cfg.totalDuration.toFixed(2)}s)`);
+
+// What the read actually sounds like, so the pause scale can be judged rather
+// than guessed at.
+const words = lines.reduce((n, l) => n + (l.spoken ?? l.text).split(/\s+/).length, 0);
+const speech = lines.reduce((t, l) => t + clips[l.id].duration - clips[l.id].lead - clips[l.id].tail, 0);
+const gaps = [];
+for (const p of plan) {
+  const own = lines.filter((l) => l.sceneId === p.id);
+  for (let k = 0; k < own.length - 1; k++) {
+    const a = own[k];
+    const b = own[k + 1];
+    gaps.push(p.starts[b.id] + clips[b.id].lead - (p.starts[a.id] + clips[a.id].duration - clips[a.id].tail));
+  }
+}
+gaps.sort((x, y) => x - y);
+console.log(
+  `word rate ${((words / speech) * 60).toFixed(0)} wpm (unchanged - the words are never slowed)\n` +
+    `pauses between phrases: median ${gaps[Math.floor(gaps.length / 2)].toFixed(2)}s, ` +
+    `longest ${gaps[gaps.length - 1].toFixed(2)}s` +
+    (pauseScale === 1 ? '' : `  [--pause-scale ${pauseScale}, capped at ${PAUSE_CAP}s]`),
+);
 
 if (!changed) {
   console.log('\nNothing to change - the audio already matches the approved pacing.');
