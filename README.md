@@ -1,3 +1,26 @@
+# Internal HR films
+
+Two self-contained **1920×1080, 30 fps** films for internal communication, built
+from one Remotion project so they share a stage, a palette, a pair of typefaces
+and a narrator:
+
+| Film | Runtime | What it announces |
+|---|---|---|
+| **Salary cycle change** | 1:44 | The salary cycle year moves from January–December to April–March |
+| **Employee Well-being Programme** | 1:45 | The new well-being programme, its two priority areas, and that implementation begins in Q4 2026 |
+
+```bash
+npm install
+npm run render       # the salary-cycle film  → output/salary-cycle-update.mp4
+npm run wellbeing    # the well-being film    → output/wellbeing-programme.mp4
+```
+
+The well-being film is documented separately in
+**[docs/WELLBEING-VIDEO.md](docs/WELLBEING-VIDEO.md)**. Everything below
+describes the salary-cycle film.
+
+---
+
 # Salary Cycle Change - employee announcement video
 
 A self-contained pipeline that renders a **~1 min 45 s, 1920×1080, 30 fps MP4**
@@ -153,6 +176,7 @@ glow keyframes are anchored to scene ids rather than absolute times.
 - **[docs/EDITING-TEXT-AND-DATES.md](docs/EDITING-TEXT-AND-DATES.md)** - months, dates, wording, scene lengths
 - **[docs/VOICEOVER.md](docs/VOICEOVER.md)** - re-record or replace the narration and music
 - **[docs/RENDERING.md](docs/RENDERING.md)** - render settings, troubleshooting, distribution
+- **[docs/WELLBEING-VIDEO.md](docs/WELLBEING-VIDEO.md)** - the well-being film: its timeline, copy and photography slots
 
 ---
 
@@ -166,5 +190,7 @@ glow keyframes are anchored to scene ids rather than absolute times.
   blocked, point `REMOTION_BROWSER_EXECUTABLE` at any local Chromium;
   `render/browser.mjs` also finds a Playwright-installed one automatically.
 
-No cloud services are used. Narration and music are generated locally, so no
-script text leaves the machine.
+No cloud services are used by the salary-cycle film: its narration and music are
+generated locally, so no script text leaves the machine. The well-being film's
+narration and music were synthesised with ElevenLabs and are committed as
+finished audio, so it renders offline too.

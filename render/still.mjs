@@ -2,6 +2,7 @@
 /**
  * Renders single frames for review, e.g.
  *   node render/still.mjs 0 240 600 1200
+ *   node render/still.mjs --film=wellbeing 60 300
  * Writes output/stills/frame-<n>.png
  */
 import {bundle} from '@remotion/bundler';
@@ -15,20 +16,33 @@ const browserExecutable = findBrowser();
 if (browserExecutable) console.log(`> using browser: ${browserExecutable}`);
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const frames = process.argv.slice(2).map(Number).filter((n) => Number.isFinite(n));
+const argv = process.argv.slice(2);
+const filmArg = argv.find((a) => a.startsWith('--film='));
+const film = filmArg ? filmArg.split('=')[1] : 'salary';
+const COMPOSITIONS = {salary: 'SalaryCycleUpdate', wellbeing: 'WellbeingProgramme'};
+if (!COMPOSITIONS[film]) {
+  console.error(`unknown --film=${film}. Use one of: ${Object.keys(COMPOSITIONS).join(', ')}`);
+  process.exit(1);
+}
+const frames = argv.filter((a) => !a.startsWith('--')).map(Number).filter((n) => Number.isFinite(n));
 if (!frames.length) {
   console.error('usage: node render/still.mjs <frame> [frame …]');
   process.exit(1);
 }
 
-const outDir = path.join(root, 'output', 'stills');
+const outDir = path.join(root, 'output', 'stills', film);
 fs.mkdirSync(outDir, {recursive: true});
 
 const serveUrl = await bundle({
   entryPoint: path.join(root, 'src', 'index.ts'),
   publicDir: path.join(root, 'assets'),
 });
-const composition = await selectComposition({serveUrl, id: 'SalaryCycleUpdate', inputProps: {}, browserExecutable});
+const composition = await selectComposition({
+  serveUrl,
+  id: COMPOSITIONS[film],
+  inputProps: {},
+  browserExecutable,
+});
 
 for (const frame of frames) {
   const output = path.join(outDir, `frame-${String(frame).padStart(4, '0')}.png`);
