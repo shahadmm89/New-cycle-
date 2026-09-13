@@ -41,17 +41,26 @@ export const music = {
   file: 'audio/wellbeing/music-bed.mp3',
 
   /**
-   * Bed level between phrases, as a linear gain (about -18 dB).
-   * Low enough that the film reads as narration over silence, present enough
-   * that the long deliberate pauses do not sound like dead air.
+   * These two are set from measurements of the rendered mix, not from taste.
+   *
+   * The source material: the music bed is -18.7 dB RMS and the narration
+   * phrases are about -16.7 dB RMS, so the gains below are what actually
+   * decides the balance. An earlier pass used 0.125 / 0.05, which sounds
+   * reasonable written down and put the bed 25 dB under the voice during
+   * narration - not subtle, simply absent.
+   *
+   * Bed level between phrases: about -29 dB in the mix. Present enough that a
+   * deliberate 1.5s pause has something in it, quiet enough that the film
+   * still reads as narration rather than as a track with narration over it.
    */
-  bedGain: 0.125,
+  bedGain: 0.3,
 
   /**
-   * Bed level while anybody is speaking (about -26 dB) - roughly 8 dB below
-   * the resting level. The voice is never in competition with it.
+   * Bed level while anybody is speaking: about -36 dB, roughly 16 dB under the
+   * voice. That is the band where a bed supports a read without ever being
+   * something the listener has to hear past.
    */
-  duckedGain: 0.05,
+  duckedGain: 0.13,
 
   /**
    * Seconds of lead-in and release around each phrase for the duck.
