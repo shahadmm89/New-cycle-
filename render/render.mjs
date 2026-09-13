@@ -1,12 +1,13 @@
 #!/usr/bin/env node
 /**
- * Renders the film to MP4.
+ * Renders a film to MP4.
  *
  *   node render/render.mjs production   -> 1920x1080, H.264 high quality (default)
  *   node render/render.mjs preview      -> 960x540, fast, for review
  *   node render/render.mjs all          -> both
  *
  * Extra flags:
+ *   --film=NAME     which film: "salary" (default) or "wellbeing"
  *   --no-captions   render the composition without burned-in subtitles
  *   --concurrency=N override the worker count
  */
@@ -27,6 +28,31 @@ const args = process.argv.slice(2);
 const mode = args.find((a) => !a.startsWith('--')) ?? 'production';
 const noCaptions = args.includes('--no-captions');
 const concurrencyArg = args.find((a) => a.startsWith('--concurrency='));
+const filmArg = args.find((a) => a.startsWith('--film='));
+const film = filmArg ? filmArg.split('=')[1] : 'salary';
+
+/**
+ * The two films this project renders. They share every render setting - the
+ * only differences are which composition is mounted and what the file is
+ * called.
+ */
+const FILMS = {
+  salary: {
+    composition: 'SalaryCycleUpdate',
+    production: 'salary-cycle-update.mp4',
+    preview: 'salary-cycle-update-preview.mp4',
+  },
+  wellbeing: {
+    composition: 'WellbeingProgramme',
+    production: 'wellbeing-programme.mp4',
+    preview: 'wellbeing-programme-preview.mp4',
+  },
+};
+
+if (!FILMS[film]) {
+  console.error(`unknown --film=${film}. Use one of: ${Object.keys(FILMS).join(', ')}`);
+  process.exit(1);
+}
 
 const PROFILES = {
   production: {
@@ -34,7 +60,7 @@ const PROFILES = {
     scale: 1,
     crf: 17,
     jpegQuality: 95,
-    file: 'salary-cycle-update.mp4',
+    file: FILMS[film].production,
     // Lossless frames: large flat type on a dark field is exactly the sort of
     // high-contrast edge that JPEG's chroma subsampling smears.
     imageFormat: 'png',
@@ -44,12 +70,12 @@ const PROFILES = {
     scale: 0.5,
     crf: 26,
     jpegQuality: 80,
-    file: 'salary-cycle-update-preview.mp4',
+    file: FILMS[film].preview,
     imageFormat: 'jpeg',
   },
 };
 
-const compositionId = noCaptions ? 'SalaryCycleUpdate-NoCaptions' : 'SalaryCycleUpdate';
+const compositionId = noCaptions ? `${FILMS[film].composition}-NoCaptions` : FILMS[film].composition;
 
 const run = async () => {
   fs.mkdirSync(outDir, {recursive: true});

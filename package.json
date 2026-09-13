@@ -2,7 +2,7 @@
   "name": "salary-cycle-explainer",
   "version": "1.0.0",
   "private": true,
-  "description": "Animated HR explainer video: Salary & Bonus Cycle update (Remotion)",
+  "description": "Internal HR films (Remotion): salary & bonus cycle update, and the Employee Well-being Programme announcement",
   "license": "UNLICENSED",
   "scripts": {
     "preview": "remotion studio src/index.ts",
@@ -17,7 +17,12 @@
     "typecheck": "tsc --noEmit",
     "music": "node scripts/build-music.mjs",
     "voiceover:plan": "node scripts/plan-timing.mjs",
-    "check:sync": "node scripts/check-sync.mjs"
+    "check:sync": "node scripts/check-sync.mjs",
+    "wellbeing": "node render/render.mjs production --film=wellbeing",
+    "wellbeing:preview": "node render/render.mjs preview --film=wellbeing",
+    "wellbeing:captions": "node scripts/wellbeing-captions.mjs",
+    "wellbeing:timeline": "node scripts/wellbeing-timeline.mjs",
+    "wellbeing:script": "node scripts/wellbeing-script.mjs"
   },
   "dependencies": {
     "@remotion/bundler": "4.0.523",
