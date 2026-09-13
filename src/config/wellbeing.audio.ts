@@ -54,12 +54,24 @@ export const music = {
   duckedGain: 0.05,
 
   /**
-   * Seconds of lead-in and release around each phrase for the duck. Without
-   * this the bed steps up and down audibly between close-packed phrases.
+   * Seconds of lead-in and release around each phrase for the duck.
+   *
+   * This was 0.45s, and measuring the rendered mix showed it was swallowing
+   * the film: with ramps that long on both sides, even the 1.55s emphasis
+   * pauses never reached the resting level, so the bed sat ducked from the
+   * first word to the last and the pauses had no music in them to speak of.
+   * At 0.30s a long pause gets the best part of a second at full level, which
+   * is what stops a deliberate silence sounding like dead air.
    */
-  duckRamp: 0.45,
+  duckRamp: 0.3,
 
-  fadeIn: 2.6,
+  /**
+   * Short, because the bed has to be established before the first word.
+   *
+   * At 2.6s the film opened in silence - the first two seconds measured below
+   * -46 dB, and the voice then arrived at -21 dB with nothing underneath it.
+   */
+  fadeIn: 1.0,
   /** Long, so the bed is already gone under the final logo frame. */
   fadeOut: 3.4,
 } as const;
