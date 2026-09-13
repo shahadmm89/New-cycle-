@@ -196,14 +196,23 @@ const MusicBed: React.FC = () => {
       }),
     );
 
-    // Duck under speech, with a short ramp either side so the bed breathes
-    // rather than steps.
-    const speaking = placedPhrases.some(
-      (p) => t >= p.start - music.duckRamp && t <= p.end + music.duckRamp,
-    );
-    const target = speaking ? music.duckedGain : music.bedGain;
+    // Duck under speech. This has to be a ramp, not a switch: a boolean
+    // "is anyone speaking" test steps the bed up and down at every phrase
+    // boundary, and with pauses this long and a bed this quiet, the step is
+    // the most audible thing in the mix.
+    //
+    // Each phrase contributes a trapezoid - 0 outside its ramp, 1 across the
+    // phrase itself, linear in between - and the duck follows the strongest
+    // of them, so back-to-back phrases stay ducked through the gap instead of
+    // letting the bed surge between them.
+    const duck = placedPhrases.reduce((deepest, p) => {
+      const rising = (t - (p.start - music.duckRamp)) / music.duckRamp;
+      const falling = (p.end + music.duckRamp - t) / music.duckRamp;
+      return Math.max(deepest, Math.max(0, Math.min(1, rising, falling)));
+    }, 0);
 
-    return envelope * target;
+    const gain = music.bedGain + (music.duckedGain - music.bedGain) * duck;
+    return envelope * gain;
   };
 
   return <Audio src={staticFile(music.file)} volume={volumeAt} />;
