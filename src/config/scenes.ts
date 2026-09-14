@@ -17,6 +17,23 @@
  * static hold. Every beat below was chosen so something is always moving.
  *
  * All times are SECONDS. Beat times are relative to the start of their scene.
+ *
+ * RE-ANCHORING AFTER A VOICE CHANGE
+ * --------------------------------
+ * Every absolute number in this file - scene durations, phrase starts, beats -
+ * describes a particular recorded read. The narrator is now Dan, and the numbers
+ * below were derived from the previous voice, so they are a starting point and
+ * nothing more. Once all 34 phrases exist in the new voice:
+ *
+ *   npm run voiceover:plan -- --write    re-derive durations, starts and beats
+ *                                        from the new clips and the pacing
+ *                                        intent in voiceover.pacing.ts
+ *   npm run check:sync                   prove nothing is cut off or stranded
+ *
+ * That tool moves each beat with the phrase it belongs to, which is close but
+ * not exact. The beats tied to a specific WORD - the timeline pins especially -
+ * then have to be re-measured against the onset of that word inside its clip.
+ * docs/EDITING-TEXT-AND-DATES.md explains how to read the onsets out.
  */
 import {cycle, implementation, kpiTerm, kpiTermSpoken, kpis, monthsCalendar, monthsSalaryYear} from './copy';
 
@@ -150,9 +167,11 @@ export const scenes: SceneConfig[] = [
       kpi2: 14.16,
       kpi3: 14.66,
       kpiCombine: 15.46,
-      // Bottom-timeline pins, cued 0.2s before the measured onset of the word
-      // itself so each one lands ON the month rather than starting there.
-      // "around NOVEMBER" = s3-l3 + 2.80s.  "by DECEMBER" = s3-l5 + 1.72s.
+      // Bottom-timeline pins. Each is cued 0.2s before the onset of the word
+      // itself, so the pin LANDS on the month rather than starting there.
+      // Offsets carried over from the Alexander read ("around NOVEMBER" was
+      // s3-l3 + 2.80s, "by DECEMBER" s3-l5 + 1.72s) - a starting point only,
+      // to be re-measured against the new voice. See RE-ANCHORING below.
       timelineNov: 10.4,
       timelineDec: 19.0,
     },
@@ -256,8 +275,9 @@ export const scenes: SceneConfig[] = [
       line1: 4.5,
       line2: 9.16,
       alignIn: 13.61,
-      // Same again, from the measured onsets: "By JANUARY" = s5-l2 + 0.18s,
-      // "by FEBRUARY" = s5-l3 + 0.45s, "so DECISIONS rest on" = s5-l5 + 0.28s.
+      // Same again, carried over from the Alexander read: "By JANUARY" was
+      // s5-l2 + 0.18s, "by FEBRUARY" s5-l3 + 0.45s, "so DECISIONS rest on"
+      // s5-l5 + 0.28s. Re-measure against the new voice.
       timelineJan: 4.5,
       timelineFeb: 9.4,
       timelineMar: 17.9,

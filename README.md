@@ -97,16 +97,18 @@ previous phrase finishes.
 
 ### Pacing
 
-The narration is 34 phrases in the ElevenLabs voice **Alexander**. He speaks at
-his own natural pace - the words are never slowed - and the unhurried feel comes
-from the silence around them instead, tuned by measuring the assembled track
-rather than by arithmetic. See "Pace from the pauses" in docs/VOICEOVER.md.
+The narration is 34 phrases in the ElevenLabs voice **Dan** - a warm, friendly,
+conversational American male. He speaks at his own natural pace; the words are
+never slowed, and the unhurried feel comes from the silence around them instead.
+Those silences are authored in `src/config/voiceover.pacing.ts`: about half a
+second for a clause continuing a sentence, a second between thoughts, a little
+over for a turn. See "Pace from the pauses" in docs/VOICEOVER.md.
 
-> **Twenty of the thirty-four phrases are recorded.** The ElevenLabs account ran
-> out of credits partway through the run, so scene 2, the last line of scene 8,
-> and scenes 9-11 have no audio yet, and the film has not been scored or
-> rendered against the refined script. docs/VOICEOVER.md names the missing
-> phrases and the three commands that finish it.
+> **Not recorded yet.** The ElevenLabs account is at zero credits, so the film
+> has not been scored or rendered against the refined script. Every absolute
+> time in `src/config/scenes.ts` is therefore provisional. `npm run
+> voiceover:prompts` prints the one run that finishes it - 34 phrases, ~1,630
+> characters - and docs/VOICEOVER.md has the four commands that follow.
 
 Visuals **follow** the narration rather than leading it. The beat times in
 `src/config/scenes.ts` were set from the measured onsets inside each recorded

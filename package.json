@@ -17,7 +17,8 @@
     "typecheck": "tsc --noEmit",
     "music": "node scripts/build-music.mjs",
     "voiceover:plan": "node scripts/plan-timing.mjs",
-    "check:sync": "node scripts/check-sync.mjs"
+    "check:sync": "node scripts/check-sync.mjs",
+    "voiceover:prompts": "node scripts/print-prompts.mjs"
   },
   "dependencies": {
     "@remotion/bundler": "4.0.523",

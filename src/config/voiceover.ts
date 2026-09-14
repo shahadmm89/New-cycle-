@@ -45,25 +45,29 @@ export const voiceover = {
     engine: 'elevenlabs' as 'elevenlabs' | 'kokoro' | 'piper',
 
     /**
-     * The requested voice: Arthur, from the ElevenLabs voice library.
-     * Used through the account that owns the key - `voiceId` is a reference to
-     * their licensed copy, not a recreation of it.
+     * The narrator. Always a voice the account already licenses - `voiceId` is
+     * a reference to their copy of it, never a recreation or a clone.
      */
     elevenlabs: {
       /**
-       * Alexander - "a clear and grounded male baritone ... neutral tone with
-       * natural pacing", American, middle-aged.
+       * Dan - "middle aged male in his 40s with a warm, friendly conversational
+       * tone", American, suited to informative and educational content.
+       * CHOSEN BY THE CLIENT from the shortlist, against a brief asking for a
+       * warm, mature, professional, calm read that is not a news anchor and not
+       * an advertisement.
        *
-       * NOT the originally requested Arthur (TtRFBnwQdH1k01vR0hMz). That voice
-       * needs a Creator-tier subscription this account does not have, and the
-       * library describes it as a vibrant young-adult social-media voice, which
-       * is the opposite of the mature, calm read the brief asks for. Alexander
-       * was chosen from the library by the same measurement used for the local
-       * voice: 126 Hz median with 11.3 semitones of movement, the closest fit
-       * of the candidates auditioned (see output/voice-candidates.mp3).
+       * It sits in the account's own workspace rather than the shared library,
+       * so unlike a library voice it cannot be refused for subscription tier -
+       * which is what happened to the originally requested Arthur
+       * (TtRFBnwQdH1k01vR0hMz), and to four others auditioned since.
+       *
+       * Changing this line means re-recording the WHOLE script, not the part
+       * that has changed: a film cannot switch narrator halfway. The takes from
+       * a previous voice are kept under assets/audio/takes/ rather than
+       * deleted, because they cost credits and cannot be remade for free.
        */
-      voiceId: 'hIru3zkEJ3dBYHTbMy2V',
-      voiceName: 'Alexander',
+      voiceId: 'fvVBPXuE7f1iX3dZLKFy',
+      voiceName: 'Dan',
       /** Their most natural English model at time of writing. */
       modelId: 'eleven_multilingual_v2',
       /** Forces the American pronunciations the script depends on. */
@@ -79,14 +83,12 @@ export const voiceover = {
       style: 0,
       speakerBoost: true,
       /**
-       * 1.0 = the voice's own natural pace, and it stays there.
+       * 1.0 = the voice's own natural pace, and it stays there. The words are
+       * never slowed; the unhurried feel is built from the silence around them,
+       * which is what src/config/voiceover.pacing.ts describes.
        *
-       * This voice speaks at about 150 wpm against the 125-140 the brief asks
-       * for. The words are NOT slowed to close that gap - the instruction is to
-       * generate naturally. The calm is recovered from the silences instead:
-       *
-       *   npm run voiceover:plan -- --pause-scale 1.5 --write
-       *
+       * Those pauses are now authored at their final length, so the re-time is
+       * a plain `npm run voiceover:plan -- --write` with no --pause-scale.
        * See "Pace from the pauses" in docs/VOICEOVER.md.
        */
       speed: 1.0,

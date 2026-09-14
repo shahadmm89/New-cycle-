@@ -444,45 +444,54 @@ in. The MP4 keeps a silent AAC track so players that expect audio behave.
 - Scene 8 is the only arithmetic in the film. Explain it, do not teach it: the
   tone is "here is something useful to know", not a lesson.
 
-## The Alexander read (partial)
+## The narrator
 
-20 of the 34 phrases of the refined script have been recorded with Alexander
-(`hIru3zkEJ3dBYHTbMy2V`) through the ElevenLabs connector, and are committed to
-`assets/audio/lines/` - an exception to the rule above that per-line takes are
-disposable, because these ones cannot be reproduced from this repository: the
-account is at zero credits (quota 10,000, 0 remaining) and re-generating them
-costs credits.
+**Dan** (`fvVBPXuE7f1iX3dZLKFy`) - "middle aged male in his 40s with a warm,
+friendly conversational tone", American, suited to informative and educational
+content. Chosen by the client from a shortlist of ten.
 
-Missing, and needing credits before the film can be scored end to end:
+It sits in the account's own workspace rather than the shared voice library, so
+it cannot be refused for subscription tier. That is not a small thing here: the
+originally requested Arthur was refused for exactly that reason, and so were
+four others auditioned since.
 
-    s2-l1  s2-l2  s8-l3
-    s9-l1  s9-l2  s9-l3  s9-l4  s9-l5  s9-l6  s9-l7
-    s10-l1 s10-l2 s11-l1 s11-l2
+### Recording it
 
-Once the account has credits, generate exactly those fourteen with the same
-voice and model, land them in `assets/audio/lines/`, then:
+No phrase has been recorded in this voice yet - the account is at zero credits
+(quota 10,000, 0 remaining). The whole script is one run of 34 phrases, about
+**1,630 characters**, which at roughly a credit per character means budgeting
+around **1,800 credits** with headroom for a retry.
+
+    npm run voiceover:prompts
+
+prints exactly what to send and in what order, paired two at a time. Both of
+those details matter:
+
+- The engine gets each line's `spoken` wording, not what is written on screen -
+  "April first", "H R personnel", "Company Performance KPI's".
+- The account allows **two concurrent requests**. A third fails *and is still
+  billed*. Four of this project's generations have already been lost that way.
+
+Then:
 
     npm run voiceover:build -- --assemble-only
-    npm run voiceover:plan -- --pause-scale 1.5 --write
-    npm run check:sync && npm run captions && npm run render
+    npm run voiceover:plan -- --write
+    npm run check:sync
+    npm run captions && npm run render
 
-Note the account allows only **2 concurrent requests** - generate in pairs, or
-every third request comes back as a concurrency failure that still bills.
+Between the re-time and the render, re-measure the beats pinned to a particular
+word - the bottom-timeline markers above all - against the onsets in the new
+clips, and re-run the KPI pronunciation test below on the new `s3-l4`. Neither
+survives a voice change.
 
-### Pronunciation, verified on the delivered take
+### The previous voice
 
-`s3-l4` ends on "Company Performance KPI's". Measured by peak F1 across the end
-of the phrase (the open /ai/ of the letter I against the close /I/ of the word
-"is"):
-
-| take | peak F1 |
-|---|---|
-| reference "kay pee eyes" (letter I - correct) | 773 Hz |
-| reference "kay pee is" (the word - wrong) | 625 Hz |
-| **Alexander, s3-l4** | **828 Hz** |
-
-The last three voiced runs of the clip read /keI/ - /pi:/ - /aI/, so the letters
-are spelled out as the brief requires.
+Twenty phrases were recorded in **Alexander** (`hIru3zkEJ3dBYHTbMy2V`) before
+the credits ran out. They are kept in `assets/audio/takes/alexander/` rather
+than deleted, because they cost credits and cannot be remade for free. They
+cannot be mixed into the current cut - a film does not change narrator halfway -
+but they are the evidence for the pronunciation test below, and they are what a
+revert would start from. See `assets/audio/takes/README.md`.
 
 ## Pronunciation: what we can actually control
 
