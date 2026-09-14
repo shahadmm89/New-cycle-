@@ -18,7 +18,10 @@
     "music": "node scripts/build-music.mjs",
     "voiceover:plan": "node scripts/plan-timing.mjs",
     "check:sync": "node scripts/check-sync.mjs",
-    "voiceover:prompts": "node scripts/print-prompts.mjs"
+    "voiceover:prompts": "node scripts/print-prompts.mjs",
+    "check:pronunciation": "python3 scripts/check-pronunciation.py",
+    "voiceover:anchor": "node scripts/anchor-beats.mjs",
+    "check:brief": "bash scripts/check-brief.sh"
   },
   "dependencies": {
     "@remotion/bundler": "4.0.523",

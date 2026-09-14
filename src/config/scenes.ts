@@ -560,7 +560,7 @@ export const scenes: SceneConfig[] = [
         captions: ['Please contact your HR personnel', 'for support.'],
       },
     ],
-    text: {questions: 'HAVE QUESTIONS?', sub: 'CONTACT YOUR HR PERSONNEL'},
+    text: {questions: 'HAVE QUESTIONS?', sub: 'PLEASE CONTACT YOUR HR PERSONNEL FOR SUPPORT'},
   },
 ];
 

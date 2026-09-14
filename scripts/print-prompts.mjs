@@ -13,7 +13,7 @@
  *
  *   1. Sending the on-screen wording instead of the spoken wording. A line's
  *      `spoken` field is what the engine gets - "April first", "H R personnel",
- *      "Company Performance KPI's" - and it is never what appears on screen.
+ *      "Company Performance K-P-Is" - and it is never what appears on screen.
  *   2. Sending too many at once. The account allows TWO concurrent requests; a
  *      third fails AND IS STILL BILLED. So the output is paired, and a pair is
  *      only started once the previous pair has come back.

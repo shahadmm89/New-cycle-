@@ -60,37 +60,60 @@ export const kpis = ['HSE', 'FINANCE', 'PERFORMANCE'] as const;
 
 /**
  * THE AGREED TERM for what the bonus is measured against. Written out in full
- * every time, in the narration and on screen: "KPIs" on its own says nothing.
+ * every time, on screen and in the script: "KPIs" on its own says nothing.
  *
- * The narrator is given this spelling verbatim. "KPIs" is phonemised as the
- * three letters K-P-I with a plural /z/ - the natural American reading.
- * Do NOT respell it as "K P Is": that makes the engine read the last two
- * letters as the word "is", which is what the first cut of this film said.
+ * Spelled KPIs. No apostrophe, anywhere the viewer can see it - not on a slide,
+ * not in a caption, not in output/voiceover-script.md.
  */
 export const kpiTerm = 'Company Performance KPIs';
 
 /**
- * The same term, spelled for the speech engine only - never shown.
+ * HOW IT MUST SOUND: the three letters, K-P-I, with a plural /z/ on the end.
+ * "Kay pee eyes", never "kay pee is", and never one word.
+ */
+export const kpiSaidAs = 'K-P-Is';
+
+/**
+ * WHAT THE ENGINE IS GIVEN to produce that sound. Never displayed: this string
+ * exists only inside the `spoken` field of a voice line, and no viewer-facing
+ * surface reads it.
  *
- * A bare "KPIs" is read as "K-P-is" - the last two letters become the word
- * "is". The apostrophe form is the one spelling that comes out as the three
- * letters plus a plural /z/.
+ * It needs to exist because speech engines get this wrong in a specific way. A
+ * bare "KPIs" tends to come out as "K-P-is" - the last two letters collapse
+ * into the word "is" - which is what the first cut of this film said.
  *
- * How that was checked: the letter I is the diphthong /ai/, whose nucleus is a
- * wide-open vowel; "is" has no open vowel in it at all. So scan the end of the
- * phrase for the highest F1 and see whether an open nucleus is there. Measured
- * against reference takes of "kay pee eyes" (882 Hz) and "kay pee is" (497 Hz):
+ * UNVERIFIED FOR THE CURRENT VOICE. Every measurement below was taken on
+ * Alexander; the narrator is now Dan, and a spelling that works on one voice is
+ * not evidence about another. The first take of s3-l4 has to be measured before
+ * anything is rendered:
  *
- *   written      peak F1   reading
- *   KPIs           518     the word "is"
- *   K.P.I.s        572     the word "is"
- *   KPI's          832     K-P-I-s          <- in use
+ *   npm run check:pronunciation
+ *
+ * If it fails, change the string below to the next candidate and re-generate
+ * THAT ONE LINE - about 54 credits, not another run of the whole script. Keep a
+ * small reserve for exactly this.
+ *
+ *   candidate                      evidence
+ *   Company Performance K-P-Is     in use. Matches the declared reading above
+ *                                  literally, and has no apostrophe.
+ *   Company Performance kay-pee-eyes
+ *                                  the phonetic fallback. Crude, but the
+ *                                  reference take of "kay pee eyes" measured
+ *                                  882 Hz, unambiguously the letter I.
+ *
+ * Measured on Alexander, for reference - peak F1 at the end of the phrase, the
+ * open /ai/ nucleus of the letter I against the close /I/ of the word "is":
+ *
+ *   written      peak F1   came out as
+ *   KPIs           518     the word "is"        wrong
+ *   K.P.I.s        572     the word "is"        wrong
+ *   KPI's          832     K-P-I-s              right, but spells an apostrophe
  *
  * Do NOT measure this by taking the last voiced stretch of the clip: that lands
  * on the diphthong's offglide, which is close and front, and reports a correct
- * take as wrong.
+ * take as wrong. scripts/check-pronunciation.py does it the right way.
  */
-export const kpiTermSpoken = "Company Performance KPI's";
+export const kpiTermSpoken = 'Company Performance K-P-Is';
 
 /**
  * The three anchors the film exists to plant, in the order they fall within the

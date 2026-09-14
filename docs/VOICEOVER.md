@@ -468,21 +468,28 @@ prints exactly what to send and in what order, paired two at a time. Both of
 those details matter:
 
 - The engine gets each line's `spoken` wording, not what is written on screen -
-  "April first", "H R personnel", "Company Performance KPI's".
+  "April first", "H R personnel", "Company Performance K-P-Is".
 - The account allows **two concurrent requests**. A third fails *and is still
   billed*. Four of this project's generations have already been lost that way.
 
-Then:
+Then, in this order:
 
-    npm run voiceover:build -- --assemble-only
-    npm run voiceover:plan -- --write
-    npm run check:sync
+    npm run voiceover:build -- --assemble-only   lay the takes onto one track
+    npm run voiceover:plan -- --write            re-time every scene to the read
+    npm run voiceover:anchor -- --write          put the month markers on the word
+    npm run check:pronunciation                  prove "KPIs" is said as letters
+    npm run check:sync                           nothing cut off, nothing stranded
+    npm run check:brief                          every stated requirement still met
     npm run captions && npm run render
 
-Between the re-time and the render, re-measure the beats pinned to a particular
-word - the bottom-timeline markers above all - against the onsets in the new
-clips, and re-run the KPI pronunciation test below on the new `s3-l4`. Neither
-survives a voice change.
+The order matters in one place: `plan` moves the phrases and `anchor` places
+beats inside them, so anchor has to come second or it measures against starts
+that are about to move.
+
+Neither `anchor` nor `check:pronunciation` survives a voice change, which is
+exactly why they are commands rather than numbers written down. Two narrators
+reach "November" at different moments, and a marker landing before the month it
+names is the most visible sync error this film can have.
 
 ### The previous voice
 
@@ -511,19 +518,35 @@ in the script. The engine never sees the on-screen wording, and the viewer never
 sees the spelling trick.
 
     text:   'For bonus, we use estimated Company Performance KPIs,'
-    spoken: `For bonus, we use estimated ${kpiTermSpoken},`   // ...KPI's
+    spoken: `For bonus, we use estimated ${kpiTermSpoken},`
 
-Because this is a spelling hack rather than a phonetic instruction, it is
-**verified by measurement rather than trusted**. `KPIs` and `K.P.I.s` were both
-tried and both came out wrong; `KPI's` came out right. The method and the
-numbers are in the section above. Any future change to that string has to be
-re-measured, not assumed.
+`kpiTerm` is `Company Performance KPIs` and is what every viewer-facing surface
+shows - the slide, the caption, output/voiceover-script.md. **No apostrophe
+anywhere the viewer can see it.** `kpiTermSpoken` is a separate string that
+exists only to be handed to the engine, and it is currently
+`Company Performance K-P-Is`.
+
+Because this is a spelling instruction rather than a phonetic one, it is
+**verified by measurement rather than trusted**, and the verification does not
+survive a voice change:
+
+    npm run check:pronunciation
+
+That reads the delivered `s3-l4` and compares the end of the phrase against two
+known-answer references. If it fails, change `kpiTermSpoken` to the next
+candidate listed in `src/config/copy.ts` and re-generate **that one line** -
+roughly 54 credits, not another run of the script. Keep a small reserve for it.
+
+The history, measured on the previous voice: a bare `KPIs` came out as the word
+"is" (518 Hz), `K.P.I.s` did too (572 Hz), and the apostrophe form came out
+right (832 Hz) but spells an apostrophe on a string that must never carry one,
+so it is not in use.
 
 The same `spoken` field handles the rest of what the brief asks to check:
 
 | Written | Spoken |
 |---|---|
-| `Company Performance KPIs` | `Company Performance KPI's` |
+| `Company Performance KPIs` | `Company Performance K-P-Is` |
 | `April 1` | `April first` |
 | `HR personnel` | `H R personnel` |
 | `15 months instead of 12` | `fifteen months instead of twelve` |

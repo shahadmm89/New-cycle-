@@ -13,3 +13,6 @@ assets/audio/lines/
 # Review frames only - the rendered MP4s in output/ are committed.
 output/stills/
 assets/tts/kokoro/
+
+# Python bytecode from the analysis scripts.
+__pycache__/

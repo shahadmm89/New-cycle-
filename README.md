@@ -71,6 +71,10 @@ npm run voiceover:build     # re-generate narration + music (see docs/VOICEOVER.
 | `npm run voiceover:build` | Synthesise the narration, normalise and limit the mix |
 | `npm run voiceover:script` | Write the narration script to `output/voiceover-script.md` |
 | `npm run voiceover:plan` | Re-time every scene around a new read (after a voice change) |
+| `npm run voiceover:anchor` | Put the word-pinned beats on the word they name |
+| `npm run voiceover:prompts` | What still has to be generated, and in what order |
+| `npm run check:pronunciation` | Prove the narrator says "KPIs" as three letters |
+| `npm run check:brief` | Every stated client requirement, as a test |
 | `npm run check:sync` | Audit narration against animation - fails if either runs ahead |
 | `npm run typecheck` | Type-check the project |
 
