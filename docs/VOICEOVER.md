@@ -483,3 +483,54 @@ of the phrase (the open /ai/ of the letter I against the close /I/ of the word
 
 The last three voiced runs of the clip read /keI/ - /pi:/ - /aI/, so the letters
 are spelled out as the brief requires.
+
+## Pronunciation: what we can actually control
+
+The brief asks for "the best available ElevenLabs pronunciation controls -
+pronunciation dictionary, SSML, or phonetic guidance". Here is what is reachable
+from this project, in order of preference:
+
+| Control | Available? |
+|---|---|
+| Pronunciation dictionary (`pronunciation_dictionary_locators`) | **No.** It is a parameter of the REST text-to-speech endpoint, and `api.elevenlabs.io` is blocked by this environment's egress policy. The speech tool on the connector takes a prompt, a model and a voice - nothing else. |
+| SSML `<phoneme>` | **No.** Same reason, and `eleven_multilingual_v2` does not interpret SSML in the prompt regardless. |
+| Alias spelling in the prompt | **Yes**, and it is what the film uses. |
+
+So each line carries an optional `spoken` field in `src/config/scenes.ts`: what
+the engine is given, as distinct from the `text` that is written on screen and
+in the script. The engine never sees the on-screen wording, and the viewer never
+sees the spelling trick.
+
+    text:   'For bonus, we use estimated Company Performance KPIs,'
+    spoken: `For bonus, we use estimated ${kpiTermSpoken},`   // ...KPI's
+
+Because this is a spelling hack rather than a phonetic instruction, it is
+**verified by measurement rather than trusted**. `KPIs` and `K.P.I.s` were both
+tried and both came out wrong; `KPI's` came out right. The method and the
+numbers are in the section above. Any future change to that string has to be
+re-measured, not assumed.
+
+The same `spoken` field handles the rest of what the brief asks to check:
+
+| Written | Spoken |
+|---|---|
+| `Company Performance KPIs` | `Company Performance KPI's` |
+| `April 1` | `April first` |
+| `HR personnel` | `H R personnel` |
+| `15 months instead of 12` | `fifteen months instead of twelve` |
+| `0.4167%` | `zero point four one six seven percent` |
+
+Merit, market movement, salary cycle, implementation year and actual market
+movement need no override - they are ordinary words, and the delivered takes
+read them correctly.
+
+## Choosing the voice without spending anything
+
+`creative_list_voices` on the connector is a metadata search: it returns names,
+ids, descriptions, labels and a `preview_url` for each voice, and generates no
+speech. The preview files are samples ElevenLabs already hosts, so fetching one
+costs nothing either - though only the `storage.googleapis.com` ones are
+reachable from here; `api.us.elevenlabs.io` is blocked by the egress policy, so
+some voices can be listed but not auditioned from this environment.
+
+That is what the selector page is built from. Nothing on it was generated.

@@ -39,6 +39,8 @@ export interface TimelinePin {
   month: string;
   /** The headline on the pin - usually the month spelled out. */
   label: string;
+  /** What this date feeds: "Merit", "Bonus". Optional. */
+  kind?: string;
   /** The detail underneath it. Newlines are honoured, so wrapping is decided here. */
   sub: string;
   /** 0 -> 1 entrance. */
@@ -205,6 +207,21 @@ export const Timeline: React.FC<{
               >
                 {pin.label}
               </div>
+              {pin.kind ? (
+                <div
+                  style={{
+                    fontFamily: fonts.body,
+                    fontWeight: 700,
+                    fontSize: 13,
+                    letterSpacing: 1.8,
+                    color: colors.muted,
+                    whiteSpace: 'nowrap',
+                    marginTop: 3,
+                  }}
+                >
+                  {pin.kind.toUpperCase()}
+                </div>
+              ) : null}
               <div
                 style={{
                   fontFamily: fonts.body,

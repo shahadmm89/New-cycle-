@@ -22,13 +22,20 @@ import {implementation} from '../config/copy';
 
 const clamp = (n: number) => Math.min(1, Math.max(0, n));
 
-/** A run of month tiles. `ghost` draws the three that only exist this one year. */
+/**
+ * A run of month tiles. `ghost` draws the three that only exist this one year.
+ *
+ * `numbers` writes MONTH 13/14/15 under the ghosted run. Without it the three
+ * extra tiles read as "next January" - the numbers are what make them the
+ * thirteenth, fourteenth and fifteenth month of a single calculation.
+ */
 const MonthGroup: React.FC<{
   months: readonly string[];
   progress: number;
   tileW: number;
   ghost?: boolean;
-}> = ({months, progress, tileW, ghost = false}) => {
+  numbers?: readonly string[];
+}> = ({months, progress, tileW, ghost = false, numbers}) => {
   const n = months.length;
   const tone = ghost ? colors.accent : colors.primary;
   return (
@@ -39,26 +46,49 @@ const MonthGroup: React.FC<{
           <div
             key={`${m}-${i}`}
             style={{
-              width: tileW,
-              height: 74,
               opacity: local,
               transform: `translate3d(0, ${(1 - local) * 22}px, 0)`,
-              borderRadius: 12,
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              background: ghost ? `${tone}14` : `linear-gradient(160deg, ${colors.surfaceLit}aa, ${colors.surface}dd)`,
-              border: ghost ? `2px dashed ${tone}aa` : `1.5px solid ${colors.line}`,
-              boxShadow: ghost ? `0 0 26px ${tone}22` : '0 12px 30px rgba(0,0,0,0.38)',
-              fontFamily: fonts.body,
-              fontWeight: 700,
-              fontSize: 23,
-              letterSpacing: 1.6,
-              color: ghost ? tone : colors.textSoft,
               willChange: 'transform, opacity',
             }}
           >
-            {m}
+            <div
+              style={{
+                width: tileW,
+                height: 74,
+                borderRadius: 12,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                background: ghost
+                  ? `${tone}14`
+                  : `linear-gradient(160deg, ${colors.surfaceLit}aa, ${colors.surface}dd)`,
+                border: ghost ? `2px dashed ${tone}aa` : `1.5px solid ${colors.line}`,
+                boxShadow: ghost ? `0 0 26px ${tone}22` : '0 12px 30px rgba(0,0,0,0.38)',
+                fontFamily: fonts.body,
+                fontWeight: 700,
+                fontSize: 23,
+                letterSpacing: 1.6,
+                color: ghost ? tone : colors.textSoft,
+              }}
+            >
+              {m}
+            </div>
+            {numbers?.[i] ? (
+              <div
+                style={{
+                  marginTop: 9,
+                  textAlign: 'center',
+                  fontFamily: fonts.body,
+                  fontWeight: 700,
+                  fontSize: 14,
+                  letterSpacing: 1.3,
+                  color: tone,
+                  whiteSpace: 'nowrap',
+                }}
+              >
+                {numbers[i]}
+              </div>
+            ) : null}
           </div>
         );
       })}
@@ -129,13 +159,19 @@ export const Scene09Example: React.FC = () => {
       <div style={{position: 'absolute', left: 120, top: 176, display: 'flex', alignItems: 'flex-start', gap: 46}}>
         <div>
           <MonthGroup months={implementation.baseMonths} progress={pRail} tileW={tileW} />
-          <div style={{marginTop: 16, opacity: pRail}}>
+          <div style={{marginTop: 37, opacity: pRail}}>
             <Label size={22} color={colors.textSoft}>{t.twelve}</Label>
           </div>
         </div>
         <div>
-          <MonthGroup months={implementation.extraMonths} progress={pExtra} tileW={tileW} ghost />
-          <div style={{marginTop: 16, opacity: pExtra}}>
+          <MonthGroup
+            months={implementation.extraMonths}
+            progress={pExtra}
+            tileW={tileW}
+            ghost
+            numbers={t.extraMonthNumbers as unknown as string[]}
+          />
+          <div style={{marginTop: 14, opacity: pExtra}}>
             <Label size={22} color={colors.accent}>{t.plusThree}</Label>
           </div>
         </div>
@@ -175,25 +211,33 @@ export const Scene09Example: React.FC = () => {
             <div
               style={{display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 40, marginTop: 'auto'}}
             >
-              <div style={{position: 'relative', opacity: pResult}}>
-                <Display size={104} color={colors.muted}>{t.merit}</Display>
-                <div
-                  style={{
-                    position: 'absolute',
-                    left: -6,
-                    right: -6,
-                    top: '52%',
-                    height: 5,
-                    borderRadius: 3,
-                    background: colors.muted,
-                    transform: `scaleX(${clamp(pStrike)})`,
-                    transformOrigin: 'left center',
-                  }}
-                />
+              <div style={{opacity: pResult, textAlign: 'center'}}>
+                <div style={{position: 'relative'}}>
+                  <Display size={104} color={colors.muted}>{t.merit}</Display>
+                  <div
+                    style={{
+                      position: 'absolute',
+                      left: -6,
+                      right: -6,
+                      top: '52%',
+                      height: 5,
+                      borderRadius: 3,
+                      background: colors.muted,
+                      transform: `scaleX(${clamp(pStrike)})`,
+                      transformOrigin: 'left center',
+                    }}
+                  />
+                </div>
+                <div style={{marginTop: 6}}>
+                  <Label size={19} color={colors.muted}>{t.over12}</Label>
+                </div>
               </div>
               <Display size={72} color={colors.accent} style={{opacity: pResult}}>&rarr;</Display>
-              <div style={{position: 'relative', opacity: pResult, transform: `scale(${0.88 + pResult * 0.12})`}}>
+              <div style={{opacity: pResult, textAlign: 'center', transform: `scale(${0.88 + pResult * 0.12})`}}>
                 <Display size={128} color={colors.accent} glow>{t.equivalent}</Display>
+                <div style={{marginTop: 2}}>
+                  <Label size={19} color={colors.accent}>{t.over15}</Label>
+                </div>
               </div>
             </div>
           </div>

@@ -125,7 +125,8 @@ const GLOW_KEYS: GlowKey[] = [
  *   scene 4      the same twelve months re-align into APR -> MAR. They travel;
  *                nothing cuts.
  *   scene 5      two new pins, late in the new cycle, where the same two pieces
- *                of information are ACTUAL rather than estimated.
+ *                of information are ACTUAL rather than estimated - and a third
+ *                on March, where the decision and payout are then finalized.
  *
  * It renders here rather than inside the scenes so it can cross all four of
  * them - a per-scene rail would have to be re-introduced each time, which is
@@ -155,12 +156,13 @@ const TL_OUT: Cue = {scene: 'actual-data', beat: 'timelineOut', len: 1.3};
 type PinCue = TimelinePin & Cue & {tone: 'estimate' | 'actual'};
 
 const TL_PINS: PinCue[] = [
-  // Today: both of these are an estimate at the moment the decision is made.
-  {month: 'NOV', label: 'NOVEMBER', sub: 'Expected market\nmovement', tone: 'estimate', tier: 1, progress: 0, scene: 'today', beat: 'timelineNov', len: PIN_IN},
-  {month: 'DEC', label: 'DECEMBER', sub: 'Estimated Company\nPerformance KPIs', tone: 'estimate', tier: 0, progress: 0, scene: 'today', beat: 'timelineDec', len: PIN_IN},
-  // The new cycle: the same two things, now actual.
-  {month: 'JAN', label: 'JANUARY', sub: 'Actual Company\nPerformance', tone: 'actual', tier: 1, progress: 0, scene: 'actual-data', beat: 'timelineJan', len: PIN_IN},
-  {month: 'FEB', label: 'FEBRUARY', sub: 'Actual market\nmovement', tone: 'actual', tier: 0, progress: 0, scene: 'actual-data', beat: 'timelineFeb', len: PIN_IN},
+  // Today: both of these are an ESTIMATE at the moment the decision is made.
+  {month: 'NOV', label: 'NOVEMBER', kind: 'Merit', sub: 'Expected Market\nMovement', tone: 'estimate', tier: 1, progress: 0, scene: 'today', beat: 'timelineNov', len: PIN_IN},
+  {month: 'DEC', label: 'DECEMBER', kind: 'Bonus', sub: 'Estimated Company\nPerformance KPIs', tone: 'estimate', tier: 0, progress: 0, scene: 'today', beat: 'timelineDec', len: PIN_IN},
+  // The new cycle: the same two things, now ACTUAL, and then the decision.
+  {month: 'JAN', label: 'JANUARY', kind: 'Merit', sub: 'Actual Company\nPerformance', tone: 'actual', tier: 1, progress: 0, scene: 'actual-data', beat: 'timelineJan', len: PIN_IN},
+  {month: 'FEB', label: 'FEBRUARY', kind: 'Bonus', sub: 'Actual Market\nMovement', tone: 'actual', tier: 0, progress: 0, scene: 'actual-data', beat: 'timelineFeb', len: PIN_IN},
+  {month: 'MAR', label: 'MARCH', sub: 'Decision and payout\nfinalized', tone: 'actual', tier: 1, progress: 0, scene: 'actual-data', beat: 'timelineMar', len: PIN_IN},
 ];
 
 const BottomTimeline: React.FC = () => {

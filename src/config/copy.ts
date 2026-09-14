@@ -130,6 +130,12 @@ export const implementation = {
   ] as const,
   twelve: '12 MONTHS',
   plusThree: '+ 3 MONTHS',
+  /**
+   * Numbered under the three ghosted tiles. Naming them 13, 14 and 15 is what
+   * stops the extension reading as "next year's January" - they are the
+   * thirteenth, fourteenth and fifteenth month of ONE calculation.
+   */
+  extraMonthNumbers: ['MONTH 13', 'MONTH 14', 'MONTH 15'] as const,
   /** Guards the example against being read as a promise. */
   illustrative: 'ILLUSTRATIVE EXAMPLE',
   unchanged: 'THE MERIT PERCENTAGE HAS NOT CHANGED \u2014 ONLY THE MONTHS IT COVERS',
@@ -142,11 +148,20 @@ export const implementation = {
   meritLabel: 'YOUR MERIT INCREASE',
   merit: `${MERIT_EXAMPLE_PCT}%`,
   dividedBy: '\u00F7 12',
-  perMonth: `${(MERIT_EXAMPLE_PCT / 12).toFixed(3)}%`,
+  /** Four decimal places: the figure HR circulated, and it is what makes the
+   *  x15 land exactly on 6.25 rather than nearly. */
+  perMonth: `${(MERIT_EXAMPLE_PCT / 12).toFixed(4)}%`,
   perMonthLabel: 'PER MONTH',
   multipliedBy: `\u00D7 ${IMPLEMENTATION_MONTHS}`,
   equivalent: `${((MERIT_EXAMPLE_PCT / 12) * IMPLEMENTATION_MONTHS).toFixed(2)}%`,
   equivalentLabel: 'EQUIVALENT INCREASE',
+  /**
+   * Set under each side of the result row. The strike-through only makes sense
+   * if both figures are labelled with the period they cover - otherwise it
+   * reads as "your 5% became 6.25%", which is the one thing it must not say.
+   */
+  over12: `OVER 12 MONTHS`,
+  over15: `OVER ${IMPLEMENTATION_MONTHS} MONTHS`,
   monthsChip: `${IMPLEMENTATION_MONTHS} MONTHS`,
   insteadOf: 'INSTEAD OF 12',
   note: 'ONE YEAR ONLY \u00B7 THE CHANGEOVER PERIOD',

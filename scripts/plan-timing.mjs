@@ -20,6 +20,12 @@
  * Beats move with the phrase they belong to. That gets them close; the last
  * word is always a measurement - see docs/EDITING-TEXT-AND-DATES.md on placing
  * a beat from the word onsets inside a clip.
+ *
+ * PARTIAL READS. A scene can only be re-timed once every one of its phrases has
+ * been recorded, because a scene's length is the sum of its clips. Scenes with a
+ * phrase still missing are left exactly as they are and reported as such, so the
+ * recorded part of a film can be timed properly while the rest is still being
+ * made. Run it again when the read is complete.
  */
 import fs from 'node:fs';
 import path from 'node:path';
@@ -85,10 +91,29 @@ const silence = (file) => {
 };
 
 const clips = {};
+const unrecorded = [];
 for (const l of lines) {
   const f = path.join(LINES_DIR, `${l.id}.wav`);
-  if (!fs.existsSync(f)) throw new Error(`No audio for "${l.id}". Run npm run voiceover:build first.`);
+  if (!fs.existsSync(f)) {
+    unrecorded.push(l.id);
+    continue;
+  }
   clips[l.id] = silence(f);
+}
+/** A scene can only be re-timed when all of its phrases have been recorded. */
+const measured = (sceneId) =>
+  lines.filter((l) => l.sceneId === sceneId).every((l) => clips[l.id]);
+
+if (unrecorded.length) {
+  const scenes = cfg.scenes.filter((s) => s.voice.length && !measured(s.id)).map((s) => s.id);
+  console.log(
+    `! ${unrecorded.length} phrase(s) not recorded yet: ${unrecorded.join(' ')}\n` +
+      `  Leaving these scenes as they are: ${scenes.join(' ')}\n`,
+  );
+  if (snapshot) {
+    console.error('--snapshot needs the whole read; it describes the film as a whole.');
+    process.exit(1);
+  }
 }
 
 /** Where the first and last WORD of a line sit, absolutely. */
@@ -175,8 +200,14 @@ for (const scene of cfg.scenes) {
   if (!pace) throw new Error(`No pacing entry for scene "${scene.id}". Re-run --snapshot.`);
   const own = lines.filter((l) => l.sceneId === scene.id);
 
-  if (pace.silent || !own.length) {
-    plan.push({id: scene.id, duration: scene.duration, starts: {}, start: cursor});
+  if (pace.silent || !own.length || !measured(scene.id)) {
+    plan.push({
+      id: scene.id,
+      duration: scene.duration,
+      starts: {},
+      start: cursor,
+      held: own.length > 0 && !measured(scene.id),
+    });
     cursor += scene.duration;
     continue;
   }
@@ -215,17 +246,22 @@ for (const p of plan) {
     .join('  ');
   console.log(
     `${p.id.padEnd(11)} ${p.duration.toFixed(2).padStart(6)}` +
-      `${dd ? ` (${dd > 0 ? '+' : ''}${dd})`.padEnd(10) : ''.padEnd(10)} ${moves}`,
+      `${dd ? ` (${dd > 0 ? '+' : ''}${dd})`.padEnd(10) : ''.padEnd(10)} ` +
+      `${p.held ? 'not recorded yet - left alone' : moves}`,
   );
 }
 console.log(`\ntotal ${cursor.toFixed(2)}s (was ${cfg.totalDuration.toFixed(2)}s)`);
 
 // What the read actually sounds like, so the pause scale can be judged rather
 // than guessed at.
-const words = lines.reduce((n, l) => n + (l.spoken ?? l.text).split(/\s+/).length, 0);
-const speech = lines.reduce((t, l) => t + clips[l.id].duration - clips[l.id].lead - clips[l.id].tail, 0);
+// Both figures describe the audio that exists, so unrecorded phrases are left
+// out of each rather than counted as zero seconds of very fast speech.
+const recorded = lines.filter((l) => clips[l.id]);
+const words = recorded.reduce((n, l) => n + (l.spoken ?? l.text).split(/\s+/).length, 0);
+const speech = recorded.reduce((t, l) => t + clips[l.id].duration - clips[l.id].lead - clips[l.id].tail, 0);
 const gaps = [];
 for (const p of plan) {
+  if (p.held) continue;
   const own = lines.filter((l) => l.sceneId === p.id);
   for (let k = 0; k < own.length - 1; k++) {
     const a = own[k];
@@ -235,10 +271,13 @@ for (const p of plan) {
 }
 gaps.sort((x, y) => x - y);
 console.log(
-  `word rate ${((words / speech) * 60).toFixed(0)} wpm (unchanged - the words are never slowed)\n` +
-    `pauses between phrases: median ${gaps[Math.floor(gaps.length / 2)].toFixed(2)}s, ` +
-    `longest ${gaps[gaps.length - 1].toFixed(2)}s` +
-    (pauseScale === 1 ? '' : `  [--pause-scale ${pauseScale}, capped at ${PAUSE_CAP}s]`),
+  `word rate ${((words / speech) * 60).toFixed(0)} wpm (unchanged - the words are never slowed)` +
+    `${recorded.length < lines.length ? `, over the ${recorded.length} recorded phrases` : ''}\n` +
+    (gaps.length
+      ? `pauses between phrases: median ${gaps[Math.floor(gaps.length / 2)].toFixed(2)}s, ` +
+        `longest ${gaps[gaps.length - 1].toFixed(2)}s` +
+        (pauseScale === 1 ? '' : `  [--pause-scale ${pauseScale}, capped at ${PAUSE_CAP}s]`)
+      : 'no scene is fully recorded yet, so there is nothing to re-time'),
 );
 
 if (!changed) {
