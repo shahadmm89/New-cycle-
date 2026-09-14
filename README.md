@@ -1,6 +1,6 @@
 # Salary Cycle Change - employee announcement video
 
-A self-contained pipeline that renders a **~1 min 45 s, 1920×1080, 30 fps MP4**
+A self-contained pipeline that renders a **~2 min 15 s, 1920×1080, 30 fps MP4**
 announcing that the company's **salary cycle year is moving from January–December
 to April–March**.
 
@@ -33,9 +33,15 @@ output/voiceover-script.md                 the narration script, for a human rea
 | Bonus is measured against | **Company Performance KPIs** — HSE, Finance, Performance |
 | **The implementation year** | The changeover period runs 15 months, so a 5% merit increase is worth **6.25%** over it |
 
-The performance appraisal cycle does **not** move. Scene 7 exists solely to make
+The performance appraisal cycle does **not** move. Scene 8 exists solely to make
 that distinction structural: two identical rows, same rail, different months,
 different colour.
+
+The film also carries a thin month timeline along the bottom of scenes 2-5. It
+answers the question the narration keeps raising - *when* does each piece of
+information actually arrive? - and it is the same twelve months throughout: they
+re-align from JAN→DEC into APR→MAR during the hero scene rather than cutting
+to a second rail.
 
 ---
 
@@ -74,29 +80,33 @@ npm run voiceover:build     # re-generate narration + music (see docs/VOICEOVER.
 
 | # | Scene | In | Length | What it shows |
 |---|---|---|---|---|
-| 1 | Did you know? | 0:00 | 5.5s | Oversized question, **SALARY CYCLE** lit in the accent |
-| 2 | The current cycle | 0:06 | 7.5s | Year ring + month rail, JAN → DEC |
-| 3 | How it works today | 0:13 | 15.2s | Merit's forecast line; then HSE, Finance and Performance rolling up into COMPANY PERFORMANCE KPIs |
-| 4 | **THE CHANGE** | 0:28 | 6.4s | The ring **spins** to April while the rail **re-orders itself** into APR…MAR |
-| 5 | April | 0:35 | 8.2s | **APRIL** at 190px, merit + promotion rising, EFFECTIVE APRIL 1 |
-| 6 | March | 0:43 | 7.7s | Playhead runs the new salary year and lands on **MARCH**, bonus |
-| 7 | What does NOT change | 0:50 | 9.6s | Two parallel rows: PERFORMANCE APPRAISAL JAN → DEC ✓ NO CHANGE / SALARY CYCLE APR → MAR NEW |
-| 8 | **The implementation year** | 1:00 | 25.3s | The 15-month changeover rail, and one equation built term by term: 5% ÷ 12 × 15 = **6.25%** |
-| 9 | **The summary** | 1:25 | 5.2s | APRIL → MARCH over three markers. The frame to remember |
-| 10 | Why the change | 1:31 | 9.2s | Market alignment, more relevant information |
-| 11 | Final message | 1:40 | 5.7s | Have questions? HR is ready to help, contact, logo |
+| 1 | How do we run it today? | 0:00 | 6.2s | *Do you know how we run our* **SALARY CYCLE** *today?* |
+| 2 | The current cycle | 0:06 | 7.6s | Year ring + month rail, JAN → DEC. The bottom timeline draws in |
+| 3 | How merit & bonus are set today | 0:13 | 22.4s | Merit's forecast line; HSE, Finance and Performance rolling up into COMPANY PERFORMANCE KPIs. The timeline picks up NOVEMBER and DECEMBER |
+| 4 | **THE CHANGE** | 0:36 | 7.4s | The ring **spins** to April while the twelve months **re-align** underneath into APR…MAR |
+| 5 | What the new timing gives us | 0:43 | 20.6s | The forecast resolves into a measurement; the timeline picks up JANUARY and FEBRUARY, now *actual* |
+| 6 | April | 1:04 | 8.5s | **APRIL** at 190px, merit + promotion rising, EFFECTIVE APRIL 1 |
+| 7 | March | 1:12 | 8.0s | Playhead runs the new salary year and lands on **MARCH**, bonus |
+| 8 | What does NOT change | 1:20 | 10.0s | Two parallel rows: PERFORMANCE APPRAISAL JAN → DEC ✓ NO CHANGE / SALARY CYCLE APR → MAR NEW |
+| 9 | **The implementation year** | 1:30 | 30.0s | IMPLEMENTATION YEAR ONLY. Twelve solid month tiles plus three ghosted ones, and an ILLUSTRATIVE EXAMPLE built term by term: 5% ÷ 12 × 15 = **6.25%** |
+| 10 | **The summary** | 2:00 | 5.6s | APRIL → MARCH over three markers. The frame to remember |
+| 11 | Final message | 2:06 | 7.0s | Have questions? Contact your HR personnel, logo |
 
 Scenes overlap by 0.55s, so the next visual is always building while the
 previous phrase finishes.
 
 ### Pacing
 
-The narration is 199 words across 29 phrases, in the ElevenLabs voice
-**Alexander**. He speaks at his own natural 164 wpm - the words are never
-slowed - and the unhurried feel comes from the silence around them instead:
-median 0.75s between phrases, longest 1.8s, tuned by measuring the assembled
-track rather than by arithmetic. See "Pace from the pauses" in
-docs/VOICEOVER.md.
+The narration is 34 phrases in the ElevenLabs voice **Alexander**. He speaks at
+his own natural pace - the words are never slowed - and the unhurried feel comes
+from the silence around them instead, tuned by measuring the assembled track
+rather than by arithmetic. See "Pace from the pauses" in docs/VOICEOVER.md.
+
+> **Twenty of the thirty-four phrases are recorded.** The ElevenLabs account ran
+> out of credits partway through the run, so scene 2, the last line of scene 8,
+> and scenes 9-11 have no audio yet, and the film has not been scored or
+> rendered against the refined script. docs/VOICEOVER.md names the missing
+> phrases and the three commands that finish it.
 
 Visuals **follow** the narration rather than leading it. The beat times in
 `src/config/scenes.ts` were set from the measured onsets inside each recorded
