@@ -1,5 +1,5 @@
 /**
- * SCENE 5 - WHAT HAPPENS IN APRIL
+ * SCENE 6 - WHAT HAPPENS IN APRIL
  * APRIL is the largest word in the film. Merit and promotion rise into it -
  * upward motion, because that is what the month now means.
  */
@@ -33,7 +33,7 @@ const Pillar: React.FC<{
   </div>
 );
 
-export const Scene05April: React.FC = () => {
+export const Scene06April: React.FC = () => {
   const scene = useScene();
   const t = scene.text as Record<string, string>;
 

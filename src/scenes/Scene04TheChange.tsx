@@ -7,16 +7,20 @@
  *
  * Left: the mechanism (the ring). Right: the statement (the range).
  * The right-hand block hands over mid-spin - OLD drops away, NEW rises.
+ *
+ * The twelve months re-align underneath all of this, on the bottom timeline
+ * that has been running since scene 2. That rail is rendered at film level so
+ * it can carry straight through this scene instead of cutting to a new one.
  */
 import React from 'react';
 import {AbsoluteFill, interpolate, useCurrentFrame, useVideoConfig, Easing} from 'remotion';
 import {YearRing} from '../components/YearRing';
-import {RangePlate, ReorderingRail} from '../components/MonthRail';
+import {RangePlate} from '../components/MonthRail';
 import {Label, Display, Rise, Punch} from '../components/Type';
 import {Plinth} from '../components/Card3D';
 import {useProgress, useBeat, useScene} from '../lib/timing';
 import {colors} from '../lib/theme';
-import {monthsCalendar, monthsSalaryYear, cycle} from '../config/copy';
+import {monthsCalendar, cycle} from '../config/copy';
 
 /** April is the fourth month, so the dial turns three months past January. */
 const APRIL_INDEX = 3;
@@ -48,11 +52,6 @@ export const Scene04TheChange: React.FC = () => {
 
   // Motion blur peaks mid-spin and is gone by the time it lands.
   const spinBlur = Math.sin(Math.PI * spinT) * (spinT < 0.92 ? 1 : 0);
-
-  // The rail re-orders itself in step with the ring landing: the dial says the
-  // year now starts in April, the rail shows the year physically re-arranged.
-  const pRail = useProgress('railIn', 0.8);
-  const pMorph = useProgress('railScatter', 1.7, Easing.bezier(0.55, 0, 0.25, 1));
 
   const pHandover = useProgress('handover', 0.5);
   const pNewArc = useProgress('newRingIn', 1.5);
@@ -153,17 +152,6 @@ export const Scene04TheChange: React.FC = () => {
             </Display>
           </div>
         </div>
-      </div>
-
-      {/* The year, re-ordering itself. */}
-      <div style={{position: 'absolute', left: 120, top: 740, width: 1680}}>
-        <ReorderingRail
-          from={monthsCalendar}
-          to={monthsSalaryYear}
-          progress={pRail}
-          morph={pMorph}
-          width={1680}
-        />
       </div>
     </AbsoluteFill>
   );

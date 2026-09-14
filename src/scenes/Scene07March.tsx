@@ -1,5 +1,5 @@
 /**
- * SCENE 6 - WHAT HAPPENS IN MARCH
+ * SCENE 7 - WHAT HAPPENS IN MARCH
  * The playhead travels the whole new salary year - APR through to MAR - and
  * stops hard on March. March is where the cycle ends, and where the bonus is.
  */
@@ -13,7 +13,7 @@ import {useProgress, useScene} from '../lib/timing';
 import {colors} from '../lib/theme';
 import {monthsSalaryYear} from '../config/copy';
 
-export const Scene06March: React.FC = () => {
+export const Scene07March: React.FC = () => {
   const scene = useScene();
   const t = scene.text as Record<string, string>;
 

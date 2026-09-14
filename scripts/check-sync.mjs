@@ -13,6 +13,10 @@
  * It reads the beat times from src/config/scenes.ts and the animation lengths
  * out of the scene components themselves, so it cannot drift out of date.
  *
+ * Film-level layers count too: the bottom timeline in src/Video.tsx animates
+ * over several scenes, and a scene is not "still" while one of its timeline
+ * cues is running.
+ *
  *   npm run check:sync
  *
  * Exits non-zero if anything fails, so it can gate a render.
@@ -30,6 +34,29 @@ const STILL_AT_END = 1.6;
 const cfg = loadConfig();
 const lines = flatVoiceLines(cfg);
 const SCENES_DIR = path.join(ROOT, 'src', 'scenes');
+
+/**
+ * Film-level cues out of src/Video.tsx. The bottom timeline is rendered there,
+ * not in a scene, but its beats are anchored to scenes - so a pin arriving is
+ * motion belonging to whichever scene owns the beat.
+ */
+const filmCues = () => {
+  const src = fs.readFileSync(path.join(ROOT, 'src', 'Video.tsx'), 'utf8');
+  // Lengths may be written as a named constant (PIN_IN), so resolve those first.
+  const consts = {};
+  for (const m of src.matchAll(/^const ([A-Z][A-Z0-9_]*) = ([0-9.]+);$/gm)) {
+    consts[m[1]] = Number(m[2]);
+  }
+  const cues = [];
+  for (const m of src.matchAll(/scene: '([^']+)', beat: '([^']+)', len: ([A-Za-z0-9_.]+)/g)) {
+    const len = /^[0-9.]+$/.test(m[3]) ? Number(m[3]) : consts[m[3]];
+    if (len === undefined) throw new Error(`Cannot resolve cue length "${m[3]}" in Video.tsx`);
+    cues.push({scene: m[1], beat: m[2], len});
+  }
+  return cues;
+};
+
+const FILM_CUES = filmCues();
 
 const componentFor = (sceneId) => {
   const want = sceneId.replace(/(^|-)([a-z])/g, (_, __, c) => c.toUpperCase());
@@ -74,6 +101,12 @@ for (const scene of cfg.scenes) {
   // useIdle never stops - the scene drifts for its whole length.
   const idles = src.includes('useIdle(');
   if (idles) consider(scene.duration, 'useIdle (continuous)');
+  // The bottom timeline, whose cues are anchored to this scene's beats.
+  for (const c of FILM_CUES.filter((c) => c.scene === scene.id)) {
+    const at = scene.beats[c.beat];
+    if (at === undefined) throw new Error(`Video.tsx cues scene "${c.scene}" beat "${c.beat}", which does not exist`);
+    consider(at + c.len, `${c.beat} (timeline)`);
+  }
 
   const own = lines.filter((l) => l.sceneId === scene.id);
   const wordsEnd = own.length ? Math.max(...own.map((l) => l.start + durations[l.id])) : 0;

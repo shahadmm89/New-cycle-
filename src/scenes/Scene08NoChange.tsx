@@ -1,5 +1,5 @@
 /**
- * SCENE 7 - WHAT DOES NOT CHANGE
+ * SCENE 8 - WHAT DOES NOT CHANGE
  *
  * Two rows, stacked and deliberately parallel, so the distinction is structural
  * rather than something the viewer has to be told:
@@ -61,7 +61,7 @@ const Row: React.FC<{
   </div>
 );
 
-export const Scene07NoChange: React.FC = () => {
+export const Scene08NoChange: React.FC = () => {
   const scene = useScene();
   const t = scene.text as Record<string, string>;
 
