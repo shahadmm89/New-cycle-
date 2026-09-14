@@ -443,3 +443,43 @@ in. The MP4 keeps a silent AAC track so players that expect audio behave.
   *"your performance appraisal stays on the same schedule."*
 - Scene 8 is the only arithmetic in the film. Explain it, do not teach it: the
   tone is "here is something useful to know", not a lesson.
+
+## The Alexander read (partial)
+
+20 of the 34 phrases of the refined script have been recorded with Alexander
+(`hIru3zkEJ3dBYHTbMy2V`) through the ElevenLabs connector, and are committed to
+`assets/audio/lines/` - an exception to the rule above that per-line takes are
+disposable, because these ones cannot be reproduced from this repository: the
+account is at zero credits (quota 10,000, 0 remaining) and re-generating them
+costs credits.
+
+Missing, and needing credits before the film can be scored end to end:
+
+    s2-l1  s2-l2  s8-l3
+    s9-l1  s9-l2  s9-l3  s9-l4  s9-l5  s9-l6  s9-l7
+    s10-l1 s10-l2 s11-l1 s11-l2
+
+Once the account has credits, generate exactly those fourteen with the same
+voice and model, land them in `assets/audio/lines/`, then:
+
+    npm run voiceover:build -- --assemble-only
+    npm run voiceover:plan -- --pause-scale 1.5 --write
+    npm run check:sync && npm run captions && npm run render
+
+Note the account allows only **2 concurrent requests** - generate in pairs, or
+every third request comes back as a concurrency failure that still bills.
+
+### Pronunciation, verified on the delivered take
+
+`s3-l4` ends on "Company Performance KPI's". Measured by peak F1 across the end
+of the phrase (the open /ai/ of the letter I against the close /I/ of the word
+"is"):
+
+| take | peak F1 |
+|---|---|
+| reference "kay pee eyes" (letter I - correct) | 773 Hz |
+| reference "kay pee is" (the word - wrong) | 625 Hz |
+| **Alexander, s3-l4** | **828 Hz** |
+
+The last three voiced runs of the clip read /keI/ - /pi:/ - /aI/, so the letters
+are spelled out as the brief requires.
