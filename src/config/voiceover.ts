@@ -42,7 +42,7 @@ export const voiceover = {
      * The re-timing step is not optional. A different voice says the same words
      * at different lengths, and every beat in scenes.ts is placed against a word.
      */
-    engine: 'elevenlabs' as 'elevenlabs' | 'kokoro' | 'piper',
+    engine: 'kokoro' as 'elevenlabs' | 'kokoro' | 'piper',
 
     /**
      * The narrator. Always a voice the account already licenses - `voiceId` is
@@ -102,20 +102,23 @@ export const voiceover = {
      * through a list.
      */
     /**
-     * am_echo. Chosen by measurement from the nine American male voices:
-     * 108 Hz median with 11.4 semitones of movement within a phrase.
+     * am_michael, speaker 16. Chosen by the client as the free local stand-in
+     * for the hosted voice: warm, trustworthy, calm, mature, grounded.
      *
-     * The target for this brief is roughly 100-118 Hz with 9-12 semitones -
-     * deep enough to read as mature, varied enough not to sound flat. The
-     * measured alternatives:
+     * Verified against the model's own metadata rather than a table in a doc -
+     * `speaker_names` in assets/tts/kokoro/model.onnx lists 54 voices, of which
+     * nine are American male, and am_michael is index 16.
+     *
+     * The measured alternatives, median pitch and semitone spread within a
+     * phrase - deep enough to read as mature, varied enough not to sound flat:
+     *   am_echo   (12)  108 Hz / 11.2 st  - the previous local choice
      *   am_onyx   (17)   87 Hz /  7.0 st  - deeper, but close to monotone
-     *   am_michael(16)  115 Hz /  8.7 st  - balanced, a little lighter
      *   am_adam   (11)  123 Hz /  6.8 st  - flat
      *   am_liam   (15)  128 Hz / 14.3 st  - lively, too animated for this
      *   am_eric   (13)  163 Hz / 13.0 st  - too high to read as senior
      */
-    speakerId: 12,
-    speakerName: 'am_echo',
+    speakerId: 16,
+    speakerName: 'am_michael',
 
     /**
      * Delivery speed. Kokoro re-synthesises at this pace rather than
