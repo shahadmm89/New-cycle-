@@ -275,13 +275,12 @@ export const scenes: SceneConfig[] = [
       line1: 4.5,
       line2: 9.16,
       alignIn: 13.61,
-      // Same again, carried over from the Alexander read: "By JANUARY" was
-      // s5-l2 + 0.18s, "by FEBRUARY" s5-l3 + 0.45s, "so DECISIONS rest on"
-      // s5-l5 + 0.28s. Re-measure against the new voice.
+      // Bottom-timeline pins. Provisional: placed on the measured onset of
+      // the word by `npm run voiceover:anchor` - see RE-ANCHORING above.
       timelineJan: 4.5,
       timelineFeb: 9.4,
-      timelineMar: 17.9,
-      timelineOut: 20.6,
+      // The small old-vs-new timing comparison, once both months are named.
+      compareIn: 13.6,
     },
     voice: [
       {
@@ -324,13 +323,29 @@ export const scenes: SceneConfig[] = [
       label: 'WHAT THE NEW TIMING GIVES US',
       line1: 'ACTUAL COMPANY PERFORMANCE',
       line2: 'ACTUAL MARKET MOVEMENT',
+      wasLabel: 'TODAY',
+      wasMonths: ['NOV', 'DEC'],
+      wasTag: 'ESTIMATED',
+      nowLabel: 'NEW CYCLE',
+      nowMonths: ['JAN', 'FEB'],
+      nowTag: 'ACTUAL',
     },
   },
   {
     id: 'april',
     title: '6 - April',
     duration: 7.71,
-    beats: {monthIn: 0.15, meritIn: 0.4, promotionIn: 1.8, liftOff: 3.0, effectiveIn: 3.5, monthSettle: 5.5, restate: 5.7},
+    beats: {
+      monthIn: 0.15,
+      meritIn: 0.4,
+      promotionIn: 1.8,
+      liftOff: 3.0,
+      effectiveIn: 3.5,
+      monthSettle: 5.5,
+      restate: 5.7,
+      // Bottom-timeline pin on "...take effect on APRIL 1". Provisional.
+      timelineApr: 2.6,
+    },
     voice: [
       {
         id: 's6-l1',
@@ -360,7 +375,20 @@ export const scenes: SceneConfig[] = [
     id: 'march',
     title: '7 - March',
     duration: 7.86,
-    beats: {railIn: 0, travel: 0.8, bonusIn: 0.9, landMarch: 2.6, monthIn: 2.65, payrollIn: 2.9, noteIn: 6.1, closesNote: 4.6},
+    beats: {
+      railIn: 0,
+      travel: 0.8,
+      bonusIn: 0.9,
+      landMarch: 2.6,
+      monthIn: 2.65,
+      payrollIn: 2.9,
+      noteIn: 6.1,
+      closesNote: 4.6,
+      // Bottom-timeline pin on "...paid in the MARCH payroll". Provisional.
+      timelineMar: 2.4,
+      // Six scenes after it was drawn, the rail retires.
+      timelineOut: 6.4,
+    },
     voice: [
       {
         id: 's7-l1',

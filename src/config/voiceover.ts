@@ -50,24 +50,23 @@ export const voiceover = {
      */
     elevenlabs: {
       /**
-       * Dan - "middle aged male in his 40s with a warm, friendly conversational
-       * tone", American, suited to informative and educational content.
-       * CHOSEN BY THE CLIENT from the shortlist, against a brief asking for a
-       * warm, mature, professional, calm read that is not a news anchor and not
-       * an advertisement.
+       * Evan (TWutjvRaJqAX89preB4e). Specified by the client by id.
        *
-       * It sits in the account's own workspace rather than the shared library,
-       * so unlike a library voice it cannot be refused for subscription tier -
-       * which is what happened to the originally requested Arthur
-       * (TtRFBnwQdH1k01vR0hMz), and to four others auditioned since.
+       * The delivery the brief asks for: natural American English, warm, calm,
+       * mature, professional, conversational, slightly deep and grounded. Not
+       * an advertisement, not a news anchor, no exaggerated enthusiasm.
+       *
+       * Nothing about that is set here. `speed` stays at 1.0 and the words are
+       * never slowed; the unhurried feel is built from the silence around them,
+       * which src/config/voiceover.pacing.ts describes.
        *
        * Changing this line means re-recording the WHOLE script, not the part
-       * that has changed: a film cannot switch narrator halfway. The takes from
-       * a previous voice are kept under assets/audio/takes/ rather than
-       * deleted, because they cost credits and cannot be remade for free.
+       * that has changed: a film cannot switch narrator halfway. Takes from a
+       * previous voice are kept under assets/audio/takes/ rather than deleted,
+       * because they cost credits and cannot be remade for free.
        */
-      voiceId: 'fvVBPXuE7f1iX3dZLKFy',
-      voiceName: 'Dan',
+      voiceId: 'TWutjvRaJqAX89preB4e',
+      voiceName: 'Evan',
       /** Their most natural English model at time of writing. */
       modelId: 'eleven_multilingual_v2',
       /** Forces the American pronunciations the script depends on. */

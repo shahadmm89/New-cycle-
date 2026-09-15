@@ -28,6 +28,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import {spawnSync} from 'node:child_process';
 import {ROOT, loadConfig} from './lib/config.mjs';
+import {setBeat, sceneBlock} from './lib/scenes-edit.mjs';
 
 const write = process.argv.includes('--write');
 const SCENES_TS = path.join(ROOT, 'src', 'config', 'scenes.ts');
@@ -124,14 +125,8 @@ if (!write) {
 
 let src = fs.readFileSync(SCENES_TS, 'utf8');
 for (const r of moved) {
-  const from = src.indexOf(`    id: '${r.scene}',`);
-  if (from < 0) throw new Error(`Scene "${r.scene}" not found in scenes.ts`);
-  const next = src.indexOf('\n  {\n', from);
-  const to = next < 0 ? src.length : next;
-  const block = src.slice(from, to);
-  const re = new RegExp(`(\\n      ${r.beat}: )[0-9.]+,`);
-  if (!re.test(block)) throw new Error(`Could not find beat "${r.beat}" in scene "${r.scene}"`);
-  src = src.slice(0, from) + block.replace(re, `$1${r.at},`) + src.slice(to);
+  const [from, to] = sceneBlock(src, r.scene);
+  src = src.slice(0, from) + setBeat(src.slice(from, to), r.scene, r.beat, r.at) + src.slice(to);
 }
 fs.writeFileSync(SCENES_TS, src);
 console.log(`\n> updated ${path.relative(ROOT, SCENES_TS)} - ${moved.length} beat(s) placed on their word`);

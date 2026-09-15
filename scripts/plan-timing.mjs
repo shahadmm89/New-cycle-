@@ -31,6 +31,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import {ROOT, loadConfig, flatVoiceLines} from './lib/config.mjs';
 import {readWavInfo} from './lib/wav.mjs';
+import {setBeat, sceneBlock} from './lib/scenes-edit.mjs';
 
 const PACING_TS = path.join(ROOT, 'src', 'config', 'voiceover.pacing.ts');
 const SCENES_TS = path.join(ROOT, 'src', 'config', 'scenes.ts');
@@ -292,16 +293,10 @@ if (!write) {
 
 // --- apply ---------------------------------------------------------------
 let src = fs.readFileSync(SCENES_TS, 'utf8');
-const sceneBlock = (id) => {
-  const from = src.indexOf(`    id: '${id}',`);
-  if (from < 0) throw new Error(`Scene "${id}" not found in scenes.ts`);
-  const next = src.indexOf('\n  {\n', from);
-  return [from, next < 0 ? src.length : next];
-};
 const beatNotes = [];
 for (const p of plan) {
   const scene = cfg.scenes.find((s) => s.id === p.id);
-  const [from, to] = sceneBlock(p.id);
+  const [from, to] = sceneBlock(src, p.id);
   let block = src.slice(from, to);
 
   block = block.replace(/duration: [0-9.]+,/, `duration: ${p.duration},`);
@@ -321,7 +316,9 @@ for (const p of plan) {
       const delta = +(p.starts[owner.id] - owner.start).toFixed(2);
       if (!delta) continue;
       const moved = +Math.max(0, at + delta).toFixed(2);
-      block = block.replace(new RegExp(`(\\n      ${beat}: )[0-9.]+,`), `$1${moved},`);
+      // Throws rather than no-ops if the beat is not found, whichever layout
+      // the scene uses for its beats object.
+      block = setBeat(block, p.id, beat, moved);
       beatNotes.push(`${p.id}.${beat} ${at} -> ${moved} (with ${owner.id})`);
     }
   }

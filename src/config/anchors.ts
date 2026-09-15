@@ -61,8 +61,12 @@ export const anchors: Anchor[] = [
     note: 'FEBRUARY marker - actual market movement',
   },
   {
-    scene: 'actual-data', beat: 'timelineMar', line: 's5-l5', word: 'decisions', lead: 0.2,
-    note: 'MARCH marker - decision and payout finalized',
+    scene: 'april', beat: 'timelineApr', line: 's6-l1', word: 'April', lead: 0.2,
+    note: 'APRIL marker - merit and promotion take effect on April 1',
+  },
+  {
+    scene: 'march', beat: 'timelineMar', line: 's7-l1', word: 'March', lead: 0.2,
+    note: 'MARCH marker - bonus paid in the March payroll',
   },
 
   // The two biggest visual landings in the film.

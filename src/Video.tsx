@@ -125,8 +125,12 @@ const GLOW_KEYS: GlowKey[] = [
  *   scene 4      the same twelve months re-align into APR -> MAR. They travel;
  *                nothing cuts.
  *   scene 5      two new pins, late in the new cycle, where the same two pieces
- *                of information are ACTUAL rather than estimated - and a third
- *                on March, where the decision and payout are then finalized.
+ *                of information are ACTUAL rather than estimated.
+ *   scene 6      APRIL: merit and promotion take effect.
+ *   scene 7      MARCH: the bonus is paid, and the rail retires with the scene.
+ *
+ * Every pin arrives on the word that names it, measured rather than estimated -
+ * see src/config/anchors.ts.
  *
  * It renders here rather than inside the scenes so it can cross all four of
  * them - a per-scene rail would have to be re-introduced each time, which is
@@ -143,26 +147,39 @@ const PIN_IN = 0.7;
 
 type Cue = {scene: string; beat: string; len: number};
 
-/** The rail's own four moments. */
+/** The rail's own moments. */
 const TL_IN: Cue = {scene: 'old-cycle', beat: 'timelineIn', len: 1.5};
-const TL_PINS_OUT: Cue = {scene: 'the-change', beat: 'timelinePinsOut', len: 0.7};
 const TL_MORPH: Cue = {scene: 'the-change', beat: 'timelineMorph', len: 2.0};
-const TL_OUT: Cue = {scene: 'actual-data', beat: 'timelineOut', len: 1.3};
+const TL_OUT: Cue = {scene: 'march', beat: 'timelineOut', len: 1.3};
 
 /**
- * A pin, and the beat it arrives on. Each pair sits on adjacent months, so the
- * tiers alternate - the first rides above the rule, the second sits on it.
+ * A pin, the beat it arrives on, and the beat it makes way for.
+ *
+ * Pins hand over in pairs rather than accumulating. Six of them on one rail is
+ * unreadable at this size, and by scene 7 the later ones would be sitting under
+ * that scene's own content. Each pair has said what it has to say by the time
+ * the next arrives.
+ *
+ * Within a pair the tiers alternate, because neighbouring months are closer
+ * together than a pin is wide.
  */
-type PinCue = TimelinePin & Cue & {tone: 'estimate' | 'actual'};
+type PinCue = TimelinePin & Cue & {tone: 'estimate' | 'actual'; until?: Cue};
+
+/** When today's pair clears, as the cycle starts to move. */
+const PINS_OUT_ESTIMATE: Cue = {scene: 'the-change', beat: 'timelinePinsOut', len: 0.7};
+/** When the information pair clears, as the payout pair arrives. */
+const PINS_OUT_INFO: Cue = {scene: 'april', beat: 'timelineApr', len: 0.7};
 
 const TL_PINS: PinCue[] = [
   // Today: both of these are an ESTIMATE at the moment the decision is made.
-  {month: 'NOV', label: 'NOVEMBER', kind: 'Merit', sub: 'Expected Market\nMovement', tone: 'estimate', tier: 1, progress: 0, scene: 'today', beat: 'timelineNov', len: PIN_IN},
-  {month: 'DEC', label: 'DECEMBER', kind: 'Bonus', sub: 'Estimated Company\nPerformance KPIs', tone: 'estimate', tier: 0, progress: 0, scene: 'today', beat: 'timelineDec', len: PIN_IN},
-  // The new cycle: the same two things, now ACTUAL, and then the decision.
-  {month: 'JAN', label: 'JANUARY', kind: 'Merit', sub: 'Actual Company\nPerformance', tone: 'actual', tier: 1, progress: 0, scene: 'actual-data', beat: 'timelineJan', len: PIN_IN},
-  {month: 'FEB', label: 'FEBRUARY', kind: 'Bonus', sub: 'Actual Market\nMovement', tone: 'actual', tier: 0, progress: 0, scene: 'actual-data', beat: 'timelineFeb', len: PIN_IN},
-  {month: 'MAR', label: 'MARCH', sub: 'Decision and payout\nfinalized', tone: 'actual', tier: 1, progress: 0, scene: 'actual-data', beat: 'timelineMar', len: PIN_IN},
+  {month: 'NOV', label: 'NOVEMBER', kind: 'Merit', sub: 'Expected Market\nMovement', tone: 'estimate', tier: 1, progress: 0, scene: 'today', beat: 'timelineNov', len: PIN_IN, until: PINS_OUT_ESTIMATE},
+  {month: 'DEC', label: 'DECEMBER', kind: 'Bonus', sub: 'Estimated Company\nPerformance KPIs', tone: 'estimate', tier: 0, progress: 0, scene: 'today', beat: 'timelineDec', len: PIN_IN, until: PINS_OUT_ESTIMATE},
+  // The new cycle: when the same two things become ACTUAL.
+  {month: 'JAN', label: 'JANUARY', kind: 'Merit', sub: 'Actual Company\nPerformance', tone: 'actual', tier: 1, progress: 0, scene: 'actual-data', beat: 'timelineJan', len: PIN_IN, until: PINS_OUT_INFO},
+  {month: 'FEB', label: 'FEBRUARY', kind: 'Bonus', sub: 'Actual Market\nMovement', tone: 'actual', tier: 0, progress: 0, scene: 'actual-data', beat: 'timelineFeb', len: PIN_IN, until: PINS_OUT_INFO},
+  // ...and then the two months the new cycle pays out on.
+  {month: 'APR', label: 'APRIL', kind: 'Merit', sub: 'Merit & Promotion\ntake effect', tone: 'actual', tier: 0, progress: 0, scene: 'april', beat: 'timelineApr', len: PIN_IN},
+  {month: 'MAR', label: 'MARCH', kind: 'Bonus', sub: 'Bonus paid in the\nMarch payroll', tone: 'actual', tier: 1, progress: 0, scene: 'march', beat: 'timelineMar', len: PIN_IN},
 ];
 
 const BottomTimeline: React.FC = () => {
@@ -187,12 +204,10 @@ const BottomTimeline: React.FC = () => {
   // The re-alignment: slow away, quick through the middle, settling hard - the
   // months should feel carried rather than swapped.
   const morph = cue(TL_MORPH, Easing.bezier(0.5, 0, 0.25, 1));
-  const pinsOut = cue(TL_PINS_OUT);
 
   const pins: TimelinePin[] = TL_PINS.map((pin) => {
     const arrive = cue(pin);
-    // Today's pins clear as the cycle starts to move; the new cycle's stay.
-    const leave = pin.tone === 'estimate' ? pinsOut : 0;
+    const leave = pin.until ? cue(pin.until) : 0;
     return {...pin, progress: arrive * (1 - leave)};
   });
 

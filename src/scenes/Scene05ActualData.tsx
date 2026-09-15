@@ -18,7 +18,56 @@ import {ForecastChart, Tick} from '../components/Icons';
 import {Display, Label, Rise} from '../components/Type';
 import {Card3D, Plinth} from '../components/Card3D';
 import {useProgress, useScene, useIdle} from '../lib/timing';
-import {colors} from '../lib/theme';
+import {colors, fonts} from '../lib/theme';
+
+/**
+ * The old timing against the new one, in one strip.
+ *
+ * Deliberately small. The scene above already says what the new timing gives
+ * us; this only has to make the SHIFT legible at a glance - the same two
+ * inputs, two months later, and therefore actual rather than estimated. It
+ * arrives after both new months have been named, so it recaps rather than
+ * reveals.
+ */
+const CompareRow: React.FC<{
+  progress: number;
+  label: string;
+  months: readonly string[];
+  tag: string;
+  tone: string;
+  strong?: boolean;
+}> = ({progress, label, months, tag, tone, strong = false}) => (
+  <Rise progress={progress} distance={18}>
+    <div style={{display: 'flex', alignItems: 'center', gap: 18}}>
+      <div style={{width: 168, textAlign: 'right'}}>
+        <Label size={20} color={strong ? tone : colors.muted}>{label}</Label>
+      </div>
+      <div style={{display: 'flex', gap: 10}}>
+        {months.map((m) => (
+          <div
+            key={m}
+            style={{
+              minWidth: 74,
+              padding: '7px 14px',
+              borderRadius: 9,
+              textAlign: 'center',
+              background: strong ? `${tone}1c` : 'transparent',
+              border: `1.5px ${strong ? 'solid' : 'dashed'} ${tone}${strong ? 'cc' : '66'}`,
+              fontFamily: fonts.body,
+              fontWeight: 800,
+              fontSize: 22,
+              letterSpacing: 1.6,
+              color: tone,
+            }}
+          >
+            {m}
+          </div>
+        ))}
+      </div>
+      <Label size={20} color={strong ? colors.text : colors.muted}>{tag}</Label>
+    </div>
+  </Rise>
+);
 
 const Claim: React.FC<{progress: number; text: string}> = ({progress, text}) => (
   <Rise progress={progress} distance={30}>
@@ -39,6 +88,8 @@ export const Scene05ActualData: React.FC = () => {
   const pLabel = useProgress('labelIn', 0.5);
   const p1 = useProgress('line1', 0.7);
   const p2 = useProgress('line2', 0.7);
+  const pWas = useProgress('compareIn', 0.6);
+  const pNow = useProgress('compareIn', 0.7);
   const drift = useIdle(0.13, 4);
 
   return (
@@ -69,6 +120,36 @@ export const Scene05ActualData: React.FC = () => {
           </div>
         </div>
       </AbsoluteFill>
+
+      {/* The shift itself: same two inputs, two months later, now actual. */}
+      <div
+        style={{
+          position: 'absolute',
+          left: 0,
+          right: 0,
+          top: 668,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          gap: 12,
+        }}
+      >
+        <CompareRow
+          progress={pWas}
+          label={t.wasLabel as string}
+          months={t.wasMonths as unknown as string[]}
+          tag={t.wasTag as string}
+          tone={colors.primary}
+        />
+        <CompareRow
+          progress={pNow}
+          label={t.nowLabel as string}
+          months={t.nowMonths as unknown as string[]}
+          tag={t.nowTag as string}
+          tone={colors.accent}
+          strong
+        />
+      </div>
     </AbsoluteFill>
   );
 };
