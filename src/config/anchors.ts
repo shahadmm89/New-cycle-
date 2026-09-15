@@ -78,4 +78,8 @@ export const anchors: Anchor[] = [
     scene: 'example', beat: 'resultIn', line: 's9-l6', word: 'six', lead: 0.15,
     note: '6.25% appears as the number is said',
   },
+  {
+    scene: 'example', beat: 'settle', line: 's9-l7', word: 'changed', lead: 0.2,
+    note: 'the "merit percentage has not changed" note lands on the word itself',
+  },
 ];

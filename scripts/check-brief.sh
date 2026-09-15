@@ -39,7 +39,7 @@ chk "closing line exact"                                "grep -q 'Please contact
 echo; echo "TERMINOLOGY"
 chk "kpiTerm has no apostrophe"                         "grep -q \"kpiTerm = 'Company Performance KPIs'\" src/config/copy.ts"
 chk "pronunciation target declared as K-P-Is"           "grep -q \"kpiSaidAs = 'K-P-Is'\" src/config/copy.ts"
-chk "engine alias has no apostrophe"                    "grep -q \"kpiTermSpoken = 'Company Performance K-P-Is'\" src/config/copy.ts"
+chk "engine alias has no apostrophe"                    "grep \"kpiTermSpoken =\" src/config/copy.ts | grep -qv \"'\\''\""
 chk "no KPI's in the written script"                    "! grep -q \"KPI's\" output/voiceover-script.md"
 chk "no KPI's in the captions"                          "! grep -q \"KPI's\" output/salary-cycle-update.vtt src/config/scenes.ts"
 chk "no KPI's in any on-screen copy"                    "! grep -rq \"KPI's\" src/scenes/ src/components/"
@@ -76,11 +76,12 @@ chk "generation order tool exists"                      "test -f scripts/print-p
 chk "scenes.ts says its times are provisional"          "grep -q 'RE-ANCHORING AFTER A VOICE CHANGE' src/config/scenes.ts"
 chk "markers not claimed as final measurements"         "! grep -q 'from the measured onsets' src/config/scenes.ts"
 
-echo; echo "NOTHING WAS SPENT OR SHIPPED"
-chk "no takes in the current voice"                     "test \$(ls assets/audio/lines/ 2>/dev/null | wc -l) -eq 0"
-chk "Alexander takes preserved, not deleted"            "test \$(ls assets/audio/takes/alexander/*.wav | wc -l) -eq 20"
-chk "no MP4 rendered from the new cut"                  "! find output -name '*.mp4' -newer src/config/scenes.ts | grep -q ."
-chk "narrator is Evan"                                  "grep -q \"voiceId: 'TWutjvRaJqAX89preB4e'\" src/config/voiceover.ts"
+echo; echo "THE READ"
+chk "all 34 phrases recorded"                           "test \$(ls assets/audio/lines/*.wav 2>/dev/null | wc -l) -eq 34"
+chk "narration track matches the film's length"         "node scripts/check-length.mjs"
+chk "narrator is the local Kokoro voice"                "grep -q \"engine: 'kokoro'\" src/config/voiceover.ts"
+chk "voice is am_michael"                               "grep -q \"speakerName: 'am_michael'\" src/config/voiceover.ts"
+chk "retired takes preserved, not deleted"              "test \$(ls assets/audio/takes/alexander/*.wav | wc -l) -eq 20"
 chk "typecheck clean"                                   "npx tsc --noEmit"
 
 echo

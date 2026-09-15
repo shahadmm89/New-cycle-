@@ -138,7 +138,9 @@ export const Scene09Example: React.FC = () => {
   const pMultiply = useProgress('multiply', 0.5);
   const pResult = useProgress('resultIn', 0.7);
   const pStrike = useProgress('strike', 0.5);
-  const pNote = useProgress('settle', 0.7);
+  // A slow arrival, deliberately: this is the line that stops 6.25% being
+  // read as a new merit rate, and it resolves as the narrator says it.
+  const pNote = useProgress('settle', 2.4);
 
   // Twelve solid + three ghosted, on one shared tile width so the groups read
   // as one run of fifteen rather than two unrelated rails.

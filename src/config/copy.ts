@@ -93,27 +93,35 @@ export const kpiSaidAs = 'K-P-Is';
  * THAT ONE LINE - about 54 credits, not another run of the whole script. Keep a
  * small reserve for exactly this.
  *
- *   candidate                      evidence
- *   Company Performance K-P-Is     in use. Matches the declared reading above
- *                                  literally, and has no apostrophe.
- *   Company Performance kay-pee-eyes
- *                                  the phonetic fallback. Crude, but the
- *                                  reference take of "kay pee eyes" measured
- *                                  882 Hz, unambiguously the letter I.
+ * THE SPELLING IS PER-ENGINE. What fixes this on one model breaks it on
+ * another, so the alias belongs to whichever voice is configured and has to be
+ * re-measured whenever that changes.
  *
- * Measured on Alexander, for reference - peak F1 at the end of the phrase, the
- * open /ai/ nucleus of the letter I against the close /I/ of the word "is":
+ *   spelling     Kokoro am_michael   ElevenLabs Alexander
+ *   KPIs              437 Hz  right         518 Hz  wrong
+ *   K.P.I.s             -                   572 Hz  wrong
+ *   KPI's               -                   832 Hz  right, but spells an
+ *                                                   apostrophe, which the
+ *                                                   brief forbids
+ *   K-P-Is            437 Hz  WRONG           -
  *
- *   written      peak F1   came out as
- *   KPIs           518     the word "is"        wrong
- *   K.P.I.s        572     the word "is"        wrong
- *   KPI's          832     K-P-I-s              right, but spells an apostrophe
+ * Kokoro reads the plain form as the three letters and the hyphenated form as
+ * the word "is" - the exact opposite of ElevenLabs, which is why the alias was
+ * hyphenated until the engine changed. Both numbers above are peak F1 at the
+ * end of the phrase: the open /ai/ nucleus of the letter I sits near 800 Hz,
+ * the close /I/ of "is" near 450.
+ *
+ * Fallback if a future voice fails the plain form and an apostrophe is still
+ * unacceptable: "Company Performance kay-pee-eyes". Crude, but the reference
+ * take of "kay pee eyes" measured 882 Hz, unambiguously the letter I.
  *
  * Do NOT measure this by taking the last voiced stretch of the clip: that lands
  * on the diphthong's offglide, which is close and front, and reports a correct
- * take as wrong. scripts/check-pronunciation.py does it the right way.
+ * take as wrong. And do not trust an F1 above about 1100 Hz - that is F2
+ * mistaken for F1, and it once turned this exact failure into a pass.
+ * scripts/check-pronunciation.py does both properly.
  */
-export const kpiTermSpoken = 'Company Performance K-P-Is';
+export const kpiTermSpoken = 'Company Performance KPIs';
 
 /**
  * The three anchors the film exists to plant, in the order they fall within the

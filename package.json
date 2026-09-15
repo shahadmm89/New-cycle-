@@ -21,7 +21,8 @@
     "voiceover:prompts": "node scripts/print-prompts.mjs",
     "check:pronunciation": "python3 scripts/check-pronunciation.py",
     "voiceover:anchor": "node scripts/anchor-beats.mjs",
-    "check:brief": "bash scripts/check-brief.sh"
+    "check:brief": "bash scripts/check-brief.sh",
+    "check:length": "node scripts/check-length.mjs"
   },
   "dependencies": {
     "@remotion/bundler": "4.0.523",

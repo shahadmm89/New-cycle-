@@ -39,6 +39,21 @@ const VOICES_DIR = path.join(ROOT, 'assets', 'tts', 'voices');
 const TIMING_TS = path.join(ROOT, 'src', 'config', 'voiceover.timing.ts');
 
 const assembleOnly = process.argv.includes('--assemble-only');
+/**
+ * Skip the squeeze-to-fit pass below.
+ *
+ * That pass exists to stop a line spilling into the next one, and it measures
+ * "the next one" against the times currently in scenes.ts. After a VOICE
+ * CHANGE those times describe the previous narrator, so fitting to them makes
+ * the new voice race to hit slots that are about to be rewritten anyway.
+ *
+ * For a fresh voice the order is: generate at the voice's own pace, then
+ * re-time the film around what was actually said.
+ *
+ *   npm run voiceover:build -- --no-fit
+ *   npm run voiceover:plan -- --write
+ */
+const noFit = process.argv.includes('--no-fit');
 
 const config = loadConfig();
 const tts = config.voiceover.tts;
@@ -235,7 +250,7 @@ const run = async () => {
 
       // If the line would spill into the next one, say it a little faster -
       // but never faster than the configured floor.
-      if (info.duration > line.window) {
+      if (!noFit && info.duration > line.window) {
         const speedControlled = tts.engine !== 'piper';
         const ceiling = speedControlled
           ? (tts.engine === 'elevenlabs' ? 1.2 : tts.minSpeed)

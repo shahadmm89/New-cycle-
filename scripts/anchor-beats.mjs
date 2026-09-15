@@ -17,9 +17,16 @@
  * WHY MEASURED AND NOT ESTIMATED. Spreading the words of a phrase evenly across
  * its duration is wrong by a third of a second or more on a long word, and a
  * marker that arrives before the month it names is the most visible sync error
- * this film has. The onsets come from syllable nuclei rather than from silence
- * between words, because these voices link words together and leave no gaps to
- * find - see scripts/lib/word_onsets.py.
+ * this film has.
+ *
+ * With a local engine the word is measured by saying it on its own and finding
+ * where in the phrase it fits best - see scripts/lib/word_probe.py. That is
+ * exact where counting syllable nuclei is a guess: on this read the nuclei
+ * count was out by up to six on a nineteen-syllable line, which placed APRIL a
+ * second and a half from where it is actually said.
+ *
+ * With a hosted engine there is nothing to say the word with, so it falls back
+ * to the nuclei estimate and marks every row it could not measure.
  *
  * Which beats, and which word each one waits for, is declared in
  * src/config/anchors.ts.
@@ -37,18 +44,53 @@ const LINES_DIR = path.join(ROOT, 'assets', 'audio', 'lines');
 const cfg = loadConfig();
 const anchors = cfg.anchors.anchors ?? cfg.anchors;
 
-/** Word onsets inside one clip, via the syllable-nuclei locator. */
-const onsets = (file, text) => {
+const LIB = JSON.stringify(path.join(ROOT, 'scripts', 'lib'));
+const tts = cfg.voiceover.tts;
+/** Only a local engine can say a probe word in the same voice, for free. */
+const canProbe = tts.engine === 'kokoro';
+
+/**
+ * Where `word` starts inside `file`, in seconds from the start of the clip.
+ * Returns {at, score, exact}. `exact` is false when this had to fall back to
+ * the syllable estimate, which the report then says out loud.
+ */
+const onsetOf = (file, text, word) => {
+  const idx = text
+    .split(/\s+/)
+    .findIndex((w) => w.toLowerCase().replace(/[^a-z0-9]/g, '') === word.toLowerCase().replace(/[^a-z0-9]/g, ''));
+  if (idx < 0) {
+    throw new Error(`anchors.ts waits for "${word}", but the line says:\n  ${text}`);
+  }
+
+  if (canProbe) {
+    const py = `
+import json, sys
+sys.path.insert(0, ${LIB})
+import word_probe
+at, score = word_probe.find(
+    sys.argv[1], sys.argv[2],
+    ${JSON.stringify(path.join(ROOT, 'assets', 'tts', 'kokoro'))},
+    ${tts.speakerId}, ${tts.speed},
+    text=sys.argv[3], word_index=int(sys.argv[4]))
+print(json.dumps({"at": at, "score": score}))
+`;
+    const r = spawnSync('python3', ['-c', py, file, word, text, String(idx)], {encoding: 'utf8'});
+    if (r.status !== 0) throw new Error(`word probe failed:\n${r.stderr}`);
+    const {at, score} = JSON.parse(r.stdout);
+    if (at !== null) return {at, score, exact: true};
+  }
+
   const py = `
 import json, sys
-sys.path.insert(0, ${JSON.stringify(path.join(ROOT, 'scripts', 'lib'))})
+sys.path.insert(0, ${LIB})
 import word_onsets
 out, npk, tot = word_onsets.word_times(sys.argv[1], sys.argv[2])
 print(json.dumps({"words": out, "nuclei": npk, "syllables": tot}))
 `;
   const r = spawnSync('python3', ['-c', py, file, text], {encoding: 'utf8'});
   if (r.status !== 0) throw new Error(`word onsets failed:\n${r.stderr}`);
-  return JSON.parse(r.stdout);
+  const {words, nuclei, syllables} = JSON.parse(r.stdout);
+  return {at: words[idx][1], score: 0, exact: nuclei >= syllables};
 };
 
 const bare = (w) => w.toLowerCase().replace(/[^a-z0-9]/g, '');
@@ -71,23 +113,9 @@ for (const a of anchors) {
   }
 
   const text = line.spoken ?? line.text;
-  const {words, nuclei, syllables} = onsets(file, text);
-  const hit = words.find(([w]) => bare(w) === bare(a.word));
-  if (!hit) {
-    throw new Error(
-      `anchors.ts waits for "${a.word}" in ${a.line}, but that line says:\n  ${text}`,
-    );
-  }
-  const at = +Math.max(0, line.start + hit[1] - a.lead).toFixed(2);
-  rows.push({
-    ...a,
-    was: scene.beats[a.beat],
-    at,
-    offset: hit[1],
-    // The locator degrades to a syllable-proportional spread when it cannot
-    // find enough nuclei; that is worth saying out loud rather than hiding.
-    estimated: nuclei < syllables,
-  });
+  const {at: offset, score, exact} = onsetOf(file, text, a.word);
+  const at = +Math.max(0, line.start + offset - a.lead).toFixed(2);
+  rows.push({...a, was: scene.beats[a.beat], at, offset, score, estimated: !exact});
 }
 
 if (missing.length) {
@@ -102,14 +130,28 @@ if (!rows.length) {
   process.exit(0);
 }
 
-console.log('beat                              word         at      was     move');
+console.log(
+  `placing beats on their word by ${canProbe ? 'matching a locally spoken probe' : 'syllable estimate'}\n`,
+);
+console.log('beat                              word         at      was     move   match');
+let weak = 0;
 for (const r of rows) {
   const d = +(r.at - r.was).toFixed(2);
+  // Below this the probe is not confidently on the word, and the number it
+  // returns should not be written into the film without a look.
+  const low = r.score > 0 && r.score < 0.45;
+  if (low || r.estimated) weak++;
   console.log(
     `${`${r.scene}.${r.beat}`.padEnd(33)} ${r.word.padEnd(12)} ` +
       `${r.at.toFixed(2).padStart(6)} ${r.was.toFixed(2).padStart(7)} ` +
       `${(d ? `${d > 0 ? '+' : ''}${d}` : '-').padStart(7)}` +
-      `${r.estimated ? '   (estimated - too few nuclei to place it exactly)' : ''}`,
+      `${r.estimated ? '   estimated only' : `   ${r.score.toFixed(2)}${low ? '  LOW' : ''}`}`,
+  );
+}
+if (weak) {
+  console.log(
+    `\n! ${weak} beat(s) were not confidently measured. Check those against the\n` +
+      `  audio before rendering - see the note in src/config/anchors.ts.`,
   );
 }
 
