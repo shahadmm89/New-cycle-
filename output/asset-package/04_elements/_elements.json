@@ -1,0 +1,242 @@
+[
+  {
+    "id": "el-timeline-old",
+    "title": "Bottom timeline, JAN to DEC, with the November and December markers",
+    "width": 1920,
+    "height": 420,
+    "duration": 5.5,
+    "frames": 165,
+    "files": [
+      "el-timeline-old/el-timeline-old.webm",
+      "el-timeline-old/el-timeline-old-png-sequence.zip"
+    ]
+  },
+  {
+    "id": "el-timeline-morph",
+    "title": "Bottom timeline re-aligning from JAN-DEC into APR-MAR",
+    "width": 1920,
+    "height": 300,
+    "duration": 3.5,
+    "frames": 105,
+    "files": [
+      "el-timeline-morph/el-timeline-morph.webm",
+      "el-timeline-morph/el-timeline-morph-png-sequence.zip"
+    ]
+  },
+  {
+    "id": "el-timeline-new",
+    "title": "Bottom timeline, APR to MAR, with all four new-cycle markers",
+    "width": 1920,
+    "height": 420,
+    "duration": 6,
+    "frames": 180,
+    "files": [
+      "el-timeline-new/el-timeline-new.webm",
+      "el-timeline-new/el-timeline-new-png-sequence.zip"
+    ]
+  },
+  {
+    "id": "el-monthrail-old",
+    "title": "Month rail, JAN to DEC, with the playhead walking the year",
+    "width": 1700,
+    "height": 320,
+    "duration": 4,
+    "frames": 120,
+    "files": [
+      "el-monthrail-old/el-monthrail-old.webm",
+      "el-monthrail-old/el-monthrail-old-png-sequence.zip"
+    ]
+  },
+  {
+    "id": "el-monthrail-new",
+    "title": "Month rail, APR to MAR, landing on March",
+    "width": 1700,
+    "height": 320,
+    "duration": 4,
+    "frames": 120,
+    "files": [
+      "el-monthrail-new/el-monthrail-new.webm",
+      "el-monthrail-new/el-monthrail-new-png-sequence.zip"
+    ]
+  },
+  {
+    "id": "el-rail-reorder",
+    "title": "Month rail physically re-ordering into the new cycle",
+    "width": 1920,
+    "height": 320,
+    "duration": 4,
+    "frames": 120,
+    "files": [
+      "el-rail-reorder/el-rail-reorder.webm",
+      "el-rail-reorder/el-rail-reorder-png-sequence.zip"
+    ]
+  },
+  {
+    "id": "el-yearring-spin",
+    "title": "Year ring spinning from January to April - the hero mechanism",
+    "width": 1000,
+    "height": 1000,
+    "duration": 5.5,
+    "frames": 165,
+    "files": [
+      "el-yearring-spin/el-yearring-spin.webm",
+      "el-yearring-spin/el-yearring-spin-png-sequence.zip"
+    ]
+  },
+  {
+    "id": "el-yearring-static",
+    "title": "Year ring, twelve months, arc sweeping once",
+    "width": 1000,
+    "height": 1000,
+    "duration": 3.5,
+    "frames": 105,
+    "files": [
+      "el-yearring-static/el-yearring-static.webm",
+      "el-yearring-static/el-yearring-static-png-sequence.zip"
+    ]
+  },
+  {
+    "id": "el-range-old",
+    "title": "Range plate, JAN to DEC (quiet treatment)",
+    "width": 1200,
+    "height": 340,
+    "duration": 2,
+    "frames": 60,
+    "files": [
+      "el-range-old/el-range-old.webm",
+      "el-range-old/el-range-old-png-sequence.zip"
+    ]
+  },
+  {
+    "id": "el-range-new",
+    "title": "Range plate, APR to MAR (accent treatment)",
+    "width": 1200,
+    "height": 360,
+    "duration": 2,
+    "frames": 60,
+    "files": [
+      "el-range-new/el-range-new.webm",
+      "el-range-new/el-range-new-png-sequence.zip"
+    ]
+  },
+  {
+    "id": "el-icon-merit",
+    "title": "Merit icon",
+    "width": 520,
+    "height": 520,
+    "duration": 1.8,
+    "frames": 54,
+    "files": [
+      "el-icon-merit/el-icon-merit.webm",
+      "el-icon-merit/el-icon-merit-png-sequence.zip"
+    ]
+  },
+  {
+    "id": "el-icon-promotion",
+    "title": "Promotion icon",
+    "width": 520,
+    "height": 520,
+    "duration": 1.8,
+    "frames": 54,
+    "files": [
+      "el-icon-promotion/el-icon-promotion.webm",
+      "el-icon-promotion/el-icon-promotion-png-sequence.zip"
+    ]
+  },
+  {
+    "id": "el-icon-bonus",
+    "title": "Bonus icon",
+    "width": 520,
+    "height": 520,
+    "duration": 1.8,
+    "frames": 54,
+    "files": [
+      "el-icon-bonus/el-icon-bonus.webm",
+      "el-icon-bonus/el-icon-bonus-png-sequence.zip"
+    ]
+  },
+  {
+    "id": "el-icon-performance",
+    "title": "Performance icon",
+    "width": 520,
+    "height": 520,
+    "duration": 1.8,
+    "frames": 54,
+    "files": [
+      "el-icon-performance/el-icon-performance.webm",
+      "el-icon-performance/el-icon-performance-png-sequence.zip"
+    ]
+  },
+  {
+    "id": "el-icon-tick",
+    "title": "Affirmation tick",
+    "width": 420,
+    "height": 420,
+    "duration": 1.8,
+    "frames": 54,
+    "files": [
+      "el-icon-tick/el-icon-tick.webm",
+      "el-icon-tick/el-icon-tick-png-sequence.zip"
+    ]
+  },
+  {
+    "id": "el-icons-kpi",
+    "title": "The three KPI glyphs: HSE, Finance, Performance",
+    "width": 1400,
+    "height": 400,
+    "duration": 2.6,
+    "frames": 78,
+    "files": [
+      "el-icons-kpi/el-icons-kpi.webm",
+      "el-icons-kpi/el-icons-kpi-png-sequence.zip"
+    ]
+  },
+  {
+    "id": "el-forecast-chart",
+    "title": "Forecast line resolving from a projection into a measurement",
+    "width": 1300,
+    "height": 700,
+    "duration": 5,
+    "frames": 150,
+    "files": [
+      "el-forecast-chart/el-forecast-chart.webm",
+      "el-forecast-chart/el-forecast-chart-png-sequence.zip"
+    ]
+  },
+  {
+    "id": "el-fifteen-months",
+    "title": "12 solid month tiles plus the 3 that only exist in the changeover",
+    "width": 1800,
+    "height": 300,
+    "duration": 3.5,
+    "frames": 105,
+    "files": [
+      "el-fifteen-months/el-fifteen-months.webm",
+      "el-fifteen-months/el-fifteen-months-png-sequence.zip"
+    ]
+  },
+  {
+    "id": "el-five-to-625",
+    "title": "5% struck through, resolving into 6.25%, both periods labelled",
+    "width": 1400,
+    "height": 400,
+    "duration": 2.6,
+    "frames": 78,
+    "files": [
+      "el-five-to-625/el-five-to-625.webm",
+      "el-five-to-625/el-five-to-625-png-sequence.zip"
+    ]
+  },
+  {
+    "id": "el-timing-compare",
+    "title": "TODAY / NOV DEC / ESTIMATED against NEW CYCLE / JAN FEB / ACTUAL",
+    "width": 1200,
+    "height": 320,
+    "duration": 2.4,
+    "frames": 72,
+    "files": [
+      "el-timing-compare/el-timing-compare.webm",
+      "el-timing-compare/el-timing-compare-png-sequence.zip"
+    ]
+  }
+]

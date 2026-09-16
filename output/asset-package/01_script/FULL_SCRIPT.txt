@@ -1,0 +1,144 @@
+SALARY CYCLE UPDATE - NARRATION SCRIPT
+34 phrases across 11 scenes. Running time 00:02:28.350.
+Narrated by am_michael (local Kokoro).
+
+The wording below is what is SPOKEN and what is WRITTEN - they are the same
+except where a line carries a pronunciation note, which is marked.
+
+========================================================================
+
+SCENE 01 - How do we run it today?
+00:00:00.000 - 00:00:07.940
+
+  Do you know how we currently run our salary cycle?
+
+  Let's start with how it works today.
+
+------------------------------------------------------------------------
+
+SCENE 02 - The current cycle
+00:00:07.940 - 00:00:15.540
+
+  Today, our cycle runs from January to December.
+
+  12 months, one cycle.
+    [said as: Twelve months, one cycle.]
+
+------------------------------------------------------------------------
+
+SCENE 03 - How merit & bonus are set today
+00:00:15.540 - 00:00:38.190
+
+  For merit, we rely on expected market movement,
+
+  based on projected market and inflation trends.
+
+  The salary market data becomes available around November.
+
+  For bonus, we use estimated Company Performance KPIs,
+
+  based on the information available by December.
+
+------------------------------------------------------------------------
+
+SCENE 04 - THE CHANGE (hero)
+00:00:38.190 - 00:00:44.920
+
+  Now, we're moving to a new cycle.
+
+  From April, to March.
+
+------------------------------------------------------------------------
+
+SCENE 05 - What the new timing gives us
+00:00:44.920 - 00:01:08.490
+
+  That shift also changes when the information arrives.
+
+  By January, actual Company Performance is available.
+
+  And by February, actual market movement is available.
+
+  This brings the salary cycle closer to market best practice,
+
+  so decisions rest on more relevant, actual information.
+
+------------------------------------------------------------------------
+
+SCENE 06 - April
+00:01:08.490 - 00:01:17.600
+
+  Merit increases and promotions will take effect on April 1.
+    [said as: Merit increases and promotions will take effect on April first.]
+
+  That's where the cycle now begins.
+
+------------------------------------------------------------------------
+
+SCENE 07 - March
+00:01:17.600 - 00:01:25.650
+
+  And your bonus will be paid in the March payroll.
+
+  March is the last month of the cycle.
+
+------------------------------------------------------------------------
+
+SCENE 08 - What does NOT change
+00:01:25.650 - 00:01:36.270
+
+  Now, one thing that isn't changing.
+
+  Your performance appraisal stays on the same schedule,
+
+  and it'll still close in December.
+
+------------------------------------------------------------------------
+
+SCENE 09 - The implementation year
+00:01:36.270 - 00:02:15.140
+
+  There's one more thing, and it happens only once.
+
+  During the implementation year only, the merit calculation will cover 15 months instead of 12.
+    [said as: During the implementation year only, the merit calculation will cover fifteen months instead of twelve.]
+
+  As an illustrative example, if your merit increase is 5%,
+    [said as: As an illustrative example, if your merit increase is five percent,]
+
+  that's 5% divided by 12, which is 0.4167% a month.
+    [said as: that's five percent divided by twelve, which is zero point four one six seven percent a month.]
+
+  Multiply that by 15 months,
+    [said as: Multiply that by fifteen months,]
+
+  and the equivalent becomes 6.25%.
+    [said as: and the equivalent becomes six point two five percent.]
+
+  The merit percentage itself hasn't changed - only the number of months it covers.
+
+------------------------------------------------------------------------
+
+SCENE 10 - The visual summary
+00:02:15.140 - 00:02:20.860
+
+  So - April to March.
+    [said as: So, April to March.]
+
+  That's the one to remember.
+
+------------------------------------------------------------------------
+
+SCENE 11 - Final message
+00:02:20.860 - 00:02:28.350
+
+  Have questions?
+
+  Please contact your HR personnel for support.
+    [said as: Please contact your H R personnel for support.]
+
+========================================================================
+
+CONTINUOUS READ
+
+Do you know how we currently run our salary cycle? Let's start with how it works today. Today, our cycle runs from January to December. 12 months, one cycle. For merit, we rely on expected market movement, based on projected market and inflation trends. The salary market data becomes available around November. For bonus, we use estimated Company Performance KPIs, based on the information available by December. Now, we're moving to a new cycle. From April, to March. That shift also changes when the information arrives. By January, actual Company Performance is available. And by February, actual market movement is available. This brings the salary cycle closer to market best practice, so decisions rest on more relevant, actual information. Merit increases and promotions will take effect on April 1. That's where the cycle now begins. And your bonus will be paid in the March payroll. March is the last month of the cycle. Now, one thing that isn't changing. Your performance appraisal stays on the same schedule, and it'll still close in December. There's one more thing, and it happens only once. During the implementation year only, the merit calculation will cover 15 months instead of 12. As an illustrative example, if your merit increase is 5%, that's 5% divided by 12, which is 0.4167% a month. Multiply that by 15 months, and the equivalent becomes 6.25%. The merit percentage itself hasn't changed - only the number of months it covers. So - April to March. That's the one to remember. Have questions? Please contact your HR personnel for support.

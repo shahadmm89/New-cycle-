@@ -24,6 +24,8 @@ const SOURCES = [
   'src/config/voiceover.timing.ts',
   // Which beats have to land on a particular word - see scripts/anchor-beats.mjs.
   'src/config/anchors.ts',
+  // The reusable element compositions - see scripts/export-elements.mjs.
+  'src/elements.config.ts',
   // The subtitle cue logic the video itself uses, so the .srt cannot drift
   // from the burned-in captions.
   'src/lib/captions.ts',
@@ -62,7 +64,8 @@ export const loadConfig = () => {
   const brandPath = path.join(CACHE, 'config', 'branding.js');
   const captionsPath = path.join(CACHE, 'lib', 'captions.js');
   const anchorsPath = path.join(CACHE, 'config', 'anchors.js');
-  [scenesPath, copyPath, voPath, brandPath, captionsPath, anchorsPath].forEach(flush);
+  const elementsPath = path.join(CACHE, 'elements.config.js');
+  [scenesPath, copyPath, voPath, brandPath, captionsPath, anchorsPath, elementsPath].forEach(flush);
 
   const scenes = require(scenesPath);
   return {
@@ -72,6 +75,7 @@ export const loadConfig = () => {
     branding: require(brandPath),
     captions: require(captionsPath),
     anchors: require(anchorsPath).anchors,
+    elementSpecs: require(elementsPath).elementSpecs,
   };
 };
 

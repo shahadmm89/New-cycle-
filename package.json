@@ -22,7 +22,11 @@
     "check:pronunciation": "python3 scripts/check-pronunciation.py",
     "voiceover:anchor": "node scripts/anchor-beats.mjs",
     "check:brief": "bash scripts/check-brief.sh",
-    "check:length": "node scripts/check-length.mjs"
+    "check:length": "node scripts/check-length.mjs",
+    "export:package": "node scripts/export-package.mjs",
+    "export:stills": "node scripts/export-stills.mjs",
+    "export:elements": "node scripts/export-elements.mjs",
+    "check:package": "node scripts/check-package.mjs"
   },
   "dependencies": {
     "@remotion/bundler": "4.0.523",

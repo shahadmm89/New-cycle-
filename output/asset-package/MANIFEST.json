@@ -1,0 +1,764 @@
+{
+  "film": {
+    "width": 1920,
+    "height": 1080,
+    "fps": 30,
+    "duration": 148.35,
+    "scenes": 11,
+    "lines": 34,
+    "narrator": "am_michael (local Kokoro, speaker 16)"
+  },
+  "scenes": [
+    {
+      "number": 1,
+      "id": "hook",
+      "title": "How do we run it today?",
+      "start": 0,
+      "duration": 7.94,
+      "screenText": [
+        "Do you know how we run our",
+        "SALARY CYCLE",
+        "today?",
+        "Let's start with how it works right now"
+      ],
+      "visual": "Oversized question over a faint year ring. SALARY CYCLE lit in the accent, on a plinth, with the sub-line beneath.",
+      "narration": [
+        "Do you know how we currently run our salary cycle?",
+        "Let's start with how it works today."
+      ]
+    },
+    {
+      "number": 2,
+      "id": "old-cycle",
+      "title": "The current cycle",
+      "start": 7.94,
+      "duration": 7.6,
+      "screenText": [
+        "CURRENT SALARY CYCLE",
+        "JANUARY",
+        "DECEMBER",
+        "12 MONTHS  ·  ONE CYCLE"
+      ],
+      "visual": "Year ring on the left counting twelve months, range plate and month rail on the right, JAN to DEC, playhead walking the year. The bottom timeline draws in here and runs for the next four scenes.",
+      "narration": [
+        "Today, our cycle runs from January to December.",
+        "12 months, one cycle."
+      ]
+    },
+    {
+      "number": 3,
+      "id": "today",
+      "title": "How merit & bonus are set today",
+      "start": 15.54,
+      "duration": 22.65,
+      "screenText": [
+        "HOW IT WORKS TODAY",
+        "MERIT",
+        "Expected Market Movement",
+        "BONUS",
+        "Estimated Company Performance KPIs",
+        "HSE",
+        "FINANCE",
+        "PERFORMANCE",
+        "COMPANY PERFORMANCE KPIs"
+      ],
+      "visual": "MERIT card with the forecast line, then the BONUS heading and the three KPI tiles (HSE, Finance, Performance) rolling up into COMPANY PERFORMANCE KPIs. The bottom timeline picks up the NOVEMBER and DECEMBER markers.",
+      "narration": [
+        "For merit, we rely on expected market movement,",
+        "based on projected market and inflation trends.",
+        "The salary market data becomes available around November.",
+        "For bonus, we use estimated Company Performance KPIs,",
+        "based on the information available by December."
+      ]
+    },
+    {
+      "number": 4,
+      "id": "the-change",
+      "title": "THE CHANGE (hero)",
+      "start": 38.19,
+      "duration": 6.73,
+      "screenText": [
+        "OLD SALARY CYCLE",
+        "NEW SALARY CYCLE",
+        "JAN → DEC",
+        "APR → MAR"
+      ],
+      "visual": "The hero moment. The ring spins three turns and lands on April while OLD drops away and NEW rises. Underneath, the same twelve months re-align from JAN-DEC into APR-MAR - months with far to travel lift over the ones that barely move.",
+      "narration": [
+        "Now, we're moving to a new cycle.",
+        "From April, to March."
+      ]
+    },
+    {
+      "number": 5,
+      "id": "actual-data",
+      "title": "What the new timing gives us",
+      "start": 44.92,
+      "duration": 23.57,
+      "screenText": [
+        "WHAT THE NEW TIMING GIVES US",
+        "ACTUAL COMPANY PERFORMANCE",
+        "ACTUAL MARKET MOVEMENT",
+        "TODAY",
+        "NOV",
+        "DEC",
+        "ESTIMATED",
+        "NEW CYCLE",
+        "JAN",
+        "FEB",
+        "ACTUAL"
+      ],
+      "visual": "Forecast chart resolving from a projection into a measurement, two ticked claims beside it, and the small old-against-new timing comparison. The bottom timeline picks up JANUARY and FEBRUARY, now actual rather than estimated.",
+      "narration": [
+        "That shift also changes when the information arrives.",
+        "By January, actual Company Performance is available.",
+        "And by February, actual market movement is available.",
+        "This brings the salary cycle closer to market best practice,",
+        "so decisions rest on more relevant, actual information."
+      ]
+    },
+    {
+      "number": 6,
+      "id": "april",
+      "title": "April",
+      "start": 68.49,
+      "duration": 9.11,
+      "screenText": [
+        "APRIL",
+        "MERIT",
+        "PROMOTION",
+        "EFFECTIVE APRIL 1",
+        "START OF THE NEW SALARY CYCLE"
+      ],
+      "visual": "APRIL at full size with MERIT and PROMOTION icons rising, and the EFFECTIVE APRIL 1 pill. The bottom timeline picks up the APRIL marker.",
+      "narration": [
+        "Merit increases and promotions will take effect on April 1.",
+        "That's where the cycle now begins."
+      ]
+    },
+    {
+      "number": 7,
+      "id": "march",
+      "title": "March",
+      "start": 77.6,
+      "duration": 8.05,
+      "screenText": [
+        "MARCH",
+        "BONUS",
+        "MARCH PAYROLL",
+        "END OF THE NEW SALARY CYCLE"
+      ],
+      "visual": "Month rail running the new salary year and landing on MARCH, with the bonus icon and the MARCH PAYROLL chip. The bottom timeline picks up the MARCH marker, then retires.",
+      "narration": [
+        "And your bonus will be paid in the March payroll.",
+        "March is the last month of the cycle."
+      ]
+    },
+    {
+      "number": 8,
+      "id": "no-change",
+      "title": "What does NOT change",
+      "start": 85.65,
+      "duration": 10.62,
+      "screenText": [
+        "PERFORMANCE APPRAISAL",
+        "JAN → DEC",
+        "NO CHANGE",
+        "SALARY CYCLE",
+        "APR → MAR",
+        "NEW"
+      ],
+      "visual": "Two parallel rows: PERFORMANCE APPRAISAL JAN-DEC with a tick and NO CHANGE, against SALARY CYCLE APR-MAR marked NEW.",
+      "narration": [
+        "Now, one thing that isn't changing.",
+        "Your performance appraisal stays on the same schedule,",
+        "and it'll still close in December."
+      ]
+    },
+    {
+      "number": 9,
+      "id": "example",
+      "title": "The implementation year",
+      "start": 96.27,
+      "duration": 38.87,
+      "screenText": [
+        "IMPLEMENTATION YEAR ONLY",
+        "HAPPENS ONCE · NOT EVERY YEAR",
+        "12 MONTHS",
+        "+ 3 MONTHS",
+        "MONTH 13",
+        "MONTH 14",
+        "MONTH 15",
+        "OVER 12 MONTHS",
+        "OVER 15 MONTHS",
+        "ILLUSTRATIVE EXAMPLE",
+        "THE MERIT PERCENTAGE HAS NOT CHANGED — ONLY THE MONTHS IT COVERS",
+        "5%",
+        "÷ 12",
+        "0.4167%",
+        "PER MONTH",
+        "× 15",
+        "6.25%"
+      ],
+      "visual": "IMPLEMENTATION YEAR ONLY with the happens-once chip. Twelve solid month tiles plus three dashed ones numbered MONTH 13/14/15. Below, the ILLUSTRATIVE EXAMPLE card builds 5% divided by 12 times 15 term by term, then strikes the 5% through and resolves it into 6.25%, each labelled with the period it covers.",
+      "narration": [
+        "There's one more thing, and it happens only once.",
+        "During the implementation year only, the merit calculation will cover 15 months instead of 12.",
+        "As an illustrative example, if your merit increase is 5%,",
+        "that's 5% divided by 12, which is 0.4167% a month.",
+        "Multiply that by 15 months,",
+        "and the equivalent becomes 6.25%.",
+        "The merit percentage itself hasn't changed - only the number of months it covers."
+      ]
+    },
+    {
+      "number": 10,
+      "id": "summary",
+      "title": "The visual summary",
+      "start": 135.14,
+      "duration": 5.72,
+      "screenText": [
+        "NEW SALARY CYCLE",
+        "APRIL",
+        "MARCH"
+      ],
+      "visual": "APRIL to MARCH over three markers - the frame to remember.",
+      "narration": [
+        "So - April to March.",
+        "That's the one to remember."
+      ]
+    },
+    {
+      "number": 11,
+      "id": "close",
+      "title": "Final message",
+      "start": 140.86,
+      "duration": 7.49,
+      "screenText": [
+        "HAVE QUESTIONS?",
+        "PLEASE CONTACT YOUR HR PERSONNEL FOR SUPPORT"
+      ],
+      "visual": "HAVE QUESTIONS? over the contact line, the HR placeholders and the company logo slot.",
+      "narration": [
+        "Have questions?",
+        "Please contact your HR personnel for support."
+      ]
+    }
+  ],
+  "lines": [
+    {
+      "id": "s1-l1",
+      "scene": 1,
+      "file": "02_audio/per-line/01_scene_line1_s1-l1.wav",
+      "start": 0.36,
+      "duration": 3.652,
+      "text": "Do you know how we currently run our salary cycle?"
+    },
+    {
+      "id": "s1-l2",
+      "scene": 1,
+      "file": "02_audio/per-line/01_scene_line2_s1-l2.wav",
+      "start": 4.82,
+      "duration": 2.4,
+      "text": "Let's start with how it works today."
+    },
+    {
+      "id": "s2-l1",
+      "scene": 2,
+      "file": "02_audio/per-line/02_scene_line1_s2-l1.wav",
+      "start": 8.25,
+      "duration": 3.466,
+      "text": "Today, our cycle runs from January to December."
+    },
+    {
+      "id": "s2-l2",
+      "scene": 2,
+      "file": "02_audio/per-line/02_scene_line2_s2-l2.wav",
+      "start": 12.42,
+      "duration": 2.351,
+      "text": "12 months, one cycle."
+    },
+    {
+      "id": "s3-l1",
+      "scene": 3,
+      "file": "02_audio/per-line/03_scene_line1_s3-l1.wav",
+      "start": 15.9,
+      "duration": 3.434,
+      "text": "For merit, we rely on expected market movement,"
+    },
+    {
+      "id": "s3-l2",
+      "scene": 3,
+      "file": "02_audio/per-line/03_scene_line2_s3-l2.wav",
+      "start": 19.56,
+      "duration": 3.718,
+      "text": "based on projected market and inflation trends."
+    },
+    {
+      "id": "s3-l3",
+      "scene": 3,
+      "file": "02_audio/per-line/03_scene_line3_s3-l3.wav",
+      "start": 24.1,
+      "duration": 4.057,
+      "text": "The salary market data becomes available around November."
+    },
+    {
+      "id": "s3-l4",
+      "scene": 3,
+      "file": "02_audio/per-line/03_scene_line4_s3-l4.wav",
+      "start": 29.07,
+      "duration": 4.545,
+      "text": "For bonus, we use estimated Company Performance KPIs,"
+    },
+    {
+      "id": "s3-l5",
+      "scene": 3,
+      "file": "02_audio/per-line/03_scene_line5_s3-l5.wav",
+      "start": 33.88,
+      "duration": 3.457,
+      "text": "based on the information available by December."
+    },
+    {
+      "id": "s4-l1",
+      "scene": 4,
+      "file": "02_audio/per-line/04_scene_line1_s4-l1.wav",
+      "start": 38.5,
+      "duration": 2.401,
+      "text": "Now, we're moving to a new cycle."
+    },
+    {
+      "id": "s4-l2",
+      "scene": 4,
+      "file": "02_audio/per-line/04_scene_line2_s4-l2.wav",
+      "start": 41.83,
+      "duration": 2.268,
+      "text": "From April, to March."
+    },
+    {
+      "id": "s5-l1",
+      "scene": 5,
+      "file": "02_audio/per-line/05_scene_line1_s5-l1.wav",
+      "start": 45.23,
+      "duration": 4.177,
+      "text": "That shift also changes when the information arrives."
+    },
+    {
+      "id": "s5-l2",
+      "scene": 5,
+      "file": "02_audio/per-line/05_scene_line2_s5-l2.wav",
+      "start": 50.13,
+      "duration": 3.793,
+      "text": "By January, actual Company Performance is available."
+    },
+    {
+      "id": "s5-l3",
+      "scene": 5,
+      "file": "02_audio/per-line/05_scene_line3_s5-l3.wav",
+      "start": 54.54,
+      "duration": 3.671,
+      "text": "And by February, actual market movement is available."
+    },
+    {
+      "id": "s5-l4",
+      "scene": 5,
+      "file": "02_audio/per-line/05_scene_line4_s5-l4.wav",
+      "start": 59.03,
+      "duration": 4.369,
+      "text": "This brings the salary cycle closer to market best practice,"
+    },
+    {
+      "id": "s5-l5",
+      "scene": 5,
+      "file": "02_audio/per-line/05_scene_line5_s5-l5.wav",
+      "start": 63.66,
+      "duration": 3.994,
+      "text": "so decisions rest on more relevant, actual information."
+    },
+    {
+      "id": "s6-l1",
+      "scene": 6,
+      "file": "02_audio/per-line/06_scene_line1_s6-l1.wav",
+      "start": 68.8,
+      "duration": 4.9,
+      "text": "Merit increases and promotions will take effect on April 1."
+    },
+    {
+      "id": "s6-l2",
+      "scene": 6,
+      "file": "02_audio/per-line/06_scene_line2_s6-l2.wav",
+      "start": 74.43,
+      "duration": 2.349,
+      "text": "That's where the cycle now begins."
+    },
+    {
+      "id": "s7-l1",
+      "scene": 7,
+      "file": "02_audio/per-line/07_scene_line1_s7-l1.wav",
+      "start": 77.96,
+      "duration": 3.445,
+      "text": "And your bonus will be paid in the March payroll."
+    },
+    {
+      "id": "s7-l2",
+      "scene": 7,
+      "file": "02_audio/per-line/07_scene_line2_s7-l2.wav",
+      "start": 82.12,
+      "duration": 2.776,
+      "text": "March is the last month of the cycle."
+    },
+    {
+      "id": "s8-l1",
+      "scene": 8,
+      "file": "02_audio/per-line/08_scene_line1_s8-l1.wav",
+      "start": 85.96,
+      "duration": 2.542,
+      "text": "Now, one thing that isn't changing."
+    },
+    {
+      "id": "s8-l2",
+      "scene": 8,
+      "file": "02_audio/per-line/08_scene_line2_s8-l2.wav",
+      "start": 89.11,
+      "duration": 3.642,
+      "text": "Your performance appraisal stays on the same schedule,"
+    },
+    {
+      "id": "s8-l3",
+      "scene": 8,
+      "file": "02_audio/per-line/08_scene_line3_s8-l3.wav",
+      "start": 93.08,
+      "duration": 2.36,
+      "text": "and it'll still close in December."
+    },
+    {
+      "id": "s9-l1",
+      "scene": 9,
+      "file": "02_audio/per-line/09_scene_line1_s9-l1.wav",
+      "start": 96.63,
+      "duration": 3.249,
+      "text": "There's one more thing, and it happens only once."
+    },
+    {
+      "id": "s9-l2",
+      "scene": 9,
+      "file": "02_audio/per-line/09_scene_line2_s9-l2.wav",
+      "start": 100.57,
+      "duration": 6.993,
+      "text": "During the implementation year only, the merit calculation will cover 15 months instead of 12."
+    },
+    {
+      "id": "s9-l3",
+      "scene": 9,
+      "file": "02_audio/per-line/09_scene_line3_s9-l3.wav",
+      "start": 108.49,
+      "duration": 4.802,
+      "text": "As an illustrative example, if your merit increase is 5%,"
+    },
+    {
+      "id": "s9-l4",
+      "scene": 9,
+      "file": "02_audio/per-line/09_scene_line4_s9-l4.wav",
+      "start": 113.62,
+      "duration": 6.79,
+      "text": "that's 5% divided by 12, which is 0.4167% a month."
+    },
+    {
+      "id": "s9-l5",
+      "scene": 9,
+      "file": "02_audio/per-line/09_scene_line5_s9-l5.wav",
+      "start": 120.72,
+      "duration": 2.654,
+      "text": "Multiply that by 15 months,"
+    },
+    {
+      "id": "s9-l6",
+      "scene": 9,
+      "file": "02_audio/per-line/09_scene_line6_s9-l6.wav",
+      "start": 123.65,
+      "duration": 4.214,
+      "text": "and the equivalent becomes 6.25%."
+    },
+    {
+      "id": "s9-l7",
+      "scene": 9,
+      "file": "02_audio/per-line/09_scene_line7_s9-l7.wav",
+      "start": 128.69,
+      "duration": 5.589,
+      "text": "The merit percentage itself hasn't changed - only the number of months it covers."
+    },
+    {
+      "id": "s10-l1",
+      "scene": 10,
+      "file": "02_audio/per-line/10_scene_line1_s10-l1.wav",
+      "start": 135.55,
+      "duration": 2.13,
+      "text": "So - April to March."
+    },
+    {
+      "id": "s10-l2",
+      "scene": 10,
+      "file": "02_audio/per-line/10_scene_line2_s10-l2.wav",
+      "start": 138.42,
+      "duration": 1.714,
+      "text": "That's the one to remember."
+    },
+    {
+      "id": "s11-l1",
+      "scene": 11,
+      "file": "02_audio/per-line/11_scene_line1_s11-l1.wav",
+      "start": 141.33,
+      "duration": 1.41,
+      "text": "Have questions?"
+    },
+    {
+      "id": "s11-l2",
+      "scene": 11,
+      "file": "02_audio/per-line/11_scene_line2_s11-l2.wav",
+      "start": 143.42,
+      "duration": 3.667,
+      "text": "Please contact your HR personnel for support."
+    }
+  ],
+  "elements": [
+    {
+      "id": "el-timeline-old",
+      "title": "Bottom timeline, JAN to DEC, with the November and December markers",
+      "width": 1920,
+      "height": 420,
+      "duration": 5.5,
+      "frames": 165,
+      "files": [
+        "el-timeline-old/el-timeline-old.webm",
+        "el-timeline-old/el-timeline-old-png-sequence.zip"
+      ]
+    },
+    {
+      "id": "el-timeline-morph",
+      "title": "Bottom timeline re-aligning from JAN-DEC into APR-MAR",
+      "width": 1920,
+      "height": 300,
+      "duration": 3.5,
+      "frames": 105,
+      "files": [
+        "el-timeline-morph/el-timeline-morph.webm",
+        "el-timeline-morph/el-timeline-morph-png-sequence.zip"
+      ]
+    },
+    {
+      "id": "el-timeline-new",
+      "title": "Bottom timeline, APR to MAR, with all four new-cycle markers",
+      "width": 1920,
+      "height": 420,
+      "duration": 6,
+      "frames": 180,
+      "files": [
+        "el-timeline-new/el-timeline-new.webm",
+        "el-timeline-new/el-timeline-new-png-sequence.zip"
+      ]
+    },
+    {
+      "id": "el-monthrail-old",
+      "title": "Month rail, JAN to DEC, with the playhead walking the year",
+      "width": 1700,
+      "height": 320,
+      "duration": 4,
+      "frames": 120,
+      "files": [
+        "el-monthrail-old/el-monthrail-old.webm",
+        "el-monthrail-old/el-monthrail-old-png-sequence.zip"
+      ]
+    },
+    {
+      "id": "el-monthrail-new",
+      "title": "Month rail, APR to MAR, landing on March",
+      "width": 1700,
+      "height": 320,
+      "duration": 4,
+      "frames": 120,
+      "files": [
+        "el-monthrail-new/el-monthrail-new.webm",
+        "el-monthrail-new/el-monthrail-new-png-sequence.zip"
+      ]
+    },
+    {
+      "id": "el-rail-reorder",
+      "title": "Month rail physically re-ordering into the new cycle",
+      "width": 1920,
+      "height": 320,
+      "duration": 4,
+      "frames": 120,
+      "files": [
+        "el-rail-reorder/el-rail-reorder.webm",
+        "el-rail-reorder/el-rail-reorder-png-sequence.zip"
+      ]
+    },
+    {
+      "id": "el-yearring-spin",
+      "title": "Year ring spinning from January to April - the hero mechanism",
+      "width": 1000,
+      "height": 1000,
+      "duration": 5.5,
+      "frames": 165,
+      "files": [
+        "el-yearring-spin/el-yearring-spin.webm",
+        "el-yearring-spin/el-yearring-spin-png-sequence.zip"
+      ]
+    },
+    {
+      "id": "el-yearring-static",
+      "title": "Year ring, twelve months, arc sweeping once",
+      "width": 1000,
+      "height": 1000,
+      "duration": 3.5,
+      "frames": 105,
+      "files": [
+        "el-yearring-static/el-yearring-static.webm",
+        "el-yearring-static/el-yearring-static-png-sequence.zip"
+      ]
+    },
+    {
+      "id": "el-range-old",
+      "title": "Range plate, JAN to DEC (quiet treatment)",
+      "width": 1200,
+      "height": 340,
+      "duration": 2,
+      "frames": 60,
+      "files": [
+        "el-range-old/el-range-old.webm",
+        "el-range-old/el-range-old-png-sequence.zip"
+      ]
+    },
+    {
+      "id": "el-range-new",
+      "title": "Range plate, APR to MAR (accent treatment)",
+      "width": 1200,
+      "height": 360,
+      "duration": 2,
+      "frames": 60,
+      "files": [
+        "el-range-new/el-range-new.webm",
+        "el-range-new/el-range-new-png-sequence.zip"
+      ]
+    },
+    {
+      "id": "el-icon-merit",
+      "title": "Merit icon",
+      "width": 520,
+      "height": 520,
+      "duration": 1.8,
+      "frames": 54,
+      "files": [
+        "el-icon-merit/el-icon-merit.webm",
+        "el-icon-merit/el-icon-merit-png-sequence.zip"
+      ]
+    },
+    {
+      "id": "el-icon-promotion",
+      "title": "Promotion icon",
+      "width": 520,
+      "height": 520,
+      "duration": 1.8,
+      "frames": 54,
+      "files": [
+        "el-icon-promotion/el-icon-promotion.webm",
+        "el-icon-promotion/el-icon-promotion-png-sequence.zip"
+      ]
+    },
+    {
+      "id": "el-icon-bonus",
+      "title": "Bonus icon",
+      "width": 520,
+      "height": 520,
+      "duration": 1.8,
+      "frames": 54,
+      "files": [
+        "el-icon-bonus/el-icon-bonus.webm",
+        "el-icon-bonus/el-icon-bonus-png-sequence.zip"
+      ]
+    },
+    {
+      "id": "el-icon-performance",
+      "title": "Performance icon",
+      "width": 520,
+      "height": 520,
+      "duration": 1.8,
+      "frames": 54,
+      "files": [
+        "el-icon-performance/el-icon-performance.webm",
+        "el-icon-performance/el-icon-performance-png-sequence.zip"
+      ]
+    },
+    {
+      "id": "el-icon-tick",
+      "title": "Affirmation tick",
+      "width": 420,
+      "height": 420,
+      "duration": 1.8,
+      "frames": 54,
+      "files": [
+        "el-icon-tick/el-icon-tick.webm",
+        "el-icon-tick/el-icon-tick-png-sequence.zip"
+      ]
+    },
+    {
+      "id": "el-icons-kpi",
+      "title": "The three KPI glyphs: HSE, Finance, Performance",
+      "width": 1400,
+      "height": 400,
+      "duration": 2.6,
+      "frames": 78,
+      "files": [
+        "el-icons-kpi/el-icons-kpi.webm",
+        "el-icons-kpi/el-icons-kpi-png-sequence.zip"
+      ]
+    },
+    {
+      "id": "el-forecast-chart",
+      "title": "Forecast line resolving from a projection into a measurement",
+      "width": 1300,
+      "height": 700,
+      "duration": 5,
+      "frames": 150,
+      "files": [
+        "el-forecast-chart/el-forecast-chart.webm",
+        "el-forecast-chart/el-forecast-chart-png-sequence.zip"
+      ]
+    },
+    {
+      "id": "el-fifteen-months",
+      "title": "12 solid month tiles plus the 3 that only exist in the changeover",
+      "width": 1800,
+      "height": 300,
+      "duration": 3.5,
+      "frames": 105,
+      "files": [
+        "el-fifteen-months/el-fifteen-months.webm",
+        "el-fifteen-months/el-fifteen-months-png-sequence.zip"
+      ]
+    },
+    {
+      "id": "el-five-to-625",
+      "title": "5% struck through, resolving into 6.25%, both periods labelled",
+      "width": 1400,
+      "height": 400,
+      "duration": 2.6,
+      "frames": 78,
+      "files": [
+        "el-five-to-625/el-five-to-625.webm",
+        "el-five-to-625/el-five-to-625-png-sequence.zip"
+      ]
+    },
+    {
+      "id": "el-timing-compare",
+      "title": "TODAY / NOV DEC / ESTIMATED against NEW CYCLE / JAN FEB / ACTUAL",
+      "width": 1200,
+      "height": 320,
+      "duration": 2.4,
+      "frames": 72,
+      "files": [
+        "el-timing-compare/el-timing-compare.webm",
+        "el-timing-compare/el-timing-compare-png-sequence.zip"
+      ]
+    }
+  ]
+}

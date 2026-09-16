@@ -1,0 +1,65 @@
+SCENE 01 - How do we run it today?
+  TIME      00:00:00.000 -> 00:00:07.940  (7.94s)
+  NARRATION Do you know how we currently run our salary cycle? Let's start with how it works today.
+  ON SCREEN Do you know how we run our | SALARY CYCLE | today? | Let's start with how it works right now
+  VISUAL    Oversized question over a faint year ring. SALARY CYCLE lit in the accent, on a plinth, with the sub-line beneath.
+
+SCENE 02 - The current cycle
+  TIME      00:00:07.940 -> 00:00:15.540  (7.60s)
+  NARRATION Today, our cycle runs from January to December. 12 months, one cycle.
+  ON SCREEN CURRENT SALARY CYCLE | JANUARY | DECEMBER | 12 MONTHS  ·  ONE CYCLE
+  VISUAL    Year ring on the left counting twelve months, range plate and month rail on the right, JAN to DEC, playhead walking the year. The bottom timeline draws in here and runs for the next four scenes.
+
+SCENE 03 - How merit & bonus are set today
+  TIME      00:00:15.540 -> 00:00:38.190  (22.65s)
+  NARRATION For merit, we rely on expected market movement, based on projected market and inflation trends. The salary market data becomes available around November. For bonus, we use estimated Company Performance KPIs, based on the information available by December.
+  ON SCREEN HOW IT WORKS TODAY | MERIT | Expected Market Movement | BONUS | Estimated Company Performance KPIs | HSE | FINANCE | PERFORMANCE | COMPANY PERFORMANCE KPIs
+  VISUAL    MERIT card with the forecast line, then the BONUS heading and the three KPI tiles (HSE, Finance, Performance) rolling up into COMPANY PERFORMANCE KPIs. The bottom timeline picks up the NOVEMBER and DECEMBER markers.
+
+SCENE 04 - THE CHANGE (hero)
+  TIME      00:00:38.190 -> 00:00:44.920  (6.73s)
+  NARRATION Now, we're moving to a new cycle. From April, to March.
+  ON SCREEN OLD SALARY CYCLE | NEW SALARY CYCLE | JAN → DEC | APR → MAR
+  VISUAL    The hero moment. The ring spins three turns and lands on April while OLD drops away and NEW rises. Underneath, the same twelve months re-align from JAN-DEC into APR-MAR - months with far to travel lift over the ones that barely move.
+
+SCENE 05 - What the new timing gives us
+  TIME      00:00:44.920 -> 00:01:08.490  (23.57s)
+  NARRATION That shift also changes when the information arrives. By January, actual Company Performance is available. And by February, actual market movement is available. This brings the salary cycle closer to market best practice, so decisions rest on more relevant, actual information.
+  ON SCREEN WHAT THE NEW TIMING GIVES US | ACTUAL COMPANY PERFORMANCE | ACTUAL MARKET MOVEMENT | TODAY | NOV | DEC | ESTIMATED | NEW CYCLE | JAN | FEB | ACTUAL
+  VISUAL    Forecast chart resolving from a projection into a measurement, two ticked claims beside it, and the small old-against-new timing comparison. The bottom timeline picks up JANUARY and FEBRUARY, now actual rather than estimated.
+
+SCENE 06 - April
+  TIME      00:01:08.490 -> 00:01:17.600  (9.11s)
+  NARRATION Merit increases and promotions will take effect on April 1. That's where the cycle now begins.
+  ON SCREEN APRIL | MERIT | PROMOTION | EFFECTIVE APRIL 1 | START OF THE NEW SALARY CYCLE
+  VISUAL    APRIL at full size with MERIT and PROMOTION icons rising, and the EFFECTIVE APRIL 1 pill. The bottom timeline picks up the APRIL marker.
+
+SCENE 07 - March
+  TIME      00:01:17.600 -> 00:01:25.650  (8.05s)
+  NARRATION And your bonus will be paid in the March payroll. March is the last month of the cycle.
+  ON SCREEN MARCH | BONUS | MARCH PAYROLL | END OF THE NEW SALARY CYCLE
+  VISUAL    Month rail running the new salary year and landing on MARCH, with the bonus icon and the MARCH PAYROLL chip. The bottom timeline picks up the MARCH marker, then retires.
+
+SCENE 08 - What does NOT change
+  TIME      00:01:25.650 -> 00:01:36.270  (10.62s)
+  NARRATION Now, one thing that isn't changing. Your performance appraisal stays on the same schedule, and it'll still close in December.
+  ON SCREEN PERFORMANCE APPRAISAL | JAN → DEC | NO CHANGE | SALARY CYCLE | APR → MAR | NEW
+  VISUAL    Two parallel rows: PERFORMANCE APPRAISAL JAN-DEC with a tick and NO CHANGE, against SALARY CYCLE APR-MAR marked NEW.
+
+SCENE 09 - The implementation year
+  TIME      00:01:36.270 -> 00:02:15.140  (38.87s)
+  NARRATION There's one more thing, and it happens only once. During the implementation year only, the merit calculation will cover 15 months instead of 12. As an illustrative example, if your merit increase is 5%, that's 5% divided by 12, which is 0.4167% a month. Multiply that by 15 months, and the equivalent becomes 6.25%. The merit percentage itself hasn't changed - only the number of months it covers.
+  ON SCREEN IMPLEMENTATION YEAR ONLY | HAPPENS ONCE · NOT EVERY YEAR | 12 MONTHS | + 3 MONTHS | MONTH 13 | MONTH 14 | MONTH 15 | OVER 12 MONTHS | OVER 15 MONTHS | ILLUSTRATIVE EXAMPLE | THE MERIT PERCENTAGE HAS NOT CHANGED — ONLY THE MONTHS IT COVERS | 5% | ÷ 12 | 0.4167% | PER MONTH | × 15 | 6.25%
+  VISUAL    IMPLEMENTATION YEAR ONLY with the happens-once chip. Twelve solid month tiles plus three dashed ones numbered MONTH 13/14/15. Below, the ILLUSTRATIVE EXAMPLE card builds 5% divided by 12 times 15 term by term, then strikes the 5% through and resolves it into 6.25%, each labelled with the period it covers.
+
+SCENE 10 - The visual summary
+  TIME      00:02:15.140 -> 00:02:20.860  (5.72s)
+  NARRATION So - April to March. That's the one to remember.
+  ON SCREEN NEW SALARY CYCLE | APRIL | MARCH
+  VISUAL    APRIL to MARCH over three markers - the frame to remember.
+
+SCENE 11 - Final message
+  TIME      00:02:20.860 -> 00:02:28.350  (7.49s)
+  NARRATION Have questions? Please contact your HR personnel for support.
+  ON SCREEN HAVE QUESTIONS? | PLEASE CONTACT YOUR HR PERSONNEL FOR SUPPORT
+  VISUAL    HAVE QUESTIONS? over the contact line, the HR placeholders and the company logo slot.
