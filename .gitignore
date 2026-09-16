@@ -28,3 +28,7 @@ output/asset-package/04_elements/*/*.zip
 # derived entirely from output/asset-package/, and over GitHub's file limit.
 output/*.zip
 output/parts/
+
+# Scratch: how a partial `--only=` run of the exporter hands its results to a
+# later one. The guide step deletes it, so it only survives a partial build.
+output/asset-package/_manifest.partial.json
