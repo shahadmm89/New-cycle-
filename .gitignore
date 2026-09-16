@@ -24,5 +24,7 @@ __pycache__/
 output/asset-package/02_audio/
 output/asset-package/03_scenes/
 output/asset-package/04_elements/*/*.zip
-# The shippable bundle itself - built on demand, and over GitHub's file limit.
+# The shippable bundles - built on demand by `export:package --only=bundle`,
+# derived entirely from output/asset-package/, and over GitHub's file limit.
 output/*.zip
+output/parts/

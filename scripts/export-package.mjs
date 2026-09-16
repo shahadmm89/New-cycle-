@@ -440,3 +440,76 @@ WORDING THAT MUST NOT DRIFT
 `);
   console.log(`  README.txt`);
 }
+
+/* ---------------------------------------------------- bundling for handover */
+if (want('bundle')) {
+  const dir = path.join(ROOT, 'output', 'parts');
+  fs.rmSync(dir, {recursive: true, force: true});
+  mkdir(dir);
+
+  /**
+   * Split on the way out, because the package does not travel as one file.
+   * The whole thing zips to about 110 MB, over both GitHub's 100 MB file limit
+   * and the 30 MiB this chat can attach, so it is delivered in pieces.
+   *
+   * The pieces break on SCENE boundaries rather than on a byte count, so a part
+   * is always whole scenes - stills and their per-phrase states together. A
+   * split that lands mid-scene makes the recipient hunt for the other half.
+   */
+  const LIMIT = 27 * 1024 * 1024;
+  const zip = (out, args) => {
+    const r = spawnSync('zip', ['-qr', out, ...args], {cwd: path.join(OUT)});
+    if (r.status !== 0) throw new Error(`zip failed: ${r.stderr}`);
+  };
+  const mb = (f) => (fs.statSync(f).size / 1048576).toFixed(1);
+
+  // Everything light, and the elements' WebMs - the part to open first.
+  const p1 = path.join(dir, '01-docs-script-captions-elements.zip');
+  zip(p1, ['README.txt', 'EDIT_GUIDE.txt', 'EDIT_GUIDE.csv', 'EDIT_GUIDE_BY_LINE.csv',
+    'MANIFEST.json', '01_script', '05_captions', '06_project_source', '04_elements',
+    '-x', '04_elements/*/*-png-sequence.zip']);
+
+  const p2 = path.join(dir, '02-audio.zip');
+  zip(p2, ['02_audio']);
+
+  // Stills, grouped by scene until a group would go over the limit.
+  const stills = path.join(OUT, '03_scenes');
+  const byScene = new Map();
+  const add = (f) => {
+    const no = path.basename(f).split('_')[0];
+    if (!byScene.has(no)) byScene.set(no, []);
+    byScene.get(no).push(path.relative(OUT, f));
+  };
+  fs.readdirSync(stills).filter((f) => f.endsWith('.png')).forEach((f) => add(path.join(stills, f)));
+  const statesDir = path.join(stills, 'states');
+  if (fs.existsSync(statesDir)) {
+    fs.readdirSync(statesDir).filter((f) => f.endsWith('.png')).forEach((f) => add(path.join(statesDir, f)));
+  }
+
+  const groups = [];
+  let cur = [], size = 0;
+  for (const no of [...byScene.keys()].sort()) {
+    const files = byScene.get(no);
+    const bytes = files.reduce((n, f) => n + fs.statSync(path.join(OUT, f)).size, 0);
+    if (cur.length && size + bytes > LIMIT) { groups.push(cur); cur = []; size = 0; }
+    cur.push(...files); size += bytes;
+  }
+  if (cur.length) groups.push(cur);
+
+  const made = [p1, p2];
+  groups.forEach((files, i) => {
+    const nos = [...new Set(files.map((f) => path.basename(f).split('_')[0]))].sort();
+    const out = path.join(dir, `${pad2(i + 3)}-stills-scenes-${nos[0]}-to-${nos[nos.length - 1]}.zip`);
+    zip(out, files);
+    made.push(out);
+  });
+
+  console.log(`\n  output/parts/  ${made.length} pieces, each under the 30 MiB attachment limit:`);
+  for (const f of made) {
+    const over = Number(mb(f)) > 30;
+    console.log(`    ${path.basename(f).padEnd(46)} ${mb(f).padStart(6)} MB${over ? '   *** OVER THE LIMIT ***' : ''}`);
+    if (over) process.exitCode = 1;
+  }
+  console.log(`\n  The 20 element PNG sequences stay behind - 290 MB, and the WebMs above\n` +
+    `  cover every editor that reads alpha video. Send one on request.`);
+}
