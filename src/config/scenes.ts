@@ -95,7 +95,7 @@ export const scenes: SceneConfig[] = [
       headlineIn: 0.24,
       pushIn: 2.14,
       // On the word - see anchors.ts.
-      highlightPhrase: 2.37,
+      highlightPhrase: 2.38,
       postIn: 3.35,
       subIn: 6.01,
     },
@@ -137,7 +137,7 @@ export const scenes: SceneConfig[] = [
       changeDetail: 1.97,
       benefitsIn: 5.98,
       keepDetailIn: 7.21,
-      keepBadge: 9.92,
+      keepBadge: 9.91,
     },
     voice: [
       {
@@ -181,7 +181,7 @@ export const scenes: SceneConfig[] = [
       // The bottom timeline draws in here and then runs to the April scene.
       timelineIn: 0.36,
       // On the word - see anchors.ts.
-      bannerIn: 4.59,
+      bannerIn: 4.58,
     },
     voice: [
       {
@@ -219,7 +219,7 @@ export const scenes: SceneConfig[] = [
       // On the word - see anchors.ts. The two cards stay up together: that is
       // the "in parallel". The KPIs roll up as the decisions are finalized.
       meritCard: 3.58,
-      meritChart: 5.6,
+      meritChart: 5.59,
       meritForecast: 6.93,
       meritLabel: 7.64,
       kpiCombine: 13.8,
@@ -351,8 +351,8 @@ export const scenes: SceneConfig[] = [
       landMarch: 2.2,
       bonusIn: 1.1,
       // On the word - see anchors.ts. JANUARY and FEBRUARY make way for MARCH.
-      monthIn: 0.27,
-      timelineMar: 0.24,
+      monthIn: 0.24,
+      timelineMar: 0.27,
       payrollIn: 2.43,
     },
     voice: [
@@ -384,7 +384,7 @@ export const scenes: SceneConfig[] = [
       // On the word - see anchors.ts.
       monthIn: 0.51,
       timelineApr: 0.51,
-      meritIn: 1.14,
+      meritIn: 1.13,
       promotionIn: 2.66,
     },
     voice: [
@@ -472,7 +472,7 @@ export const scenes: SceneConfig[] = [
       row2Result: 4.2,
       arrow: 5.4,
       // On the word - see anchors.ts.
-      aprCard: 6.69,
+      aprCard: 6.68,
       basisIn: 9.09,
     },
     voice: [
