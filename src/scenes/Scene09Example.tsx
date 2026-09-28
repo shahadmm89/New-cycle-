@@ -197,7 +197,7 @@ export const Scene09Example: React.FC = () => {
                 paddingBottom: 34,
               }}
             >
-              <Term progress={pMerit} value={t.merit} size={72} color={colors.text} />
+              <Term progress={pMerit} value={t.merit} size={72} color={colors.text} caption={t.meritLabel} />
               <Term progress={pDivide} value={t.dividedBy} size={46} color={colors.textSoft} />
               <Term
                 progress={pPerMonth}

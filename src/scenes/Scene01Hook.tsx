@@ -56,17 +56,29 @@ export const Scene01Hook: React.FC = () => {
           transform: `scale(${1 + pPush * 0.03})`,
         }}
       >
-        <Rise progress={pHead} distance={54}>
-          <Display size={92} weight={700} color={colors.textSoft} style={{textAlign: 'center'}}>
-            {t.headlinePre}
-          </Display>
-        </Rise>
-
-        <Punch progress={pKey} from={0.78}>
-          <div style={{position: 'relative', padding: '0 18px'}}>
-            <Display size={176} color={colors.accent} glow style={{textAlign: 'center'}}>
-              {t.headlineKey}
+        {t.headlinePre ? (
+          <Rise progress={pHead} distance={54}>
+            <Display size={92} weight={700} color={colors.textSoft} style={{textAlign: 'center'}}>
+              {t.headlinePre}
             </Display>
+          </Rise>
+        ) : null}
+
+        {/* A title too long for one line is written with a line break and set
+            smaller, so it still reads as one statement. */}
+        <Punch progress={pKey} from={0.78}>
+          <div style={{position: 'relative', padding: '0 18px', display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+            {t.headlineKey.split('\n').map((line) => (
+              <Display
+                key={line}
+                size={t.headlineKey.includes('\n') ? 132 : 176}
+                color={colors.accent}
+                glow
+                style={{textAlign: 'center'}}
+              >
+                {line}
+              </Display>
+            ))}
           </div>
         </Punch>
         <Plinth progress={pKey} width={760} color={colors.accent} style={{marginTop: -6}} />

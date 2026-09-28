@@ -45,16 +45,16 @@ export interface Anchor {
 export const anchors: Anchor[] = [
   // Scene 1 - the change and why, as it is said.
   {
-    scene: 'hook', beat: 'highlightPhrase', line: 's1-l1', word: 'January', lead: 0.15,
-    note: 'JANUARY -> APRIL lights up on "from January to April"',
+    scene: 'hook', beat: 'highlightPhrase', line: 's1-l1', word: 'salary', lead: 0.15,
+    note: 'the title lands on "salary merit effectiveness"',
   },
   {
-    scene: 'hook', beat: 'postIn', line: 's1-l2', word: 'changing', lead: 0.2,
-    note: '"Only the timing changes" on "changing only the timing"',
+    scene: 'hook', beat: 'postIn', line: 's1-l1', word: 'January', lead: 0.3,
+    note: '"Effective from January to April" on "from January to April"',
   },
   {
     scene: 'hook', beat: 'subIn', line: 's1-l2', word: 'alignment', lead: 0.3,
-    note: 'the best-practice line on "in alignment with"',
+    note: '"Aligned with market best practices." on "in alignment with"',
   },
 
   // Scenes 3 and 4 - the months the new cycle pays out on.

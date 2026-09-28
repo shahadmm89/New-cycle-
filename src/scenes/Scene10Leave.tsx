@@ -3,9 +3,9 @@
  *
  * The same changeover, applied to annual leave, shown rather than said:
  *
- *   JANUARY 2027 - first 3 months only        ->   APRIL 2027
+ *   JANUARY - 3-month leave balance           ->   APRIL 2027
  *     GRADE 9 & BELOW    22 ÷ 12 × 3  ≈ 6 DAYS      NEW ANNUAL LEAVE BALANCE
- *     GRADE 10 & ABOVE   30 ÷ 12 × 3  ≈ 8 DAYS      based on April grade code
+ *     GRADE 10 & ABOVE   30 ÷ 12 × 3  ≈ 8 DAYS      based on the updated grades
  *
  * The narration only names the subject and the April start; the arithmetic is
  * read off the card, one term at a time, in the same language as the

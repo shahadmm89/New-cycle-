@@ -158,15 +158,15 @@ export const implementation = {
    */
   extraMonthNumbers: ['MONTH 13', 'MONTH 14', 'MONTH 15'] as const,
   /** Guards the example against being read as a promise. */
-  illustrative: 'ILLUSTRATIVE EXAMPLE',
-  unchanged: 'THE PERCENTAGE ITSELF DOES NOT CHANGE \u2014 ONLY THE MONTHS IT COVERS',
+  illustrative: 'ILLUSTRATIVE MERIT EXAMPLE',
+  unchanged: 'THE MERIT PERCENTAGE ITSELF DOES NOT CHANGE \u2014 ONLY THE MONTHS IT COVERS',
   /** Jan of the changeover year through to Mar of the next. Fifteen tiles. */
   months: [
     'JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN',
     'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC',
     'JAN', 'FEB', 'MAR',
   ] as const,
-  meritLabel: 'YOUR MERIT INCREASE',
+  meritLabel: 'MERIT INCREASE',
   merit: `${MERIT_EXAMPLE_PCT}%`,
   dividedBy: '\u00F7 12',
   /** Four decimal places: the figure HR circulated, and it is what makes the
@@ -205,8 +205,8 @@ const leaveRow = (grade: string, annual: number) => ({
 
 export const leave = {
   label: 'LEAVE BALANCE',
-  janWhen: 'JANUARY 2027',
-  janWhat: 'FIRST 3 MONTHS ONLY',
+  janWhen: 'JANUARY',
+  janWhat: '3-MONTH LEAVE BALANCE',
   rows: [leaveRow('GRADE 9 & BELOW', 22), leaveRow('GRADE 10 & ABOVE', 30)],
   aprWhen: 'APRIL 2027',
   aprWhat: 'NEW ANNUAL LEAVE BALANCE',

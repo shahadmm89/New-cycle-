@@ -118,10 +118,12 @@ export const scenes: SceneConfig[] = [
       },
     ],
     text: {
-      headlinePre: 'YASREF salary merit effectiveness',
-      headlineKey: 'JANUARY \u2192 APRIL',
-      headlinePost: 'Only the timing changes',
-      sub: 'In alignment with market best practices',
+      // The opening slide stays deliberately simple: title, subtitle, one
+      // supporting line. Everything else is introduced in the scenes after it.
+      headlinePre: '',
+      headlineKey: 'SALARY MERIT\nEFFECTIVENESS UPDATE',
+      headlinePost: 'Effective from January to April',
+      sub: 'Aligned with market best practices.',
     },
   },
   {
@@ -267,6 +269,7 @@ export const scenes: SceneConfig[] = [
       illustrative: implementation.illustrative,
       unchanged: implementation.unchanged,
       merit: implementation.merit,
+      meritLabel: implementation.meritLabel,
       dividedBy: implementation.dividedBy,
       perMonth: implementation.perMonth,
       perMonthLabel: implementation.perMonthLabel,

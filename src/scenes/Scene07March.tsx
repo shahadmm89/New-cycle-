@@ -1,7 +1,7 @@
 /**
  * SCENE 7 - WHAT HAPPENS IN MARCH
  * The playhead travels the whole new salary year - APR through to MAR - and
- * stops hard on March: YIB and bonus are paid in the March payroll.
+ * stops hard on March: the bonus is paid in the March payroll.
  */
 import React from 'react';
 import {AbsoluteFill} from 'remotion';
