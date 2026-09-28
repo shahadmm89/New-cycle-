@@ -38,11 +38,7 @@ import {loadProjectFonts} from './lib/fonts';
 import {colors, fonts} from './lib/theme';
 
 import {Scene01Hook} from './scenes/Scene01Hook';
-import {Scene02TimingOnly} from './scenes/Scene02TimingOnly';
-import {Scene03OldCycle} from './scenes/Scene03OldCycle';
-import {Scene04Today} from './scenes/Scene04Today';
 import {Scene05TheChange} from './scenes/Scene05TheChange';
-import {Scene06ActualData} from './scenes/Scene06ActualData';
 import {Scene07March} from './scenes/Scene07March';
 import {Scene08April} from './scenes/Scene08April';
 import {Scene09Example} from './scenes/Scene09Example';
@@ -53,11 +49,7 @@ loadProjectFonts();
 
 const SCENE_COMPONENTS: Record<string, React.FC> = {
   hook: Scene01Hook,
-  'timing-only': Scene02TimingOnly,
-  'old-cycle': Scene03OldCycle,
-  today: Scene04Today,
   'the-change': Scene05TheChange,
-  'actual-data': Scene06ActualData,
   march: Scene07March,
   april: Scene08April,
   example: Scene09Example,
@@ -91,25 +83,18 @@ type GlowKey = {
  */
 const GLOW_KEYS: GlowKey[] = [
   {scene: 'hook', at: 0, x: 960, y: 470, v: 0.4},
-  {scene: 'timing-only', at: 0.4, x: 700, y: 400, v: 0.34},  // TIMING lands
-  {scene: 'timing-only', at: 4.8, x: 700, y: 640, v: 0.22},
-  {scene: 'old-cycle', at: 0, x: 500, y: 520, v: 0.14},
-  {scene: 'today', at: 0, x: 960, y: 430, v: 0.12},
-  {scene: 'today', at: 8.0, x: 1390, y: 470, v: 0.3},  // the KPIs roll up
   {scene: 'the-change', at: 0, x: 480, y: 520, v: 0.18},
   {scene: 'the-change', at: 2.2, x: 480, y: 520, v: 0.55}, // ring spins up
   {scene: 'the-change', at: 4.25, x: 1250, y: 470, v: 0.95}, // APR -> MAR lands
   {scene: 'the-change', at: 5.6, x: 1250, y: 470, v: 0.85},
   // The bottom timeline is deliberately unlit - the glow stays on the scene.
-  {scene: 'actual-data', at: 0.4, x: 700, y: 470, v: 0.3},
-  {scene: 'actual-data', at: 3.0, x: 1150, y: 470, v: 0.42},
   {scene: 'march', at: 1.0, x: 960, y: 600, v: 0.7},
   {scene: 'march', at: 2.4, x: 960, y: 600, v: 0.85},
   {scene: 'april', at: 0.4, x: 960, y: 420, v: 0.9},
   {scene: 'example', at: 0, x: 760, y: 560, v: 0.16},
-  {scene: 'example', at: 12.5, x: 1470, y: 600, v: 0.8},  // 6.25% lands
+  {scene: 'example', at: 9.5, x: 1470, y: 600, v: 0.8},  // 6.25% lands
   {scene: 'leave', at: 0.5, x: 560, y: 470, v: 0.3},
-  {scene: 'leave', at: 7.5, x: 1480, y: 470, v: 0.7},  // APRIL 2027 lands
+  {scene: 'leave', at: 6.5, x: 1480, y: 470, v: 0.7},  // APRIL 2027 lands
   {scene: 'close', at: 0.4, x: 960, y: 330, v: 0.75},
 ];
 
@@ -117,19 +102,13 @@ const GLOW_KEYS: GlowKey[] = [
 /* ------------------------------------------------------------------------- *
  * THE BOTTOM TIMELINE
  *
- * One hairline rail of twelve months, running from scene 3 to scene 8. It
- * answers the question the whole film is about: WHEN does each thing happen?
+ * One hairline rail of twelve months, running from scene 2 to scene 4. It
+ * answers the question the film is about: WHEN does each thing happen?
  *
- *   scenes 3-4   JAN -> DEC, and today's two pins: November, when merit &
- *                salary movement and the year-end estimate are both prepared,
- *                and December, when decisions are finalized. (January, when
- *                they are reflected, is said rather than pinned.)
- *   scene 5      the same twelve months re-align into APR -> MAR. They travel;
- *                nothing cuts.
- *   scene 6      JANUARY, the new cycle takes effect, and FEBRUARY, when the
- *                actual figures are in.
- *   scene 7      MARCH: YIB & bonus paid.
- *   scene 8      APRIL: merit & promotion adjustments reflected - and the rail
+ *   scene 2      JAN -> DEC draws in, and the same twelve months re-align into
+ *                APR -> MAR as the ring lands. They travel; nothing cuts.
+ *   scene 3      MARCH: bonus paid.
+ *   scene 4      APRIL: merit & promotion adjustments reflected - and the rail
  *                retires with the scene.
  *
  * Every pin arrives on the word that names it where a word names it, measured
@@ -151,36 +130,16 @@ const PIN_IN = 0.7;
 type Cue = {scene: string; beat: string; len: number};
 
 /** The rail's own moments. */
-const TL_IN: Cue = {scene: 'old-cycle', beat: 'timelineIn', len: 1.5};
+const TL_IN: Cue = {scene: 'the-change', beat: 'timelineIn', len: 1.5};
 const TL_MORPH: Cue = {scene: 'the-change', beat: 'timelineMorph', len: 2.0};
 const TL_OUT: Cue = {scene: 'april', beat: 'timelineOut', len: 1.3};
 
-/**
- * A pin, the beat it arrives on, and the beat it makes way for.
- *
- * Pins hand over in pairs rather than accumulating. Six of them on one rail is
- * unreadable at this size. Each pair has said what it has to say by the time
- * the next arrives.
- *
- * Within a pair the tiers alternate, because neighbouring months are closer
- * together than a pin is wide.
- */
+/** A pin and the beat it arrives on. */
 type PinCue = TimelinePin & Cue & {tone: 'estimate' | 'actual'; until?: Cue};
 
-/** When today's pair clears, as the cycle starts to move. */
-const PINS_OUT_ESTIMATE: Cue = {scene: 'the-change', beat: 'timelinePinsOut', len: 0.7};
-/** When January and February clear, as the payout months arrive. */
-const PINS_OUT_INFO: Cue = {scene: 'march', beat: 'timelineMar', len: 0.7};
-
 const TL_PINS: PinCue[] = [
-  // Today: November's two parallel activities, then December's decisions.
-  {month: 'NOV', label: 'NOVEMBER', sub: 'Merit & Salary Movement\nYear-End Estimate', tone: 'estimate', tier: 1, progress: 0, scene: 'today', beat: 'timelineNov', len: PIN_IN, until: PINS_OUT_ESTIMATE},
-  {month: 'DEC', label: 'DECEMBER', sub: 'Finalization /\nDecisions', tone: 'estimate', tier: 0, progress: 0, scene: 'today', beat: 'timelineDec', len: PIN_IN, until: PINS_OUT_ESTIMATE},
-  // The new cycle: it takes effect, then the figures arrive ACTUAL.
-  {month: 'JAN', label: 'JANUARY', sub: 'New cycle\ntakes effect', tone: 'actual', tier: 0, progress: 0, scene: 'actual-data', beat: 'timelineJan', len: PIN_IN, until: PINS_OUT_INFO},
-  {month: 'FEB', label: 'FEBRUARY', sub: 'Actual Inflation & Market Movement\nActual Company Performance', box: 380, tone: 'actual', tier: 1, progress: 0, scene: 'actual-data', beat: 'timelineFeb', len: PIN_IN, until: PINS_OUT_INFO},
-  // ...and then the two months the new cycle pays out on.
-  {month: 'MAR', label: 'MARCH', sub: 'YIB & Bonus\npaid', tone: 'actual', tier: 0, progress: 0, scene: 'march', beat: 'timelineMar', len: PIN_IN},
+  // The two months the new cycle pays out on.
+  {month: 'MAR', label: 'MARCH', sub: 'Bonus\npaid', tone: 'actual', tier: 0, progress: 0, scene: 'march', beat: 'timelineMar', len: PIN_IN},
   {month: 'APR', label: 'APRIL', sub: 'Merit & Promotion\nadjustments reflected', tone: 'actual', tier: 0, progress: 0, scene: 'april', beat: 'timelineApr', len: PIN_IN},
 ];
 

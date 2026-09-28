@@ -50,40 +50,9 @@ export const pacing: ScenePacing[] = [
     "tail": 0.85
   },
   {
-    "id": "timing-only",
-    "leadIn": 0.45,
-    "pauses": [
-      0.9
-    ],
-    "tail": 0.9
-  },
-  {
-    "id": "old-cycle",
-    "leadIn": 0.4,
-    "pauses": [
-      0.55
-    ],
-    "tail": 0.8
-  },
-  {
-    "id": "today",
-    "leadIn": 0.45,
-    "pauses": [
-      0.6,
-      0.35,
-      1.0
-    ],
-    "tail": 1.0
-  },
-  {
     "id": "the-change",
     "leadIn": 0.4,
     "tail": 3.9
-  },
-  {
-    "id": "actual-data",
-    "leadIn": 1.0,
-    "tail": 1.6
   },
   {
     "id": "march",

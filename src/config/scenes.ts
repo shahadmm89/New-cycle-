@@ -35,7 +35,7 @@
  * plan moves each beat with the phrase it belongs to; anchor then measures the
  * onset of the named word inside its clip - see src/config/anchors.ts.
  */
-import {cycle, implementation, kpiTerm, kpis, leave, monthsCalendar, monthsSalaryYear} from './copy';
+import {cycle, implementation, leave, monthsCalendar, monthsSalaryYear} from './copy';
 
 export const FPS = 30;
 export const WIDTH = 1920;
@@ -87,190 +87,46 @@ export const OUTRO_FADE = 0.6;
 export const scenes: SceneConfig[] = [
   {
     id: 'hook',
-    title: '1 - Why the cycle is changing',
-    duration: 8.67,
+    title: '1 - The change, and why',
+    duration: 10.5,
     beats: {
       ringIn: 0,
       monthsSweep: 0.04,
       headlineIn: 0.24,
       pushIn: 2.14,
       // On the word - see anchors.ts.
-      highlightPhrase: 2.38,
-      postIn: 3.35,
-      subIn: 6.01,
+      highlightPhrase: 3.2,
+      postIn: 5.8,
+      subIn: 7.4,
     },
     voice: [
       {
         id: 's1-l1',
-        start: 0.36,
-        text: 'YASREF is changing its salary cycle,',
+        start: 0.45,
+        text: 'YASREF will change the salary merit effectiveness from January to April,',
         // Said as a name, not spelled out letter by letter.
-        spoken: 'Yasref is changing its salary cycle,',
+        spoken: 'Yasref will change the salary merit effectiveness from January to April,',
         rate: 1.0,
-        captions: ['YASREF is changing', 'its SALARY CYCLE'],
+        captions: ['YASREF will change the salary', 'merit effectiveness', 'from JANUARY to APRIL,'],
       },
       {
         id: 's1-l2',
-        start: 3.46,
-        text: 'to align with best practice, and make it more timely and relevant.',
+        start: 5.6,
+        text: 'changing only the timing in alignment with market best practices.',
         rate: 1.0,
-        captions: ['to align with best practice,', 'and make it more timely and relevant'],
+        captions: ['changing only the TIMING,', 'in alignment with market best practices'],
       },
     ],
     text: {
-      headlinePre: 'YASREF is changing its',
-      headlineKey: 'SALARY CYCLE',
-      headlinePost: 'to align with best practice',
-      sub: 'Better timing  ·  More relevant decisions',
-    },
-  },
-  {
-    id: 'timing-only',
-    title: '2 - Timing only, benefits unchanged',
-    duration: 11.7,
-    beats: {
-      changeRowIn: 0.3,
-      contrast: 5.6,
-      keepRowIn: 5.8,
-      // On the word - see anchors.ts.
-      changeBadge: 1.2,
-      changeDetail: 1.97,
-      benefitsIn: 5.98,
-      keepDetailIn: 7.21,
-      keepBadge: 9.91,
-    },
-    voice: [
-      {
-        id: 's2-l1',
-        start: 0.35,
-        text: 'Only the timing changes: when your benefits are received and reflected.',
-        rate: 1.0,
-        captions: ['Only the TIMING changes:', 'when your benefits are received'],
-      },
-      {
-        id: 's2-l2',
-        start: 5.99,
-        text: 'Your benefits, and your Total Reward Package, stay exactly the same.',
-        rate: 1.0,
-        captions: ['Your benefits and Total Reward Package', 'stay exactly the same'],
-      },
-    ],
-    text: {
-      changeTitle: 'WHAT CHANGES',
-      changeRange: 'TIMING',
-      changeDetail: 'When benefits are received & reflected',
-      changeBadge: 'CHANGES',
-      keepTitle: 'WHAT DOES NOT CHANGE',
-      keepRange: 'BENEFITS',
-      benefits: ['BONUS', 'MERIT', 'PROMOTION'],
-      keepDetail: 'Total Reward Package',
-      keepBadge: 'NO CHANGE',
-    },
-  },
-  {
-    id: 'old-cycle',
-    title: '3 - The current cycle',
-    duration: 6.08,
-    beats: {
-      label: 0.06,
-      ringIn: 0.16,
-      railIn: 0.71,
-      monthsFlow: 1.61,
-      endpointsIn: 1.71,
-      settle: 4.6,
-      // The bottom timeline draws in here and then runs to the April scene.
-      timelineIn: 0.36,
-      // On the word - see anchors.ts.
-      bannerIn: 4.58,
-    },
-    voice: [
-      {
-        id: 's3-l1',
-        start: 0.31,
-        text: 'Today, our cycle runs from January to December.',
-        rate: 1.0,
-        captions: ['Today, our cycle runs', 'from JANUARY to DECEMBER'],
-      },
-      {
-        id: 's3-l2',
-        start: 4.09,
-        text: 'One cycle.',
-        rate: 1.0,
-        captions: ['One cycle.'],
-      },
-    ],
-    text: {
-      label: 'CURRENT SALARY CYCLE',
-      from: cycle.oldCycleFromLong,
-      to: cycle.oldCycleToLong,
-      banner: 'ONE CYCLE',
-    },
-  },
-  {
-    id: 'today',
-    title: '4 - November, December, January today',
-    duration: 18.65,
-    beats: {
-      label: 0.11,
-      bonusCard: 10.3,
-      kpi1: 10.9,
-      kpi2: 11.3,
-      kpi3: 11.7,
-      // On the word - see anchors.ts. The two cards stay up together: that is
-      // the "in parallel". The KPIs roll up as the decisions are finalized.
-      meritCard: 3.58,
-      meritChart: 5.59,
-      meritForecast: 6.93,
-      meritLabel: 7.64,
-      kpiCombine: 13.8,
-      settle: 16.18,
-      timelineNov: 0.29,
-      timelineDec: 14.84,
-    },
-    voice: [
-      {
-        id: 's4-l1',
-        start: 0.36,
-        text: 'In November, two things happen in parallel.',
-        rate: 1.0,
-        captions: ['In NOVEMBER, two things', 'happen in parallel'],
-      },
-      {
-        id: 's4-l2',
-        start: 3.72,
-        text: "Merit and salary movement, based on next year's expected inflation and market trends,",
-        rate: 1.0,
-        captions: ['MERIT & SALARY MOVEMENT,', "based on next year's expected", 'inflation and market trends'],
-      },
-      {
-        id: 's4-l3',
-        start: 10.26,
-        text: 'and the year-end estimate.',
-        rate: 1.0,
-        captions: ['and the YEAR-END ESTIMATE'],
-      },
-      {
-        id: 's4-l4',
-        start: 12.92,
-        text: 'Decisions are finalized in December, and reflected in January.',
-        rate: 1.0,
-        captions: ['Finalized in DECEMBER,', 'reflected in JANUARY'],
-      },
-    ],
-    text: {
-      label: 'HOW IT WORKS TODAY',
-      when: 'NOVEMBER  ·  IN PARALLEL',
-      meritTitle: 'MERIT & SALARY MOVEMENT',
-      meritValue: 'Expected salary inflation & market movement for the next year',
-      bonusTitle: 'YEAR-END ESTIMATE',
-      bonusValue: `Estimated ${kpiTerm}`,
-      kpis: [...kpis],
-      combined: 'COMPANY PERFORMANCE KPIs',
+      headlinePre: 'YASREF salary merit effectiveness',
+      headlineKey: 'JANUARY \u2192 APRIL',
+      headlinePost: 'Only the timing changes',
+      sub: 'In alignment with market best practices',
     },
   },
   {
     id: 'the-change',
-    title: '5 - THE CHANGE (hero)',
+    title: '2 - THE NEW PROPOSED CYCLE (hero)',
     duration: 6.66,
     beats: {
       oldRingIn: 0,
@@ -281,18 +137,18 @@ export const scenes: SceneConfig[] = [
       newLabelIn: 3.85,
       bigReveal: 3.82,
       lockIn: 4.85,
-      // The bottom timeline: today's pins clear, then the months re-align so
-      // the run lands on APR -> MAR with the ring.
-      timelinePinsOut: 1.02,
+      // The bottom timeline draws in with the scene, then its twelve months
+      // re-align so the run lands on APR -> MAR with the ring.
+      timelineIn: 0.2,
       timelineMorph: 2.22,
     },
     voice: [
       {
-        id: 's5-l1',
-        start: 0.31,
-        text: "Now, here's the new proposed cycle.",
+        id: 's2-l1',
+        start: 0.4,
+        text: "Here's the new proposed cycle.",
         rate: 1.0,
-        captions: ["Now, here's the", 'NEW PROPOSED CYCLE'],
+        captions: ["Here's the", 'NEW PROPOSED CYCLE'],
       },
     ],
     text: {
@@ -303,77 +159,37 @@ export const scenes: SceneConfig[] = [
     },
   },
   {
-    id: 'actual-data',
-    title: '6 - January and February in the new cycle',
-    duration: 7.54,
-    beats: {
-      labelIn: 0.11,
-      chartIn: 0.41,
-      dataIn: 1.01,
-      // JANUARY lands on its own, before the narrator starts: the pin says it.
-      timelineJan: 0.25,
-      // On the word - see anchors.ts.
-      timelineFeb: 0.99,
-      line1: 3.22,
-      line2: 3.82,
-      alignIn: 3.81,
-      // The small old-vs-new timing comparison, as "estimates" is said.
-      compareIn: 4.83,
-    },
-    voice: [
-      {
-        id: 's6-l1',
-        start: 0.91,
-        text: 'From February, decisions rely on actual results, not estimates.',
-        rate: 1.0,
-        captions: ['From FEBRUARY, decisions rely on', 'ACTUAL results, not estimates'],
-      },
-    ],
-    text: {
-      label: 'WHAT THE NEW TIMING GIVES US',
-      line1: 'ACTUAL INFLATION & MARKET MOVEMENT',
-      line2: 'ACTUAL COMPANY PERFORMANCE',
-      wasLabel: 'TODAY',
-      wasMonths: ['NOV'],
-      wasTag: 'ESTIMATED',
-      nowLabel: 'NEW CYCLE',
-      nowMonths: ['FEB'],
-      nowTag: 'ACTUAL',
-    },
-  },
-  {
     id: 'march',
-    title: '7 - March',
+    title: '3 - March',
     duration: 4.53,
     beats: {
       railIn: 0,
       travel: 0.2,
       landMarch: 2.2,
       bonusIn: 1.1,
-      // On the word - see anchors.ts. JANUARY and FEBRUARY make way for MARCH.
+      // On the word - see anchors.ts.
       monthIn: 0.24,
       timelineMar: 0.27,
       payrollIn: 2.43,
     },
     voice: [
       {
-        id: 's7-l1',
+        id: 's3-l1',
         start: 0.3,
-        text: 'In March, YIB and bonus are paid.',
-        spoken: 'In March, Y I B, and bonus are paid.',
+        text: 'The bonus will be paid in March.',
         rate: 1.0,
-        captions: ['In MARCH,', 'YIB & bonus are paid'],
+        captions: ['The BONUS will be paid', 'in MARCH'],
       },
     ],
     text: {
       month: 'MARCH',
-      bonus: 'YIB & BONUS',
+      bonus: 'BONUS',
       payroll: 'PAID  ·  MARCH PAYROLL',
     },
   },
   {
     id: 'april',
-    title: '8 - April',
+    title: '4 - April',
     duration: 6.51,
     beats: {
       liftOff: 3.4,
@@ -389,11 +205,11 @@ export const scenes: SceneConfig[] = [
     },
     voice: [
       {
-        id: 's8-l1',
+        id: 's4-l1',
         start: 0.31,
-        text: 'And in April, merit increases and promotion adjustments are reflected.',
+        text: 'In April, merit increases and promotion adjustments will be reflected.',
         rate: 1.0,
-        captions: ['And in APRIL, merit increases and', 'promotion adjustments are reflected'],
+        captions: ['In APRIL, merit increases and', 'promotion adjustments will be reflected'],
       },
     ],
     text: {
@@ -405,7 +221,7 @@ export const scenes: SceneConfig[] = [
   },
   {
     id: 'example',
-    title: '9 - The 2026 implementation year',
+    title: '5 - The 2027 implementation year',
     duration: 15.56,
     beats: {
       labelIn: 0.36,
@@ -424,20 +240,20 @@ export const scenes: SceneConfig[] = [
     },
     voice: [
       {
-        id: 's9-l1',
+        id: 's5-l1',
         start: 0.36,
-        text: 'This transition applies to the 2026 implementation year only.',
-        spoken: 'This transition applies to the twenty twenty-six implementation year only.',
+        text: 'This transition applies to the 2027 implementation year only.',
+        spoken: 'This transition applies to the twenty twenty-seven implementation year only.',
         rate: 1.0,
-        captions: ['This transition applies to the', '2026 IMPLEMENTATION YEAR ONLY'],
+        captions: ['This transition applies to the', '2027 IMPLEMENTATION YEAR ONLY'],
       },
       {
-        id: 's9-l2',
+        id: 's5-l2',
         start: 10.06,
-        text: "The percentage itself doesn't change - only the months it covers.",
-        spoken: "The percentage itself doesn't change, only the months it covers.",
+        text: 'During the transition year, the bonus will cover 15 months, while the percentage itself does not change \u2014 only the months it covers.',
+        spoken: 'During the transition year, the bonus will cover fifteen months, while the percentage itself does not change, only the months it covers.',
         rate: 1.0,
-        captions: ["The percentage doesn't change -", 'only the months it covers'],
+        captions: ['During the transition year,', 'the bonus will cover 15 months,', 'while the percentage itself does not change', '- only the months it covers'],
       },
     ],
     text: {
@@ -460,7 +276,7 @@ export const scenes: SceneConfig[] = [
   },
   {
     id: 'leave',
-    title: '10 - Leave balance',
+    title: '6 - Leave balance',
     duration: 12.21,
     beats: {
       labelIn: 0.2,
@@ -477,19 +293,19 @@ export const scenes: SceneConfig[] = [
     },
     voice: [
       {
-        id: 's10-l1',
+        id: 's6-l1',
         start: 0.36,
-        text: 'The same transition applies to your leave balance.',
+        text: 'For your leave balance, you will receive a three-month balance in January.',
         rate: 1.0,
-        captions: ['The same transition applies', 'to your LEAVE BALANCE'],
+        captions: ['For your LEAVE BALANCE,', 'you will receive a three-month', 'balance in JANUARY'],
       },
       {
-        id: 's10-l2',
+        id: 's6-l2',
         start: 6.67,
-        text: 'From April 2027, a new annual balance begins.',
-        spoken: 'From April twenty twenty-seven, a new annual balance begins.',
+        text: 'From April 2027, a new annual balance begins, based on the updated grades.',
+        spoken: 'From April twenty twenty-seven, a new annual balance begins, based on the updated grades.',
         rate: 1.0,
-        captions: ['From APRIL 2027,', 'a new annual balance begins'],
+        captions: ['From APRIL 2027, a new annual balance', 'begins, based on the updated grades'],
       },
     ],
     text: {
@@ -503,7 +319,7 @@ export const scenes: SceneConfig[] = [
   },
   {
     id: 'close',
-    title: '11 - Final message',
+    title: '7 - Final message',
     duration: 5.6,
     beats: {
       questionsIn: 0.3,
@@ -513,7 +329,7 @@ export const scenes: SceneConfig[] = [
     },
     voice: [
       {
-        id: 's11-l1',
+        id: 's7-l1',
         start: 0.41,
         text: 'For further clarification, contact HR personnel.',
         spoken: 'For further clarification, contact H R personnel.',

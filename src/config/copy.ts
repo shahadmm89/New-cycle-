@@ -140,7 +140,7 @@ const IMPLEMENTATION_MONTHS = 15;
 const MERIT_EXAMPLE_PCT = 5;
 
 export const implementation = {
-  label: '2026 IMPLEMENTATION YEAR ONLY',
+  label: '2027 IMPLEMENTATION YEAR ONLY',
   /** Said once, plainly, so nobody reads 6.25% as a new merit rate. */
   once: 'HAPPENS ONCE \u00B7 NOT EVERY YEAR',
   /** The three months past the normal twelve. */
@@ -159,7 +159,7 @@ export const implementation = {
   extraMonthNumbers: ['MONTH 13', 'MONTH 14', 'MONTH 15'] as const,
   /** Guards the example against being read as a promise. */
   illustrative: 'ILLUSTRATIVE EXAMPLE',
-  unchanged: 'THE MERIT PERCENTAGE HAS NOT CHANGED \u2014 ONLY THE MONTHS IT COVERS',
+  unchanged: 'THE PERCENTAGE ITSELF DOES NOT CHANGE \u2014 ONLY THE MONTHS IT COVERS',
   /** Jan of the changeover year through to Mar of the next. Fifteen tiles. */
   months: [
     'JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN',
@@ -210,7 +210,7 @@ export const leave = {
   rows: [leaveRow('GRADE 9 & BELOW', 22), leaveRow('GRADE 10 & ABOVE', 30)],
   aprWhen: 'APRIL 2027',
   aprWhat: 'NEW ANNUAL LEAVE BALANCE',
-  aprBasis: 'BASED ON APRIL GRADE CODE',
+  aprBasis: 'BASED ON THE UPDATED GRADES',
 } as const;
 
 export const videoTitle = 'Our Salary Cycle Is Changing';

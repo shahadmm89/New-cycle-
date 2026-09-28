@@ -1,6 +1,6 @@
 # Voice-over script - Our Salary Cycle Is Changing
 
-Total running time: **103.70999999999998 seconds** (11 scenes, 30 fps).
+Total running time: **61.57000000000001 seconds** (7 scenes, 30 fps).
 
 Voice: a professional American male presenter - mature, calm, warm, confident.
 Not a commercial voice-over, not a news anchor, not a trailer.
@@ -16,155 +16,92 @@ Record each line as its own take and name the file after the LINE ID below
 
 | Line ID | In | Slot | Scene | Words |
 |---|---|---|---|---|
-| `s1-l1` | 00:00.36 | 2.9s | 1 - Why the cycle is changing | 6 |
-| `s1-l2` | 00:03.46 | 5.4s | 1 - Why the cycle is changing | 12 |
-| `s2-l1` | 00:09.02 | 5.5s | 2 - Timing only, benefits unchanged | 11 |
-| `s2-l2` | 00:14.66 | 5.8s | 2 - Timing only, benefits unchanged | 11 |
-| `s3-l1` | 00:20.68 | 3.6s | 3 - The current cycle | 8 |
-| `s3-l2` | 00:24.46 | 2.2s | 3 - The current cycle | 2 |
-| `s4-l1` | 00:26.81 | 3.2s | 4 - November, December, January today | 7 |
-| `s4-l2` | 00:30.17 | 6.4s | 4 - November, December, January today | 13 |
-| `s4-l3` | 00:36.71 | 2.5s | 4 - November, December, January today | 4 |
-| `s4-l4` | 00:39.37 | 5.9s | 4 - November, December, January today | 9 |
-| `s5-l1` | 00:45.41 | 7.1s | 5 - THE CHANGE (hero) | 6 |
-| `s6-l1` | 00:52.67 | 6.8s | 6 - January and February in the new cycle | 9 |
-| `s7-l1` | 00:59.60 | 4.4s | 7 - March | 7 |
-| `s8-l1` | 01:04.14 | 6.4s | 8 - April | 10 |
-| `s9-l1` | 01:10.70 | 9.5s | 9 - The 2026 implementation year | 9 |
-| `s9-l2` | 01:20.40 | 5.7s | 9 - The 2026 implementation year | 11 |
-| `s10-l1` | 01:26.26 | 6.1s | 10 - Leave balance | 8 |
-| `s10-l2` | 01:32.57 | 5.8s | 10 - Leave balance | 8 |
-| `s11-l1` | 01:38.52 | 5.0s | 11 - Final message | 6 |
+| `s1-l1` | 00:00.45 | 5.0s | 1 - The change, and why | 11 |
+| `s1-l2` | 00:05.60 | 5.1s | 1 - The change, and why | 10 |
+| `s2-l1` | 00:10.90 | 6.4s | 2 - THE NEW PROPOSED CYCLE (hero) | 5 |
+| `s3-l1` | 00:17.46 | 4.4s | 3 - March | 7 |
+| `s4-l1` | 00:22.00 | 6.4s | 4 - April | 10 |
+| `s5-l1` | 00:28.56 | 9.5s | 5 - The 2027 implementation year | 9 |
+| `s5-l2` | 00:38.26 | 5.7s | 5 - The 2027 implementation year | 23 |
+| `s6-l1` | 00:44.12 | 6.1s | 6 - Leave balance | 12 |
+| `s6-l2` | 00:50.43 | 5.8s | 6 - Leave balance | 13 |
+| `s7-l1` | 00:56.38 | 5.0s | 7 - Final message | 6 |
 
 ---
 
-## 1 - Why the cycle is changing
+## 1 - The change, and why
 
-**00:00.00 - 00:08.67** (8.67s)
+**00:00.00 - 00:10.50** (10.5s)
 
-**`s1-l1`** - in at 00:00.36
+**`s1-l1`** - in at 00:00.45
 
-> YASREF is changing its salary cycle,
+> YASREF will change the salary merit effectiveness from January to April,
 
-_Say it as:_ Yasref is changing its salary cycle,
+_Say it as:_ Yasref will change the salary merit effectiveness from January to April,
 
-**`s1-l2`** - in at 00:03.46
+**`s1-l2`** - in at 00:05.60
 
-> to align with best practice, and make it more timely and relevant.
+> changing only the timing in alignment with market best practices.
 
-## 2 - Timing only, benefits unchanged
+## 2 - THE NEW PROPOSED CYCLE (hero)
 
-**00:08.67 - 00:20.37** (11.7s)
+**00:10.50 - 00:17.16** (6.66s)
 
-**`s2-l1`** - in at 00:09.02
+**`s2-l1`** - in at 00:10.90
 
-> Only the timing changes: when your benefits are received and reflected.
+> Here's the new proposed cycle.
 
-**`s2-l2`** - in at 00:14.66
+## 3 - March
 
-> Your benefits, and your Total Reward Package, stay exactly the same.
+**00:17.16 - 00:21.69** (4.53s)
 
-## 3 - The current cycle
+**`s3-l1`** - in at 00:17.46
 
-**00:20.37 - 00:26.45** (6.08s)
+> The bonus will be paid in March.
 
-**`s3-l1`** - in at 00:20.68
+## 4 - April
 
-> Today, our cycle runs from January to December.
+**00:21.69 - 00:28.20** (6.51s)
 
-**`s3-l2`** - in at 00:24.46
+**`s4-l1`** - in at 00:22.00
 
-> One cycle.
+> In April, merit increases and promotion adjustments will be reflected.
 
-## 4 - November, December, January today
+## 5 - The 2027 implementation year
 
-**00:26.45 - 00:45.10** (18.65s)
+**00:28.20 - 00:43.76** (15.56s)
 
-**`s4-l1`** - in at 00:26.81
+**`s5-l1`** - in at 00:28.56
 
-> In November, two things happen in parallel.
+> This transition applies to the 2027 implementation year only.
 
-**`s4-l2`** - in at 00:30.17
+_Say it as:_ This transition applies to the twenty twenty-seven implementation year only.
 
-> Merit and salary movement, based on next year's expected inflation and market trends,
+**`s5-l2`** - in at 00:38.26
 
-**`s4-l3`** - in at 00:36.71
+> During the transition year, the bonus will cover 15 months, while the percentage itself does not change — only the months it covers.
 
-> and the year-end estimate.
+_Say it as:_ During the transition year, the bonus will cover fifteen months, while the percentage itself does not change, only the months it covers.
 
-**`s4-l4`** - in at 00:39.37
+## 6 - Leave balance
 
-> Decisions are finalized in December, and reflected in January.
+**00:43.76 - 00:55.97** (12.21s)
 
-## 5 - THE CHANGE (hero)
+**`s6-l1`** - in at 00:44.12
 
-**00:45.10 - 00:51.76** (6.66s)
+> For your leave balance, you will receive a three-month balance in January.
 
-**`s5-l1`** - in at 00:45.41
+**`s6-l2`** - in at 00:50.43
 
-> Now, here's the new proposed cycle.
+> From April 2027, a new annual balance begins, based on the updated grades.
 
-## 6 - January and February in the new cycle
+_Say it as:_ From April twenty twenty-seven, a new annual balance begins, based on the updated grades.
 
-**00:51.76 - 00:59.30** (7.54s)
+## 7 - Final message
 
-**`s6-l1`** - in at 00:52.67
+**00:55.97 - 01:01.57** (5.6s)
 
-> From February, decisions rely on actual results, not estimates.
-
-## 7 - March
-
-**00:59.30 - 01:03.83** (4.53s)
-
-**`s7-l1`** - in at 00:59.60
-
-> In March, YIB and bonus are paid.
-
-_Say it as:_ In March, Y I B, and bonus are paid.
-
-## 8 - April
-
-**01:03.83 - 01:10.34** (6.51s)
-
-**`s8-l1`** - in at 01:04.14
-
-> And in April, merit increases and promotion adjustments are reflected.
-
-## 9 - The 2026 implementation year
-
-**01:10.34 - 01:25.90** (15.56s)
-
-**`s9-l1`** - in at 01:10.70
-
-> This transition applies to the 2026 implementation year only.
-
-_Say it as:_ This transition applies to the twenty twenty-six implementation year only.
-
-**`s9-l2`** - in at 01:20.40
-
-> The percentage itself doesn't change - only the months it covers.
-
-_Say it as:_ The percentage itself doesn't change, only the months it covers.
-
-## 10 - Leave balance
-
-**01:25.90 - 01:38.11** (12.21s)
-
-**`s10-l1`** - in at 01:26.26
-
-> The same transition applies to your leave balance.
-
-**`s10-l2`** - in at 01:32.57
-
-> From April 2027, a new annual balance begins.
-
-_Say it as:_ From April twenty twenty-seven, a new annual balance begins.
-
-## 11 - Final message
-
-**01:38.11 - 01:43.71** (5.6s)
-
-**`s11-l1`** - in at 01:38.52
+**`s7-l1`** - in at 00:56.38
 
 > For further clarification, contact HR personnel.
 
@@ -174,4 +111,4 @@ _Say it as:_ For further clarification, contact H R personnel.
 
 ## Full script, uninterrupted
 
-YASREF is changing its salary cycle, to align with best practice, and make it more timely and relevant. Only the timing changes: when your benefits are received and reflected. Your benefits, and your Total Reward Package, stay exactly the same. Today, our cycle runs from January to December. One cycle. In November, two things happen in parallel. Merit and salary movement, based on next year's expected inflation and market trends, and the year-end estimate. Decisions are finalized in December, and reflected in January. Now, here's the new proposed cycle. From February, decisions rely on actual results, not estimates. In March, YIB and bonus are paid. And in April, merit increases and promotion adjustments are reflected. This transition applies to the 2026 implementation year only. The percentage itself doesn't change - only the months it covers. The same transition applies to your leave balance. From April 2027, a new annual balance begins. For further clarification, contact HR personnel.
+YASREF will change the salary merit effectiveness from January to April, changing only the timing in alignment with market best practices. Here's the new proposed cycle. The bonus will be paid in March. In April, merit increases and promotion adjustments will be reflected. This transition applies to the 2027 implementation year only. During the transition year, the bonus will cover 15 months, while the percentage itself does not change — only the months it covers. For your leave balance, you will receive a three-month balance in January. From April 2027, a new annual balance begins, based on the updated grades. For further clarification, contact HR personnel.
