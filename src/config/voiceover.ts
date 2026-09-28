@@ -42,6 +42,8 @@ export const voiceover = {
      * The re-timing step is not optional. A different voice says the same words
      * at different lengths, and every beat in scenes.ts is placed against a word.
      */
+    // Savvy (below) is the requested narrator, but the account had 0 credits
+    // when it was tried, so the committed cut is still the local Kokoro read.
     engine: 'kokoro' as 'elevenlabs' | 'kokoro' | 'piper',
 
     /**
@@ -50,7 +52,8 @@ export const voiceover = {
      */
     elevenlabs: {
       /**
-       * Evan (TWutjvRaJqAX89preB4e). Specified by the client by id.
+       * Savvy (ogwqBH5bbF03DSbNiRNN). Specified by the client by id, replacing
+       * the free local Kokoro read for the revised script.
        *
        * The delivery the brief asks for: natural American English, warm, calm,
        * mature, professional, conversational, slightly deep and grounded. Not
@@ -65,8 +68,8 @@ export const voiceover = {
        * previous voice are kept under assets/audio/takes/ rather than deleted,
        * because they cost credits and cannot be remade for free.
        */
-      voiceId: 'TWutjvRaJqAX89preB4e',
-      voiceName: 'Evan',
+      voiceId: 'ogwqBH5bbF03DSbNiRNN',
+      voiceName: 'Savvy',
       /** Their most natural English model at time of writing. */
       modelId: 'eleven_multilingual_v2',
       /** Forces the American pronunciations the script depends on. */
