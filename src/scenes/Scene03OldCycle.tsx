@@ -1,5 +1,5 @@
 /**
- * SCENE 2 - THE CURRENT CYCLE
+ * SCENE 3 - THE CURRENT CYCLE
  * Establishes the object the film is about to change: twelve months, one
  * cycle, starting in January.
  */
@@ -12,7 +12,7 @@ import {useProgress, useScene, useSpan} from '../lib/timing';
 import {colors} from '../lib/theme';
 import {monthsCalendar} from '../config/copy';
 
-export const Scene02OldCycle: React.FC = () => {
+export const Scene03OldCycle: React.FC = () => {
   const scene = useScene();
   const t = scene.text as Record<string, string>;
 

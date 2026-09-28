@@ -62,8 +62,12 @@ if (!Number.isFinite(pauseScale) || pauseScale <= 0) {
  * Longer, but never long enough to read as dead air. The cap applies only
  * BETWEEN phrases: a scene's opening lead-in and closing hold are deliberate
  * and are scaled without one.
+ *
+ * A pause AUTHORED above the cap is deliberate too - a hold while a picture
+ * explains itself (the worked calculation, the leave figures) - so it is kept
+ * exactly as written rather than clipped or scaled.
  */
-const stretch = (gap) => Math.min(PAUSE_CAP, +(gap * pauseScale).toFixed(3));
+const stretch = (gap) => (gap > PAUSE_CAP ? gap : Math.min(PAUSE_CAP, +(gap * pauseScale).toFixed(3)));
 const scale = (gap) => +(gap * pauseScale).toFixed(3);
 
 const cfg = loadConfig();

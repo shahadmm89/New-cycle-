@@ -18,24 +18,24 @@
  *
  * All times are SECONDS. Beat times are relative to the start of their scene.
  *
- * RE-ANCHORING AFTER A VOICE CHANGE
- * --------------------------------
+ * RE-ANCHORING AFTER A SCRIPT OR VOICE CHANGE
+ * -------------------------------------------
  * Every absolute number in this file - scene durations, phrase starts, beats -
- * describes a particular recorded read. The narrator is now Dan, and the numbers
- * below were derived from the previous voice, so they are a starting point and
- * nothing more. Once all 34 phrases exist in the new voice:
+ * describes a particular recorded read. After the script or the voice changes:
  *
+ *   npm run voiceover:build -- --no-fit  record every phrase at natural pace
  *   npm run voiceover:plan -- --write    re-derive durations, starts and beats
- *                                        from the new clips and the pacing
- *                                        intent in voiceover.pacing.ts
+ *                                        from the clips and the pacing intent
+ *                                        in voiceover.pacing.ts
+ *   npm run voiceover:anchor -- --write  land the word-pinned beats (the
+ *                                        timeline pins) on the word itself
+ *   npm run voiceover:build -- --assemble-only
  *   npm run check:sync                   prove nothing is cut off or stranded
  *
- * That tool moves each beat with the phrase it belongs to, which is close but
- * not exact. The beats tied to a specific WORD - the timeline pins especially -
- * then have to be re-measured against the onset of that word inside its clip.
- * docs/EDITING-TEXT-AND-DATES.md explains how to read the onsets out.
+ * plan moves each beat with the phrase it belongs to; anchor then measures the
+ * onset of the named word inside its clip - see src/config/anchors.ts.
  */
-import {cycle, implementation, kpiTerm, kpiTermSpoken, kpis, monthsCalendar, monthsSalaryYear} from './copy';
+import {cycle, implementation, kpiTerm, kpis, leave, monthsCalendar, monthsSalaryYear} from './copy';
 
 export const FPS = 30;
 export const WIDTH = 1920;
@@ -87,137 +87,182 @@ export const OUTRO_FADE = 0.6;
 export const scenes: SceneConfig[] = [
   {
     id: 'hook',
-    title: '1 - How do we run it today?',
-    duration: 7.94,
-    beats: {ringIn: 0, monthsSweep: 0.04, headlineIn: 0.24, highlightPhrase: 1.14, subIn: 3.84, pushIn: 2.14},
+    title: '1 - Why the cycle is changing',
+    duration: 8.67,
+    beats: {
+      ringIn: 0,
+      monthsSweep: 0.04,
+      headlineIn: 0.24,
+      pushIn: 2.14,
+      // On the word - see anchors.ts.
+      highlightPhrase: 2.37,
+      postIn: 3.35,
+      subIn: 6.01,
+    },
     voice: [
       {
         id: 's1-l1',
         start: 0.36,
-        text: 'Do you know how we currently run our salary cycle?',
+        text: 'YASREF is changing its salary cycle,',
+        // Said as a name, not spelled out letter by letter.
+        spoken: 'Yasref is changing its salary cycle,',
         rate: 1.0,
-        captions: ['Do you know how we currently run', 'our SALARY CYCLE?'],
+        captions: ['YASREF is changing', 'its SALARY CYCLE'],
       },
       {
         id: 's1-l2',
-        start: 4.82,
-        text: "Let's start with how it works today.",
+        start: 3.46,
+        text: 'to align with best practice, and make it more timely and relevant.',
         rate: 1.0,
-        captions: ["Let's start with how it works today."],
+        captions: ['to align with best practice,', 'and make it more timely and relevant'],
       },
     ],
     text: {
-      headlinePre: 'Do you know how we run our',
+      headlinePre: 'YASREF is changing its',
       headlineKey: 'SALARY CYCLE',
-      headlinePost: 'today?',
-      sub: "Let's start with how it works right now",
+      headlinePost: 'to align with best practice',
+      sub: 'Better timing  ·  More relevant decisions',
+    },
+  },
+  {
+    id: 'timing-only',
+    title: '2 - Timing only, benefits unchanged',
+    duration: 11.7,
+    beats: {
+      changeRowIn: 0.3,
+      contrast: 5.6,
+      keepRowIn: 5.8,
+      // On the word - see anchors.ts.
+      changeBadge: 1.2,
+      changeDetail: 1.97,
+      benefitsIn: 5.98,
+      keepDetailIn: 7.21,
+      keepBadge: 9.92,
+    },
+    voice: [
+      {
+        id: 's2-l1',
+        start: 0.35,
+        text: 'Only the timing changes: when your benefits are received and reflected.',
+        rate: 1.0,
+        captions: ['Only the TIMING changes:', 'when your benefits are received'],
+      },
+      {
+        id: 's2-l2',
+        start: 5.99,
+        text: 'Your benefits, and your Total Reward Package, stay exactly the same.',
+        rate: 1.0,
+        captions: ['Your benefits and Total Reward Package', 'stay exactly the same'],
+      },
+    ],
+    text: {
+      changeTitle: 'WHAT CHANGES',
+      changeRange: 'TIMING',
+      changeDetail: 'When benefits are received & reflected',
+      changeBadge: 'CHANGES',
+      keepTitle: 'WHAT DOES NOT CHANGE',
+      keepRange: 'BENEFITS',
+      benefits: ['BONUS', 'MERIT', 'PROMOTION'],
+      keepDetail: 'Total Reward Package',
+      keepBadge: 'NO CHANGE',
     },
   },
   {
     id: 'old-cycle',
-    title: '2 - The current cycle',
-    duration: 7.6,
+    title: '3 - The current cycle',
+    duration: 6.08,
     beats: {
       label: 0.06,
       ringIn: 0.16,
       railIn: 0.71,
       monthsFlow: 1.61,
       endpointsIn: 1.71,
-      bannerIn: 4.58,
-      settle: 5.28,
-      // The bottom timeline draws in here and then runs for four scenes.
+      settle: 4.6,
+      // The bottom timeline draws in here and then runs to the April scene.
       timelineIn: 0.36,
+      // On the word - see anchors.ts.
+      bannerIn: 4.59,
     },
     voice: [
       {
-        id: 's2-l1',
+        id: 's3-l1',
         start: 0.31,
         text: 'Today, our cycle runs from January to December.',
         rate: 1.0,
         captions: ['Today, our cycle runs', 'from JANUARY to DECEMBER'],
       },
       {
-        id: 's2-l2',
-        start: 4.48,
-        text: '12 months, one cycle.',
-        spoken: 'Twelve months, one cycle.',
-        rate: 1.06,
-        captions: ['12 months, one cycle.'],
+        id: 's3-l2',
+        start: 4.09,
+        text: 'One cycle.',
+        rate: 1.0,
+        captions: ['One cycle.'],
       },
     ],
     text: {
       label: 'CURRENT SALARY CYCLE',
       from: cycle.oldCycleFromLong,
       to: cycle.oldCycleToLong,
-      banner: '12 MONTHS  ·  ONE CYCLE',
+      banner: 'ONE CYCLE',
     },
   },
   {
     id: 'today',
-    title: '3 - How merit & bonus are set today',
-    duration: 22.65,
+    title: '4 - November, December, January today',
+    duration: 18.65,
     beats: {
       label: 0.11,
-      meritCard: 0.36,
-      meritChart: 1.16,
-      meritForecast: 2.66,
-      meritLabel: 3.26,
-      bonusCard: 13.53,
-      kpi1: 14.93,
-      kpi2: 15.43,
-      kpi3: 15.93,
-      kpiCombine: 16.73,
-      // Bottom-timeline pins. Each is cued 0.2s before the onset of the word
-      // itself, so the pin LANDS on the month rather than starting there.
-      // Offsets carried over from the Alexander read ("around NOVEMBER" was
-      // s3-l3 + 2.80s, "by DECEMBER" s3-l5 + 1.72s) - a starting point only,
-      // to be re-measured against the new voice. See RE-ANCHORING below.
-      timelineNov: 11.51,
-      timelineDec: 20.71,
+      bonusCard: 10.3,
+      kpi1: 10.9,
+      kpi2: 11.3,
+      kpi3: 11.7,
+      // On the word - see anchors.ts. The two cards stay up together: that is
+      // the "in parallel". The KPIs roll up as the decisions are finalized.
+      meritCard: 3.58,
+      meritChart: 5.6,
+      meritForecast: 6.93,
+      meritLabel: 7.64,
+      kpiCombine: 13.8,
+      settle: 16.18,
+      timelineNov: 0.29,
+      timelineDec: 14.84,
     },
     voice: [
       {
-        id: 's3-l1',
+        id: 's4-l1',
         start: 0.36,
-        text: 'For merit, we rely on expected market movement,',
+        text: 'In November, two things happen in parallel.',
         rate: 1.0,
-        captions: ['MERIT', 'Expected market movement'],
+        captions: ['In NOVEMBER, two things', 'happen in parallel'],
       },
       {
-        id: 's3-l2',
-        start: 4.02,
-        text: 'based on projected market and inflation trends.',
+        id: 's4-l2',
+        start: 3.72,
+        text: "Merit and salary movement, based on next year's expected inflation and market trends,",
         rate: 1.0,
-        captions: ['based on projected market', 'and inflation trends'],
+        captions: ['MERIT & SALARY MOVEMENT,', "based on next year's expected", 'inflation and market trends'],
       },
       {
-        id: 's3-l3',
-        start: 8.56,
-        text: 'The salary market data becomes available around November.',
+        id: 's4-l3',
+        start: 10.26,
+        text: 'and the year-end estimate.',
         rate: 1.0,
-        captions: ['Salary market data becomes', 'available around NOVEMBER'],
+        captions: ['and the YEAR-END ESTIMATE'],
       },
       {
-        id: 's3-l4',
-        start: 13.53,
-        text: 'For bonus, we use estimated Company Performance KPIs,',
-        spoken: `For bonus, we use estimated ${kpiTermSpoken},`,
+        id: 's4-l4',
+        start: 12.92,
+        text: 'Decisions are finalized in December, and reflected in January.',
         rate: 1.0,
-        captions: ['BONUS', 'Estimated Company Performance KPIs'],
-      },
-      {
-        id: 's3-l5',
-        start: 18.34,
-        text: 'based on the information available by December.',
-        rate: 1.0,
-        captions: ['based on the information', 'available by DECEMBER'],
+        captions: ['Finalized in DECEMBER,', 'reflected in JANUARY'],
       },
     ],
     text: {
       label: 'HOW IT WORKS TODAY',
-      meritTitle: 'MERIT',
-      meritValue: 'Expected Market Movement',
-      bonusTitle: 'BONUS',
+      when: 'NOVEMBER  ·  IN PARALLEL',
+      meritTitle: 'MERIT & SALARY MOVEMENT',
+      meritValue: 'Expected salary inflation & market movement for the next year',
+      bonusTitle: 'YEAR-END ESTIMATE',
       bonusValue: `Estimated ${kpiTerm}`,
       kpis: [...kpis],
       combined: 'COMPANY PERFORMANCE KPIs',
@@ -225,36 +270,29 @@ export const scenes: SceneConfig[] = [
   },
   {
     id: 'the-change',
-    title: '4 - THE CHANGE (hero)',
-    duration: 6.73,
+    title: '5 - THE CHANGE (hero)',
+    duration: 6.66,
     beats: {
-      oldRingIn: 0.01,
-      oldLabel: 0.11,
-      spinUp: 1.31,
-      handover: 3.64,
-      newRingIn: 3.84,
-      newLabelIn: 3.94,
-      bigReveal: 3.91,
-      lockIn: 4.94,
+      oldRingIn: 0,
+      oldLabel: 0.02,
+      spinUp: 1.22,
+      handover: 3.55,
+      newRingIn: 3.75,
+      newLabelIn: 3.85,
+      bigReveal: 3.82,
+      lockIn: 4.85,
       // The bottom timeline: today's pins clear, then the months re-align so
-      // the run lands on APR -> MAR as "From April, to March" is said.
-      timelinePinsOut: 1.11,
-      timelineMorph: 2.31,
+      // the run lands on APR -> MAR with the ring.
+      timelinePinsOut: 1.02,
+      timelineMorph: 2.22,
     },
     voice: [
       {
-        id: 's4-l1',
+        id: 's5-l1',
         start: 0.31,
-        text: "Now, we're moving to a new cycle.",
+        text: "Now, here's the new proposed cycle.",
         rate: 1.0,
-        captions: ["Now, we're moving to a new cycle."],
-      },
-      {
-        id: 's4-l2',
-        start: 3.64,
-        text: 'From April, to March.',
-        rate: 1.1,
-        captions: ['From APRIL to MARCH'],
+        captions: ["Now, here's the", 'NEW PROPOSED CYCLE'],
       },
     ],
     text: {
@@ -266,101 +304,96 @@ export const scenes: SceneConfig[] = [
   },
   {
     id: 'actual-data',
-    title: '5 - What the new timing gives us',
-    duration: 23.57,
+    title: '6 - January and February in the new cycle',
+    duration: 7.54,
     beats: {
       labelIn: 0.11,
       chartIn: 0.41,
       dataIn: 1.01,
-      line1: 5.21,
-      line2: 9.62,
-      alignIn: 14.11,
-      // Bottom-timeline pins. Provisional: placed on the measured onset of
-      // the word by `npm run voiceover:anchor` - see RE-ANCHORING above.
-      timelineJan: 5.29,
-      timelineFeb: 9.89,
-      // The small old-vs-new timing comparison, once both months are named.
-      compareIn: 14.06,
-    },
-    voice: [
-      {
-        id: 's5-l1',
-        start: 0.31,
-        text: 'That shift also changes when the information arrives.',
-        rate: 1.0,
-        captions: ['It changes WHEN the', 'information arrives'],
-      },
-      {
-        id: 's5-l2',
-        start: 5.21,
-        text: 'By January, actual Company Performance is available.',
-        rate: 1.0,
-        captions: ['By JANUARY', 'actual Company Performance'],
-      },
-      {
-        id: 's5-l3',
-        start: 9.62,
-        text: 'And by February, actual market movement is available.',
-        rate: 1.0,
-        captions: ['And by FEBRUARY', 'actual market movement'],
-      },
-      {
-        id: 's5-l4',
-        start: 14.11,
-        text: 'This brings the salary cycle closer to market best practice,',
-        rate: 1.0,
-        captions: ['Closer to market best practice'],
-      },
-      {
-        id: 's5-l5',
-        start: 18.74,
-        text: 'so decisions rest on more relevant, actual information.',
-        rate: 1.0,
-        captions: ['Decisions rest on more relevant,', 'actual information'],
-      },
-    ],
-    text: {
-      label: 'WHAT THE NEW TIMING GIVES US',
-      line1: 'ACTUAL COMPANY PERFORMANCE',
-      line2: 'ACTUAL MARKET MOVEMENT',
-      wasLabel: 'TODAY',
-      wasMonths: ['NOV', 'DEC'],
-      wasTag: 'ESTIMATED',
-      nowLabel: 'NEW CYCLE',
-      nowMonths: ['JAN', 'FEB'],
-      nowTag: 'ACTUAL',
-    },
-  },
-  {
-    id: 'april',
-    title: '6 - April',
-    duration: 9.11,
-    beats: {
-      monthIn: 0.08,
-      meritIn: 0.33,
-      promotionIn: 1.73,
-      liftOff: 2.93,
-      effectiveIn: 3.43,
-      monthSettle: 6.71,
-      restate: 6.91,
-      // Bottom-timeline pin on "...take effect on APRIL 1". Provisional.
-      timelineApr: 3.89,
+      // JANUARY lands on its own, before the narrator starts: the pin says it.
+      timelineJan: 0.25,
+      // On the word - see anchors.ts.
+      timelineFeb: 0.99,
+      line1: 3.22,
+      line2: 3.82,
+      alignIn: 3.81,
+      // The small old-vs-new timing comparison, as "estimates" is said.
+      compareIn: 4.83,
     },
     voice: [
       {
         id: 's6-l1',
-        start: 0.31,
-        text: 'Merit increases and promotions will take effect on April 1.',
-        spoken: 'Merit increases and promotions will take effect on April first.',
+        start: 0.91,
+        text: 'From February, decisions rely on actual results, not estimates.',
         rate: 1.0,
-        captions: ['Merit increases and promotions', 'take effect on APRIL 1'],
+        captions: ['From FEBRUARY, decisions rely on', 'ACTUAL results, not estimates'],
       },
+    ],
+    text: {
+      label: 'WHAT THE NEW TIMING GIVES US',
+      line1: 'ACTUAL INFLATION & MARKET MOVEMENT',
+      line2: 'ACTUAL COMPANY PERFORMANCE',
+      wasLabel: 'TODAY',
+      wasMonths: ['NOV'],
+      wasTag: 'ESTIMATED',
+      nowLabel: 'NEW CYCLE',
+      nowMonths: ['FEB'],
+      nowTag: 'ACTUAL',
+    },
+  },
+  {
+    id: 'march',
+    title: '7 - March',
+    duration: 4.53,
+    beats: {
+      railIn: 0,
+      travel: 0.2,
+      landMarch: 2.2,
+      bonusIn: 1.1,
+      // On the word - see anchors.ts. JANUARY and FEBRUARY make way for MARCH.
+      monthIn: 0.27,
+      timelineMar: 0.24,
+      payrollIn: 2.43,
+    },
+    voice: [
       {
-        id: 's6-l2',
-        start: 5.94,
-        text: "That's where the cycle now begins.",
+        id: 's7-l1',
+        start: 0.3,
+        text: 'In March, YIB and bonus are paid.',
+        spoken: 'In March, Y I B, and bonus are paid.',
         rate: 1.0,
-        captions: ["That's where the cycle now begins."],
+        captions: ['In MARCH,', 'YIB & bonus are paid'],
+      },
+    ],
+    text: {
+      month: 'MARCH',
+      bonus: 'YIB & BONUS',
+      payroll: 'PAID  ·  MARCH PAYROLL',
+    },
+  },
+  {
+    id: 'april',
+    title: '8 - April',
+    duration: 6.51,
+    beats: {
+      liftOff: 3.4,
+      effectiveIn: 3.9,
+      restate: 4.8,
+      // The rail has said everything it has to say; it retires with this scene.
+      timelineOut: 5.3,
+      // On the word - see anchors.ts.
+      monthIn: 0.51,
+      timelineApr: 0.51,
+      meritIn: 1.14,
+      promotionIn: 2.66,
+    },
+    voice: [
+      {
+        id: 's8-l1',
+        start: 0.31,
+        text: 'And in April, merit increases and promotion adjustments are reflected.',
+        rate: 1.0,
+        captions: ['And in APRIL, merit increases and', 'promotion adjustments are reflected'],
       },
     ],
     text: {
@@ -368,160 +401,43 @@ export const scenes: SceneConfig[] = [
       merit: 'MERIT',
       promotion: 'PROMOTION',
       effective: 'EFFECTIVE APRIL 1',
-      note: 'START OF THE NEW SALARY CYCLE',
-    },
-  },
-  {
-    id: 'march',
-    title: '7 - March',
-    duration: 8.05,
-    beats: {
-      railIn: 0,
-      travel: 0.72,
-      bonusIn: 0.82,
-      landMarch: 2.52,
-      monthIn: 2.57,
-      payrollIn: 2.82,
-      noteIn: 6.1,
-      closesNote: 4.6,
-      // Bottom-timeline pin on "...paid in the MARCH payroll". Provisional.
-      timelineMar: 2.22,
-      // Six scenes after it was drawn, the rail retires.
-      timelineOut: 6.4,
-    },
-    voice: [
-      {
-        id: 's7-l1',
-        start: 0.36,
-        text: 'And your bonus will be paid in the March payroll.',
-        rate: 1.0,
-        captions: ['BONUS', 'paid in the MARCH payroll'],
-      },
-      {
-        id: 's7-l2',
-        start: 4.52,
-        text: 'March is the last month of the cycle.',
-        rate: 1.0,
-        captions: ['MARCH is the last month', 'of the cycle'],
-      },
-    ],
-    text: {
-      month: 'MARCH',
-      bonus: 'BONUS',
-      payroll: 'MARCH PAYROLL',
-      note: 'END OF THE NEW SALARY CYCLE',
-    },
-  },
-  {
-    id: 'no-change',
-    title: '8 - What does NOT change',
-    duration: 10.62,
-    beats: {perfRowIn: 3.76, perfRailIn: 4.06, tickIn: 5.26, salaryRowIn: 8.23, salaryRailIn: 8.53, contrast: 8.93, newBadge: 9.33},
-    voice: [
-      {
-        id: 's8-l1',
-        start: 0.31,
-        text: "Now, one thing that isn't changing.",
-        rate: 1.0,
-        captions: ["One thing that isn't changing"],
-      },
-      {
-        id: 's8-l2',
-        start: 3.46,
-        text: 'Your performance appraisal stays on the same schedule,',
-        rate: 1.0,
-        captions: ['Your PERFORMANCE APPRAISAL', 'stays on the same schedule'],
-      },
-      {
-        id: 's8-l3',
-        start: 7.43,
-        text: "and it'll still close in December.",
-        rate: 1.0,
-        captions: ['and it will still close', 'in DECEMBER'],
-      },
-    ],
-    text: {
-      perfTitle: 'PERFORMANCE APPRAISAL',
-      perfRange: cycle.performanceWindowLabel,
-      perfBadge: 'NO CHANGE',
-      salaryTitle: 'SALARY CYCLE',
-      salaryRange: cycle.newCycleLabel,
-      salaryBadge: 'NEW',
     },
   },
   {
     id: 'example',
-    title: '9 - The implementation year',
-    duration: 38.87,
+    title: '9 - The 2026 implementation year',
+    duration: 15.56,
     beats: {
       labelIn: 0.36,
-      railIn: 4.3,
-      extraIn: 7.3,
-      cardIn: 12.22,
-      meritValue: 13.62,
-      divide: 17.75,
-      perMonth: 19.15,
-      multiply: 24.45,
-      resultIn: 29.28,
-      strike: 28.78,
-      settle: 34.65,
+      // The working runs on its own, one term at a time: no narration reads it.
+      cardIn: 5.4,
+      meritValue: 6.1,
+      divide: 6.9,
+      perMonth: 7.6,
+      multiply: 8.5,
+      strike: 9.3,
+      resultIn: 9.7,
+      // On the word - see anchors.ts.
+      railIn: 1.85,
+      extraIn: 3.56,
+      settle: 12.23,
     },
     voice: [
       {
         id: 's9-l1',
         start: 0.36,
-        text: "There's one more thing, and it happens only once.",
+        text: 'This transition applies to the 2026 implementation year only.',
+        spoken: 'This transition applies to the twenty twenty-six implementation year only.',
         rate: 1.0,
-        captions: ["One more thing -", 'and it happens only once'],
+        captions: ['This transition applies to the', '2026 IMPLEMENTATION YEAR ONLY'],
       },
       {
         id: 's9-l2',
-        start: 4.3,
-        text: 'During the implementation year only, the merit calculation will cover 15 months instead of 12.',
-        spoken:
-          'During the implementation year only, the merit calculation will cover fifteen months instead of twelve.',
+        start: 10.06,
+        text: "The percentage itself doesn't change - only the months it covers.",
+        spoken: "The percentage itself doesn't change, only the months it covers.",
         rate: 1.0,
-        captions: ['IMPLEMENTATION YEAR ONLY:', '15 months instead of 12'],
-      },
-      {
-        id: 's9-l3',
-        start: 12.22,
-        text: 'As an illustrative example, if your merit increase is 5%,',
-        spoken: 'As an illustrative example, if your merit increase is five percent,',
-        rate: 1.0,
-        captions: ['ILLUSTRATIVE EXAMPLE', 'a 5% merit increase'],
-      },
-      {
-        id: 's9-l4',
-        start: 17.35,
-        text: "that's 5% divided by 12, which is 0.4167% a month.",
-        spoken:
-          "that's five percent divided by twelve, which is zero point four one six seven percent a month.",
-        rate: 1.0,
-        captions: ['5% ÷ 12 = 0.4167%', 'per month'],
-      },
-      {
-        id: 's9-l5',
-        start: 24.45,
-        text: 'Multiply that by 15 months,',
-        spoken: 'Multiply that by fifteen months,',
-        rate: 1.0,
-        captions: ['Multiply that by 15 months'],
-      },
-      {
-        id: 's9-l6',
-        start: 27.38,
-        text: 'and the equivalent becomes 6.25%.',
-        spoken: 'and the equivalent becomes six point two five percent.',
-        rate: 1.06,
-        captions: ['and the equivalent becomes', '6.25%'],
-      },
-      {
-        id: 's9-l7',
-        start: 32.42,
-        text: "The merit percentage itself hasn't changed - only the number of months it covers.",
-        rate: 1.0,
-        captions: ["The merit percentage hasn't changed -", 'only the months it covers'],
+        captions: ["The percentage doesn't change -", 'only the months it covers'],
       },
     ],
     text: {
@@ -543,52 +459,69 @@ export const scenes: SceneConfig[] = [
     },
   },
   {
-    id: 'summary',
-    title: '10 - The visual summary',
-    duration: 5.72,
-    beats: {labelIn: 0.41, rangeIn: 0.61, ruleIn: 1.31, anchor1: 3.38, anchor2: 3.98, anchor3: 4.58, settle: 4.98},
+    id: 'leave',
+    title: '10 - Leave balance',
+    duration: 12.21,
+    beats: {
+      labelIn: 0.2,
+      janCard: 0.8,
+      // The arithmetic is read off the card, not said.
+      row1: 2.0,
+      row1Result: 2.8,
+      row2: 3.4,
+      row2Result: 4.2,
+      arrow: 5.4,
+      // On the word - see anchors.ts.
+      aprCard: 6.69,
+      basisIn: 9.09,
+    },
     voice: [
       {
         id: 's10-l1',
-        start: 0.41,
-        text: 'So - April to March.',
-        spoken: 'So, April to March.',
-        rate: 1.06,
-        captions: ['APRIL to MARCH'],
+        start: 0.36,
+        text: 'The same transition applies to your leave balance.',
+        rate: 1.0,
+        captions: ['The same transition applies', 'to your LEAVE BALANCE'],
       },
       {
         id: 's10-l2',
-        start: 3.28,
-        text: "That's the one to remember.",
+        start: 6.67,
+        text: 'From April 2027, a new annual balance begins.',
+        spoken: 'From April twenty twenty-seven, a new annual balance begins.',
         rate: 1.0,
-        captions: ["That's the one to remember."],
+        captions: ['From APRIL 2027,', 'a new annual balance begins'],
       },
     ],
-    text: {label: 'NEW SALARY CYCLE', from: cycle.newCycleFromLong, to: cycle.newCycleToLong},
+    text: {
+      label: leave.label,
+      janWhen: leave.janWhen,
+      janWhat: leave.janWhat,
+      aprWhen: leave.aprWhen,
+      aprWhat: leave.aprWhat,
+      aprBasis: leave.aprBasis,
+    },
   },
   {
     id: 'close',
     title: '11 - Final message',
-    duration: 7.49,
-    beats: {questionsIn: 0.52, contactIn: 2.56, logoIn: 4.86},
+    duration: 5.6,
+    beats: {
+      questionsIn: 0.3,
+      logoIn: 3.4,
+      // On the word - see anchors.ts.
+      contactIn: 1.84,
+    },
     voice: [
       {
         id: 's11-l1',
-        start: 0.47,
-        text: 'Have questions?',
+        start: 0.41,
+        text: 'For further clarification, contact HR personnel.',
+        spoken: 'For further clarification, contact H R personnel.',
         rate: 1.0,
-        captions: ['Have questions?'],
-      },
-      {
-        id: 's11-l2',
-        start: 2.56,
-        text: 'Please contact your HR personnel for support.',
-        spoken: 'Please contact your H R personnel for support.',
-        rate: 1.0,
-        captions: ['Please contact your HR personnel', 'for support.'],
+        captions: ['For further clarification,', 'contact HR personnel.'],
       },
     ],
-    text: {questions: 'HAVE QUESTIONS?', sub: 'PLEASE CONTACT YOUR HR PERSONNEL FOR SUPPORT'},
+    text: {questions: 'FOR FURTHER CLARIFICATION', sub: 'CONTACT HR PERSONNEL'},
   },
 ];
 

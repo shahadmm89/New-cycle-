@@ -1,9 +1,9 @@
 /**
  * SCENE 11 - FINAL MESSAGE
  *
- * Just the offer of help, the contact and the logo. The summary immediately
- * before this scene already carries the cycle and the three markers; repeating
- * them here would only dilute the frame people are meant to hold on to.
+ * Just where to go for clarification, the contact and the logo. Nothing about
+ * the cycle is repeated here; it would only dilute the frame people are meant
+ * to hold on to.
  */
 import React from 'react';
 import {AbsoluteFill, Img, staticFile} from 'remotion';
@@ -24,13 +24,13 @@ export const Scene11Close: React.FC = () => {
     <AbsoluteFill style={{alignItems: 'center', justifyContent: 'center'}}>
       <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 22, marginTop: -40}}>
         <Rise progress={pQ} distance={34}>
-          <Display size={112} color={colors.text}>{t.questions}</Display>
+          <Display size={96} color={colors.text}>{t.questions}</Display>
         </Rise>
 
-        <Plinth progress={pQ} width={760} color={colors.accent} style={{marginTop: 4}} />
+        <Plinth progress={pQ} width={900} color={colors.accent} style={{marginTop: 4}} />
 
         <Rise progress={pContact} distance={26} style={{marginTop: 10}}>
-          <Label size={40} color={colors.accent}>{t.sub}</Label>
+          <Label size={48} color={colors.accent}>{t.sub}</Label>
         </Rise>
 
         <Rise progress={pContact} distance={20} style={{marginTop: 16}}>

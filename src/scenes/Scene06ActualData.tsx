@@ -1,16 +1,14 @@
 /**
- * SCENE 5 - WHAT THE NEW TIMING GIVES US
+ * SCENE 6 - WHAT THE NEW TIMING GIVES US (JANUARY, FEBRUARY)
  *
- * The counterpart to scene 3. There, the timeline picked up two pins for
- * information that is an ESTIMATE when the decision is made. Here it picks up
- * two more, later in the year, for the same information once it is ACTUAL.
+ * The counterpart to scene 4. There, November's work rested on an ESTIMATE.
+ * Here the bottom timeline picks up JANUARY (the new cycle takes effect) and
+ * FEBRUARY, when the same information arrives ACTUAL: inflation and market
+ * movement, and company performance.
  *
- * The comparison is carried by the timeline along the bottom rather than
- * re-stated here, so this frame only has to name the two things and let the
- * forecast line resolve from a projection into a measurement.
- *
- * This is the scene the old "why the change" slide became: the market
- * best-practice point is made in the narration now, not as a headline.
+ * Highly visual on purpose: the pins say what each month is, so the narration
+ * only makes the point - actual results rather than estimates - and this frame
+ * lets the forecast line resolve from a projection into a measurement.
  */
 import React from 'react';
 import {AbsoluteFill} from 'remotion';
@@ -24,9 +22,9 @@ import {colors, fonts} from '../lib/theme';
  * The old timing against the new one, in one strip.
  *
  * Deliberately small. The scene above already says what the new timing gives
- * us; this only has to make the SHIFT legible at a glance - the same two
- * inputs, two months later, and therefore actual rather than estimated. It
- * arrives after both new months have been named, so it recaps rather than
+ * us; this only has to make the SHIFT legible at a glance - the same
+ * inputs, later, and therefore actual rather than estimated. It
+ * arrives after the point has been made, so it recaps rather than
  * reveals.
  */
 const CompareRow: React.FC<{
@@ -73,12 +71,12 @@ const Claim: React.FC<{progress: number; text: string}> = ({progress, text}) => 
   <Rise progress={progress} distance={30}>
     <div style={{display: 'flex', alignItems: 'center', gap: 22}}>
       <Tick progress={progress} size={46} />
-      <Display size={50} color={colors.text}>{text}</Display>
+      <Display size={44} color={colors.text}>{text}</Display>
     </div>
   </Rise>
 );
 
-export const Scene05ActualData: React.FC = () => {
+export const Scene06ActualData: React.FC = () => {
   const scene = useScene();
   const t = scene.text as Record<string, string>;
 
@@ -115,13 +113,13 @@ export const Scene05ActualData: React.FC = () => {
 
           <div style={{display: 'flex', flexDirection: 'column', gap: 28}}>
             <Claim progress={p1} text={t.line1} />
-            <Plinth progress={p1} width={660} color={colors.primary} />
+            <Plinth progress={p1} width={820} color={colors.primary} />
             <Claim progress={p2} text={t.line2} />
           </div>
         </div>
       </AbsoluteFill>
 
-      {/* The shift itself: same two inputs, two months later, now actual. */}
+      {/* The shift itself: the same inputs, later, and now actual. */}
       <div
         style={{
           position: 'absolute',

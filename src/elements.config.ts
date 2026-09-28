@@ -19,7 +19,7 @@ export interface ElementSpec {
 export const elementSpecs: ElementSpec[] = [
   {id: 'el-timeline-old',      title: 'Bottom timeline, JAN to DEC, with the November and December markers', width: 1920, height: 420, duration: 5.5},
   {id: 'el-timeline-morph',    title: 'Bottom timeline re-aligning from JAN-DEC into APR-MAR',              width: 1920, height: 300, duration: 3.5},
-  {id: 'el-timeline-new',      title: 'Bottom timeline, APR to MAR, with all four new-cycle markers',       width: 1920, height: 420, duration: 6.0},
+  {id: 'el-timeline-new',      title: 'Bottom timeline, APR to MAR, with the four new-cycle markers',          width: 1920, height: 420, duration: 6.0},
   {id: 'el-monthrail-old',     title: 'Month rail, JAN to DEC, with the playhead walking the year',         width: 1700, height: 320, duration: 4.0},
   {id: 'el-monthrail-new',     title: 'Month rail, APR to MAR, landing on March',                           width: 1700, height: 320, duration: 4.0},
   {id: 'el-rail-reorder',      title: 'Month rail physically re-ordering into the new cycle',               width: 1920, height: 320, duration: 4.0},
@@ -36,5 +36,5 @@ export const elementSpecs: ElementSpec[] = [
   {id: 'el-forecast-chart',    title: 'Forecast line resolving from a projection into a measurement',       width: 1300, height: 700, duration: 5.0},
   {id: 'el-fifteen-months',    title: '12 solid month tiles plus the 3 that only exist in the changeover',  width: 1800, height: 300, duration: 3.5},
   {id: 'el-five-to-625',       title: '5% struck through, resolving into 6.25%, both periods labelled',     width: 1400, height: 400, duration: 2.6},
-  {id: 'el-timing-compare',    title: 'TODAY / NOV DEC / ESTIMATED against NEW CYCLE / JAN FEB / ACTUAL',   width: 1200, height: 320, duration: 2.4},
+  {id: 'el-timing-compare',    title: 'TODAY / NOV / ESTIMATED against NEW CYCLE / FEB / ACTUAL',           width: 1200, height: 320, duration: 2.4},
 ];

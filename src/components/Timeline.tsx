@@ -49,6 +49,8 @@ export interface TimelinePin {
   tone?: 'estimate' | 'actual';
   /** 0 sits on the rule, 1 rides above it. Alternate these on adjacent months. */
   tier?: 0 | 1;
+  /** Width of the text box, when a pin's longest line needs more than PIN_BOX. */
+  box?: number;
 }
 
 export const Timeline: React.FC<{
@@ -177,7 +179,8 @@ export const Timeline: React.FC<{
         // The text is centred on the month but never allowed off the frame; the
         // stem still drops from the tick itself, so nothing points at the wrong
         // month even when the label has been nudged inward.
-        const boxLeft = Math.min(Math.max(x - PIN_BOX / 2, -edge), width + edge - PIN_BOX);
+        const box = pin.box ?? PIN_BOX;
+        const boxLeft = Math.min(Math.max(x - box / 2, -edge), width + edge - box);
         return (
           <React.Fragment key={pin.month + pin.label}>
             <div
@@ -185,7 +188,7 @@ export const Timeline: React.FC<{
                 position: 'absolute',
                 left: boxLeft,
                 bottom: 26 + STEM + rise,
-                width: PIN_BOX,
+                width: box,
                 opacity: pp,
                 transform: `translateY(${(1 - pp) * 8}px)`,
                 display: 'flex',

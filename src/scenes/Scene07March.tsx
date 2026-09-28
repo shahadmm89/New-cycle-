@@ -1,13 +1,13 @@
 /**
  * SCENE 7 - WHAT HAPPENS IN MARCH
  * The playhead travels the whole new salary year - APR through to MAR - and
- * stops hard on March. March is where the cycle ends, and where the bonus is.
+ * stops hard on March: YIB and bonus are paid in the March payroll.
  */
 import React from 'react';
 import {AbsoluteFill} from 'remotion';
 import {MonthRail} from '../components/MonthRail';
 import {BonusIcon} from '../components/Icons';
-import {Display, Label, Rise, Punch, Chip} from '../components/Type';
+import {Display, Rise, Punch, Chip} from '../components/Type';
 import {Plinth} from '../components/Card3D';
 import {useProgress, useScene} from '../lib/timing';
 import {colors} from '../lib/theme';
@@ -23,22 +23,12 @@ export const Scene07March: React.FC = () => {
   const pMonth = useProgress('monthIn', 0.7);
   const pBonus = useProgress('bonusIn', 0.7);
   const pPayroll = useProgress('payrollIn', 0.6);
-  // Rises slowly, so it is still arriving while the narrator finishes the
-  // sentence rather than landing and leaving the frame static.
-  const pNote = useProgress('closesNote', 1.4);
-  const pEyebrow = useProgress('noteIn', 0.6);
 
   const last = monthsSalaryYear.length - 1;
   const playhead = pTravel * last;
 
   return (
     <AbsoluteFill>
-      <div style={{position: 'absolute', left: 120, top: 108}}>
-        <Rise progress={pEyebrow} distance={22}>
-          <Label size={30} color={colors.primary}>{t.note}</Label>
-        </Rise>
-      </div>
-
       <div style={{position: 'absolute', left: 142, top: 196, width: 1636}}>
         <MonthRail
           months={monthsSalaryYear}
@@ -74,11 +64,6 @@ export const Scene07March: React.FC = () => {
               </Rise>
             </div>
           </div>
-        </div>
-        {/* Restates the anchor as the narrator says it, without repeating the
-            eyebrow label already at the top of the scene. */}
-        <div style={{marginTop: 54, opacity: pNote}}>
-          <Label size={30} color={colors.textSoft}>MARCH CLOSES THE CYCLE</Label>
         </div>
       </AbsoluteFill>
     </AbsoluteFill>

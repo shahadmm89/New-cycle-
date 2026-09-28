@@ -1,5 +1,5 @@
 /**
- * SCENE 4 - THE CHANGE (the hero moment)
+ * SCENE 5 - THE CHANGE (the hero moment)
  *
  * The year ring spins. Three full turns plus three months, so APRIL lands at
  * twelve o'clock where JANUARY used to be. The ring is the year counter, and
@@ -31,7 +31,7 @@ const APRIL_INDEX = 3;
  */
 const SPINS = 2;
 
-export const Scene04TheChange: React.FC = () => {
+export const Scene05TheChange: React.FC = () => {
   const scene = useScene();
   const t = scene.text as Record<string, string>;
   const frame = useCurrentFrame();

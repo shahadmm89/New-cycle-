@@ -38,30 +38,30 @@ import {loadProjectFonts} from './lib/fonts';
 import {colors, fonts} from './lib/theme';
 
 import {Scene01Hook} from './scenes/Scene01Hook';
-import {Scene02OldCycle} from './scenes/Scene02OldCycle';
-import {Scene03Today} from './scenes/Scene03Today';
-import {Scene04TheChange} from './scenes/Scene04TheChange';
-import {Scene05ActualData} from './scenes/Scene05ActualData';
-import {Scene06April} from './scenes/Scene06April';
+import {Scene02TimingOnly} from './scenes/Scene02TimingOnly';
+import {Scene03OldCycle} from './scenes/Scene03OldCycle';
+import {Scene04Today} from './scenes/Scene04Today';
+import {Scene05TheChange} from './scenes/Scene05TheChange';
+import {Scene06ActualData} from './scenes/Scene06ActualData';
 import {Scene07March} from './scenes/Scene07March';
-import {Scene08NoChange} from './scenes/Scene08NoChange';
+import {Scene08April} from './scenes/Scene08April';
 import {Scene09Example} from './scenes/Scene09Example';
-import {Scene10Summary} from './scenes/Scene10Summary';
+import {Scene10Leave} from './scenes/Scene10Leave';
 import {Scene11Close} from './scenes/Scene11Close';
 
 loadProjectFonts();
 
 const SCENE_COMPONENTS: Record<string, React.FC> = {
   hook: Scene01Hook,
-  'old-cycle': Scene02OldCycle,
-  today: Scene03Today,
-  'the-change': Scene04TheChange,
-  'actual-data': Scene05ActualData,
-  april: Scene06April,
+  'timing-only': Scene02TimingOnly,
+  'old-cycle': Scene03OldCycle,
+  today: Scene04Today,
+  'the-change': Scene05TheChange,
+  'actual-data': Scene06ActualData,
   march: Scene07March,
-  'no-change': Scene08NoChange,
+  april: Scene08April,
   example: Scene09Example,
-  summary: Scene10Summary,
+  leave: Scene10Leave,
   close: Scene11Close,
 };
 
@@ -91,24 +91,25 @@ type GlowKey = {
  */
 const GLOW_KEYS: GlowKey[] = [
   {scene: 'hook', at: 0, x: 960, y: 470, v: 0.4},
+  {scene: 'timing-only', at: 0.4, x: 700, y: 400, v: 0.34},  // TIMING lands
+  {scene: 'timing-only', at: 4.8, x: 700, y: 640, v: 0.22},
   {scene: 'old-cycle', at: 0, x: 500, y: 520, v: 0.14},
   {scene: 'today', at: 0, x: 960, y: 430, v: 0.12},
-  {scene: 'today', at: 13.6, x: 960, y: 560, v: 0.35},  // the KPIs roll up
+  {scene: 'today', at: 8.0, x: 1390, y: 470, v: 0.3},  // the KPIs roll up
   {scene: 'the-change', at: 0, x: 480, y: 520, v: 0.18},
   {scene: 'the-change', at: 2.2, x: 480, y: 520, v: 0.55}, // ring spins up
   {scene: 'the-change', at: 4.25, x: 1250, y: 470, v: 0.95}, // APR -> MAR lands
   {scene: 'the-change', at: 5.6, x: 1250, y: 470, v: 0.85},
   // The bottom timeline is deliberately unlit - the glow stays on the scene.
   {scene: 'actual-data', at: 0.4, x: 700, y: 470, v: 0.3},
-  {scene: 'actual-data', at: 6.0, x: 1150, y: 470, v: 0.42},
-  {scene: 'actual-data', at: 13.0, x: 900, y: 470, v: 0.3},
+  {scene: 'actual-data', at: 3.0, x: 1150, y: 470, v: 0.42},
+  {scene: 'march', at: 1.0, x: 960, y: 600, v: 0.7},
+  {scene: 'march', at: 2.4, x: 960, y: 600, v: 0.85},
   {scene: 'april', at: 0.4, x: 960, y: 420, v: 0.9},
-  {scene: 'march', at: 3.05, x: 960, y: 600, v: 0.7},
-  {scene: 'march', at: 4.3, x: 960, y: 600, v: 0.85},
-  {scene: 'no-change', at: 0, x: 960, y: 500, v: 0.3},
   {scene: 'example', at: 0, x: 760, y: 560, v: 0.16},
-  {scene: 'example', at: 25.5, x: 1470, y: 600, v: 0.8},  // 6.25% lands
-  {scene: 'summary', at: 0.6, x: 960, y: 420, v: 0.75},
+  {scene: 'example', at: 12.5, x: 1470, y: 600, v: 0.8},  // 6.25% lands
+  {scene: 'leave', at: 0.5, x: 560, y: 470, v: 0.3},
+  {scene: 'leave', at: 7.5, x: 1480, y: 470, v: 0.7},  // APRIL 2027 lands
   {scene: 'close', at: 0.4, x: 960, y: 330, v: 0.75},
 ];
 
@@ -116,25 +117,27 @@ const GLOW_KEYS: GlowKey[] = [
 /* ------------------------------------------------------------------------- *
  * THE BOTTOM TIMELINE
  *
- * One hairline rail of twelve months, running from scene 2 to scene 5. It
- * answers a single question the narration keeps raising: WHEN does each piece
- * of information actually arrive?
+ * One hairline rail of twelve months, running from scene 3 to scene 8. It
+ * answers the question the whole film is about: WHEN does each thing happen?
  *
- *   scenes 2-3   JAN -> DEC, and today's two pins: the market data that lands
- *                around November, the company figures estimated by December.
- *   scene 4      the same twelve months re-align into APR -> MAR. They travel;
+ *   scenes 3-4   JAN -> DEC, and today's two pins: November, when merit &
+ *                salary movement and the year-end estimate are both prepared,
+ *                and December, when decisions are finalized. (January, when
+ *                they are reflected, is said rather than pinned.)
+ *   scene 5      the same twelve months re-align into APR -> MAR. They travel;
  *                nothing cuts.
- *   scene 5      two new pins, late in the new cycle, where the same two pieces
- *                of information are ACTUAL rather than estimated.
- *   scene 6      APRIL: merit and promotion take effect.
- *   scene 7      MARCH: the bonus is paid, and the rail retires with the scene.
+ *   scene 6      JANUARY, the new cycle takes effect, and FEBRUARY, when the
+ *                actual figures are in.
+ *   scene 7      MARCH: YIB & bonus paid.
+ *   scene 8      APRIL: merit & promotion adjustments reflected - and the rail
+ *                retires with the scene.
  *
- * Every pin arrives on the word that names it, measured rather than estimated -
- * see src/config/anchors.ts.
+ * Every pin arrives on the word that names it where a word names it, measured
+ * rather than estimated - see src/config/anchors.ts.
  *
- * It renders here rather than inside the scenes so it can cross all four of
- * them - a per-scene rail would have to be re-introduced each time, which is
- * exactly the cut we are avoiding.
+ * It renders here rather than inside the scenes so it can cross all of them -
+ * a per-scene rail would have to be re-introduced each time, which is exactly
+ * the cut we are avoiding.
  * ------------------------------------------------------------------------- */
 
 /** Left edge and width of the rail. Inset from the frame so end pins fit. */
@@ -150,14 +153,13 @@ type Cue = {scene: string; beat: string; len: number};
 /** The rail's own moments. */
 const TL_IN: Cue = {scene: 'old-cycle', beat: 'timelineIn', len: 1.5};
 const TL_MORPH: Cue = {scene: 'the-change', beat: 'timelineMorph', len: 2.0};
-const TL_OUT: Cue = {scene: 'march', beat: 'timelineOut', len: 1.3};
+const TL_OUT: Cue = {scene: 'april', beat: 'timelineOut', len: 1.3};
 
 /**
  * A pin, the beat it arrives on, and the beat it makes way for.
  *
  * Pins hand over in pairs rather than accumulating. Six of them on one rail is
- * unreadable at this size, and by scene 7 the later ones would be sitting under
- * that scene's own content. Each pair has said what it has to say by the time
+ * unreadable at this size. Each pair has said what it has to say by the time
  * the next arrives.
  *
  * Within a pair the tiers alternate, because neighbouring months are closer
@@ -167,19 +169,19 @@ type PinCue = TimelinePin & Cue & {tone: 'estimate' | 'actual'; until?: Cue};
 
 /** When today's pair clears, as the cycle starts to move. */
 const PINS_OUT_ESTIMATE: Cue = {scene: 'the-change', beat: 'timelinePinsOut', len: 0.7};
-/** When the information pair clears, as the payout pair arrives. */
-const PINS_OUT_INFO: Cue = {scene: 'april', beat: 'timelineApr', len: 0.7};
+/** When January and February clear, as the payout months arrive. */
+const PINS_OUT_INFO: Cue = {scene: 'march', beat: 'timelineMar', len: 0.7};
 
 const TL_PINS: PinCue[] = [
-  // Today: both of these are an ESTIMATE at the moment the decision is made.
-  {month: 'NOV', label: 'NOVEMBER', kind: 'Merit', sub: 'Expected Market\nMovement', tone: 'estimate', tier: 1, progress: 0, scene: 'today', beat: 'timelineNov', len: PIN_IN, until: PINS_OUT_ESTIMATE},
-  {month: 'DEC', label: 'DECEMBER', kind: 'Bonus', sub: 'Estimated Company\nPerformance KPIs', tone: 'estimate', tier: 0, progress: 0, scene: 'today', beat: 'timelineDec', len: PIN_IN, until: PINS_OUT_ESTIMATE},
-  // The new cycle: when the same two things become ACTUAL.
-  {month: 'JAN', label: 'JANUARY', kind: 'Merit', sub: 'Actual Company\nPerformance', tone: 'actual', tier: 1, progress: 0, scene: 'actual-data', beat: 'timelineJan', len: PIN_IN, until: PINS_OUT_INFO},
-  {month: 'FEB', label: 'FEBRUARY', kind: 'Bonus', sub: 'Actual Market\nMovement', tone: 'actual', tier: 0, progress: 0, scene: 'actual-data', beat: 'timelineFeb', len: PIN_IN, until: PINS_OUT_INFO},
+  // Today: November's two parallel activities, then December's decisions.
+  {month: 'NOV', label: 'NOVEMBER', sub: 'Merit & Salary Movement\nYear-End Estimate', tone: 'estimate', tier: 1, progress: 0, scene: 'today', beat: 'timelineNov', len: PIN_IN, until: PINS_OUT_ESTIMATE},
+  {month: 'DEC', label: 'DECEMBER', sub: 'Finalization /\nDecisions', tone: 'estimate', tier: 0, progress: 0, scene: 'today', beat: 'timelineDec', len: PIN_IN, until: PINS_OUT_ESTIMATE},
+  // The new cycle: it takes effect, then the figures arrive ACTUAL.
+  {month: 'JAN', label: 'JANUARY', sub: 'New cycle\ntakes effect', tone: 'actual', tier: 0, progress: 0, scene: 'actual-data', beat: 'timelineJan', len: PIN_IN, until: PINS_OUT_INFO},
+  {month: 'FEB', label: 'FEBRUARY', sub: 'Actual Inflation & Market Movement\nActual Company Performance', box: 380, tone: 'actual', tier: 1, progress: 0, scene: 'actual-data', beat: 'timelineFeb', len: PIN_IN, until: PINS_OUT_INFO},
   // ...and then the two months the new cycle pays out on.
-  {month: 'APR', label: 'APRIL', kind: 'Merit', sub: 'Merit & Promotion\ntake effect', tone: 'actual', tier: 0, progress: 0, scene: 'april', beat: 'timelineApr', len: PIN_IN},
-  {month: 'MAR', label: 'MARCH', kind: 'Bonus', sub: 'Bonus paid in the\nMarch payroll', tone: 'actual', tier: 1, progress: 0, scene: 'march', beat: 'timelineMar', len: PIN_IN},
+  {month: 'MAR', label: 'MARCH', sub: 'YIB & Bonus\npaid', tone: 'actual', tier: 0, progress: 0, scene: 'march', beat: 'timelineMar', len: PIN_IN},
+  {month: 'APR', label: 'APRIL', sub: 'Merit & Promotion\nadjustments reflected', tone: 'actual', tier: 0, progress: 0, scene: 'april', beat: 'timelineApr', len: PIN_IN},
 ];
 
 const BottomTimeline: React.FC = () => {

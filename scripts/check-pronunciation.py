@@ -27,16 +27,36 @@ The verdict is relative, not absolute: the take is compared against two
 known-answer references in assets/test/pronunciation/, so a deeper or brighter
 voice does not move the threshold under it.
 """
-import sys, pathlib
+import re, sys, pathlib
 sys.path.insert(0, str(pathlib.Path(__file__).parent / 'lib'))
 import numpy as np
 import formants as F
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 FIXTURES = ROOT / 'assets' / 'test' / 'pronunciation'
-# The line that ends on the term. Change it here if the script changes.
-TAKE = ROOT / 'assets' / 'audio' / 'lines' / 's3-l4.wav'
 TAIL = 0.9
+
+
+def kpi_lines():
+    """
+    Every narration line whose SPOKEN text ends on "KPIs" - the only place this
+    test can listen, because it measures the last vowel of the phrase.
+
+    Read from src/config/scenes.ts rather than named here, so a script change
+    cannot leave the test pointing at a line that says something else. The
+    alias `${kpiTermSpoken}` counts as the term.
+    """
+    src = (ROOT / 'src' / 'config' / 'scenes.ts').read_text()
+    found = []
+    for m in re.finditer(r"id: '(s\d+-l\d+)',(.*?)captions:", src, re.S):
+        body = m.group(2)
+        spoken = re.search(r"spoken:\s*[`'\"](.*?)[`'\"],", body, re.S)
+        text = re.search(r"text:\s*[`'\"](.*?)[`'\"],", body, re.S)
+        said = (spoken or text).group(1) if (spoken or text) else ''
+        said = said.replace('${kpiTermSpoken}', 'Company Performance KPIs')
+        if re.search(r'KPIs\W*$', said):
+            found.append(m.group(1))
+    return found
 
 
 # No vowel has a first formant outside this band. A frame that reports one has
@@ -70,6 +90,18 @@ def peak_f1(path, tail=TAIL):
 
 
 def main():
+    ids = kpi_lines()
+    if not ids:
+        print('N/A - no narration line ends on "KPIs", so there is nothing to listen to.')
+        print('The term still appears on screen; this test only guards how it is SAID.')
+        return 0
+    worst = 0
+    for line_id in ids:
+        worst = max(worst, check(ROOT / 'assets' / 'audio' / 'lines' / f'{line_id}.wav'))
+    return worst
+
+
+def check(TAKE):
     if not TAKE.exists():
         print(f'No take to check yet: {TAKE.relative_to(ROOT)}')
         print('Generate the narration first - see docs/VOICEOVER.md.')
@@ -98,7 +130,7 @@ def main():
     print(
         f'\nFAIL - the take ends closed, which means "KPIs" is being read as the\n'
         f'word "is". Change `kpiTermSpoken` in src/config/copy.ts to the next\n'
-        f'candidate listed there and re-generate s3-l4 ONLY - never the script.'
+        f'candidate listed there and re-generate {TAKE.stem} ONLY - never the script.'
     )
     return 1
 

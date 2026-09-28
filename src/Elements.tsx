@@ -62,12 +62,25 @@ const Hold: React.FC<{children: React.ReactNode; pad?: number}> = ({children, pa
 
 /* ---------------------------------------------------------------- timeline */
 
-const pins = (defs: Array<[string, string, string, string, 'estimate' | 'actual', 0 | 1, number]>, t: number)
-  : TimelinePin[] =>
-  defs.map(([month, label, kind, sub, tone, tier, at]) => ({
-    month, label, kind, sub, tone, tier,
-    progress: interpolate(t, [at, at + 0.7], [0, 1], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'}),
-  }));
+type PinDef = {
+  month: string;
+  label: string;
+  sub: string;
+  tone: 'estimate' | 'actual';
+  tier: 0 | 1;
+  /** Seconds in. */
+  at: number;
+  /** Seconds in at which it makes way for the next pair, as in the film. */
+  until?: number;
+  box?: number;
+};
+
+const pins = (defs: PinDef[], t: number): TimelinePin[] =>
+  defs.map(({at, until, ...pin}) => {
+    const ramp01 = (from: number) =>
+      interpolate(t, [from, from + 0.7], [0, 1], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'});
+    return {...pin, progress: ramp01(at) * (until === undefined ? 1 : 1 - ramp01(until))};
+  });
 
 /** JAN -> DEC drawing in, then today's two markers arriving. */
 export const ElTimelineOld: React.FC = () => {
@@ -83,8 +96,8 @@ export const ElTimelineOld: React.FC = () => {
           width={1600}
           edge={140}
           pins={pins([
-            ['NOV', 'NOVEMBER', 'Merit', 'Expected Market\nMovement', 'estimate', 1, 2.2],
-            ['DEC', 'DECEMBER', 'Bonus', 'Estimated Company\nPerformance KPIs', 'estimate', 0, 3.6],
+            {month: 'NOV', label: 'NOVEMBER', sub: 'Merit & Salary Movement\nYear-End Estimate', tone: 'estimate', tier: 1, at: 2.2},
+            {month: 'DEC', label: 'DECEMBER', sub: 'Finalization /\nDecisions', tone: 'estimate', tier: 0, at: 3.6},
           ], t)}
         />
       </div>
@@ -108,7 +121,7 @@ export const ElTimelineMorph: React.FC = () => (
   </Hold>
 );
 
-/** APR -> MAR with the new cycle's four markers. */
+/** APR -> MAR with the new cycle's four markers, handing over in pairs as in the film. */
 export const ElTimelineNew: React.FC = () => {
   const frame = useCurrentFrame();
   const {fps} = useVideoConfig();
@@ -124,10 +137,10 @@ export const ElTimelineNew: React.FC = () => {
           width={1600}
           edge={140}
           pins={pins([
-            ['JAN', 'JANUARY', 'Merit', 'Actual Company\nPerformance', 'actual', 1, 0.3],
-            ['FEB', 'FEBRUARY', 'Bonus', 'Actual Market\nMovement', 'actual', 0, 1.5],
-            ['APR', 'APRIL', 'Merit', 'Merit & Promotion\ntake effect', 'actual', 0, 2.7],
-            ['MAR', 'MARCH', 'Bonus', 'Bonus paid in the\nMarch payroll', 'actual', 1, 3.9],
+            {month: 'JAN', label: 'JANUARY', sub: 'New cycle\ntakes effect', tone: 'actual', tier: 0, at: 0.3, until: 2.7},
+            {month: 'FEB', label: 'FEBRUARY', sub: 'Actual Inflation & Market Movement\nActual Company Performance', tone: 'actual', tier: 1, at: 1.3, until: 2.7, box: 380},
+            {month: 'MAR', label: 'MARCH', sub: 'YIB & Bonus\npaid', tone: 'actual', tier: 0, at: 2.9},
+            {month: 'APR', label: 'APRIL', sub: 'Merit & Promotion\nadjustments reflected', tone: 'actual', tier: 0, at: 3.9},
           ], t)}
         />
       </div>
@@ -319,7 +332,7 @@ export const ElFiveToSixTwentyFive: React.FC = () => {
   );
 };
 
-/** TODAY / NOV DEC / ESTIMATED against NEW CYCLE / JAN FEB / ACTUAL. */
+/** TODAY / NOV / ESTIMATED against NEW CYCLE / FEB / ACTUAL. */
 export const ElTimingCompare: React.FC = () => {
   const pWas = useRamp(0.2, 0.6);
   const pNow = useRamp(0.7, 0.7);
@@ -341,8 +354,8 @@ export const ElTimingCompare: React.FC = () => {
   return (
     <Hold>
       <div style={{display: 'flex', flexDirection: 'column', gap: 12}}>
-        <Row p={pWas} label="TODAY" months={['NOV', 'DEC']} tag="ESTIMATED" tone={colors.primary} />
-        <Row p={pNow} label="NEW CYCLE" months={['JAN', 'FEB']} tag="ACTUAL" tone={colors.accent} strong />
+        <Row p={pWas} label="TODAY" months={['NOV']} tag="ESTIMATED" tone={colors.primary} />
+        <Row p={pNow} label="NEW CYCLE" months={['FEB']} tag="ACTUAL" tone={colors.accent} strong />
       </div>
     </Hold>
   );

@@ -1,7 +1,8 @@
 /**
- * SCENE 1 - ATTENTION GRABBER
- * Starts on frame one. A year ring sweeping behind an oversized question, with
- * SALARY CYCLE lit in the accent so a passer-by reads the subject in a glance.
+ * SCENE 1 - PURPOSE
+ * Starts on frame one. A year ring sweeping behind an oversized statement, with
+ * SALARY CYCLE lit in the accent so a passer-by reads the subject in a glance,
+ * and the reason for the change arriving as it is said.
  */
 import React from 'react';
 import {AbsoluteFill} from 'remotion';
@@ -19,6 +20,7 @@ export const Scene01Hook: React.FC = () => {
   const pRing = useProgress('ringIn', 1.1);
   const pSweep = useProgress('monthsSweep', 2.6);
   const pHead = useProgress('headlineIn', 0.6);
+  const pPost = useProgress('postIn', 0.6);
   const pKey = useProgress('highlightPhrase', 0.5);
   const pSub = useProgress('subIn', 0.6);
   const pPush = useProgress('pushIn', 2.4);
@@ -69,8 +71,8 @@ export const Scene01Hook: React.FC = () => {
         </Punch>
         <Plinth progress={pKey} width={760} color={colors.accent} style={{marginTop: -6}} />
 
-        <Rise progress={pHead} distance={40} style={{marginTop: 6}}>
-          <Display size={92} weight={700} color={colors.text} style={{textAlign: 'center'}}>
+        <Rise progress={pPost} distance={40} style={{marginTop: 6}}>
+          <Display size={84} weight={700} color={colors.text} style={{textAlign: 'center'}}>
             {t.headlinePost}
           </Display>
         </Rise>

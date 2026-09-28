@@ -60,17 +60,17 @@ const screenText = (scene) => {
  * because "what is on screen" is the one thing the config cannot describe.
  */
 const VISUALS = {
-  hook: 'Oversized question over a faint year ring. SALARY CYCLE lit in the accent, on a plinth, with the sub-line beneath.',
-  'old-cycle': 'Year ring on the left counting twelve months, range plate and month rail on the right, JAN to DEC, playhead walking the year. The bottom timeline draws in here and runs for the next four scenes.',
-  today: 'MERIT card with the forecast line, then the BONUS heading and the three KPI tiles (HSE, Finance, Performance) rolling up into COMPANY PERFORMANCE KPIs. The bottom timeline picks up the NOVEMBER and DECEMBER markers.',
-  'the-change': 'The hero moment. The ring spins three turns and lands on April while OLD drops away and NEW rises. Underneath, the same twelve months re-align from JAN-DEC into APR-MAR - months with far to travel lift over the ones that barely move.',
-  'actual-data': 'Forecast chart resolving from a projection into a measurement, two ticked claims beside it, and the small old-against-new timing comparison. The bottom timeline picks up JANUARY and FEBRUARY, now actual rather than estimated.',
-  april: 'APRIL at full size with MERIT and PROMOTION icons rising, and the EFFECTIVE APRIL 1 pill. The bottom timeline picks up the APRIL marker.',
-  march: 'Month rail running the new salary year and landing on MARCH, with the bonus icon and the MARCH PAYROLL chip. The bottom timeline picks up the MARCH marker, then retires.',
-  'no-change': 'Two parallel rows: PERFORMANCE APPRAISAL JAN-DEC with a tick and NO CHANGE, against SALARY CYCLE APR-MAR marked NEW.',
-  example: 'IMPLEMENTATION YEAR ONLY with the happens-once chip. Twelve solid month tiles plus three dashed ones numbered MONTH 13/14/15. Below, the ILLUSTRATIVE EXAMPLE card builds 5% divided by 12 times 15 term by term, then strikes the 5% through and resolves it into 6.25%, each labelled with the period it covers.',
-  summary: 'APRIL to MARCH over three markers - the frame to remember.',
-  close: 'HAVE QUESTIONS? over the contact line, the HR placeholders and the company logo slot.',
+  hook: 'Oversized statement over a faint year ring: YASREF is changing its SALARY CYCLE (lit in the accent, on a plinth), then "to align with best practice" and the timing / relevance sub-line.',
+  'timing-only': 'Two parallel rows. WHAT CHANGES: TIMING, a month rail, "When benefits are received & reflected", CHANGES chip. WHAT DOES NOT CHANGE: BENEFITS, chips BONUS / MERIT / PROMOTION, Total Reward Package, tick and NO CHANGE.',
+  'old-cycle': 'Year ring on the left counting twelve months, range plate and month rail on the right, JAN to DEC, playhead walking the year, ONE CYCLE. The bottom timeline draws in here and runs to the April scene.',
+  today: 'HOW IT WORKS TODAY, NOVEMBER - IN PARALLEL. Two cards side by side: MERIT & SALARY MOVEMENT with the forecast line, and YEAR-END ESTIMATE with the three KPI tiles (HSE, Finance, Performance) rolling up into COMPANY PERFORMANCE KPIs. The bottom timeline picks up NOVEMBER and DECEMBER (finalization / decisions).',
+  'the-change': 'The hero moment. The ring spins and lands on April while OLD drops away and NEW rises. Underneath, the same twelve months re-align from JAN-DEC into APR-MAR - months with far to travel lift over the ones that barely move.',
+  'actual-data': 'Forecast chart resolving from a projection into a measurement, ACTUAL INFLATION & MARKET MOVEMENT and ACTUAL COMPANY PERFORMANCE ticked beside it, and the small TODAY NOV ESTIMATED / NEW CYCLE FEB ACTUAL strip. The bottom timeline picks up JANUARY (new cycle takes effect) and FEBRUARY.',
+  march: 'Month rail running the new salary year and landing on MARCH, with the bonus icon, YIB & BONUS and the PAID - MARCH PAYROLL chip. The bottom timeline picks up the MARCH marker.',
+  april: 'APRIL at full size with MERIT and PROMOTION icons rising, and the EFFECTIVE APRIL 1 pill. The bottom timeline picks up the APRIL marker, then retires.',
+  example: '2026 IMPLEMENTATION YEAR ONLY with the happens-once chip. Twelve solid month tiles plus three dashed ones numbered MONTH 13/14/15. Below, the ILLUSTRATIVE EXAMPLE card builds 5% divided by 12 times 15 term by term, then strikes the 5% through and resolves it into 6.25%, each labelled with the period it covers.',
+  leave: 'LEAVE BALANCE. A JANUARY 2027 card (FIRST 3 MONTHS ONLY) with GRADE 9 & BELOW 22 / 12 x 3 = ~6 DAYS and GRADE 10 & ABOVE 30 / 12 x 3 = ~8 DAYS, an arrow, and an APRIL 2027 card: NEW ANNUAL LEAVE BALANCE, BASED ON APRIL GRADE CODE.',
+  close: 'FOR FURTHER CLARIFICATION over CONTACT HR PERSONNEL, the HR placeholders and the company logo slot.',
 };
 
 mkdir(OUT);

@@ -84,8 +84,9 @@ export const kpiSaidAs = 'K-P-Is';
  *
  * UNVERIFIED FOR THE CURRENT VOICE. Every measurement below was taken on
  * Alexander; the narrator is now Dan, and a spelling that works on one voice is
- * not evidence about another. The first take of s3-l4 has to be measured before
- * anything is rendered:
+ * not evidence about another. The first take of any line ending on the term
+ * has to be measured before anything is rendered (the current script only
+ * shows the term on screen, so there is nothing to measure right now):
  *
  *   npm run check:pronunciation
  *
@@ -124,17 +125,6 @@ export const kpiSaidAs = 'K-P-Is';
 export const kpiTermSpoken = 'Company Performance KPIs';
 
 /**
- * The three anchors the film exists to plant, in the order they fall within the
- * new salary year: April starts it, December closes the appraisal, March ends
- * the cycle and pays the bonus.
- */
-export const anchors = [
-  {month: 'APRIL', what: 'Merit + Promotion', tone: 'new' as const},
-  {month: 'DECEMBER', what: 'Performance Appraisal Closes', tone: 'steady' as const},
-  {month: 'MARCH', what: 'Bonus', tone: 'new' as const},
-];
-
-/**
  * THE IMPLEMENTATION YEAR.
  *
  * Moving the start of the cycle from January to April means the changeover
@@ -150,7 +140,7 @@ const IMPLEMENTATION_MONTHS = 15;
 const MERIT_EXAMPLE_PCT = 5;
 
 export const implementation = {
-  label: 'IMPLEMENTATION YEAR ONLY',
+  label: '2026 IMPLEMENTATION YEAR ONLY',
   /** Said once, plainly, so nobody reads 6.25% as a new merit rate. */
   once: 'HAPPENS ONCE \u00B7 NOT EVERY YEAR',
   /** The three months past the normal twelve. */
@@ -196,6 +186,31 @@ export const implementation = {
   monthsChip: `${IMPLEMENTATION_MONTHS} MONTHS`,
   insteadOf: 'INSTEAD OF 12',
   note: 'ONE YEAR ONLY \u00B7 THE CHANGEOVER PERIOD',
+} as const;
+
+/**
+ * LEAVE BALANCE IN THE TRANSITION.
+ *
+ * The same changeover applies to annual leave: January 2027 credits only the
+ * first three months (Jan-Mar), and April 2027 starts the new annual balance.
+ * The two worked figures are derived below so the arithmetic on screen always
+ * agrees with itself - change the annual entitlements, not the results.
+ */
+const LEAVE_MONTHS = 3;
+const leaveRow = (grade: string, annual: number) => ({
+  grade,
+  working: `${annual} \u00F7 12 \u00D7 ${LEAVE_MONTHS}`,
+  result: `\u2248 ${Math.round((annual / 12) * LEAVE_MONTHS)} DAYS`,
+});
+
+export const leave = {
+  label: 'LEAVE BALANCE',
+  janWhen: 'JANUARY 2027',
+  janWhat: 'FIRST 3 MONTHS ONLY',
+  rows: [leaveRow('GRADE 9 & BELOW', 22), leaveRow('GRADE 10 & ABOVE', 30)],
+  aprWhen: 'APRIL 2027',
+  aprWhat: 'NEW ANNUAL LEAVE BALANCE',
+  aprBasis: 'BASED ON APRIL GRADE CODE',
 } as const;
 
 export const videoTitle = 'Our Salary Cycle Is Changing';

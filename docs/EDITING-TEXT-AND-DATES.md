@@ -30,7 +30,7 @@ monthsSalaryYear // APR..MAR - the new salary year
 
 Seeing the same rail with a different first month is what makes the change
 concrete, so if you move the cycle start you must rotate `monthsSalaryYear` to
-match, and update `APRIL_INDEX` in `src/scenes/Scene04TheChange.tsx` - that
+match, and update `APRIL_INDEX` in `src/scenes/Scene05TheChange.tsx` - that
 constant is how far the year ring turns.
 
 The three anchors the film exists to plant are also here, in the order they

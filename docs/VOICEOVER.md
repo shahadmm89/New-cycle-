@@ -532,8 +532,9 @@ survive a voice change:
 
     npm run check:pronunciation
 
-That reads the delivered `s3-l4` and compares the end of the phrase against two
-known-answer references. If it fails, change `kpiTermSpoken` to the next
+That finds every narration line whose spoken text ends on "KPIs" and compares
+the end of each phrase against two known-answer references. (The current script
+only shows the term on screen, so it reports N/A until a line says it again.) If it fails, change `kpiTermSpoken` to the next
 candidate listed in `src/config/copy.ts` and re-generate **that one line** -
 roughly 54 credits, not another run of the script. Keep a small reserve for it.
 
