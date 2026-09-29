@@ -7,12 +7,29 @@
 import React from 'react';
 import {AbsoluteFill} from 'remotion';
 import {YearRing} from '../components/YearRing';
-import {Display, Label, Rise, Punch} from '../components/Type';
+import {Display, Label} from '../components/Type';
 import {Plinth} from '../components/Card3D';
 import {useProgress, useScene, useIdle} from '../lib/timing';
 import {colors, fonts} from '../lib/theme';
 import {Breathe} from '../components/Breathe';
 import {monthsCalendar} from '../config/copy';
+
+/**
+ * Opacity only - no transform, no filter - so the type never moves.
+ *
+ * It is ALWAYS in the layout, even before it appears (at opacity 0). The title
+ * slide is a centred stack: a line that only joined the layout when it began
+ * to fade in would re-centre everything above and below it, which is exactly
+ * the jump that read as the words shaking.
+ */
+const Fade: React.FC<{progress: number; children: React.ReactNode; style?: React.CSSProperties}> = ({
+  progress,
+  children,
+  style,
+}) => {
+  const p = Math.min(1, Math.max(0, progress));
+  return <div style={{opacity: p, ...style}}>{children}</div>;
+};
 
 export const Scene01Hook: React.FC = () => {
   const scene = useScene();
@@ -62,18 +79,21 @@ export const Scene01Hook: React.FC = () => {
           // ring behind it (no text) pushes in.
         }}
       >
+        {/* Every line on the title slide simply FADES in: no slide, no blur,
+            no bounce. Anything that moves or rescales type on its way in reads
+            as shaking on a big screen. */}
         {t.headlinePre ? (
-          <Rise progress={pHead} distance={54}>
+          <Fade progress={pHead}>
             <Display size={92} weight={700} color={colors.textSoft} style={{textAlign: 'center'}}>
               {t.headlinePre}
             </Display>
-          </Rise>
+          </Fade>
         ) : null}
 
         {/* A title too long for one line is written with a line break and set
             smaller, so it still reads as one statement. */}
-        <Punch progress={pKey} from={0.78}>
-          <div style={{position: 'relative', padding: '0 18px', display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+        <Fade progress={pKey}>
+          <div style={{padding: '0 18px', display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
             {t.headlineKey.split('\n').map((line) => (
               <Display
                 key={line}
@@ -86,20 +106,21 @@ export const Scene01Hook: React.FC = () => {
               </Display>
             ))}
           </div>
-        </Punch>
+        </Fade>
         <Plinth progress={pKey} width={760} color={colors.accent} style={{marginTop: -6}} />
 
-        <Rise progress={pPost} distance={40} style={{marginTop: 6}}>
-          <Display size={84} weight={700} color={colors.text} style={{textAlign: 'center'}}>
+        {/* "January -> April": set a size down, fades in, never moves. */}
+        <Fade progress={pPost} style={{marginTop: 10}}>
+          <Display size={64} weight={700} color={colors.text} style={{textAlign: 'center'}}>
             {t.headlinePost}
           </Display>
-        </Rise>
+        </Fade>
 
-        <Rise progress={pSub} distance={30} style={{marginTop: 22}}>
-          <Label size={34} color={colors.primary} style={{fontFamily: fonts.body}}>
+        <Fade progress={pSub} style={{marginTop: 20}}>
+          <Label size={30} color={colors.primary} style={{fontFamily: fonts.body}}>
             {t.sub}
           </Label>
-        </Rise>
+        </Fade>
       </AbsoluteFill>
     </AbsoluteFill>
   );

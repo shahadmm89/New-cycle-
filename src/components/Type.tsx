@@ -18,7 +18,10 @@ export const Rise: React.FC<{
   style?: React.CSSProperties;
 }> = ({progress, children, distance = 42, blur = true, style}) => {
   const p = clamp(progress);
-  if (p <= 0) return null;
+  // Not-yet-arrived elements stay in the layout at opacity 0. Removing them
+  // would let a centred stack re-centre as each line arrives - the other
+  // lines visibly jump, which reads as the text shaking.
+  if (p <= 0) return <div style={{opacity: 0, ...style}}>{children}</div>;
   return (
     <div
       style={{
@@ -42,7 +45,8 @@ export const Punch: React.FC<{
   style?: React.CSSProperties;
 }> = ({progress, children, from = 0.72, style}) => {
   const p = clamp(progress);
-  if (p <= 0) return null;
+  // Kept in the layout before it arrives - see Rise.
+  if (p <= 0) return <div style={{opacity: 0, ...style}}>{children}</div>;
   // Slight overshoot so it lands rather than arrives.
   const eased = p < 1 ? 1 - Math.pow(1 - p, 3) : 1;
   const s = from + (1 - from) * eased + Math.sin(Math.PI * eased) * 0.045;
