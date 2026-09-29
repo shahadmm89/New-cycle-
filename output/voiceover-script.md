@@ -1,6 +1,6 @@
 # Voice-over script - Our Salary Cycle Is Changing
 
-Total running time: **61.57000000000001 seconds** (7 scenes, 30 fps).
+Total running time: **62.809999999999995 seconds** (7 scenes, 30 fps).
 
 Voice: a professional American male presenter - mature, calm, warm, confident.
 Not a commercial voice-over, not a news anchor, not a trailer.
@@ -16,68 +16,68 @@ Record each line as its own take and name the file after the LINE ID below
 
 | Line ID | In | Slot | Scene | Words |
 |---|---|---|---|---|
-| `s1-l1` | 00:00.45 | 5.0s | 1 - The change, and why | 11 |
-| `s1-l2` | 00:05.60 | 5.1s | 1 - The change, and why | 10 |
-| `s2-l1` | 00:10.90 | 6.4s | 2 - THE NEW PROPOSED CYCLE (hero) | 5 |
-| `s3-l1` | 00:17.46 | 4.4s | 3 - March | 7 |
-| `s4-l1` | 00:22.00 | 6.4s | 4 - April | 10 |
-| `s5-l1` | 00:28.56 | 9.5s | 5 - The 2027 implementation year | 9 |
-| `s5-l2` | 00:38.26 | 5.7s | 5 - The 2027 implementation year | 23 |
-| `s6-l1` | 00:44.12 | 6.1s | 6 - Leave balance | 12 |
-| `s6-l2` | 00:50.43 | 5.8s | 6 - Leave balance | 13 |
-| `s7-l1` | 00:56.38 | 5.0s | 7 - Final message | 6 |
+| `s1-l1` | 00:02.25 | 4.3s | 1 - The change, and why | 11 |
+| `s1-l2` | 00:06.68 | 4.9s | 1 - The change, and why | 10 |
+| `s2-l1` | 00:11.78 | 6.0s | 2 - THE NEW PROPOSED CYCLE (hero) | 5 |
+| `s3-l1` | 00:17.96 | 3.5s | 3 - March | 7 |
+| `s4-l1` | 00:21.62 | 5.6s | 4 - April | 10 |
+| `s5-l1` | 00:27.38 | 8.5s | 5 - The 2027 implementation year | 9 |
+| `s5-l2` | 00:36.04 | 8.2s | 5 - The 2027 implementation year | 23 |
+| `s6-l1` | 00:44.44 | 6.6s | 6 - Leave balance | 12 |
+| `s6-l2` | 00:51.26 | 6.7s | 6 - Leave balance | 13 |
+| `s7-l1` | 00:58.11 | 4.5s | 7 - Final message | 6 |
 
 ---
 
 ## 1 - The change, and why
 
-**00:00.00 - 00:10.50** (10.5s)
+**00:00.00 - 00:11.43** (11.43s)
 
-**`s1-l1`** - in at 00:00.45
+**`s1-l1`** - in at 00:02.25
 
 > YASREF will change the salary merit effectiveness from January to April,
 
 _Say it as:_ Yasref will change the salary merit effectiveness from January to April,
 
-**`s1-l2`** - in at 00:05.60
+**`s1-l2`** - in at 00:06.68
 
 > changing only the timing in alignment with market best practices.
 
 ## 2 - THE NEW PROPOSED CYCLE (hero)
 
-**00:10.50 - 00:17.16** (6.66s)
+**00:11.43 - 00:17.61** (6.18s)
 
-**`s2-l1`** - in at 00:10.90
+**`s2-l1`** - in at 00:11.78
 
 > Here's the new proposed cycle.
 
 ## 3 - March
 
-**00:17.16 - 00:21.69** (4.53s)
+**00:17.61 - 00:21.28** (3.67s)
 
-**`s3-l1`** - in at 00:17.46
+**`s3-l1`** - in at 00:17.96
 
 > The bonus will be paid in March.
 
 ## 4 - April
 
-**00:21.69 - 00:28.20** (6.51s)
+**00:21.28 - 00:26.98** (5.7s)
 
-**`s4-l1`** - in at 00:22.00
+**`s4-l1`** - in at 00:21.62
 
 > In April, merit increases and promotion adjustments will be reflected.
 
 ## 5 - The 2027 implementation year
 
-**00:28.20 - 00:43.76** (15.56s)
+**00:26.98 - 00:44.04** (17.06s)
 
-**`s5-l1`** - in at 00:28.56
+**`s5-l1`** - in at 00:27.38
 
 > This transition applies to the 2027 implementation year only.
 
 _Say it as:_ This transition applies to the twenty twenty-seven implementation year only.
 
-**`s5-l2`** - in at 00:38.26
+**`s5-l2`** - in at 00:36.04
 
 > During the transition year, the bonus will cover 15 months, while the percentage itself does not change — only the months it covers.
 
@@ -85,13 +85,13 @@ _Say it as:_ During the transition year, the bonus will cover fifteen months, wh
 
 ## 6 - Leave balance
 
-**00:43.76 - 00:55.97** (12.21s)
+**00:44.04 - 00:57.66** (13.62s)
 
-**`s6-l1`** - in at 00:44.12
+**`s6-l1`** - in at 00:44.44
 
 > For your leave balance, you will receive a three-month balance in January.
 
-**`s6-l2`** - in at 00:50.43
+**`s6-l2`** - in at 00:51.26
 
 > From April 2027, a new annual balance begins, based on the updated grades.
 
@@ -99,9 +99,9 @@ _Say it as:_ From April twenty twenty-seven, a new annual balance begins, based 
 
 ## 7 - Final message
 
-**00:55.97 - 01:01.57** (5.6s)
+**00:57.66 - 01:02.81** (5.15s)
 
-**`s7-l1`** - in at 00:56.38
+**`s7-l1`** - in at 00:58.11
 
 > For further clarification, contact HR personnel.
 

@@ -43,20 +43,6 @@ export interface Anchor {
 }
 
 export const anchors: Anchor[] = [
-  // Scene 1 - the change and why, as it is said.
-  {
-    scene: 'hook', beat: 'highlightPhrase', line: 's1-l1', word: 'salary', lead: 0.15,
-    note: 'the title lands on "salary merit effectiveness"',
-  },
-  {
-    scene: 'hook', beat: 'postIn', line: 's1-l1', word: 'January', lead: 0.3,
-    note: '"Effective from January to April" on "from January to April"',
-  },
-  {
-    scene: 'hook', beat: 'subIn', line: 's1-l2', word: 'alignment', lead: 0.3,
-    note: '"Aligned with market best practices." on "in alignment with"',
-  },
-
   // Scenes 3 and 4 - the months the new cycle pays out on.
   {
     scene: 'march', beat: 'bonusIn', line: 's3-l1', word: 'bonus', lead: 0.2,
@@ -107,15 +93,15 @@ export const anchors: Anchor[] = [
 
   // Scene 6 - leave balance.
   {
-    scene: 'leave', beat: 'janCard', line: 's6-l1', word: 'three-month', lead: 0.2,
-    note: 'JANUARY 2027 card on "a three-month balance"',
+    scene: 'leave', beat: 'row1', line: 's6-l1', word: 'three-month', lead: 0.2,
+    note: 'the three-month figures start on "a three-month balance"',
   },
   {
     scene: 'leave', beat: 'aprCard', line: 's6-l2', word: 'April', lead: 0.2,
     note: 'APRIL 2027 card on "From April"',
   },
   {
-    scene: 'leave', beat: 'basisIn', line: 's6-l2', word: 'based', lead: 0.2,
+    scene: 'leave', beat: 'basisIn', line: 's6-l2', word: 'updated', lead: 0.4,
     note: '"based on the updated grades" on the words',
   },
 

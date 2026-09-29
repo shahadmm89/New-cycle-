@@ -105,36 +105,26 @@ export const voiceover = {
      * through a list.
      */
     /**
-     * am_michael, speaker 16. Chosen by the client as the free local stand-in
-     * for the hosted voice: warm, trustworthy, calm, mature, grounded.
+     * am_liam, speaker 15. Chosen by the client from five auditions of the
+     * opening line (af_river, af_heart, af_sarah, af_aoede, am_liam - see
+     * output/voice-auditions/) for a smoother, more relaxed, conversational
+     * read than am_michael, which came across as heavy and over-pronounced.
      *
-     * Verified against the model's own metadata rather than a table in a doc -
-     * `speaker_names` in assets/tts/kokoro/model.onnx lists 54 voices, of which
-     * nine are American male, and am_michael is index 16.
-     *
-     * The measured alternatives, median pitch and semitone spread within a
-     * phrase - deep enough to read as mature, varied enough not to sound flat:
-     *   am_echo   (12)  108 Hz / 11.2 st  - the previous local choice
-     *   am_onyx   (17)   87 Hz /  7.0 st  - deeper, but close to monotone
-     *   am_adam   (11)  123 Hz /  6.8 st  - flat
-     *   am_liam   (15)  128 Hz / 14.3 st  - lively, too animated for this
-     *   am_eric   (13)  163 Hz / 13.0 st  - too high to read as senior
+     * Speaker ids are verified against the model's own metadata rather than a
+     * table in a doc - `speaker_names` in assets/tts/kokoro/model.onnx.
      */
-    speakerId: 16,
-    speakerName: 'am_michael',
+    speakerId: 15,
+    speakerName: 'am_liam',
 
     /**
      * Delivery speed. Kokoro re-synthesises at this pace rather than
-     * time-stretching, so the voice stays natural - the pitch is identical at
-     * 0.82 and at 1.0, which is what separates this from slowing an existing
-     * recording down.
-     *
-     * Measured over the whole script, 0.82 lands at 132 words per minute: an
-     * unhurried presenting pace. 0.92 measured 152 wpm, which read as brisk.
+     * time-stretching, so the voice stays natural. 0.88 is the auditioned
+     * pace: unhurried without dragging. The calm comes from the pauses
+     * between phrases (voiceover.pacing.ts), not from slowing the words.
      */
-    speed: 0.82,
+    speed: 0.88,
     /** The briskest the fitter may go when a phrase has to be squeezed. */
-    minSpeed: 0.92,
+    minSpeed: 0.96,
 
     /** Optional pitch trim in semitones. The chosen voice needs none. */
     pitchShiftSemitones: 0,

@@ -49,6 +49,7 @@ chk "engine alias has no apostrophe"                     "grep \"kpiTermSpoken =
 chk "no KPI's in the written script"                     "! grep -q \"KPI's\" output/voiceover-script.md"
 chk "no KPI's in the captions"                           "! grep -q \"KPI's\" output/salary-cycle-update.vtt src/config/scenes.ts"
 chk "no KPI's in any on-screen copy"                     "! grep -rq \"KPI's\" src/scenes/ src/components/ src/Video.tsx"
+chk "opening is a title slide before the narration"      "fact \"const h = c.scenes[0]; process.exit(Math.max(h.beats.highlightPhrase, h.beats.postIn, h.beats.subIn) < h.voice[0].start ? 0 : 1)\""
 chk "YASREF said as a name, not spelled out"             "grep -q \"spoken: 'Yasref will change the salary merit effectiveness from January to April,'\" src/config/scenes.ts"
 chk "HR said as letters"                                 "grep -q \"spoken: 'For further clarification, contact H R personnel.'\" src/config/scenes.ts"
 
@@ -83,7 +84,7 @@ echo; echo "THE READ"
 chk "every phrase recorded, and nothing stale"           "fact \"import('node:fs').then((fs) => { const have = fs.readdirSync('assets/audio/lines').filter((f) => f.endsWith('.wav')).sort().join(','); const want = lines.map((l) => l.id + '.wav').sort().join(','); process.exit(have === want ? 0 : 1); })\""
 chk "narration track matches the film's length"          "node scripts/check-length.mjs"
 chk "narrator is the local Kokoro voice"                 "grep -q \"engine: 'kokoro'\" src/config/voiceover.ts"
-chk "voice is am_michael"                                "grep -q \"speakerName: 'am_michael'\" src/config/voiceover.ts"
+chk "voice is am_liam at 0.88"                          "grep -q \"speakerName: 'am_liam'\" src/config/voiceover.ts && grep -q 'speakerId: 15,' src/config/voiceover.ts && grep -q 'speed: 0.88,' src/config/voiceover.ts"
 chk "retired takes preserved, not deleted"               "test \$(ls assets/audio/takes/alexander/*.wav | wc -l) -eq 20"
 chk "typecheck clean"                                    "npx tsc --noEmit"
 

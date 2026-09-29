@@ -1,8 +1,8 @@
 # Salary Cycle Change - employee announcement video
 
-A self-contained pipeline that renders a **~1 min 44 s, 1920×1080, 30 fps MP4**
-announcing that YASREF's **salary cycle is changing its timing** - and only its
-timing: the benefits and the Total Reward Package stay the same.
+A self-contained pipeline that renders a **~63 s, 1920×1080, 30 fps MP4**
+announcing that YASREF's **salary merit effectiveness moves from January to
+April** - a change in timing only, in alignment with market best practices.
 
 Built as **digital signage**, not a presentation: oversized type, high contrast,
 fast cuts, no static holds, and a message that still lands with the sound off.
@@ -18,36 +18,26 @@ output/voiceover-script.md                 the narration script, for a human rea
 
 ## The message
 
-> **YASREF is changing its salary cycle** - to align with best practice, and make
-> it more timely and relevant.
->
-> **Only the timing changes**: when benefits (bonus, merit, promotion) are
-> received and reflected. The benefits and the Total Reward Package do not.
->
-> | Today | |
-> |---|---|
-> | **NOVEMBER** | Merit & salary movement (expected inflation & market movement for next year) and the year-end estimate, in parallel |
-> | **DECEMBER** | Finalization / decisions - reflected in January |
+> **SALARY MERIT EFFECTIVENESS UPDATE** - effective from January to April,
+> aligned with market best practices. Only the timing changes.
 >
 > | New proposed cycle | |
 > |---|---|
-> | **JANUARY** | New cycle takes effect |
-> | **FEBRUARY** | Actual inflation & market movement, and actual Company Performance |
-> | **MARCH** | YIB & bonus paid |
-> | **APRIL** | Merit increases & promotion adjustments reflected |
+> | **MARCH** | The bonus is paid |
+> | **APRIL** | Merit increases and promotion adjustments are reflected |
 >
-> **2026 implementation year only:** the calculation covers 15 months, so a 5%
-> increase is worth **6.25%** over that period. The same transition applies to
-> leave balance: January 2027 credits the first 3 months only (Grade 9 & below
-> 22 ÷ 12 × 3 ≈ 6 days; Grade 10 & above 30 ÷ 12 × 3 ≈ 8 days), and April 2027
-> starts the new annual balance, based on the April grade code.
+> **2027 implementation year only:** during the transition year the bonus
+> covers 15 months; the merit percentage itself does not change, only the
+> months it covers (illustrative merit example: 5% ÷ 12 × 15 = 6.25%).
+>
+> **Leave balance:** a 3-month balance in January, then from April 2027 a new
+> annual leave balance, based on the updated grades.
 >
 > *For further clarification, contact HR personnel.*
 
-The film carries a thin month timeline along the bottom of scenes 3-8. It
-answers the question the whole film is about - *when* does each thing happen? -
-and it is the same twelve months throughout: they re-align from JAN→DEC into
-APR→MAR during the hero scene rather than cutting to a second rail.
+The film carries a thin month timeline along the bottom of scenes 2-4: the same
+twelve months re-align from JAN→DEC into APR→MAR during the hero scene rather
+than cutting to a second rail, then pick up MARCH and APRIL.
 
 ---
 
@@ -86,40 +76,35 @@ npm run voiceover:build     # re-generate narration + music (see docs/VOICEOVER.
 
 ---
 
-## The eleven scenes
+## The seven scenes
 
 | # | Scene | In | Length | What it shows |
 |---|---|---|---|---|
-| 1 | Purpose | 0:00 | 8.7s | **YASREF** is changing its **SALARY CYCLE** - to align with best practice |
-| 2 | Timing only | 0:08 | 11.7s | WHAT CHANGES: **TIMING** / WHAT DOES NOT CHANGE: **BENEFITS** (bonus, merit, promotion), Total Reward Package ✓ |
-| 3 | The current cycle | 0:20 | 6.1s | Year ring + month rail, JAN → DEC, ONE CYCLE. The bottom timeline draws in |
-| 4 | How it works today | 0:26 | 18.6s | Two cards side by side - MERIT & SALARY MOVEMENT and YEAR-END ESTIMATE. The timeline picks up NOVEMBER and DECEMBER |
-| 5 | **THE CHANGE** | 0:45 | 6.7s | The ring **spins** to April while the twelve months **re-align** underneath into APR…MAR |
-| 6 | January & February | 0:51 | 7.5s | The forecast resolves into a measurement; JANUARY (new cycle takes effect) and FEBRUARY (actual figures) |
-| 7 | March | 0:59 | 4.5s | Playhead runs the new salary year and lands on **MARCH**: YIB & bonus paid |
-| 8 | April | 1:03 | 6.5s | **APRIL**, merit + promotion rising, EFFECTIVE APRIL 1 |
-| 9 | **2026 implementation year** | 1:10 | 15.6s | Twelve solid month tiles plus three ghosted ones, and the ILLUSTRATIVE EXAMPLE built term by term: 5% ÷ 12 × 15 = **6.25%** |
-| 10 | Leave balance | 1:25 | 12.2s | JANUARY 2027 (first 3 months: ≈ 6 / ≈ 8 days) → APRIL 2027 new annual leave balance |
-| 11 | Final message | 1:38 | 5.6s | For further clarification, contact HR personnel. Logo |
+| 1 | Title slide | 0:00 | 11.4s | **SALARY MERIT EFFECTIVENESS UPDATE** / Effective from January to April / Aligned with market best practices. Held before the narrator starts |
+| 2 | **The new proposed cycle** | 0:11 | 6.2s | The ring **spins** to April while the twelve months **re-align** underneath into APR…MAR |
+| 3 | March | 0:17 | 3.7s | Playhead runs the new salary year and lands on **MARCH**: bonus paid |
+| 4 | April | 0:21 | 5.7s | **APRIL**, merit + promotion rising, EFFECTIVE APRIL 1 |
+| 5 | **2027 implementation year** | 0:27 | 17.1s | Twelve solid month tiles plus three ghosted ones, and the ILLUSTRATIVE MERIT EXAMPLE built term by term: 5% ÷ 12 × 15 = **6.25%** |
+| 6 | Leave balance | 0:44 | 13.6s | JANUARY, 3-month leave balance (≈ 6 / ≈ 8 days) → APRIL 2027 new annual leave balance, based on the updated grades |
+| 7 | Final message | 0:57 | 5.2s | For further clarification, contact HR personnel. Logo |
 
 Scenes overlap by 0.55s, so the next visual is always building while the
 previous phrase finishes.
 
 ### Pacing
 
-The narration is 19 short phrases in the local Kokoro voice **am_michael**
-(free, generated on this machine). The script is deliberately short: where a
-picture already says something - the new cycle's four months, the worked
-calculation, the leave figures - the narrator does not read it out. The words are
-never slowed; the unhurried feel comes from the silence around them. Those
-silences are authored in `src/config/voiceover.pacing.ts`, including the few
-deliberate holds while a visual explains itself. See "Pace from the pauses" in
-docs/VOICEOVER.md.
+The narration is 10 short phrases in the local Kokoro voice **am_liam** at
+speed 0.88 (free, generated on this machine), chosen from five auditions in
+`output/voice-auditions/` for a smooth, relaxed, conversational read. The 10
+line WAVs and their durations are in `output/narration/`. The words are never
+slowed; the unhurried feel comes from the silence around them, authored in
+`src/config/voiceover.pacing.ts`, including the deliberate holds while a visual
+explains itself.
 
 Visuals **follow** the narration rather than leading it. The word-pinned beats
 in `src/config/anchors.ts` are placed on the measured onset of their word inside
-each recorded phrase, so NOVEMBER lands on *"November"*, the pillars on
-*"merit"* and *"promotion"*, and NO CHANGE on *"stay exactly the same"*.
+each recorded phrase, so MARCH lands on *"March"*, the pillars on *"merit"*
+and *"promotion"*, and APRIL 2027 on *"From April"*.
 
 Nothing runs ahead of the voice and nothing waits for it either: no phrase is
 cut by a scene boundary, and no scene stops moving while the narrator is still

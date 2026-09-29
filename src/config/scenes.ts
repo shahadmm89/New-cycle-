@@ -88,21 +88,23 @@ export const scenes: SceneConfig[] = [
   {
     id: 'hook',
     title: '1 - The change, and why',
-    duration: 10.5,
+    duration: 11.43,
     beats: {
       ringIn: 0,
       monthsSweep: 0.04,
       headlineIn: 0.24,
       pushIn: 2.14,
-      // On the word - see anchors.ts.
-      highlightPhrase: 3.2,
-      postIn: 5.8,
-      subIn: 7.4,
+      // A title slide first: title, subtitle and supporting line are all up
+      // before the narrator starts (see the hook's leadIn in
+      // voiceover.pacing.ts), so the slide reads on its own.
+      highlightPhrase: 0.25,
+      postIn: 0.9,
+      subIn: 1.4,
     },
     voice: [
       {
         id: 's1-l1',
-        start: 0.45,
+        start: 2.25,
         text: 'YASREF will change the salary merit effectiveness from January to April,',
         // Said as a name, not spelled out letter by letter.
         spoken: 'Yasref will change the salary merit effectiveness from January to April,',
@@ -111,7 +113,7 @@ export const scenes: SceneConfig[] = [
       },
       {
         id: 's1-l2',
-        start: 5.6,
+        start: 6.68,
         text: 'changing only the timing in alignment with market best practices.',
         rate: 1.0,
         captions: ['changing only the TIMING,', 'in alignment with market best practices'],
@@ -129,25 +131,25 @@ export const scenes: SceneConfig[] = [
   {
     id: 'the-change',
     title: '2 - THE NEW PROPOSED CYCLE (hero)',
-    duration: 6.66,
+    duration: 6.18,
     beats: {
       oldRingIn: 0,
-      oldLabel: 0.02,
-      spinUp: 1.22,
-      handover: 3.55,
-      newRingIn: 3.75,
-      newLabelIn: 3.85,
-      bigReveal: 3.82,
-      lockIn: 4.85,
+      oldLabel: 0,
+      spinUp: 1.17,
+      handover: 3.5,
+      newRingIn: 3.7,
+      newLabelIn: 3.8,
+      bigReveal: 3.77,
+      lockIn: 4.8,
       // The bottom timeline draws in with the scene, then its twelve months
       // re-align so the run lands on APR -> MAR with the ring.
-      timelineIn: 0.2,
-      timelineMorph: 2.22,
+      timelineIn: 0.15,
+      timelineMorph: 2.17,
     },
     voice: [
       {
         id: 's2-l1',
-        start: 0.4,
+        start: 0.35,
         text: "Here's the new proposed cycle.",
         rate: 1.0,
         captions: ["Here's the", 'NEW PROPOSED CYCLE'],
@@ -163,21 +165,21 @@ export const scenes: SceneConfig[] = [
   {
     id: 'march',
     title: '3 - March',
-    duration: 4.53,
+    duration: 3.67,
     beats: {
-      railIn: 0,
-      travel: 0.2,
-      landMarch: 2.2,
-      bonusIn: 1.1,
+      railIn: 0.05,
+      travel: 0.25,
+      landMarch: 2.25,
+      bonusIn: 0.17,
       // On the word - see anchors.ts.
-      monthIn: 0.24,
-      timelineMar: 0.27,
-      payrollIn: 2.43,
+      monthIn: 1.52,
+      timelineMar: 1.52,
+      payrollIn: 1.22,
     },
     voice: [
       {
         id: 's3-l1',
-        start: 0.3,
+        start: 0.35,
         text: 'The bonus will be paid in March.',
         rate: 1.0,
         captions: ['The BONUS will be paid', 'in MARCH'],
@@ -192,23 +194,23 @@ export const scenes: SceneConfig[] = [
   {
     id: 'april',
     title: '4 - April',
-    duration: 6.51,
+    duration: 5.7,
     beats: {
-      liftOff: 3.4,
-      effectiveIn: 3.9,
-      restate: 4.8,
+      liftOff: 3.43,
+      effectiveIn: 3.93,
+      restate: 4.83,
       // The rail has said everything it has to say; it retires with this scene.
-      timelineOut: 5.3,
+      timelineOut: 5.33,
       // On the word - see anchors.ts.
-      monthIn: 0.51,
-      timelineApr: 0.51,
-      meritIn: 1.13,
-      promotionIn: 2.66,
+      monthIn: 0.28,
+      timelineApr: 0.28,
+      meritIn: 0.78,
+      promotionIn: 2,
     },
     voice: [
       {
         id: 's4-l1',
-        start: 0.31,
+        start: 0.34,
         text: 'In April, merit increases and promotion adjustments will be reflected.',
         rate: 1.0,
         captions: ['In APRIL, merit increases and', 'promotion adjustments will be reflected'],
@@ -224,26 +226,26 @@ export const scenes: SceneConfig[] = [
   {
     id: 'example',
     title: '5 - The 2027 implementation year',
-    duration: 15.56,
+    duration: 17.06,
     beats: {
-      labelIn: 0.36,
+      labelIn: 0.4,
       // The working runs on its own, one term at a time: no narration reads it.
-      cardIn: 5.4,
-      meritValue: 6.1,
-      divide: 6.9,
-      perMonth: 7.6,
-      multiply: 8.5,
-      strike: 9.3,
-      resultIn: 9.7,
+      cardIn: 5.44,
+      meritValue: 6.14,
+      divide: 6.94,
+      perMonth: 7.64,
+      multiply: 8.54,
+      strike: 9.34,
+      resultIn: 9.74,
       // On the word - see anchors.ts.
-      railIn: 1.85,
-      extraIn: 3.56,
-      settle: 12.23,
+      railIn: 2.03,
+      extraIn: 2.84,
+      settle: 13.98,
     },
     voice: [
       {
         id: 's5-l1',
-        start: 0.36,
+        start: 0.4,
         text: 'This transition applies to the 2027 implementation year only.',
         spoken: 'This transition applies to the twenty twenty-seven implementation year only.',
         rate: 1.0,
@@ -251,7 +253,7 @@ export const scenes: SceneConfig[] = [
       },
       {
         id: 's5-l2',
-        start: 10.06,
+        start: 9.06,
         text: 'During the transition year, the bonus will cover 15 months, while the percentage itself does not change \u2014 only the months it covers.',
         spoken: 'During the transition year, the bonus will cover fifteen months, while the percentage itself does not change, only the months it covers.',
         rate: 1.0,
@@ -280,31 +282,31 @@ export const scenes: SceneConfig[] = [
   {
     id: 'leave',
     title: '6 - Leave balance',
-    duration: 12.21,
+    duration: 13.62,
     beats: {
-      labelIn: 0.2,
+      labelIn: 0.24,
       janCard: 0.8,
       // The arithmetic is read off the card, not said.
-      row1: 2.0,
-      row1Result: 2.8,
-      row2: 3.4,
-      row2Result: 4.2,
-      arrow: 5.4,
+      row1: 2.56,
+      row1Result: 3.3,
+      row2: 3.9,
+      row2Result: 4.6,
+      arrow: 5.9,
       // On the word - see anchors.ts.
-      aprCard: 6.68,
-      basisIn: 9.09,
+      aprCard: 7.15,
+      basisIn: 10.72,
     },
     voice: [
       {
         id: 's6-l1',
-        start: 0.36,
+        start: 0.4,
         text: 'For your leave balance, you will receive a three-month balance in January.',
         rate: 1.0,
         captions: ['For your LEAVE BALANCE,', 'you will receive a three-month', 'balance in JANUARY'],
       },
       {
         id: 's6-l2',
-        start: 6.67,
+        start: 7.22,
         text: 'From April 2027, a new annual balance begins, based on the updated grades.',
         spoken: 'From April twenty twenty-seven, a new annual balance begins, based on the updated grades.',
         rate: 1.0,
@@ -323,17 +325,17 @@ export const scenes: SceneConfig[] = [
   {
     id: 'close',
     title: '7 - Final message',
-    duration: 5.6,
+    duration: 5.15,
     beats: {
-      questionsIn: 0.3,
-      logoIn: 3.4,
+      questionsIn: 0.34,
+      logoIn: 3.44,
       // On the word - see anchors.ts.
-      contactIn: 1.84,
+      contactIn: 1.59,
     },
     voice: [
       {
         id: 's7-l1',
-        start: 0.41,
+        start: 0.45,
         text: 'For further clarification, contact HR personnel.',
         spoken: 'For further clarification, contact H R personnel.',
         rate: 1.0,

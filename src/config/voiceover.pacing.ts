@@ -43,7 +43,7 @@ export interface ScenePacing {
 export const pacing: ScenePacing[] = [
   {
     "id": "hook",
-    "leadIn": 0.45,
+    "leadIn": 2.3,
     "pauses": [
       0.35
     ],
