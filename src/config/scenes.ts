@@ -91,9 +91,7 @@ export const scenes: SceneConfig[] = [
     duration: 16.1,
     beats: {
       ringIn: 0,
-      monthsSweep: 0,
       headlineIn: 0.19,
-      pushIn: 2.09,
       // A title slide first: everything is up before the narrator starts.
       highlightPhrase: 0.2,
       postIn: 0.85,

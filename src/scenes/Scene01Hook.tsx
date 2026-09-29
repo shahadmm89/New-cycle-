@@ -11,6 +11,7 @@ import {Display, Label, Rise, Punch} from '../components/Type';
 import {Plinth} from '../components/Card3D';
 import {useProgress, useScene, useIdle} from '../lib/timing';
 import {colors, fonts} from '../lib/theme';
+import {Breathe} from '../components/Breathe';
 import {monthsCalendar} from '../config/copy';
 
 export const Scene01Hook: React.FC = () => {
@@ -18,30 +19,34 @@ export const Scene01Hook: React.FC = () => {
   const t = scene.text as Record<string, string>;
 
   const pRing = useProgress('ringIn', 1.1);
-  const pSweep = useProgress('monthsSweep', 2.6);
   const pHead = useProgress('headlineIn', 0.6);
   const pPost = useProgress('postIn', 0.6);
   const pKey = useProgress('highlightPhrase', 0.5);
   const pSub = useProgress('subIn', 0.6);
-  const pPush = useProgress('pushIn', 2.4);
-  const drift = useIdle(0.09, 3);
+  // Nothing behind the title moves: the ring's outline crosses "January" and
+  // "April", and a moving line through letters reads as the letters shaking.
+  // The frame stays alive with a glow that only brightens and dims.
+  const breath = useIdle(0.09, 1);
 
   return (
     <AbsoluteFill>
-      {/* Ring sits behind the type, oversized and cropped - it is texture, not information yet. */}
+      <Breathe x={960} y={440} phase={breath} color={colors.accent} size={1300} />
+
+      {/* Ring sits behind the type, oversized and cropped - still texture. */}
       <AbsoluteFill
         style={{
           alignItems: 'center',
           justifyContent: 'center',
-          opacity: 0.42,
-          transform: `translate3d(0, ${-40 + drift}px, 0) scale(${1.42 + pPush * 0.1})`,
+          // Fades in only - no scaling behind the type.
+          opacity: 0.3 * pRing,
+          transform: 'translate3d(0, -40px, 0) scale(1.47)',
         }}
       >
         <YearRing
           months={monthsCalendar}
-          progress={pRing}
-          rotationMonths={pSweep * 1.6}
-          arcProgress={pSweep}
+          progress={1}
+          rotationMonths={0}
+          arcProgress={1}
           color={colors.primary}
           spin={0}
           showLabels={false}
