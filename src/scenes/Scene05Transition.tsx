@@ -11,7 +11,7 @@ import {AbsoluteFill} from 'remotion';
 import {CycleWheel} from '../components/CycleWheel';
 import {TransitionTimeline} from '../components/TransitionTimeline';
 import {Display, Rise} from '../components/Type';
-import {useProgress, useScene} from '../lib/timing';
+import {useProgress, useScene, useIdle} from '../lib/timing';
 import {colors} from '../lib/theme';
 import {WHEEL_AT, lerpPlace} from '../lib/wheel';
 
@@ -25,6 +25,10 @@ export const transitionTones = (amount: number) => [
 
 export const Scene05Transition: React.FC = () => {
   const t = useScene().text as Record<string, string>;
+  // A slow idle drift on the text, so the frame stays alive while the
+  // narrator finishes the thought. The wheel and timeline stay put so they
+  // line up exactly across the cut.
+  const drift = useIdle(0.12, 5);
 
   const pAway = useProgress('wheelAway', 1.1);
   const pTitle = useProgress('titleIn', 0.6);
@@ -42,7 +46,7 @@ export const Scene05Transition: React.FC = () => {
         tones={transitionTones(pBand)}
       />
 
-      <div style={{position: 'absolute', left: 120, top: 130}}>
+      <div style={{position: 'absolute', left: 120, top: 130, transform: `translate3d(0, ${drift}px, 0)`}}>
         <Rise progress={pTitle} distance={24}>
           <Display size={76} color={colors.text}>{t.title}</Display>
         </Rise>

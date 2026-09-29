@@ -10,8 +10,8 @@
  * Turning it is the whole story. `rotation` 0 has JANUARY at the start marker;
  * 3 brings APRIL there, and the same twelve months now run APRIL -> MARCH.
  *
- * Scenes point at it (MARCH, APRIL) using the geometry in src/lib/wheel.ts, so
- * the arrow always lands on the segment it names.
+ * A month the narration names is shown by the wheel itself, not by an arrow:
+ * its segment fills, lifts a little out of the ring and glows (`lift`).
  */
 import React from 'react';
 import {colors, fonts} from '../lib/theme';
@@ -79,6 +79,8 @@ export const CycleWheel: React.FC<{
   sweepFrom?: number;
   sweep12?: number;
   sweep3?: number;
+  /** Months pushed out of the ring, 0 -> 1, to draw the eye to them. */
+  lift?: {index: number; amount: number; color: string}[];
 }> = ({
   place,
   progress,
@@ -91,6 +93,7 @@ export const CycleWheel: React.FC<{
   sweepFrom = 0,
   sweep12 = 0,
   sweep3 = 0,
+  lift = [],
 }) => {
   const p = clamp(progress);
   if (p <= 0) return null;
@@ -132,8 +135,15 @@ export const CycleWheel: React.FC<{
           const lit = toneOf(i);
           const strongest = lit.reduce((a, t) => Math.max(a, t.amount), 0);
           const [lx, ly] = pt(c, (R + r) / 2);
+          const up = lift.find((l) => l.index === i);
+          const lifted = up ? clamp(up.amount) : 0;
+          const [dx, dy] = pt(c, lifted * 22);
           return (
-            <g key={m}>
+            <g
+              key={m}
+              transform={`translate(${dx} ${dy})`}
+              style={lifted > 0 && up ? {filter: `drop-shadow(0 0 ${lifted * 22}px ${up.color})`} : undefined}
+            >
               <path d={sector(a1, a2, R, r)} fill={colors.surface} stroke={colors.line} strokeWidth={1.5} />
               {lit.map((t) => (
                 <path key={t.color} d={sector(a1, a2, R, r)} fill={t.color} opacity={clamp(t.amount) * 0.9} />

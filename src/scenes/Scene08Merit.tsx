@@ -10,7 +10,7 @@ import React from 'react';
 import {AbsoluteFill} from 'remotion';
 import {CycleWheel} from '../components/CycleWheel';
 import {Body, Display, Label, Rise, Punch} from '../components/Type';
-import {useProgress, useScene} from '../lib/timing';
+import {useProgress, useScene, useIdle} from '../lib/timing';
 import {colors} from '../lib/theme';
 import {WHEEL_AT, lerpPlace} from '../lib/wheel';
 
@@ -18,11 +18,15 @@ const APRIL = 3;
 
 export const Scene08Merit: React.FC = () => {
   const t = useScene().text as Record<string, string>;
+  // A slow idle drift on the text, so the frame stays alive while the
+  // narrator finishes the thought. The wheel and timeline stay put so they
+  // line up exactly across the cut.
+  const drift = useIdle(0.12, 5);
 
   const pBack = useProgress('wheelBack', 1.1);
   const pLabel = useProgress('labelIn', 0.5);
-  const s12 = useProgress('sweep12', 1.8);
-  const s3 = useProgress('sweep3', 1.0);
+  const s12 = useProgress('sweep12', 1.2);
+  const s3 = useProgress('sweep3', 0.9);
   const pFifteen = useProgress('fifteenIn', 0.6);
   const pNote = useProgress('noteIn', 0.8);
 
@@ -52,7 +56,7 @@ export const Scene08Merit: React.FC = () => {
           <Label size={30} color={colors.accent}>{t.label}</Label>
         </Rise>
       </div>
-      <div style={{position: 'absolute', left: 120, top: 400, width: 820}}>
+      <div style={{position: 'absolute', left: 120, top: 400, width: 820, transform: `translate3d(0, ${drift}px, 0)`}}>
         <Punch progress={pFifteen} from={0.8}>
           <Display size={120} color={colors.transition}>{t.fifteen}</Display>
         </Punch>

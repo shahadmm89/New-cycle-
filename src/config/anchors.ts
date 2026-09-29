@@ -71,8 +71,8 @@ export const anchors: Anchor[] = [
 
   // Scene 5 - the 2027 implementation year.
   {
-    scene: 'transition', beat: 'bandIn', line: 's5-l1', word: 'transition', lead: 0.2,
-    note: 'the coral transition band on "the transition year"',
+    scene: 'transition', beat: 'bandIn', line: 's5-l1', word: 'applies', lead: 0.5,
+    note: 'the coral transition band on "this transition applies", once the rail has drawn',
   },
   {
     scene: 'transition', beat: 'aprilIn', line: 's5-l1', word: 'twenty', lead: 0.2,
@@ -97,7 +97,7 @@ export const anchors: Anchor[] = [
     note: 'NEW ANNUAL LEAVE BALANCE on "April 2027"',
   },
   {
-    scene: 'leave', beat: 'basisIn', line: 's6-l2', word: 'based', lead: 0.2,
+    scene: 'leave', beat: 'basisIn', line: 's6-l2', word: 'updated', lead: 0.4,
     note: '"Based on the updated grades" on the words',
   },
 
@@ -129,19 +129,15 @@ export const anchors: Anchor[] = [
     note: 'MERIT on "the merit"',
   },
   {
-    scene: 'merit', beat: 'sweep12', line: 's8-l1', word: 'merit', lead: 0.0,
-    note: 'the 12-month lap starts on "merit"',
+    scene: 'merit', beat: 'sweep3', line: 's8-l1', word: 'fifteen', lead: 0.1,
+    note: 'the three extra months run as "15 months" is said',
   },
   {
-    scene: 'merit', beat: 'sweep3', line: 's8-l1', word: 'fifteen', lead: 0.6,
-    note: 'the three extra months land on "15 months"',
+    scene: 'merit', beat: 'fifteenIn', line: 's8-l1', word: 'fifteen', lead: -0.6,
+    note: '15 MONTHS once the three extra months have landed',
   },
   {
-    scene: 'merit', beat: 'fifteenIn', line: 's8-l1', word: 'fifteen', lead: 0.0,
-    note: '15 MONTHS on the words',
-  },
-  {
-    scene: 'merit', beat: 'noteIn', line: 's8-l1', word: 'percentage', lead: 0.3,
+    scene: 'merit', beat: 'noteIn', line: 's8-l1', word: 'percentage', lead: 0.0,
     note: 'the percentage note on "the percentage itself"',
   },
 

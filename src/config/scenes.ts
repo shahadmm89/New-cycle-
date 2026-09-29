@@ -88,21 +88,21 @@ export const scenes: SceneConfig[] = [
   {
     id: 'hook',
     title: '1 - Opening',
-    duration: 12.3,
+    duration: 11.84,
     beats: {
       ringIn: 0,
-      monthsSweep: 0.04,
-      headlineIn: 0.24,
-      pushIn: 2.14,
+      monthsSweep: 0,
+      headlineIn: 0.19,
+      pushIn: 2.09,
       // A title slide first: everything is up before the narrator starts.
-      highlightPhrase: 0.25,
-      postIn: 0.9,
-      subIn: 1.4,
+      highlightPhrase: 0.2,
+      postIn: 0.85,
+      subIn: 1.35,
     },
     voice: [
       {
         id: 's1-l1',
-        start: 2.3,
+        start: 2.25,
         text: 'YASREF will change the salary merit and promotion effectiveness update from January to April, changing only the timing in alignment with market best practices.',
         // Pronunciation only: said as a name, not spelled out.
         spoken: 'Yasref will change the salary merit and promotion effectiveness update from January to April, changing only the timing in alignment with market best practices.',
@@ -120,19 +120,19 @@ export const scenes: SceneConfig[] = [
   {
     id: 'cycle',
     title: '2 - The cycle shifts',
-    duration: 6.2,
+    duration: 6.08,
     beats: {
-      wheelIn: 0.05,
-      janLit: 0.5,
-      oldRangeIn: 0.6,
-      spin: 2.4,
-      newRangeIn: 4.3,
-      aprLit: 4.2,
+      wheelIn: 0,
+      janLit: 0.45,
+      oldRangeIn: 0.55,
+      spin: 2.35,
+      newRangeIn: 4.25,
+      aprLit: 4.15,
     },
     voice: [
       {
         id: 's2-l1',
-        start: 0.4,
+        start: 0.35,
         text: "Here's the new proposed cycle.",
         rate: 1.0,
         captions: ["Here's the new proposed cycle."],
@@ -150,12 +150,12 @@ export const scenes: SceneConfig[] = [
   {
     id: 'march',
     title: '3 - March: bonus',
-    duration: 4.2,
-    beats: {marLit: 0.3, pointer: 0.5, monthIn: 1.1, bonusIn: 1.8},
+    duration: 3.72,
+    beats: {marLit: 0.25, monthIn: 0.02, bonusIn: 1.17},
     voice: [
       {
         id: 's3-l1',
-        start: 0.35,
+        start: 0.3,
         text: 'The bonus will be paid in March.',
         rate: 1.0,
         captions: ['The bonus will be paid in MARCH.'],
@@ -166,12 +166,12 @@ export const scenes: SceneConfig[] = [
   {
     id: 'april',
     title: '4 - April: merit and promotion',
-    duration: 5.9,
-    beats: {marStep: 0.1, aprLit: 0.45, pointer: 0.6, monthIn: 0.9, meritIn: 1.7, promotionIn: 2.9},
+    duration: 5.4,
+    beats: {marStep: 0.04, aprLit: 0.12, monthIn: 0.27, meritIn: 0.72, promotionIn: 1.95},
     voice: [
       {
         id: 's4-l1',
-        start: 0.35,
+        start: 0.29,
         text: 'In April, merit increases and promotion action will be reflected.',
         rate: 1.0,
         captions: ['In APRIL, merit increases and', 'promotion action will be reflected.'],
@@ -187,12 +187,12 @@ export const scenes: SceneConfig[] = [
   {
     id: 'transition',
     title: '5 - The 2027 implementation year',
-    duration: 7.2,
-    beats: {wheelAway: 0, titleIn: 0.5, railIn: 1.1, bandIn: 1.2, aprilIn: 3.6},
+    duration: 7.19,
+    beats: {wheelAway: 0, titleIn: 0.45, railIn: 0.3, bandIn: 1.93, aprilIn: 3.03},
     voice: [
       {
         id: 's5-l1',
-        start: 0.4,
+        start: 0.35,
         text: 'During the transition year, this transition applies to the 2027 implementation year only.',
         spoken: 'During the transition year, this transition applies to the twenty twenty-seven implementation year only.',
         rate: 1.0,
@@ -204,19 +204,19 @@ export const scenes: SceneConfig[] = [
   {
     id: 'leave',
     title: '6 - Leave balance',
-    duration: 12.4,
-    beats: {titleIn: 0.2, janFocus: 3.0, janCallout: 3.2, travel: 6.2, aprCallout: 6.6, basisIn: 9.6},
+    duration: 11.07,
+    beats: {titleIn: 0.15, janFocus: 2.16, janCallout: 2.36, travel: 4.21, aprCallout: 4.91, basisIn: 8.39},
     voice: [
       {
         id: 's6-l1',
-        start: 0.4,
+        start: 0.35,
         text: 'For leave balance, you will receive a three-month balance in January.',
         rate: 1.0,
         captions: ['For leave balance, you will receive', 'a three-month balance in JANUARY.'],
       },
       {
         id: 's6-l2',
-        start: 6.0,
+        start: 4.73,
         text: 'And from April 2027, a new annual balance begins, based on the updated grades.',
         spoken: 'And from April twenty twenty-seven, a new annual balance begins, based on the updated grades.',
         rate: 1.0,
@@ -235,16 +235,20 @@ export const scenes: SceneConfig[] = [
   {
     id: 'allowance',
     title: '7 - Vacation allowance',
-    duration: 10.8,
-    beats: {titleIn: 0.2, bandFocus: 3.6, bandCallout: 3.8, travel: 6.6, aprCallout: 7.0},
+    duration: 8.94,
+    beats: {titleIn: 1.37, bandFocus: 2.23, bandCallout: 2.43, travel: 4.77, aprCallout: 5.47},
     voice: [
       {
         id: 's7-l1',
-        start: 0.4,
-        // Exactly as supplied. The wording is under separate review.
-        text: 'And the same will applied on the vacation allawance whete the basic salary paid for 3 months and from April will reflect the new basic salary.',
+        start: 0.35,
+        // As supplied, with two spellings corrected so the voice reads them from
+        // its dictionary ("allawance" -> allowance, "whete" -> where). The
+        // commas in `spoken` only set the rhythm, so "vacation allowance" is
+        // said lightly, as part of the sentence, not pressed.
+        text: 'And the same will applied on the vacation allowance where the basic salary paid for 3 months and from April will reflect the new basic salary.',
+        spoken: 'And the same will applied on the vacation allowance, where the basic salary paid for three months, and from April will reflect the new basic salary.',
         rate: 1.0,
-        captions: ['And the same will applied on the', 'vacation allawance whete the basic salary', 'paid for 3 months and from April', 'will reflect the new basic salary.'],
+        captions: ['And the same will applied on the', 'vacation allowance where the basic salary', 'paid for 3 months and from April', 'will reflect the new basic salary.'],
       },
     ],
     text: {
@@ -259,12 +263,12 @@ export const scenes: SceneConfig[] = [
   {
     id: 'merit',
     title: '8 - Merit: 15 months',
-    duration: 9.0,
-    beats: {wheelBack: 0, labelIn: 0.6, sweep12: 1.1, sweep3: 2.9, fifteenIn: 3.9, noteIn: 4.9},
+    duration: 7.1,
+    beats: {wheelBack: 0, labelIn: 0.51, sweep12: 0.5, sweep3: 1.7, fifteenIn: 2.4, noteIn: 2.88},
     voice: [
       {
         id: 's8-l1',
-        start: 0.4,
+        start: 0.34,
         text: 'Comes to the merit, it will cover 15 months, while the percentage itself does not change — only the months.',
         spoken: 'Comes to the merit, it will cover fifteen months, while the percentage itself does not change, only the months.',
         rate: 1.0,
@@ -280,12 +284,12 @@ export const scenes: SceneConfig[] = [
   {
     id: 'close',
     title: '9 - Final message',
-    duration: 5.3,
-    beats: {questionsIn: 0.3, contactIn: 1.6, logoIn: 3.2},
+    duration: 5.2,
+    beats: {questionsIn: 0.25, contactIn: 1.54, logoIn: 3.15},
     voice: [
       {
         id: 's9-l1',
-        start: 0.45,
+        start: 0.4,
         text: 'For further clarification, contact HR personnel.',
         spoken: 'For further clarification, contact H R personnel.',
         rate: 1.0,

@@ -1,8 +1,9 @@
 # Salary Cycle Change - employee announcement video
 
-A self-contained pipeline that renders a **~63 s, 1920×1080, 30 fps MP4**
-announcing that YASREF's **salary merit effectiveness moves from January to
-April** - a change in timing only, in alignment with market best practices.
+A self-contained pipeline that renders a **~67 s, 1920×1080, 30 fps MP4**
+announcing that YASREF's **salary merit and promotion effectiveness moves from
+January to April** - a change in timing only, in alignment with market best
+practices - told around a circular 12-month ANNUAL SALARY PROGRAM wheel.
 
 Built as **digital signage**, not a presentation: oversized type, high contrast,
 fast cuts, no static holds, and a message that still lands with the sound off.
@@ -18,26 +19,30 @@ output/voiceover-script.md                 the narration script, for a human rea
 
 ## The message
 
-> **SALARY MERIT EFFECTIVENESS UPDATE** - effective from January to April,
-> aligned with market best practices. Only the timing changes.
+> **SALARY MERIT & PROMOTION EFFECTIVENESS UPDATE** - January → April,
+> aligned with market best practices.
+>
+> The annual cycle turns: **JANUARY – DECEMBER** becomes **APRIL – MARCH**.
 >
 > | New proposed cycle | |
 > |---|---|
-> | **MARCH** | The bonus is paid |
-> | **APRIL** | Merit increases and promotion adjustments are reflected |
+> | **MARCH** | Bonus paid |
+> | **APRIL** | Merit increases, promotion action |
 >
-> **2027 implementation year only:** during the transition year the bonus
-> covers 15 months; the merit percentage itself does not change, only the
-> months it covers (illustrative merit example: 5% ÷ 12 × 15 = 6.25%).
->
-> **Leave balance:** a 3-month balance in January, then from April 2027 a new
-> annual leave balance, based on the updated grades.
+> **2027 implementation year:** January – March 2027 is the transition.
+> Leave: a 3-month balance in January, then a new annual balance from April
+> 2027 based on the updated grades. Vacation allowance: current basic salary
+> for January – March, the new basic salary from April. Merit covers 15
+> months; the percentage itself does not change, only the months.
 >
 > *For further clarification, contact HR personnel.*
 
-The film carries a thin month timeline along the bottom of scenes 2-4: the same
-twelve months re-align from JAN→DEC into APR→MAR during the hero scene rather
-than cutting to a second rail, then pick up MARCH and APRIL.
+The **cycle wheel** (`src/components/CycleWheel.tsx`) is the recurring visual:
+twelve month segments around an ANNUAL SALARY PROGRAM hub. A named month is
+shown by the wheel itself - it lights and lifts out of the ring - rather than
+by an arrow. The **transition timeline** (`src/components/TransitionTimeline.tsx`)
+carries scenes 5-7, with January – March in a coral `transition` colour used
+for nothing else.
 
 ---
 
@@ -76,35 +81,39 @@ npm run voiceover:build     # re-generate narration + music (see docs/VOICEOVER.
 
 ---
 
-## The seven scenes
+## The nine scenes
 
 | # | Scene | In | Length | What it shows |
 |---|---|---|---|---|
-| 1 | Title slide | 0:00 | 11.4s | **SALARY MERIT EFFECTIVENESS UPDATE** / Effective from January to April / Aligned with market best practices. Held before the narrator starts |
-| 2 | **The new proposed cycle** | 0:11 | 6.2s | The ring **spins** to April while the twelve months **re-align** underneath into APR…MAR |
-| 3 | March | 0:17 | 3.7s | Playhead runs the new salary year and lands on **MARCH**: bonus paid |
-| 4 | April | 0:21 | 5.7s | **APRIL**, merit + promotion rising, EFFECTIVE APRIL 1 |
-| 5 | **2027 implementation year** | 0:27 | 17.1s | Twelve solid month tiles plus three ghosted ones, and the ILLUSTRATIVE MERIT EXAMPLE built term by term: 5% ÷ 12 × 15 = **6.25%** |
-| 6 | Leave balance | 0:44 | 13.6s | JANUARY, 3-month leave balance (≈ 6 / ≈ 8 days) → APRIL 2027 new annual leave balance, based on the updated grades |
-| 7 | Final message | 0:57 | 5.2s | For further clarification, contact HR personnel. Logo |
+| 1 | Opening | 0:00 | 11.8s | **SALARY MERIT & PROMOTION EFFECTIVENESS UPDATE** / January → April / Aligned with market best practices. Held before the narrator starts |
+| 2 | The cycle shifts | 0:11 | 6.1s | The wheel, JANUARY lit at the start marker, turns a quarter: JANUARY – DECEMBER → **APRIL – MARCH** |
+| 3 | March | 0:17 | 3.7s | MARCH lifts out of the wheel: **MARCH / BONUS PAID** |
+| 4 | April | 0:21 | 5.4s | March settles back, APRIL lifts: **APRIL / MERIT INCREASES / PROMOTION ACTION** |
+| 5 | 2027 implementation year | 0:27 | 7.2s | Wheel to the corner; timeline 2026 → DECEMBER → JAN–MAR (coral) → APRIL 2027 |
+| 6 | Leave balance | 0:34 | 11.1s | JANUARY: 3-MONTH LEAVE BALANCE → APRIL 2027: NEW ANNUAL LEAVE BALANCE, based on the updated grades |
+| 7 | Vacation allowance | 0:45 | 8.9s | JANUARY – MARCH: current basic salary → APRIL 2027: new basic salary reflected |
+| 8 | Merit | 0:54 | 7.1s | The wheel returns: a 12-month lap plus 3 coral months = **15 MONTHS**; the percentage does not change |
+| 9 | Final message | 1:01 | 5.2s | For further clarification, contact HR personnel. Logo |
 
 Scenes overlap by 0.55s, so the next visual is always building while the
 previous phrase finishes.
 
 ### Pacing
 
-The narration is 10 short phrases in the local Kokoro voice **am_liam** at
-speed 0.88 (free, generated on this machine), chosen from five auditions in
-`output/voice-auditions/` for a smooth, relaxed, conversational read. The 10
-line WAVs and their durations are in `output/narration/`. The words are never
+The narration is the client's 10-line script, used verbatim (checked by
+`scripts/lib/check-narration.mjs`; only "allawance"/"whete" were corrected, at
+the client's request, so they are pronounced naturally), read by the local
+Kokoro voice **am_liam** at speed 0.88, chosen from five auditions in
+`output/voice-auditions/`. The 10 line WAVs and their durations are in
+`output/narration/`. The words are never
 slowed; the unhurried feel comes from the silence around them, authored in
 `src/config/voiceover.pacing.ts`, including the deliberate holds while a visual
 explains itself.
 
 Visuals **follow** the narration rather than leading it. The word-pinned beats
 in `src/config/anchors.ts` are placed on the measured onset of their word inside
-each recorded phrase, so MARCH lands on *"March"*, the pillars on *"merit"*
-and *"promotion"*, and APRIL 2027 on *"From April"*.
+each recorded phrase, so BONUS PAID lands on *"paid"*, MERIT INCREASES on *"merit"*,
+the coral band on *"this transition applies"*, and 15 MONTHS on *"15 months"*.
 
 Nothing runs ahead of the voice and nothing waits for it either: no phrase is
 cut by a scene boundary, and no scene stops moving while the narrator is still

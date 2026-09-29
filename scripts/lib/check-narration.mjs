@@ -1,7 +1,8 @@
 #!/usr/bin/env node
 /**
  * The narration must be the client's text VERBATIM - wording under separate
- * review, so not even a typo is "fixed" here. This compares every voice line's
+ * review, so nothing is "fixed" here except the two spellings the client asked
+ * to be corrected for pronunciation. This compares every voice line's
  * `text`, in order, against the supplied script. (`spoken` may differ only to
  * steer pronunciation: YASREF, 2027, 15, HR.)
  */
@@ -15,7 +16,9 @@ const SUPPLIED = [
   'During the transition year, this transition applies to the 2027 implementation year only.',
   'For leave balance, you will receive a three-month balance in January.',
   'And from April 2027, a new annual balance begins, based on the updated grades.',
-  'And the same will applied on the vacation allawance whete the basic salary paid for 3 months and from April will reflect the new basic salary.',
+  // Two spellings corrected at the client's request so they are pronounced
+  // naturally: allawance -> allowance, whete -> where.
+  'And the same will applied on the vacation allowance where the basic salary paid for 3 months and from April will reflect the new basic salary.',
   'Comes to the merit, it will cover 15 months, while the percentage itself does not change \u2014 only the months.',
   'For further clarification, contact HR personnel.',
 ];
