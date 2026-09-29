@@ -137,7 +137,7 @@ const Outro: React.FC = () => {
   return <AbsoluteFill style={{backgroundColor: colors.backgroundDeep, opacity, pointerEvents: 'none'}} />;
 };
 
-/** The closing scene presents its own logo, so the corner slot steps aside. */
+/** The closing frame is kept to the contact line alone, so the chrome steps aside. */
 const ChromeGate: React.FC = () => {
   const frame = useCurrentFrame();
   const {fps} = useVideoConfig();

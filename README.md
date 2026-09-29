@@ -93,7 +93,7 @@ npm run voiceover:build     # re-generate narration + music (see docs/VOICEOVER.
 | 6 | Leave balance | 0:34 | 12.2s | JANUARY: 3-MONTH LEAVE BALANCE → APRIL 2027: NEW ANNUAL LEAVE BALANCE, based on the updated grades. Example: 22 ÷ 12 × 3 ≈ 6 days / 30 ÷ 12 × 3 ≈ 8 days |
 | 7 | Vacation allowance | 0:46 | 10.7s | JANUARY – MARCH: current basic salary → APRIL 2027: new basic salary reflected. Example: SAR 10,000 × 60% ÷ 12 × 3 = SAR 1,500 for the first quarter |
 | 8 | Merit | 0:57 | 9.1s | The wheel returns: a 12-month lap plus 3 coral months = **15 MONTHS**. Example: 5% ÷ 12 × 15 = 6.25% over 15 months; the percentage does not change |
-| 9 | Final message | 1:06 | 5.2s | For further clarification, contact HR personnel. Logo |
+| 9 | Final message | 1:06 | 5.2s | For further clarification, contact HR personnel. Nothing else on the slide |
 
 Scenes overlap by 0.55s, so the next visual is always building while the
 previous phrase finishes.

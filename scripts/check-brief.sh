@@ -58,6 +58,7 @@ chk "allowance example: 10,000 x 60% / 12 x 3 = 1,500"   "fact \"process.exit(c.
 chk "merit example: 5% / 12 x 15 = 6.25% over 15 months" "fact \"const m = c.copy.examples.merit.terms; process.exit(m.map((t) => t.text).join(' ') === '5% \u00F7 12 \u00D7 15 = 6.25%' && m[3].caption === 'OVER 15 MONTHS' ? 0 : 1)\""
 chk "each example is on screen in its scene"            "grep -q 'examples.leave' src/scenes/Scene06Leave.tsx && grep -q 'examples.allowance' src/scenes/Scene07Allowance.tsx && grep -q 'examples.merit' src/scenes/Scene08Merit.tsx"
 chk "no YIB / grade code on screen"                      "! grep -rqiE 'GRADE CODE|YIB' src/config/scenes.ts src/scenes/"
+chk "closing slide: no logo, HR contact or HR portal"    "! grep -qE 'logoSrc|logoPlaceholderLabel|logoIn|hrContact|hrPortal' src/scenes/Scene09Close.tsx src/config/scenes.ts"
 chk "closing card matches the line"                      "grep -q \"questions: 'FOR FURTHER CLARIFICATION', sub: 'CONTACT HR PERSONNEL'\" src/config/scenes.ts"
 
 echo; echo "TIMING STRUCTURE"

@@ -285,7 +285,7 @@ export const scenes: SceneConfig[] = [
     id: 'close',
     title: '9 - Final message',
     duration: 5.2,
-    beats: {questionsIn: 0.25, contactIn: 1.54, logoIn: 3.15},
+    beats: {questionsIn: 0.25, contactIn: 1.54},
     voice: [
       {
         id: 's9-l1',
