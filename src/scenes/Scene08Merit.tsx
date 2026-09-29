@@ -4,7 +4,12 @@
  * Back to the wheel. A blue track runs one full lap from JANUARY - twelve
  * months - then a coral track carries on for JANUARY, FEBRUARY and MARCH again,
  * ending exactly where the new cycle starts (APRIL, at the marker). Twelve plus
- * three: the fifteen months are read off the circle, not calculated.
+ * three: the fifteen months are read off the circle first.
+ *
+ * Then the worked example: an illustrative 5% merit, divided by 12 and
+ * multiplied by the 15 months it now covers - 6.25%, labelled OVER 15 MONTHS
+ * so it cannot be read as a new rate, and followed by the reminder that the
+ * percentage itself does not change.
  */
 import React from 'react';
 import {AbsoluteFill} from 'remotion';
@@ -13,6 +18,8 @@ import {Body, Display, Label, Rise, Punch} from '../components/Type';
 import {useProgress, useScene, useIdle} from '../lib/timing';
 import {colors} from '../lib/theme';
 import {WHEEL_AT, lerpPlace} from '../lib/wheel';
+import {Formula} from '../components/Formula';
+import {examples} from '../config/copy';
 
 const APRIL = 3;
 
@@ -29,6 +36,7 @@ export const Scene08Merit: React.FC = () => {
   const s3 = useProgress('sweep3', 0.9);
   const pFifteen = useProgress('fifteenIn', 0.6);
   const pNote = useProgress('noteIn', 0.8);
+  const pExample = useProgress('exampleIn', 1.8);
 
   const months = Math.round(12 * s12 + 3 * s3);
 
@@ -51,17 +59,23 @@ export const Scene08Merit: React.FC = () => {
         centreColor={s3 > 0.5 ? colors.transition : colors.textSoft}
       />
 
-      <div style={{position: 'absolute', left: 120, top: 330}}>
+      <div style={{position: 'absolute', left: 120, top: 236, width: 820, transform: `translate3d(0, ${drift}px, 0)`}}>
         <Rise progress={pLabel} distance={22}>
           <Label size={30} color={colors.accent}>{t.label}</Label>
         </Rise>
-      </div>
-      <div style={{position: 'absolute', left: 120, top: 400, width: 820, transform: `translate3d(0, ${drift}px, 0)`}}>
-        <Punch progress={pFifteen} from={0.8}>
-          <Display size={120} color={colors.transition}>{t.fifteen}</Display>
-        </Punch>
-        <Rise progress={pNote} distance={18} style={{marginTop: 28}}>
-          <Body size={40} weight={700} color={colors.text} style={{maxWidth: 760}}>{t.note}</Body>
+        <div style={{marginTop: 18}}>
+          <Punch progress={pFifteen} from={0.8}>
+            <Display size={112} color={colors.transition}>{t.fifteen}</Display>
+          </Punch>
+        </div>
+        <div style={{marginTop: 34, opacity: Math.min(1, pExample * 3)}}>
+          <Label size={22} color={colors.muted}>{examples.label}</Label>
+          <div style={{marginTop: 12}}>
+            <Formula terms={examples.merit.terms} progress={pExample} size={52} resultColor={colors.accent} />
+          </div>
+        </div>
+        <Rise progress={pNote} distance={18} style={{marginTop: 34}}>
+          <Body size={38} weight={700} color={colors.text} style={{maxWidth: 760}}>{t.note}</Body>
         </Rise>
       </div>
     </AbsoluteFill>

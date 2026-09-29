@@ -53,7 +53,10 @@ chk "2027 IMPLEMENTATION YEAR label"                     "grep -q \"title: '2027
 chk "leave: JANUARY 3-month, APRIL 2027 new annual"      "grep -q \"janWhat: '3-MONTH LEAVE BALANCE'\" src/config/scenes.ts && grep -q \"aprWhat: 'NEW ANNUAL LEAVE BALANCE'\" src/config/scenes.ts && grep -q \"aprBasis: 'Based on the updated grades'\" src/config/scenes.ts"
 chk "allowance: Jan-Mar current, April new basic salary" "grep -q \"bandWhat: 'Current basic salary'\" src/config/scenes.ts && grep -q \"aprWhat: 'New basic salary reflected'\" src/config/scenes.ts"
 chk "merit: 12 + 3 on the wheel, 15 MONTHS, note"        "grep -q 'sweep3={s3}' src/scenes/Scene08Merit.tsx && grep -q \"fifteen: '15 MONTHS'\" src/config/scenes.ts && grep -q 'The percentage itself does not change' src/config/scenes.ts"
-chk "no maths graphic in the merit scene"                "! grep -qE '0.4167|6.25|dividedBy' src/scenes/Scene08Merit.tsx"
+chk "leave example: 22/12x3 = 6 days, 30/12x3 = 8 days"  "fact \"const r = c.copy.examples.leave.map((x) => x.terms.map((t) => t.text).join(' ')); process.exit(r[0] === '22 \u00F7 12 \u00D7 3 \u2248 6 DAYS' && r[1] === '30 \u00F7 12 \u00D7 3 \u2248 8 DAYS' ? 0 : 1)\""
+chk "allowance example: 10,000 x 60% / 12 x 3 = 1,500"   "fact \"process.exit(c.copy.examples.allowance.terms.map((t) => t.text).join(' ') === 'SAR 10,000 \u00D7 60% \u00F7 12 \u00D7 3 = SAR 1,500' ? 0 : 1)\""
+chk "merit example: 5% / 12 x 15 = 6.25% over 15 months" "fact \"const m = c.copy.examples.merit.terms; process.exit(m.map((t) => t.text).join(' ') === '5% \u00F7 12 \u00D7 15 = 6.25%' && m[3].caption === 'OVER 15 MONTHS' ? 0 : 1)\""
+chk "each example is on screen in its scene"            "grep -q 'examples.leave' src/scenes/Scene06Leave.tsx && grep -q 'examples.allowance' src/scenes/Scene07Allowance.tsx && grep -q 'examples.merit' src/scenes/Scene08Merit.tsx"
 chk "no YIB / grade code on screen"                      "! grep -rqiE 'GRADE CODE|YIB' src/config/scenes.ts src/scenes/"
 chk "closing card matches the line"                      "grep -q \"questions: 'FOR FURTHER CLARIFICATION', sub: 'CONTACT HR PERSONNEL'\" src/config/scenes.ts"
 

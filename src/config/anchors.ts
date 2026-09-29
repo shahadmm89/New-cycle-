@@ -100,6 +100,10 @@ export const anchors: Anchor[] = [
     scene: 'leave', beat: 'basisIn', line: 's6-l2', word: 'updated', lead: 0.4,
     note: '"Based on the updated grades" on the words',
   },
+  {
+    scene: 'leave', beat: 'exampleIn', line: 's6-l1', word: 'January', lead: 0.1,
+    note: 'the per-grade example (22 or 30 days / 12 x 3) as "in January" is said',
+  },
 
   // Scene 7 - vacation allowance.
   {
@@ -113,6 +117,10 @@ export const anchors: Anchor[] = [
   {
     scene: 'allowance', beat: 'bandCallout', line: 's7-l1', word: 'basic', lead: 0.1,
     note: '"Current basic salary" on the words',
+  },
+  {
+    scene: 'allowance', beat: 'exampleIn', line: 's7-l1', word: 'months', lead: 0.1,
+    note: 'the first-quarter example (basic x 60% / 12 x 3) on "paid for three months"',
   },
   {
     scene: 'allowance', beat: 'travel', line: 's7-l1', word: 'April', lead: 0.8,
@@ -137,8 +145,12 @@ export const anchors: Anchor[] = [
     note: '15 MONTHS once the three extra months have landed',
   },
   {
-    scene: 'merit', beat: 'noteIn', line: 's8-l1', word: 'percentage', lead: 0.0,
-    note: 'the percentage note on "the percentage itself"',
+    scene: 'merit', beat: 'exampleIn', line: 's8-l1', word: 'while', lead: 0.1,
+    note: 'the 5% / 12 x 15 = 6.25% example straight after 15 MONTHS',
+  },
+  {
+    scene: 'merit', beat: 'noteIn', line: 's8-l1', word: 'only', lead: 0.2,
+    note: 'the percentage note on "only the months", once the example is up',
   },
 
   // Scene 9 - HR contact.

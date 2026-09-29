@@ -72,17 +72,17 @@ export const pacing: ScenePacing[] = [
     "pauses": [
       0.8
     ],
-    "tail": 1.1
+    "tail": 2.2
   },
   {
     "id": "allowance",
     "leadIn": 0.4,
-    "tail": 1.0
+    "tail": 2.8
   },
   {
     "id": "merit",
     "leadIn": 0.4,
-    "tail": 1.2
+    "tail": 3.2
   },
   {
     "id": "close",

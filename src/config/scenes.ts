@@ -204,8 +204,8 @@ export const scenes: SceneConfig[] = [
   {
     id: 'leave',
     title: '6 - Leave balance',
-    duration: 11.07,
-    beats: {titleIn: 0.15, janFocus: 2.16, janCallout: 2.36, travel: 4.21, aprCallout: 4.91, basisIn: 8.39},
+    duration: 12.17,
+    beats: {titleIn: 0.15, janFocus: 2.16, janCallout: 2.36, travel: 4.21, aprCallout: 4.91, basisIn: 8.39, exampleIn: 3.16},
     voice: [
       {
         id: 's6-l1',
@@ -235,8 +235,8 @@ export const scenes: SceneConfig[] = [
   {
     id: 'allowance',
     title: '7 - Vacation allowance',
-    duration: 8.94,
-    beats: {titleIn: 1.37, bandFocus: 2.23, bandCallout: 2.43, travel: 4.77, aprCallout: 5.47},
+    duration: 10.74,
+    beats: {titleIn: 1.37, bandFocus: 2.23, bandCallout: 2.43, travel: 4.77, aprCallout: 5.47, exampleIn: 4.58},
     voice: [
       {
         id: 's7-l1',
@@ -263,8 +263,8 @@ export const scenes: SceneConfig[] = [
   {
     id: 'merit',
     title: '8 - Merit: 15 months',
-    duration: 7.1,
-    beats: {wheelBack: 0, labelIn: 0.51, sweep12: 0.5, sweep3: 1.7, fifteenIn: 2.4, noteIn: 2.88},
+    duration: 9.1,
+    beats: {wheelBack: 0, labelIn: 0.51, sweep12: 0.5, sweep3: 1.7, fifteenIn: 2.4, noteIn: 4.68, exampleIn: 3.59},
     voice: [
       {
         id: 's8-l1',
