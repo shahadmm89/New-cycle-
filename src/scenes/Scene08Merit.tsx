@@ -16,6 +16,7 @@ import {AbsoluteFill} from 'remotion';
 import {CycleWheel} from '../components/CycleWheel';
 import {Body, Display, Label, Rise, Punch} from '../components/Type';
 import {useProgress, useScene, useIdle} from '../lib/timing';
+import {Breathe} from '../components/Breathe';
 import {colors} from '../lib/theme';
 import {WHEEL_AT, lerpPlace} from '../lib/wheel';
 import {Formula} from '../components/Formula';
@@ -25,10 +26,10 @@ const APRIL = 3;
 
 export const Scene08Merit: React.FC = () => {
   const t = useScene().text as Record<string, string>;
-  // A slow idle drift on the text, so the frame stays alive while the
-  // narrator finishes the thought. The wheel and timeline stay put so they
-  // line up exactly across the cut.
-  const drift = useIdle(0.12, 5);
+  // A slow breathing glow behind the content keeps the frame alive to the
+  // end of the line. Only its brightness changes - the text never moves, so
+  // letter edges stay perfectly still.
+  const breath = useIdle(0.12, 1);
 
   const pBack = useProgress('wheelBack', 1.1);
   const pLabel = useProgress('labelIn', 0.5);
@@ -42,6 +43,7 @@ export const Scene08Merit: React.FC = () => {
 
   return (
     <AbsoluteFill>
+      <Breathe x={460} y={480} phase={breath} color={colors.accent} />
       <CycleWheel
         place={lerpPlace(WHEEL_AT.corner, WHEEL_AT.hero, pBack)}
         progress={1}
@@ -59,7 +61,7 @@ export const Scene08Merit: React.FC = () => {
         centreColor={s3 > 0.5 ? colors.transition : colors.textSoft}
       />
 
-      <div style={{position: 'absolute', left: 120, top: 236, width: 820, transform: `translate3d(0, ${drift}px, 0)`}}>
+      <div style={{position: 'absolute', left: 120, top: 236, width: 820}}>
         <Rise progress={pLabel} distance={22}>
           <Label size={30} color={colors.accent}>{t.label}</Label>
         </Rise>

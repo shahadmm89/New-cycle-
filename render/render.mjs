@@ -32,7 +32,9 @@ const PROFILES = {
   production: {
     name: 'production',
     scale: 1,
-    crf: 17,
+    // Low CRF: fine type and thin rules stay crisp instead of breaking up
+    // into compression noise, which reads as flicker on large screens.
+    crf: 12,
     jpegQuality: 95,
     file: 'salary-cycle-update.mp4',
     // Lossless frames: large flat type on a dark field is exactly the sort of

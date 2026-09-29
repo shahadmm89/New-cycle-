@@ -14,6 +14,7 @@ import {CycleWheel} from '../components/CycleWheel';
 import {TransitionTimeline, nodeX} from '../components/TransitionTimeline';
 import {Display, Label, Rise} from '../components/Type';
 import {useProgress, useScene, useIdle} from '../lib/timing';
+import {Breathe} from '../components/Breathe';
 import {colors} from '../lib/theme';
 import {WHEEL_AT} from '../lib/wheel';
 import {Formula} from '../components/Formula';
@@ -25,10 +26,10 @@ const APRIL = 3;
 
 export const Scene07Allowance: React.FC = () => {
   const t = useScene().text as Record<string, string>;
-  // A slow idle drift on the text, so the frame stays alive while the
-  // narrator finishes the thought. The wheel and timeline stay put so they
-  // line up exactly across the cut.
-  const drift = useIdle(0.12, 5);
+  // A slow breathing glow behind the content keeps the frame alive to the
+  // end of the line. Only its brightness changes - the text never moves, so
+  // letter edges stay perfectly still.
+  const breath = useIdle(0.12, 1);
 
   const pTitle = useProgress('titleIn', 0.6);
   const pBand = useProgress('bandFocus', 0.6);
@@ -39,12 +40,13 @@ export const Scene07Allowance: React.FC = () => {
 
   return (
     <AbsoluteFill>
+      <Breathe x={700} y={280} phase={breath} color={colors.transition} />
       <CycleWheel place={WHEEL_AT.corner} progress={1} rotation={APRIL} startColor={colors.accent} tones={transitionTones(1)} />
 
       <div style={{position: 'absolute', left: 120, top: 96}}>
         <Label size={26} color={colors.transition}>{t.eyebrow}</Label>
       </div>
-      <div style={{position: 'absolute', left: 120, top: 142, transform: `translate3d(0, ${drift}px, 0)`}}>
+      <div style={{position: 'absolute', left: 120, top: 142}}>
         <Rise progress={pTitle} distance={24}>
           <Display size={76} color={colors.text}>{t.title}</Display>
         </Rise>

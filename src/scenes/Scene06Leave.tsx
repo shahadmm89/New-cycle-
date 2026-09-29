@@ -14,6 +14,7 @@ import {CycleWheel} from '../components/CycleWheel';
 import {TransitionTimeline, TT, nodeX} from '../components/TransitionTimeline';
 import {Body, Display, Label, Rise} from '../components/Type';
 import {useProgress, useScene, useIdle} from '../lib/timing';
+import {Breathe} from '../components/Breathe';
 import {colors} from '../lib/theme';
 import {WHEEL_AT} from '../lib/wheel';
 import {Formula} from '../components/Formula';
@@ -68,9 +69,10 @@ export const Callout: React.FC<{x: number; width: number; align?: 'center' | 'ri
 
 export const Scene06Leave: React.FC = () => {
   const t = useScene().text as Record<string, string>;
-  // A slow idle drift on the text, so the frame stays alive while the
-  // example is read. The wheel and timeline stay put across the cut.
-  const drift = useIdle(0.12, 5);
+  // A slow breathing glow behind the content keeps the frame alive to the
+  // end of the line. Only its brightness changes - the text never moves, so
+  // letter edges stay perfectly still.
+  const breath = useIdle(0.12, 1);
 
   const pTitle = useProgress('titleIn', 0.6);
   const pJan = useProgress('janFocus', 0.6);
@@ -82,6 +84,7 @@ export const Scene06Leave: React.FC = () => {
 
   return (
     <AbsoluteFill>
+      <Breathe x={560} y={340} phase={breath} color={colors.transition} />
       <CycleWheel place={WHEEL_AT.corner} progress={1} rotation={APRIL} startColor={colors.accent} tones={transitionTones(1)} />
 
       <div style={{position: 'absolute', left: 120, top: 96}}>
@@ -94,7 +97,7 @@ export const Scene06Leave: React.FC = () => {
       </div>
 
       {/* the worked example: 22 or 30 days a year, three months of it */}
-      <div style={{position: 'absolute', left: 120, top: 258, opacity: Math.min(1, pExample * 3), transform: `translate3d(0, ${drift}px, 0)`}}>
+      <div style={{position: 'absolute', left: 120, top: 258, opacity: Math.min(1, pExample * 3)}}>
         <Label size={22} color={colors.transition}>{examples.label}</Label>
         <div style={{display: 'flex', flexDirection: 'column', gap: 14, marginTop: 12}}>
           {examples.leave.map((row, i) => (

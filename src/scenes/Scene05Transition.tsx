@@ -12,6 +12,7 @@ import {CycleWheel} from '../components/CycleWheel';
 import {TransitionTimeline} from '../components/TransitionTimeline';
 import {Display, Rise} from '../components/Type';
 import {useProgress, useScene, useIdle} from '../lib/timing';
+import {Breathe} from '../components/Breathe';
 import {colors} from '../lib/theme';
 import {WHEEL_AT, lerpPlace} from '../lib/wheel';
 
@@ -25,10 +26,10 @@ export const transitionTones = (amount: number) => [
 
 export const Scene05Transition: React.FC = () => {
   const t = useScene().text as Record<string, string>;
-  // A slow idle drift on the text, so the frame stays alive while the
-  // narrator finishes the thought. The wheel and timeline stay put so they
-  // line up exactly across the cut.
-  const drift = useIdle(0.12, 5);
+  // A slow breathing glow behind the content keeps the frame alive to the
+  // end of the line. Only its brightness changes - the text never moves, so
+  // letter edges stay perfectly still.
+  const breath = useIdle(0.12, 1);
 
   const pAway = useProgress('wheelAway', 1.1);
   const pTitle = useProgress('titleIn', 0.6);
@@ -38,6 +39,7 @@ export const Scene05Transition: React.FC = () => {
 
   return (
     <AbsoluteFill>
+      <Breathe x={560} y={200} phase={breath} color={colors.transition} />
       <CycleWheel
         place={lerpPlace(WHEEL_AT.hero, WHEEL_AT.corner, pAway)}
         progress={1}
@@ -46,7 +48,7 @@ export const Scene05Transition: React.FC = () => {
         tones={transitionTones(pBand)}
       />
 
-      <div style={{position: 'absolute', left: 120, top: 130, transform: `translate3d(0, ${drift}px, 0)`}}>
+      <div style={{position: 'absolute', left: 120, top: 130}}>
         <Rise progress={pTitle} distance={24}>
           <Display size={76} color={colors.text}>{t.title}</Display>
         </Rise>

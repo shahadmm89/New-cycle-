@@ -53,7 +53,8 @@ export const Scene01Hook: React.FC = () => {
           alignItems: 'center',
           justifyContent: 'center',
           gap: 26,
-          transform: `scale(${1 + pPush * 0.03})`,
+          // No zoom on the type: a slowly scaling title shimmers. Only the
+          // ring behind it (no text) pushes in.
         }}
       >
         {t.headlinePre ? (

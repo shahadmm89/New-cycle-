@@ -10,6 +10,7 @@ import {AbsoluteFill} from 'remotion';
 import {CycleWheel} from '../components/CycleWheel';
 import {Display, Label, Rise, Punch} from '../components/Type';
 import {useProgress, useScene, useIdle} from '../lib/timing';
+import {Breathe} from '../components/Breathe';
 import {colors} from '../lib/theme';
 import {WHEEL_AT} from '../lib/wheel';
 
@@ -18,10 +19,10 @@ const MARCH = 2;
 
 export const Scene04April: React.FC = () => {
   const t = useScene().text as Record<string, string>;
-  // A slow idle drift on the text, so the frame stays alive while the
-  // narrator finishes the thought. The wheel and timeline stay put so they
-  // line up exactly across the cut.
-  const drift = useIdle(0.12, 5);
+  // A slow breathing glow behind the content keeps the frame alive to the
+  // end of the line. Only its brightness changes - the text never moves, so
+  // letter edges stay perfectly still.
+  const breath = useIdle(0.12, 1);
 
   const pStep = useProgress('marStep', 0.7);
   const pApr = useProgress('aprLit', 0.5);
@@ -32,6 +33,7 @@ export const Scene04April: React.FC = () => {
 
   return (
     <AbsoluteFill>
+      <Breathe x={420} y={600} phase={breath} color={colors.accent} />
       <CycleWheel
         place={WHEEL_AT.hero}
         progress={1}
@@ -67,7 +69,7 @@ export const Scene04April: React.FC = () => {
         <Display size={60} color={colors.text} style={{marginTop: 18}}>BONUS PAID</Display>
       </div>
 
-      <div style={{position: 'absolute', left: 120, top: 460, transform: `translate3d(0, ${drift}px, 0)`}}>
+      <div style={{position: 'absolute', left: 120, top: 460}}>
         <Punch progress={pMonth} from={0.8}>
           <Display size={132} color={colors.accent} glow>{t.month}</Display>
         </Punch>
