@@ -88,7 +88,7 @@ export const scenes: SceneConfig[] = [
   {
     id: 'hook',
     title: '1 - Opening',
-    duration: 11.84,
+    duration: 16.01,
     beats: {
       ringIn: 0,
       monthsSweep: 0,
@@ -100,14 +100,38 @@ export const scenes: SceneConfig[] = [
       subIn: 1.35,
     },
     voice: [
+      // The approved sentence, word for word, said as four phrases with a
+      // pause between each. rate 1.08 is a touch slower than the rest of the
+      // film - the opening sets the pace.
       {
         id: 's1-l1',
         start: 2.25,
-        text: 'YASREF will change the salary merit and promotion effectiveness update from January to April, changing only the timing in alignment with market best practices.',
+        text: 'YASREF will change the salary merit and promotion effectiveness update',
         // Pronunciation only: said as a name, not spelled out.
-        spoken: 'Yasref will change the salary merit and promotion effectiveness update from January to April, changing only the timing in alignment with market best practices.',
-        rate: 1.0,
-        captions: ['YASREF will change the salary merit and', 'promotion effectiveness update', 'from JANUARY to APRIL,', 'changing only the timing', 'in alignment with market best practices.'],
+        spoken: 'Yasref will change the salary merit and promotion effectiveness update',
+        rate: 1.08,
+        captions: ['YASREF will change the salary merit', 'and promotion effectiveness update'],
+      },
+      {
+        id: 's1-l2',
+        start: 7.23,
+        text: 'from January to April,',
+        rate: 1.08,
+        captions: ['from JANUARY to APRIL,'],
+      },
+      {
+        id: 's1-l3',
+        start: 9.71,
+        text: 'changing only the timing',
+        rate: 1.08,
+        captions: ['changing only the timing'],
+      },
+      {
+        id: 's1-l4',
+        start: 12.32,
+        text: 'in alignment with market best practices.',
+        rate: 1.08,
+        captions: ['in alignment with market best practices.'],
       },
     ],
     text: {
@@ -120,19 +144,28 @@ export const scenes: SceneConfig[] = [
   {
     id: 'cycle',
     title: '2 - The cycle shifts',
-    duration: 6.08,
+    duration: 9.53,
     beats: {
       wheelIn: 0,
       janLit: 0.45,
-      oldRangeIn: 0.55,
-      spin: 2.35,
-      newRangeIn: 4.25,
-      aprLit: 4.15,
+      oldRangeIn: 0.72,
+      // The wheel holds on JANUARY - DECEMBER for a beat after it is said,
+      // then turns; "Here's the new proposed cycle" lands with APRIL.
+      spin: 4.2,
+      newRangeIn: 6.1,
+      aprLit: 6.0,
     },
     voice: [
       {
         id: 's2-l1',
         start: 0.35,
+        text: 'The current cycle runs from January to December.',
+        rate: 1.0,
+        captions: ['The current cycle runs', 'from JANUARY to DECEMBER.'],
+      },
+      {
+        id: 's2-l2',
+        start: 6,
         text: "Here's the new proposed cycle.",
         rate: 1.0,
         captions: ["Here's the new proposed cycle."],
@@ -188,7 +221,7 @@ export const scenes: SceneConfig[] = [
     id: 'transition',
     title: '5 - The 2027 implementation year',
     duration: 7.19,
-    beats: {wheelAway: 0, titleIn: 0.45, railIn: 0.3, bandIn: 1.93, aprilIn: 3.03},
+    beats: {wheelAway: 0, titleIn: 0.45, railIn: 0.3, bandIn: 1.95, aprilIn: 3.84},
     voice: [
       {
         id: 's5-l1',
@@ -235,8 +268,8 @@ export const scenes: SceneConfig[] = [
   {
     id: 'allowance',
     title: '7 - Vacation allowance',
-    duration: 10.74,
-    beats: {titleIn: 1.37, bandFocus: 2.23, bandCallout: 2.43, travel: 4.77, aprCallout: 5.47, exampleIn: 4.58},
+    duration: 10.73,
+    beats: {titleIn: 1.36, bandFocus: 2.23, bandCallout: 2.43, travel: 4.77, aprCallout: 5.47, exampleIn: 4.58},
     voice: [
       {
         id: 's7-l1',
@@ -264,7 +297,7 @@ export const scenes: SceneConfig[] = [
     id: 'merit',
     title: '8 - Merit: 15 months',
     duration: 9.1,
-    beats: {wheelBack: 0, labelIn: 0.51, sweep12: 0.5, sweep3: 1.7, fifteenIn: 2.4, noteIn: 4.68, exampleIn: 3.59},
+    beats: {wheelBack: 0, labelIn: 0.51, sweep12: 0.5, sweep3: 1.7, fifteenIn: 2.4, noteIn: 4.68, exampleIn: 1.95},
     voice: [
       {
         id: 's8-l1',

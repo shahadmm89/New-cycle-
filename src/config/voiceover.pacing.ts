@@ -44,12 +44,20 @@ export const pacing: ScenePacing[] = [
   {
     "id": "hook",
     "leadIn": 2.3,
-    "tail": 0.8
+    "tail": 1.0,
+    "pauses": [
+      0.75,
+      0.7,
+      0.6
+    ]
   },
   {
     "id": "cycle",
     "leadIn": 0.4,
-    "tail": 3.8
+    "tail": 1.6,
+    "pauses": [
+      2.95
+    ]
   },
   {
     "id": "march",

@@ -43,6 +43,12 @@ export interface Anchor {
 }
 
 export const anchors: Anchor[] = [
+  // Scene 2 - the current cycle, said while JANUARY is lit.
+  {
+    scene: 'cycle', beat: 'oldRangeIn', line: 's2-l1', word: 'current', lead: 0.2,
+    note: 'CURRENT CYCLE / JANUARY - DECEMBER on "the current cycle"',
+  },
+
   // Scenes 3 and 4 - the wheel points at the month as it is named.
   {
     scene: 'march', beat: 'monthIn', line: 's3-l1', word: 'bonus', lead: 0.3,

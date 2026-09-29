@@ -85,7 +85,7 @@ const GLOW_KEYS: GlowKey[] = [
   {scene: 'hook', at: 0, x: 960, y: 470, v: 0.4},
   // The wheel sits right of centre in scenes 2-4 and 8; the glow sits behind it.
   {scene: 'cycle', at: 0, x: 1300, y: 486, v: 0.25},
-  {scene: 'cycle', at: 4.3, x: 1300, y: 300, v: 0.8}, // APRIL arrives at the marker
+  {scene: 'cycle', at: 6.1, x: 1300, y: 300, v: 0.8}, // APRIL arrives at the marker
   {scene: 'march', at: 0.5, x: 1100, y: 330, v: 0.7},
   {scene: 'april', at: 0.5, x: 900, y: 360, v: 0.8},
   // Scenes 5-7: the timeline is the subject.
