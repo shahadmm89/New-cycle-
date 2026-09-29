@@ -88,7 +88,7 @@ export const scenes: SceneConfig[] = [
   {
     id: 'hook',
     title: '1 - Opening',
-    duration: 16.01,
+    duration: 16.1,
     beats: {
       ringIn: 0,
       monthsSweep: 0,
@@ -106,29 +106,27 @@ export const scenes: SceneConfig[] = [
       {
         id: 's1-l1',
         start: 2.25,
-        text: 'YASREF will change the salary merit and promotion effectiveness update',
-        // Pronunciation only: said as a name, not spelled out.
-        spoken: 'Yasref will change the salary merit and promotion effectiveness update',
+        text: 'The company will change the salary merit and promotion effectiveness update',
         rate: 1.08,
-        captions: ['YASREF will change the salary merit', 'and promotion effectiveness update'],
+        captions: ['The company will change the salary merit', 'and promotion effectiveness update'],
       },
       {
         id: 's1-l2',
-        start: 7.23,
+        start: 7.33,
         text: 'from January to April,',
         rate: 1.08,
         captions: ['from JANUARY to APRIL,'],
       },
       {
         id: 's1-l3',
-        start: 9.71,
+        start: 9.8,
         text: 'changing only the timing',
         rate: 1.08,
         captions: ['changing only the timing'],
       },
       {
         id: 's1-l4',
-        start: 12.32,
+        start: 12.41,
         text: 'in alignment with market best practices.',
         rate: 1.08,
         captions: ['in alignment with market best practices.'],
@@ -200,7 +198,7 @@ export const scenes: SceneConfig[] = [
     id: 'april',
     title: '4 - April: merit and promotion',
     duration: 5.4,
-    beats: {marStep: 0.04, aprLit: 0.12, monthIn: 0.27, meritIn: 0.72, promotionIn: 1.95},
+    beats: {marStep: 0.04, aprLit: 0.12, monthIn: 0.27, meritIn: 0.73, promotionIn: 1.95},
     voice: [
       {
         id: 's4-l1',
@@ -221,7 +219,7 @@ export const scenes: SceneConfig[] = [
     id: 'transition',
     title: '5 - The 2027 implementation year',
     duration: 7.19,
-    beats: {wheelAway: 0, titleIn: 0.45, railIn: 0.3, bandIn: 1.95, aprilIn: 3.84},
+    beats: {wheelAway: 0, titleIn: 0.45, railIn: 0.3, bandIn: 2.68, aprilIn: 3.84},
     voice: [
       {
         id: 's5-l1',
@@ -297,7 +295,7 @@ export const scenes: SceneConfig[] = [
     id: 'merit',
     title: '8 - Merit: 15 months',
     duration: 9.1,
-    beats: {wheelBack: 0, labelIn: 0.51, sweep12: 0.5, sweep3: 1.7, fifteenIn: 2.4, noteIn: 4.68, exampleIn: 1.95},
+    beats: {wheelBack: 0, labelIn: 0.51, sweep12: 0.5, sweep3: 1.7, fifteenIn: 2.4, noteIn: 4.68, exampleIn: 3.59},
     voice: [
       {
         id: 's8-l1',

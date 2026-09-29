@@ -60,7 +60,7 @@ const screenText = (scene) => {
  * because "what is on screen" is the one thing the config cannot describe.
  */
 const VISUALS = {
-  hook: 'Oversized statement over a faint year ring: YASREF is changing its SALARY CYCLE (lit in the accent, on a plinth), then "to align with best practice" and the timing / relevance sub-line.',
+  hook: 'Title slide over a faint year ring: SALARY MERIT & PROMOTION / EFFECTIVENESS UPDATE (lit in the accent, on a plinth), January -> April, and "Aligned with market best practices".',
   'timing-only': 'Two parallel rows. WHAT CHANGES: TIMING, a month rail, "When benefits are received & reflected", CHANGES chip. WHAT DOES NOT CHANGE: BENEFITS, chips BONUS / MERIT / PROMOTION, Total Reward Package, tick and NO CHANGE.',
   'old-cycle': 'Year ring on the left counting twelve months, range plate and month rail on the right, JAN to DEC, playhead walking the year, ONE CYCLE. The bottom timeline draws in here and runs to the April scene.',
   today: 'HOW IT WORKS TODAY, NOVEMBER - IN PARALLEL. Two cards side by side: MERIT & SALARY MOVEMENT with the forecast line, and YEAR-END ESTIMATE with the three KPI tiles (HSE, Finance, Performance) rolling up into COMPANY PERFORMANCE KPIs. The bottom timeline picks up NOVEMBER and DECEMBER (finalization / decisions).',

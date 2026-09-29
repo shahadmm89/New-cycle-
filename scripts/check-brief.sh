@@ -31,6 +31,7 @@ fact(){ node --input-type=module -e "import {loadConfig} from './scripts/lib/con
 echo "STORY AND NARRATION"
 chk "flow: opening > cycle > March > April > 2027 > leave > allowance > merit > HR" "fact \"process.exit(c.scenes.map((s) => s.id).join(',') === 'hook,cycle,march,april,transition,leave,allowance,merit,close' ? 0 : 1)\""
 chk "narration is EXACTLY the supplied text, in order"   "node scripts/lib/check-narration.mjs"
+chk "opening says \"The company\", not YASREF"          "grep -q \"text: 'The company will change the salary merit\" src/config/scenes.ts && ! grep -qi yasref src/config/scenes.ts"
 chk "closing line exact"                                 "grep -q \"text: 'For further clarification, contact HR personnel.'\" src/config/scenes.ts"
 chk "no narration line repeated"                         "fact \"process.exit(new Set(lines.map((l) => l.text.toLowerCase())).size === lines.length ? 0 : 1)\""
 

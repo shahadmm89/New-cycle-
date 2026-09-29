@@ -4,12 +4,13 @@
  * review, so nothing is "fixed" here except the two spellings the client asked
  * to be corrected for pronunciation, and the current-cycle line they added. This compares every voice line's
  * `text`, in order, against the supplied script. (`spoken` may differ only to
- * steer pronunciation: YASREF, 2027, 15, HR.)
+ * steer pronunciation: 2027, 15, HR.)
  */
 import {loadConfig, flatVoiceLines} from './config.mjs';
 
 const SUPPLIED = [
-  'YASREF will change the salary merit and promotion effectiveness update from January to April, changing only the timing in alignment with market best practices.',
+  // "YASREF" replaced by "The company" at the client's request.
+  'The company will change the salary merit and promotion effectiveness update from January to April, changing only the timing in alignment with market best practices.',
   // Added at the client's request: the current cycle is said on the wheel.
   'The current cycle runs from January to December.',
   "Here's the new proposed cycle.",

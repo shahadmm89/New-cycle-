@@ -6,7 +6,7 @@
  * re-run that script (or edit these numbers by hand) to re-sync the subtitles.
  */
 export const measuredDurations: Record<string, number> = {
-  's1-l1': 4.415,
+  's1-l1': 4.506,
   's1-l2': 1.917,
   's1-l3': 2.172,
   's1-l4': 2.816,
