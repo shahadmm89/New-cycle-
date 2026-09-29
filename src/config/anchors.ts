@@ -43,71 +43,111 @@ export interface Anchor {
 }
 
 export const anchors: Anchor[] = [
-  // Scenes 3 and 4 - the months the new cycle pays out on.
+  // Scenes 3 and 4 - the wheel points at the month as it is named.
   {
-    scene: 'march', beat: 'bonusIn', line: 's3-l1', word: 'bonus', lead: 0.2,
-    note: 'BONUS on "The bonus"',
+    scene: 'march', beat: 'monthIn', line: 's3-l1', word: 'bonus', lead: 0.3,
+    note: 'MARCH label as the line starts',
   },
   {
-    scene: 'march', beat: 'payrollIn', line: 's3-l1', word: 'paid', lead: 0.2,
-    note: 'the payroll chip on "paid"',
+    scene: 'march', beat: 'bonusIn', line: 's3-l1', word: 'paid', lead: 0.2,
+    note: 'BONUS PAID on "paid"',
   },
   {
-    scene: 'march', beat: 'timelineMar', line: 's3-l1', word: 'March', lead: 0.2,
-    note: 'MARCH marker - bonus paid',
+    scene: 'april', beat: 'aprLit', line: 's4-l1', word: 'April', lead: 0.3,
+    note: 'the APRIL segment lights on the word',
   },
   {
-    scene: 'march', beat: 'monthIn', line: 's3-l1', word: 'March', lead: 0.2,
-    note: 'MARCH lands on the word',
-  },
-  {
-    scene: 'april', beat: 'timelineApr', line: 's4-l1', word: 'April', lead: 0.2,
-    note: 'APRIL marker - merit & promotion adjustments reflected',
-  },
-  {
-    scene: 'april', beat: 'monthIn', line: 's4-l1', word: 'April', lead: 0.2,
-    note: 'APRIL lands on the word',
+    scene: 'april', beat: 'monthIn', line: 's4-l1', word: 'April', lead: 0.15,
+    note: 'APRIL label on the word',
   },
   {
     scene: 'april', beat: 'meritIn', line: 's4-l1', word: 'merit', lead: 0.2,
-    note: 'MERIT pillar on "merit increases"',
+    note: 'MERIT INCREASES on "merit increases"',
   },
   {
     scene: 'april', beat: 'promotionIn', line: 's4-l1', word: 'promotion', lead: 0.2,
-    note: 'PROMOTION pillar on "promotion adjustments"',
+    note: 'PROMOTION ACTION on "promotion action"',
   },
 
   // Scene 5 - the 2027 implementation year.
   {
-    scene: 'example', beat: 'railIn', line: 's5-l1', word: 'twenty', lead: 0.1,
-    note: 'the twelve months count in on "2027"',
+    scene: 'transition', beat: 'bandIn', line: 's5-l1', word: 'transition', lead: 0.2,
+    note: 'the coral transition band on "the transition year"',
   },
   {
-    scene: 'example', beat: 'extraIn', line: 's5-l1', word: 'implementation', lead: 0.1,
-    note: 'the three extra months on "implementation year"',
-  },
-  {
-    scene: 'example', beat: 'settle', line: 's5-l2', word: 'change', lead: 0.2,
-    note: '"the percentage itself does not change" note lands on the word',
+    scene: 'transition', beat: 'aprilIn', line: 's5-l1', word: 'twenty', lead: 0.2,
+    note: 'APRIL 2027 lights on "2027"',
   },
 
   // Scene 6 - leave balance.
   {
-    scene: 'leave', beat: 'row1', line: 's6-l1', word: 'three-month', lead: 0.2,
-    note: 'the three-month figures start on "a three-month balance"',
+    scene: 'leave', beat: 'janFocus', line: 's6-l1', word: 'three-month', lead: 0.3,
+    note: 'JANUARY comes forward on "a three-month balance"',
   },
   {
-    scene: 'leave', beat: 'aprCard', line: 's6-l2', word: 'April', lead: 0.2,
-    note: 'APRIL 2027 card on "From April"',
+    scene: 'leave', beat: 'janCallout', line: 's6-l1', word: 'three-month', lead: 0.1,
+    note: '3-MONTH LEAVE BALANCE on the words',
   },
   {
-    scene: 'leave', beat: 'basisIn', line: 's6-l2', word: 'updated', lead: 0.4,
-    note: '"based on the updated grades" on the words',
+    scene: 'leave', beat: 'travel', line: 's6-l2', word: 'April', lead: 0.8,
+    note: 'the light runs to APRIL 2027 just before it is named',
+  },
+  {
+    scene: 'leave', beat: 'aprCallout', line: 's6-l2', word: 'April', lead: 0.1,
+    note: 'NEW ANNUAL LEAVE BALANCE on "April 2027"',
+  },
+  {
+    scene: 'leave', beat: 'basisIn', line: 's6-l2', word: 'based', lead: 0.2,
+    note: '"Based on the updated grades" on the words',
   },
 
-  // Scene 7 - HR contact.
+  // Scene 7 - vacation allowance.
   {
-    scene: 'close', beat: 'contactIn', line: 's7-l1', word: 'contact', lead: 0.2,
+    scene: 'allowance', beat: 'titleIn', line: 's7-l1', word: 'vacation', lead: 0.3,
+    note: 'VACATION ALLOWANCE on "vacation"',
+  },
+  {
+    scene: 'allowance', beat: 'bandFocus', line: 's7-l1', word: 'basic', lead: 0.3,
+    note: 'the January-March band comes forward on "basic salary"',
+  },
+  {
+    scene: 'allowance', beat: 'bandCallout', line: 's7-l1', word: 'basic', lead: 0.1,
+    note: '"Current basic salary" on the words',
+  },
+  {
+    scene: 'allowance', beat: 'travel', line: 's7-l1', word: 'April', lead: 0.8,
+    note: 'the light runs to APRIL 2027 just before it is named',
+  },
+  {
+    scene: 'allowance', beat: 'aprCallout', line: 's7-l1', word: 'April', lead: 0.1,
+    note: '"New basic salary reflected" on "from April"',
+  },
+
+  // Scene 8 - merit, 15 months.
+  {
+    scene: 'merit', beat: 'labelIn', line: 's8-l1', word: 'merit', lead: 0.2,
+    note: 'MERIT on "the merit"',
+  },
+  {
+    scene: 'merit', beat: 'sweep12', line: 's8-l1', word: 'merit', lead: 0.0,
+    note: 'the 12-month lap starts on "merit"',
+  },
+  {
+    scene: 'merit', beat: 'sweep3', line: 's8-l1', word: 'fifteen', lead: 0.6,
+    note: 'the three extra months land on "15 months"',
+  },
+  {
+    scene: 'merit', beat: 'fifteenIn', line: 's8-l1', word: 'fifteen', lead: 0.0,
+    note: '15 MONTHS on the words',
+  },
+  {
+    scene: 'merit', beat: 'noteIn', line: 's8-l1', word: 'percentage', lead: 0.3,
+    note: 'the percentage note on "the percentage itself"',
+  },
+
+  // Scene 9 - HR contact.
+  {
+    scene: 'close', beat: 'contactIn', line: 's9-l1', word: 'contact', lead: 0.2,
     note: 'CONTACT HR PERSONNEL on "contact"',
   },
 ];

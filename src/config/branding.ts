@@ -38,6 +38,13 @@ export const colors = {
   /** Affirmation only - the "NO CHANGE" tick. Nothing else. */
   steady: '#3DDC97',
 
+  /**
+   * The implementation-year TRANSITION (January-March 2027) and nothing else:
+   * the three months between the old timing and the new April start. A
+   * contrasting coral so it can never be read as "old" (blue) or "new" (amber).
+   */
+  transition: '#FF7A8F',
+
   /** The OLD cycle. Present, legible, but deliberately quieter. */
   muted: '#5E77A3',
   mutedDim: '#33486C',

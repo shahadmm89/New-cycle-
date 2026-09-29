@@ -35,7 +35,7 @@
  * plan moves each beat with the phrase it belongs to; anchor then measures the
  * onset of the named word inside its clip - see src/config/anchors.ts.
  */
-import {cycle, implementation, leave, monthsCalendar, monthsSalaryYear} from './copy';
+import {cycle, monthsCalendar, monthsSalaryYear} from './copy';
 
 export const FPS = 30;
 export const WIDTH = 1920;
@@ -87,16 +87,14 @@ export const OUTRO_FADE = 0.6;
 export const scenes: SceneConfig[] = [
   {
     id: 'hook',
-    title: '1 - The change, and why',
-    duration: 11.43,
+    title: '1 - Opening',
+    duration: 12.3,
     beats: {
       ringIn: 0,
       monthsSweep: 0.04,
       headlineIn: 0.24,
       pushIn: 2.14,
-      // A title slide first: title, subtitle and supporting line are all up
-      // before the narrator starts (see the hook's leadIn in
-      // voiceover.pacing.ts), so the slide reads on its own.
+      // A title slide first: everything is up before the narrator starts.
       highlightPhrase: 0.25,
       postIn: 0.9,
       subIn: 1.4,
@@ -104,237 +102,189 @@ export const scenes: SceneConfig[] = [
     voice: [
       {
         id: 's1-l1',
-        start: 2.25,
-        text: 'YASREF will change the salary merit effectiveness from January to April,',
-        // Said as a name, not spelled out letter by letter.
-        spoken: 'Yasref will change the salary merit effectiveness from January to April,',
+        start: 2.3,
+        text: 'YASREF will change the salary merit and promotion effectiveness update from January to April, changing only the timing in alignment with market best practices.',
+        // Pronunciation only: said as a name, not spelled out.
+        spoken: 'Yasref will change the salary merit and promotion effectiveness update from January to April, changing only the timing in alignment with market best practices.',
         rate: 1.0,
-        captions: ['YASREF will change the salary', 'merit effectiveness', 'from JANUARY to APRIL,'],
-      },
-      {
-        id: 's1-l2',
-        start: 6.68,
-        text: 'changing only the timing in alignment with market best practices.',
-        rate: 1.0,
-        captions: ['changing only the TIMING,', 'in alignment with market best practices'],
+        captions: ['YASREF will change the salary merit and', 'promotion effectiveness update', 'from JANUARY to APRIL,', 'changing only the timing', 'in alignment with market best practices.'],
       },
     ],
     text: {
-      // The opening slide stays deliberately simple: title, subtitle, one
-      // supporting line. Everything else is introduced in the scenes after it.
       headlinePre: '',
-      headlineKey: 'SALARY MERIT\nEFFECTIVENESS UPDATE',
-      headlinePost: 'Effective from January to April',
-      sub: 'Aligned with market best practices.',
+      headlineKey: 'SALARY MERIT & PROMOTION\nEFFECTIVENESS UPDATE',
+      headlinePost: 'January → April',
+      sub: 'Aligned with market best practices',
     },
   },
   {
-    id: 'the-change',
-    title: '2 - THE NEW PROPOSED CYCLE (hero)',
-    duration: 6.18,
+    id: 'cycle',
+    title: '2 - The cycle shifts',
+    duration: 6.2,
     beats: {
-      oldRingIn: 0,
-      oldLabel: 0,
-      spinUp: 1.17,
-      handover: 3.5,
-      newRingIn: 3.7,
-      newLabelIn: 3.8,
-      bigReveal: 3.77,
-      lockIn: 4.8,
-      // The bottom timeline draws in with the scene, then its twelve months
-      // re-align so the run lands on APR -> MAR with the ring.
-      timelineIn: 0.15,
-      timelineMorph: 2.17,
+      wheelIn: 0.05,
+      janLit: 0.5,
+      oldRangeIn: 0.6,
+      spin: 2.4,
+      newRangeIn: 4.3,
+      aprLit: 4.2,
     },
     voice: [
       {
         id: 's2-l1',
-        start: 0.35,
+        start: 0.4,
         text: "Here's the new proposed cycle.",
         rate: 1.0,
-        captions: ["Here's the", 'NEW PROPOSED CYCLE'],
+        captions: ["Here's the new proposed cycle."],
       },
     ],
     text: {
-      oldLabel: 'OLD SALARY CYCLE',
-      newLabel: 'NEW SALARY CYCLE',
-      oldRange: cycle.oldCycleLabel,
-      newRange: cycle.newCycleLabel,
+      oldLabel: 'CURRENT CYCLE',
+      oldFrom: cycle.oldCycleFromLong,
+      oldTo: cycle.oldCycleToLong,
+      newLabel: 'NEW PROPOSED CYCLE',
+      newFrom: cycle.newCycleFromLong,
+      newTo: cycle.newCycleToLong,
     },
   },
   {
     id: 'march',
-    title: '3 - March',
-    duration: 3.67,
-    beats: {
-      railIn: 0.05,
-      travel: 0.25,
-      landMarch: 2.25,
-      bonusIn: 0.17,
-      // On the word - see anchors.ts.
-      monthIn: 1.52,
-      timelineMar: 1.52,
-      payrollIn: 1.22,
-    },
+    title: '3 - March: bonus',
+    duration: 4.2,
+    beats: {marLit: 0.3, pointer: 0.5, monthIn: 1.1, bonusIn: 1.8},
     voice: [
       {
         id: 's3-l1',
         start: 0.35,
         text: 'The bonus will be paid in March.',
         rate: 1.0,
-        captions: ['The BONUS will be paid', 'in MARCH'],
+        captions: ['The bonus will be paid in MARCH.'],
       },
     ],
-    text: {
-      month: 'MARCH',
-      bonus: 'BONUS',
-      payroll: 'PAID  ·  MARCH PAYROLL',
-    },
+    text: {label: 'NEW PROPOSED CYCLE', month: 'MARCH', what: 'BONUS PAID'},
   },
   {
     id: 'april',
-    title: '4 - April',
-    duration: 5.7,
-    beats: {
-      liftOff: 3.43,
-      effectiveIn: 3.93,
-      restate: 4.83,
-      // The rail has said everything it has to say; it retires with this scene.
-      timelineOut: 5.33,
-      // On the word - see anchors.ts.
-      monthIn: 0.28,
-      timelineApr: 0.28,
-      meritIn: 0.78,
-      promotionIn: 2,
-    },
+    title: '4 - April: merit and promotion',
+    duration: 5.9,
+    beats: {marStep: 0.1, aprLit: 0.45, pointer: 0.6, monthIn: 0.9, meritIn: 1.7, promotionIn: 2.9},
     voice: [
       {
         id: 's4-l1',
-        start: 0.34,
-        text: 'In April, merit increases and promotion adjustments will be reflected.',
+        start: 0.35,
+        text: 'In April, merit increases and promotion action will be reflected.',
         rate: 1.0,
-        captions: ['In APRIL, merit increases and', 'promotion adjustments will be reflected'],
+        captions: ['In APRIL, merit increases and', 'promotion action will be reflected.'],
       },
     ],
     text: {
+      label: 'NEW PROPOSED CYCLE',
       month: 'APRIL',
-      merit: 'MERIT',
-      promotion: 'PROMOTION',
-      effective: 'EFFECTIVE APRIL 1',
+      merit: 'MERIT INCREASES',
+      promotion: 'PROMOTION ACTION',
     },
   },
   {
-    id: 'example',
+    id: 'transition',
     title: '5 - The 2027 implementation year',
-    duration: 17.06,
-    beats: {
-      labelIn: 0.4,
-      // The working runs on its own, one term at a time: no narration reads it.
-      cardIn: 5.44,
-      meritValue: 6.14,
-      divide: 6.94,
-      perMonth: 7.64,
-      multiply: 8.54,
-      strike: 9.34,
-      resultIn: 9.74,
-      // On the word - see anchors.ts.
-      railIn: 2.03,
-      extraIn: 2.84,
-      settle: 13.98,
-    },
+    duration: 7.2,
+    beats: {wheelAway: 0, titleIn: 0.5, railIn: 1.1, bandIn: 1.2, aprilIn: 3.6},
     voice: [
       {
         id: 's5-l1',
         start: 0.4,
-        text: 'This transition applies to the 2027 implementation year only.',
-        spoken: 'This transition applies to the twenty twenty-seven implementation year only.',
+        text: 'During the transition year, this transition applies to the 2027 implementation year only.',
+        spoken: 'During the transition year, this transition applies to the twenty twenty-seven implementation year only.',
         rate: 1.0,
-        captions: ['This transition applies to the', '2027 IMPLEMENTATION YEAR ONLY'],
-      },
-      {
-        id: 's5-l2',
-        start: 9.06,
-        text: 'During the transition year, the bonus will cover 15 months, while the percentage itself does not change \u2014 only the months it covers.',
-        spoken: 'During the transition year, the bonus will cover fifteen months, while the percentage itself does not change, only the months it covers.',
-        rate: 1.0,
-        captions: ['During the transition year,', 'the bonus will cover 15 months,', 'while the percentage itself does not change', '- only the months it covers'],
+        captions: ['During the transition year,', 'this transition applies to the', '2027 IMPLEMENTATION YEAR only.'],
       },
     ],
-    text: {
-      label: implementation.label,
-      once: implementation.once,
-      twelve: implementation.twelve,
-      plusThree: implementation.plusThree,
-      extraMonthNumbers: [...implementation.extraMonthNumbers],
-      over12: implementation.over12,
-      over15: implementation.over15,
-      illustrative: implementation.illustrative,
-      unchanged: implementation.unchanged,
-      merit: implementation.merit,
-      meritLabel: implementation.meritLabel,
-      dividedBy: implementation.dividedBy,
-      perMonth: implementation.perMonth,
-      perMonthLabel: implementation.perMonthLabel,
-      multipliedBy: implementation.multipliedBy,
-      equivalent: implementation.equivalent,
-    },
+    text: {title: '2027 IMPLEMENTATION YEAR', band: 'TRANSITION'},
   },
   {
     id: 'leave',
     title: '6 - Leave balance',
-    duration: 13.62,
-    beats: {
-      labelIn: 0.24,
-      janCard: 0.8,
-      // The arithmetic is read off the card, not said.
-      row1: 2.56,
-      row1Result: 3.3,
-      row2: 3.9,
-      row2Result: 4.6,
-      arrow: 5.9,
-      // On the word - see anchors.ts.
-      aprCard: 7.15,
-      basisIn: 10.72,
-    },
+    duration: 12.4,
+    beats: {titleIn: 0.2, janFocus: 3.0, janCallout: 3.2, travel: 6.2, aprCallout: 6.6, basisIn: 9.6},
     voice: [
       {
         id: 's6-l1',
         start: 0.4,
-        text: 'For your leave balance, you will receive a three-month balance in January.',
+        text: 'For leave balance, you will receive a three-month balance in January.',
         rate: 1.0,
-        captions: ['For your LEAVE BALANCE,', 'you will receive a three-month', 'balance in JANUARY'],
+        captions: ['For leave balance, you will receive', 'a three-month balance in JANUARY.'],
       },
       {
         id: 's6-l2',
-        start: 7.22,
-        text: 'From April 2027, a new annual balance begins, based on the updated grades.',
-        spoken: 'From April twenty twenty-seven, a new annual balance begins, based on the updated grades.',
+        start: 6.0,
+        text: 'And from April 2027, a new annual balance begins, based on the updated grades.',
+        spoken: 'And from April twenty twenty-seven, a new annual balance begins, based on the updated grades.',
         rate: 1.0,
-        captions: ['From APRIL 2027, a new annual balance', 'begins, based on the updated grades'],
+        captions: ['And from APRIL 2027,', 'a new annual balance begins,', 'based on the updated grades.'],
       },
     ],
     text: {
-      label: leave.label,
-      janWhen: leave.janWhen,
-      janWhat: leave.janWhat,
-      aprWhen: leave.aprWhen,
-      aprWhat: leave.aprWhat,
-      aprBasis: leave.aprBasis,
+      eyebrow: '2027 IMPLEMENTATION YEAR',
+      title: 'LEAVE BALANCE',
+      janWhen: 'JANUARY',
+      janWhat: '3-MONTH LEAVE BALANCE',
+      aprWhat: 'NEW ANNUAL LEAVE BALANCE',
+      aprBasis: 'Based on the updated grades',
+    },
+  },
+  {
+    id: 'allowance',
+    title: '7 - Vacation allowance',
+    duration: 10.8,
+    beats: {titleIn: 0.2, bandFocus: 3.6, bandCallout: 3.8, travel: 6.6, aprCallout: 7.0},
+    voice: [
+      {
+        id: 's7-l1',
+        start: 0.4,
+        // Exactly as supplied. The wording is under separate review.
+        text: 'And the same will applied on the vacation allawance whete the basic salary paid for 3 months and from April will reflect the new basic salary.',
+        rate: 1.0,
+        captions: ['And the same will applied on the', 'vacation allawance whete the basic salary', 'paid for 3 months and from April', 'will reflect the new basic salary.'],
+      },
+    ],
+    text: {
+      eyebrow: '2027 IMPLEMENTATION YEAR',
+      title: 'VACATION ALLOWANCE',
+      bandWhen: 'JANUARY – MARCH',
+      bandWhat: 'Current basic salary',
+      aprWhen: 'APRIL 2027',
+      aprWhat: 'New basic salary reflected',
+    },
+  },
+  {
+    id: 'merit',
+    title: '8 - Merit: 15 months',
+    duration: 9.0,
+    beats: {wheelBack: 0, labelIn: 0.6, sweep12: 1.1, sweep3: 2.9, fifteenIn: 3.9, noteIn: 4.9},
+    voice: [
+      {
+        id: 's8-l1',
+        start: 0.4,
+        text: 'Comes to the merit, it will cover 15 months, while the percentage itself does not change — only the months.',
+        spoken: 'Comes to the merit, it will cover fifteen months, while the percentage itself does not change, only the months.',
+        rate: 1.0,
+        captions: ['Comes to the merit, it will cover 15 months,', 'while the percentage itself does not change', '— only the months.'],
+      },
+    ],
+    text: {
+      label: 'MERIT',
+      fifteen: '15 MONTHS',
+      note: 'The percentage itself does not change — only the months.',
     },
   },
   {
     id: 'close',
-    title: '7 - Final message',
-    duration: 5.15,
-    beats: {
-      questionsIn: 0.34,
-      logoIn: 3.44,
-      // On the word - see anchors.ts.
-      contactIn: 1.59,
-    },
+    title: '9 - Final message',
+    duration: 5.3,
+    beats: {questionsIn: 0.3, contactIn: 1.6, logoIn: 3.2},
     voice: [
       {
-        id: 's7-l1',
+        id: 's9-l1',
         start: 0.45,
         text: 'For further clarification, contact HR personnel.',
         spoken: 'For further clarification, contact H R personnel.',

@@ -44,45 +44,49 @@ export const pacing: ScenePacing[] = [
   {
     "id": "hook",
     "leadIn": 2.3,
-    "pauses": [
-      0.35
-    ],
-    "tail": 0.85
+    "tail": 0.8
   },
   {
-    "id": "the-change",
+    "id": "cycle",
     "leadIn": 0.4,
-    "tail": 3.9
+    "tail": 3.8
   },
   {
     "id": "march",
-    "leadIn": 0.4,
-    "tail": 1.3
+    "leadIn": 0.35,
+    "tail": 1.4
   },
   {
     "id": "april",
-    "leadIn": 0.4,
-    "tail": 1.3
-  },
-  {
-    "id": "example",
-    "leadIn": 0.45,
-    "pauses": [
-      4.4
-    ],
+    "leadIn": 0.35,
     "tail": 1.2
   },
   {
+    "id": "transition",
+    "leadIn": 0.4,
+    "tail": 1.4
+  },
+  {
     "id": "leave",
-    "leadIn": 0.45,
+    "leadIn": 0.4,
     "pauses": [
-      3.0
+      0.8
     ],
-    "tail": 1.3
+    "tail": 1.1
+  },
+  {
+    "id": "allowance",
+    "leadIn": 0.4,
+    "tail": 1.0
+  },
+  {
+    "id": "merit",
+    "leadIn": 0.4,
+    "tail": 1.2
   },
   {
     "id": "close",
-    "leadIn": 0.5,
-    "tail": 1.4
+    "leadIn": 0.45,
+    "tail": 1.5
   }
 ];

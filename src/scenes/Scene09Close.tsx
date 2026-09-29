@@ -1,5 +1,5 @@
 /**
- * SCENE 11 - FINAL MESSAGE
+ * SCENE 9 - FINAL MESSAGE
  *
  * Just where to go for clarification, the contact and the logo. Nothing about
  * the cycle is repeated here; it would only dilute the frame people are meant
@@ -12,7 +12,7 @@ import {Plinth} from '../components/Card3D';
 import {useProgress, useScene} from '../lib/timing';
 import {colors, brand} from '../lib/theme';
 
-export const Scene11Close: React.FC = () => {
+export const Scene09Close: React.FC = () => {
   const scene = useScene();
   const t = scene.text as Record<string, string>;
 

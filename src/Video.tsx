@@ -21,9 +21,6 @@ import {
   scenes,
   sceneStarts,
   sceneStart,
-  sceneBeat,
-  monthsCalendar,
-  monthsSalaryYear,
   FPS,
   TRANSITION,
   OUTRO_FADE,
@@ -33,28 +30,31 @@ import {SceneHost} from './components/SceneTransition';
 import {Stage} from './components/Stage';
 import {Chrome} from './components/Chrome';
 import {Captions} from './components/Captions';
-import {Timeline, TimelinePin} from './components/Timeline';
 import {loadProjectFonts} from './lib/fonts';
 import {colors, fonts} from './lib/theme';
 
 import {Scene01Hook} from './scenes/Scene01Hook';
-import {Scene05TheChange} from './scenes/Scene05TheChange';
-import {Scene07March} from './scenes/Scene07March';
-import {Scene08April} from './scenes/Scene08April';
-import {Scene09Example} from './scenes/Scene09Example';
-import {Scene10Leave} from './scenes/Scene10Leave';
-import {Scene11Close} from './scenes/Scene11Close';
+import {Scene02Cycle} from './scenes/Scene02Cycle';
+import {Scene03March} from './scenes/Scene03March';
+import {Scene04April} from './scenes/Scene04April';
+import {Scene05Transition} from './scenes/Scene05Transition';
+import {Scene06Leave} from './scenes/Scene06Leave';
+import {Scene07Allowance} from './scenes/Scene07Allowance';
+import {Scene08Merit} from './scenes/Scene08Merit';
+import {Scene09Close} from './scenes/Scene09Close';
 
 loadProjectFonts();
 
 const SCENE_COMPONENTS: Record<string, React.FC> = {
   hook: Scene01Hook,
-  'the-change': Scene05TheChange,
-  march: Scene07March,
-  april: Scene08April,
-  example: Scene09Example,
-  leave: Scene10Leave,
-  close: Scene11Close,
+  cycle: Scene02Cycle,
+  march: Scene03March,
+  april: Scene04April,
+  transition: Scene05Transition,
+  leave: Scene06Leave,
+  allowance: Scene07Allowance,
+  merit: Scene08Merit,
+  close: Scene09Close,
 };
 
 /**
@@ -83,117 +83,19 @@ type GlowKey = {
  */
 const GLOW_KEYS: GlowKey[] = [
   {scene: 'hook', at: 0, x: 960, y: 470, v: 0.4},
-  {scene: 'the-change', at: 0, x: 480, y: 520, v: 0.18},
-  {scene: 'the-change', at: 2.2, x: 480, y: 520, v: 0.55}, // ring spins up
-  {scene: 'the-change', at: 4.25, x: 1250, y: 470, v: 0.95}, // APR -> MAR lands
-  {scene: 'the-change', at: 5.6, x: 1250, y: 470, v: 0.85},
-  // The bottom timeline is deliberately unlit - the glow stays on the scene.
-  {scene: 'march', at: 1.0, x: 960, y: 600, v: 0.7},
-  {scene: 'march', at: 2.4, x: 960, y: 600, v: 0.85},
-  {scene: 'april', at: 0.4, x: 960, y: 420, v: 0.9},
-  {scene: 'example', at: 0, x: 760, y: 560, v: 0.16},
-  {scene: 'example', at: 9.5, x: 1470, y: 600, v: 0.8},  // 6.25% lands
-  {scene: 'leave', at: 0.5, x: 560, y: 470, v: 0.3},
-  {scene: 'leave', at: 6.5, x: 1480, y: 470, v: 0.7},  // APRIL 2027 lands
+  // The wheel sits right of centre in scenes 2-4 and 8; the glow sits behind it.
+  {scene: 'cycle', at: 0, x: 1300, y: 486, v: 0.25},
+  {scene: 'cycle', at: 4.3, x: 1300, y: 300, v: 0.8}, // APRIL arrives at the marker
+  {scene: 'march', at: 0.5, x: 1100, y: 330, v: 0.7},
+  {scene: 'april', at: 0.5, x: 900, y: 360, v: 0.8},
+  // Scenes 5-7: the timeline is the subject.
+  {scene: 'transition', at: 1.0, x: 960, y: 560, v: 0.35},
+  {scene: 'leave', at: 6.6, x: 1500, y: 600, v: 0.5},
+  {scene: 'allowance', at: 7.0, x: 1500, y: 600, v: 0.5},
+  {scene: 'merit', at: 1.2, x: 1300, y: 486, v: 0.45},
+  {scene: 'merit', at: 4.0, x: 1000, y: 460, v: 0.75}, // 15 MONTHS lands
   {scene: 'close', at: 0.4, x: 960, y: 330, v: 0.75},
 ];
-
-
-/* ------------------------------------------------------------------------- *
- * THE BOTTOM TIMELINE
- *
- * One hairline rail of twelve months, running from scene 2 to scene 4. It
- * answers the question the film is about: WHEN does each thing happen?
- *
- *   scene 2      JAN -> DEC draws in, and the same twelve months re-align into
- *                APR -> MAR as the ring lands. They travel; nothing cuts.
- *   scene 3      MARCH: bonus paid.
- *   scene 4      APRIL: merit & promotion adjustments reflected - and the rail
- *                retires with the scene.
- *
- * Every pin arrives on the word that names it where a word names it, measured
- * rather than estimated - see src/config/anchors.ts.
- *
- * It renders here rather than inside the scenes so it can cross all of them -
- * a per-scene rail would have to be re-introduced each time, which is exactly
- * the cut we are avoiding.
- * ------------------------------------------------------------------------- */
-
-/** Left edge and width of the rail. Inset from the frame so end pins fit. */
-const TL_LEFT = 160;
-const TL_WIDTH = 1600;
-/** Top of the rail's box. The rule lands at 874, clear of the subtitles. */
-const TL_TOP = 812;
-/** How long a pin takes to arrive. */
-const PIN_IN = 0.7;
-
-type Cue = {scene: string; beat: string; len: number};
-
-/** The rail's own moments. */
-const TL_IN: Cue = {scene: 'the-change', beat: 'timelineIn', len: 1.5};
-const TL_MORPH: Cue = {scene: 'the-change', beat: 'timelineMorph', len: 2.0};
-const TL_OUT: Cue = {scene: 'april', beat: 'timelineOut', len: 1.3};
-
-/** A pin and the beat it arrives on. */
-type PinCue = TimelinePin & Cue & {tone: 'estimate' | 'actual'; until?: Cue};
-
-const TL_PINS: PinCue[] = [
-  // The two months the new cycle pays out on.
-  {month: 'MAR', label: 'MARCH', sub: 'Bonus\npaid', tone: 'actual', tier: 0, progress: 0, scene: 'march', beat: 'timelineMar', len: PIN_IN},
-  {month: 'APR', label: 'APRIL', sub: 'Merit & Promotion\nadjustments reflected', tone: 'actual', tier: 0, progress: 0, scene: 'april', beat: 'timelineApr', len: PIN_IN},
-];
-
-const BottomTimeline: React.FC = () => {
-  const frame = useCurrentFrame();
-  const {fps} = useVideoConfig();
-  const t = frame / fps;
-
-  /** 0 -> 1 of a cue, eased, at the current time. */
-  const cue = (c: Cue, easing = Easing.out(Easing.cubic)) => {
-    const at = sceneBeat(c.scene, c.beat);
-    return interpolate(t, [at, at + c.len], [0, 1], {
-      extrapolateLeft: 'clamp',
-      extrapolateRight: 'clamp',
-      easing,
-    });
-  };
-
-  const drawn = cue(TL_IN);
-  const retired = cue(TL_OUT);
-  if (drawn <= 0 || retired >= 1) return null;
-
-  // The re-alignment: slow away, quick through the middle, settling hard - the
-  // months should feel carried rather than swapped.
-  const morph = cue(TL_MORPH, Easing.bezier(0.5, 0, 0.25, 1));
-
-  const pins: TimelinePin[] = TL_PINS.map((pin) => {
-    const arrive = cue(pin);
-    const leave = pin.until ? cue(pin.until) : 0;
-    return {...pin, progress: arrive * (1 - leave)};
-  });
-
-  return (
-    <div
-      style={{
-        position: 'absolute',
-        left: TL_LEFT,
-        top: TL_TOP,
-        width: TL_WIDTH,
-        opacity: 1 - retired,
-      }}
-    >
-      <Timeline
-        months={monthsCalendar}
-        into={monthsSalaryYear}
-        progress={drawn}
-        morph={morph}
-        width={TL_WIDTH}
-        pins={pins}
-        edge={TL_LEFT - 20}
-      />
-    </div>
-  );
-};
 
 
 const StageWithGlow: React.FC = () => {
@@ -274,7 +176,6 @@ export const SalaryCycleVideo: React.FC<{showCaptions?: boolean}> = ({showCaptio
       );
     })}
 
-    <BottomTimeline />
     <ChromeGate />
     {showCaptions ? <Captions /> : null}
     <Outro />

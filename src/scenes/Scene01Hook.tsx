@@ -71,7 +71,7 @@ export const Scene01Hook: React.FC = () => {
             {t.headlineKey.split('\n').map((line) => (
               <Display
                 key={line}
-                size={t.headlineKey.includes('\n') ? 132 : 176}
+                size={t.headlineKey.includes('\n') ? 118 : 176}
                 color={colors.accent}
                 glow
                 style={{textAlign: 'center'}}
