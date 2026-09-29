@@ -27,85 +27,85 @@ The current cycle runs
 from JANUARY to DECEMBER.
 
 8
-00:00:22,100 --> 00:00:24,578
-Here's the new proposed cycle.
+00:00:22,100 --> 00:00:24,316
+Here is the new cycle.
 
 9
-00:00:25,930 --> 00:00:28,495
+00:00:25,660 --> 00:00:28,225
 The bonus will be paid in MARCH.
 
 10
-00:00:29,640 --> 00:00:31,447
+00:00:29,370 --> 00:00:31,177
 In APRIL, merit increases and
 
 11
-00:00:31,467 --> 00:00:34,123
+00:00:31,197 --> 00:00:33,853
 promotion action will be reflected.
 
 12
-00:00:35,100 --> 00:00:36,812
+00:00:34,830 --> 00:00:36,542
 During the transition year,
 
 13
-00:00:36,832 --> 00:00:38,736
+00:00:36,562 --> 00:00:38,466
 this transition applies to the
 
 14
-00:00:38,756 --> 00:00:41,130
+00:00:38,486 --> 00:00:40,860
 2027 IMPLEMENTATION YEAR only.
 
 15
-00:00:42,290 --> 00:00:44,205
+00:00:42,020 --> 00:00:43,935
 For leave balance, you will receive
 
 16
-00:00:44,225 --> 00:00:46,499
+00:00:43,955 --> 00:00:46,229
 a three-month balance in JANUARY.
 
 17
-00:00:46,670 --> 00:00:48,063
+00:00:46,400 --> 00:00:47,793
 And from APRIL 2027,
 
 18
-00:00:48,083 --> 00:00:50,041
+00:00:47,813 --> 00:00:49,771
 a new annual balance begins,
 
 19
-00:00:50,061 --> 00:00:52,489
+00:00:49,791 --> 00:00:52,219
 based on the updated grades.
 
 20
-00:00:54,460 --> 00:00:56,217
+00:00:54,190 --> 00:00:55,947
 And the same will applied on the
 
 21
-00:00:56,237 --> 00:00:58,495
+00:00:55,967 --> 00:00:58,225
 vacation allowance where the basic salary
 
 22
-00:00:58,515 --> 00:01:00,272
+00:00:58,245 --> 00:01:00,002
 paid for 3 months and from April
 
 23
-00:01:00,292 --> 00:01:02,631
+00:01:00,022 --> 00:01:02,361
 will reflect the new basic salary.
 
 24
-00:01:05,180 --> 00:01:07,541
+00:01:04,910 --> 00:01:07,271
 Comes to the merit, it will cover 15 months,
 
 25
-00:01:07,561 --> 00:01:09,869
+00:01:07,291 --> 00:01:09,599
 while the percentage itself does not change
 
 26
-00:01:09,889 --> 00:01:11,313
+00:01:09,619 --> 00:01:11,043
 — only the months.
 
 27
-00:01:14,340 --> 00:01:16,215
+00:01:14,070 --> 00:01:15,945
 For further clarification,
 
 28
-00:01:16,235 --> 00:01:18,215
+00:01:15,965 --> 00:01:17,945
 contact HR personnel.

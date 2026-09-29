@@ -13,7 +13,8 @@ const SUPPLIED = [
   'The company will change the salary merit and promotion effectiveness update from January to April, changing only the timing in alignment with market best practices.',
   // Added at the client's request: the current cycle is said on the wheel.
   'The current cycle runs from January to December.',
-  "Here's the new proposed cycle.",
+  // "Here's the new proposed cycle." -> "Here is the new cycle." at the client's request.
+  'Here is the new cycle.',
   'The bonus will be paid in March.',
   'In April, merit increases and promotion action will be reflected.',
   'During the transition year, this transition applies to the 2027 implementation year only.',

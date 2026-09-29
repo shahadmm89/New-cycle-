@@ -1,6 +1,6 @@
 # Voice-over script - Our Salary Cycle Is Changing
 
-Total running time: **79.14 seconds** (9 scenes, 30 fps).
+Total running time: **78.86999999999999 seconds** (9 scenes, 30 fps).
 
 Voice: a professional American male presenter - mature, calm, warm, confident.
 Not a commercial voice-over, not a news anchor, not a trailer.
@@ -21,15 +21,15 @@ Record each line as its own take and name the file after the LINE ID below
 | `s1-l3` | 00:09.80 | 2.4s | 1 - Opening | 4 |
 | `s1-l4` | 00:12.41 | 3.9s | 1 - Opening | 6 |
 | `s2-l1` | 00:16.45 | 5.5s | 2 - The cycle shifts | 8 |
-| `s2-l2` | 00:22.10 | 3.7s | 2 - The cycle shifts | 5 |
-| `s3-l1` | 00:25.93 | 3.5s | 3 - March: bonus | 7 |
-| `s4-l1` | 00:29.64 | 5.3s | 4 - April: merit and promotion | 10 |
-| `s5-l1` | 00:35.10 | 7.0s | 5 - The 2027 implementation year | 13 |
-| `s6-l1` | 00:42.29 | 4.2s | 6 - Leave balance | 11 |
-| `s6-l2` | 00:46.67 | 7.6s | 6 - Leave balance | 14 |
-| `s7-l1` | 00:54.46 | 10.5s | 7 - Vacation allowance | 26 |
-| `s8-l1` | 01:05.18 | 9.0s | 8 - Merit: 15 months | 20 |
-| `s9-l1` | 01:14.34 | 4.6s | 9 - Final message | 6 |
+| `s2-l2` | 00:22.10 | 3.4s | 2 - The cycle shifts | 5 |
+| `s3-l1` | 00:25.66 | 3.5s | 3 - March: bonus | 7 |
+| `s4-l1` | 00:29.37 | 5.3s | 4 - April: merit and promotion | 10 |
+| `s5-l1` | 00:34.83 | 7.0s | 5 - The 2027 implementation year | 13 |
+| `s6-l1` | 00:42.02 | 4.2s | 6 - Leave balance | 11 |
+| `s6-l2` | 00:46.40 | 7.6s | 6 - Leave balance | 14 |
+| `s7-l1` | 00:54.19 | 10.5s | 7 - Vacation allowance | 26 |
+| `s8-l1` | 01:04.91 | 9.0s | 8 - Merit: 15 months | 20 |
+| `s9-l1` | 01:14.07 | 4.6s | 9 - Final message | 6 |
 
 ---
 
@@ -55,7 +55,7 @@ Record each line as its own take and name the file after the LINE ID below
 
 ## 2 - The cycle shifts
 
-**00:16.10 - 00:25.63** (9.53s)
+**00:16.10 - 00:25.36** (9.26s)
 
 **`s2-l1`** - in at 00:16.45
 
@@ -63,29 +63,29 @@ Record each line as its own take and name the file after the LINE ID below
 
 **`s2-l2`** - in at 00:22.10
 
-> Here's the new proposed cycle.
+> Here is the new cycle.
 
 ## 3 - March: bonus
 
-**00:25.63 - 00:29.35** (3.72s)
+**00:25.36 - 00:29.08** (3.72s)
 
-**`s3-l1`** - in at 00:25.93
+**`s3-l1`** - in at 00:25.66
 
 > The bonus will be paid in March.
 
 ## 4 - April: merit and promotion
 
-**00:29.35 - 00:34.75** (5.4s)
+**00:29.08 - 00:34.48** (5.4s)
 
-**`s4-l1`** - in at 00:29.64
+**`s4-l1`** - in at 00:29.37
 
 > In April, merit increases and promotion action will be reflected.
 
 ## 5 - The 2027 implementation year
 
-**00:34.75 - 00:41.94** (7.19s)
+**00:34.48 - 00:41.67** (7.19s)
 
-**`s5-l1`** - in at 00:35.10
+**`s5-l1`** - in at 00:34.83
 
 > During the transition year, this transition applies to the 2027 implementation year only.
 
@@ -93,13 +93,13 @@ _Say it as:_ During the transition year, this transition applies to the twenty t
 
 ## 6 - Leave balance
 
-**00:41.94 - 00:54.11** (12.17s)
+**00:41.67 - 00:53.84** (12.17s)
 
-**`s6-l1`** - in at 00:42.29
+**`s6-l1`** - in at 00:42.02
 
 > For leave balance, you will receive a three-month balance in January.
 
-**`s6-l2`** - in at 00:46.67
+**`s6-l2`** - in at 00:46.40
 
 > And from April 2027, a new annual balance begins, based on the updated grades.
 
@@ -107,9 +107,9 @@ _Say it as:_ And from April twenty twenty-seven, a new annual balance begins, ba
 
 ## 7 - Vacation allowance
 
-**00:54.11 - 01:04.84** (10.73s)
+**00:53.84 - 01:04.57** (10.73s)
 
-**`s7-l1`** - in at 00:54.46
+**`s7-l1`** - in at 00:54.19
 
 > And the same will applied on the vacation allowance where the basic salary paid for 3 months and from April will reflect the new basic salary.
 
@@ -117,9 +117,9 @@ _Say it as:_ And the same will applied on the vacation allowance, where the basi
 
 ## 8 - Merit: 15 months
 
-**01:04.84 - 01:13.94** (9.1s)
+**01:04.57 - 01:13.67** (9.1s)
 
-**`s8-l1`** - in at 01:05.18
+**`s8-l1`** - in at 01:04.91
 
 > Comes to the merit, it will cover 15 months, while the percentage itself does not change — only the months.
 
@@ -127,9 +127,9 @@ _Say it as:_ Comes to the merit, it will cover fifteen months, while the percent
 
 ## 9 - Final message
 
-**01:13.94 - 01:19.14** (5.2s)
+**01:13.67 - 01:18.87** (5.2s)
 
-**`s9-l1`** - in at 01:14.34
+**`s9-l1`** - in at 01:14.07
 
 > For further clarification, contact HR personnel.
 
@@ -139,4 +139,4 @@ _Say it as:_ For further clarification, contact H R personnel.
 
 ## Full script, uninterrupted
 
-The company will change the salary merit and promotion effectiveness update from January to April, changing only the timing in alignment with market best practices. The current cycle runs from January to December. Here's the new proposed cycle. The bonus will be paid in March. In April, merit increases and promotion action will be reflected. During the transition year, this transition applies to the 2027 implementation year only. For leave balance, you will receive a three-month balance in January. And from April 2027, a new annual balance begins, based on the updated grades. And the same will applied on the vacation allowance where the basic salary paid for 3 months and from April will reflect the new basic salary. Comes to the merit, it will cover 15 months, while the percentage itself does not change — only the months. For further clarification, contact HR personnel.
+The company will change the salary merit and promotion effectiveness update from January to April, changing only the timing in alignment with market best practices. The current cycle runs from January to December. Here is the new cycle. The bonus will be paid in March. In April, merit increases and promotion action will be reflected. During the transition year, this transition applies to the 2027 implementation year only. For leave balance, you will receive a three-month balance in January. And from April 2027, a new annual balance begins, based on the updated grades. And the same will applied on the vacation allowance where the basic salary paid for 3 months and from April will reflect the new basic salary. Comes to the merit, it will cover 15 months, while the percentage itself does not change — only the months. For further clarification, contact HR personnel.

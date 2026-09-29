@@ -63,7 +63,7 @@ export const Scene02Cycle: React.FC = () => {
             </Rise>
           </div>
         </div>
-        {/* the new proposed cycle */}
+        {/* the new cycle */}
         <div style={{position: 'absolute', inset: 0, opacity: pNew, transform: `translate3d(0, ${(1 - pNew) * 40}px, 0)`}}>
           <Label size={30} color={colors.accent}>{t.newLabel}</Label>
           <div style={{marginTop: 22}}>

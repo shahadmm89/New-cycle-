@@ -11,7 +11,7 @@ export const measuredDurations: Record<string, number> = {
   's1-l3': 2.172,
   's1-l4': 2.816,
   's2-l1': 2.858,
-  's2-l2': 2.028,
+  's2-l2': 1.766,
   's3-l1': 2.115,
   's4-l1': 4.033,
   's5-l1': 5.58,

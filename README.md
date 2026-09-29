@@ -86,7 +86,7 @@ npm run voiceover:build     # re-generate narration + music (see docs/VOICEOVER.
 | # | Scene | In | Length | What it shows |
 |---|---|---|---|---|
 | 1 | Opening | 0:00 | 16.0s | **SALARY MERIT & PROMOTION EFFECTIVENESS UPDATE** / January → April / Aligned with market best practices. Held before the narrator starts; the sentence is said in four unhurried phrases |
-| 2 | The cycle shifts | 0:16 | 9.5s | The wheel with JANUARY lit: "The current cycle runs from January to December." It holds, then turns a quarter: JANUARY – DECEMBER → **APRIL – MARCH** |
+| 2 | The cycle shifts | 0:16 | 9.5s | The wheel with JANUARY lit: "The current cycle runs from January to December." It holds, then turns a quarter: JANUARY – DECEMBER → **APRIL – MARCH**, "Here is the new cycle." |
 | 3 | March | 0:25 | 3.7s | MARCH lifts out of the wheel: **MARCH / BONUS PAID** |
 | 4 | April | 0:29 | 5.4s | March settles back, APRIL lifts: **APRIL / MERIT INCREASES / PROMOTION ACTION** |
 | 5 | 2027 implementation year | 0:34 | 7.2s | Wheel to the corner; timeline 2026 → DECEMBER → JAN–MAR (coral) → APRIL 2027 |

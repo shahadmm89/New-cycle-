@@ -142,13 +142,13 @@ export const scenes: SceneConfig[] = [
   {
     id: 'cycle',
     title: '2 - The cycle shifts',
-    duration: 9.53,
+    duration: 9.26,
     beats: {
       wheelIn: 0,
       janLit: 0.45,
       oldRangeIn: 0.72,
       // The wheel holds on JANUARY - DECEMBER for a beat after it is said,
-      // then turns; "Here's the new proposed cycle" lands with APRIL.
+      // then turns; "Here is the new cycle" lands with APRIL.
       spin: 4.2,
       newRangeIn: 6.1,
       aprLit: 6.0,
@@ -164,16 +164,16 @@ export const scenes: SceneConfig[] = [
       {
         id: 's2-l2',
         start: 6,
-        text: "Here's the new proposed cycle.",
+        text: 'Here is the new cycle.',
         rate: 1.0,
-        captions: ["Here's the new proposed cycle."],
+        captions: ['Here is the new cycle.'],
       },
     ],
     text: {
       oldLabel: 'CURRENT CYCLE',
       oldFrom: cycle.oldCycleFromLong,
       oldTo: cycle.oldCycleToLong,
-      newLabel: 'NEW PROPOSED CYCLE',
+      newLabel: 'NEW CYCLE',
       newFrom: cycle.newCycleFromLong,
       newTo: cycle.newCycleToLong,
     },
@@ -192,7 +192,7 @@ export const scenes: SceneConfig[] = [
         captions: ['The bonus will be paid in MARCH.'],
       },
     ],
-    text: {label: 'NEW PROPOSED CYCLE', month: 'MARCH', what: 'BONUS PAID'},
+    text: {label: 'NEW CYCLE', month: 'MARCH', what: 'BONUS PAID'},
   },
   {
     id: 'april',
@@ -209,7 +209,7 @@ export const scenes: SceneConfig[] = [
       },
     ],
     text: {
-      label: 'NEW PROPOSED CYCLE',
+      label: 'NEW CYCLE',
       month: 'APRIL',
       merit: 'MERIT INCREASES',
       promotion: 'PROMOTION ACTION',
@@ -219,7 +219,7 @@ export const scenes: SceneConfig[] = [
     id: 'transition',
     title: '5 - The 2027 implementation year',
     duration: 7.19,
-    beats: {wheelAway: 0, titleIn: 0.45, railIn: 0.3, bandIn: 2.68, aprilIn: 3.84},
+    beats: {wheelAway: 0, titleIn: 0.45, railIn: 0.3, bandIn: 1.95, aprilIn: 3.03},
     voice: [
       {
         id: 's5-l1',
