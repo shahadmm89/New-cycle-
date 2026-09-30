@@ -1,6 +1,6 @@
 # Voice-over script - Our Salary Cycle Is Changing
 
-Total running time: **78.86999999999999 seconds** (9 scenes, 30 fps).
+Total running time: **73.97 seconds** (9 scenes, 30 fps).
 
 Voice: a professional American male presenter - mature, calm, warm, confident.
 Not a commercial voice-over, not a news anchor, not a trailer.
@@ -26,10 +26,10 @@ Record each line as its own take and name the file after the LINE ID below
 | `s4-l1` | 00:29.37 | 5.3s | 4 - April: merit and promotion | 10 |
 | `s5-l1` | 00:34.83 | 7.0s | 5 - The 2027 implementation year | 13 |
 | `s6-l1` | 00:42.02 | 4.2s | 6 - Leave balance | 11 |
-| `s6-l2` | 00:46.40 | 7.6s | 6 - Leave balance | 14 |
-| `s7-l1` | 00:54.19 | 10.5s | 7 - Vacation allowance | 26 |
-| `s8-l1` | 01:04.91 | 9.0s | 8 - Merit: 15 months | 20 |
-| `s9-l1` | 01:14.07 | 4.6s | 9 - Final message | 6 |
+| `s6-l2` | 00:46.40 | 6.5s | 6 - Leave balance | 14 |
+| `s7-l1` | 00:53.09 | 8.7s | 7 - Vacation allowance | 26 |
+| `s8-l1` | 01:02.01 | 7.0s | 8 - Merit: 15 months | 20 |
+| `s9-l1` | 01:09.17 | 4.6s | 9 - Final message | 6 |
 
 ---
 
@@ -93,7 +93,7 @@ _Say it as:_ During the transition year, this transition applies to the twenty t
 
 ## 6 - Leave balance
 
-**00:41.67 - 00:53.84** (12.17s)
+**00:41.67 - 00:52.74** (11.07s)
 
 **`s6-l1`** - in at 00:42.02
 
@@ -107,9 +107,9 @@ _Say it as:_ And from April twenty twenty-seven, a new annual balance begins, ba
 
 ## 7 - Vacation allowance
 
-**00:53.84 - 01:04.57** (10.73s)
+**00:52.74 - 01:01.67** (8.93s)
 
-**`s7-l1`** - in at 00:54.19
+**`s7-l1`** - in at 00:53.09
 
 > And the same will applied on the vacation allowance where the basic salary paid for 3 months and from April will reflect the new basic salary.
 
@@ -117,9 +117,9 @@ _Say it as:_ And the same will applied on the vacation allowance, where the basi
 
 ## 8 - Merit: 15 months
 
-**01:04.57 - 01:13.67** (9.1s)
+**01:01.67 - 01:08.77** (7.1s)
 
-**`s8-l1`** - in at 01:04.91
+**`s8-l1`** - in at 01:02.01
 
 > Comes to the merit, it will cover 15 months, while the percentage itself does not change — only the months.
 
@@ -127,9 +127,9 @@ _Say it as:_ Comes to the merit, it will cover fifteen months, while the percent
 
 ## 9 - Final message
 
-**01:13.67 - 01:18.87** (5.2s)
+**01:08.77 - 01:13.97** (5.2s)
 
-**`s9-l1`** - in at 01:14.07
+**`s9-l1`** - in at 01:09.17
 
 > For further clarification, contact HR personnel.
 

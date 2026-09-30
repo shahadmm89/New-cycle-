@@ -4,9 +4,6 @@
  * Same timeline again. This time the whole coral band is the subject: January
  * to March runs on the current basic salary, and from APRIL 2027 the new basic
  * salary is reflected.
- *
- * Above the rail, the worked example for the first quarter: basic salary x the
- * vacation allowance percentage / 12 x 3 months.
  */
 import React from 'react';
 import {AbsoluteFill} from 'remotion';
@@ -17,8 +14,6 @@ import {useProgress, useScene, useIdle} from '../lib/timing';
 import {Breathe} from '../components/Breathe';
 import {colors} from '../lib/theme';
 import {WHEEL_AT} from '../lib/wheel';
-import {Formula} from '../components/Formula';
-import {examples} from '../config/copy';
 import {transitionTones} from './Scene05Transition';
 import {Callout, Traveller} from './Scene06Leave';
 
@@ -36,7 +31,6 @@ export const Scene07Allowance: React.FC = () => {
   const pBandCallout = useProgress('bandCallout', 0.6);
   const pTravel = useProgress('travel', 1.0);
   const pApr = useProgress('aprCallout', 0.6);
-  const pExample = useProgress('exampleIn', 1.8);
 
   return (
     <AbsoluteFill>
@@ -50,14 +44,6 @@ export const Scene07Allowance: React.FC = () => {
         <Rise progress={pTitle} distance={24}>
           <Display size={76} color={colors.text}>{t.title}</Display>
         </Rise>
-      </div>
-
-      {/* the worked example: the first quarter, on the current basic salary */}
-      <div style={{position: 'absolute', left: 120, top: 258, opacity: Math.min(1, pExample * 3)}}>
-        <Label size={22} color={colors.transition}>{`${examples.label}  \u00B7  ${examples.allowance.caption}`}</Label>
-        <div style={{marginTop: 14}}>
-          <Formula terms={examples.allowance.terms} progress={pExample} size={44} resultColor={colors.transition} />
-        </div>
       </div>
 
       <TransitionTimeline
