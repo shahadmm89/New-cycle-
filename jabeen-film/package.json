@@ -1,0 +1,28 @@
+{
+  "name": "jabeen-home-ownership-film",
+  "version": "0.1.0",
+  "private": true,
+  "description": "JABEEN employee home ownership film - animatic, titles and floor-plan reveal (Remotion)",
+  "license": "UNLICENSED",
+  "scripts": {
+    "studio": "remotion studio src/index.ts",
+    "render:animatic": "node render/render.mjs animatic",
+    "render:film": "node render/render.mjs film",
+    "still": "node render/render.mjs still",
+    "check:assets": "node render/check-assets.mjs",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@remotion/bundler": "4.0.523",
+    "@remotion/cli": "4.0.523",
+    "@remotion/renderer": "4.0.523",
+    "react": "19.0.0",
+    "react-dom": "19.0.0",
+    "remotion": "4.0.523"
+  },
+  "devDependencies": {
+    "@types/react": "19.0.0",
+    "@types/react-dom": "19.0.0",
+    "typescript": "5.6.3"
+  }
+}
