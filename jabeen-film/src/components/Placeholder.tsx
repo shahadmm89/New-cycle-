@@ -2,7 +2,7 @@ import React from 'react';
 import {AbsoluteFill} from 'remotion';
 import type {Shot} from '../lib/timeline';
 import {cameraTransform} from './Shot';
-import {FONT} from '../lib/fonts';
+import {UI_FONT as FONT} from '../lib/fonts';
 import {GOLD} from '../lib/theme';
 
 /**

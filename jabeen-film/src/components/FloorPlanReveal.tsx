@@ -1,10 +1,11 @@
 import React from 'react';
 import {AbsoluteFill, Easing, Img, interpolate, staticFile, useCurrentFrame} from 'remotion';
 import {ASSETS} from '../config/assets';
+import {SPEC_LABELS} from '../config/project';
 import type {Floor, VillaType} from '../config/project';
 import {FPS} from '../lib/timeline';
 import type {Shot} from '../lib/timeline';
-import {FONT} from '../lib/fonts';
+import {FONT, UI_FONT} from '../lib/fonts';
 import {GOLD} from '../lib/theme';
 
 /**
@@ -19,7 +20,8 @@ import {GOLD} from '../lib/theme';
 const ease = Easing.bezier(0.33, 0, 0.2, 1);
 const s = (sec: number) => Math.round(sec * FPS);
 const BG = '#0f1113';
-const PLAN_BOX = {left: 110, top: 120, width: 1140, height: 840};
+// Mirrored for Arabic: the plan sits right, the specification panel left.
+const PLAN_BOX = {left: 680, top: 120, width: 1130, height: 840};
 
 const fit = (aspect: number) => {
   const w = Math.min(PLAN_BOX.width, PLAN_BOX.height * aspect);
@@ -43,16 +45,16 @@ const FloorLayer: React.FC<{floor: Floor; local: number; segment: number; fadeOu
         <div style={{position: 'absolute', top: box.top - 20, height: box.height + 40, left: box.left + (box.width * wipe) / 100, width: 2, background: GOLD, boxShadow: `0 0 18px 4px ${GOLD}`}} />
       )}
       {showTitle && (
-        <div style={{position: 'absolute', left: PLAN_BOX.left, top: 64, fontFamily: FONT, fontSize: 20, letterSpacing: '0.35em', color: GOLD, opacity: wipe / 100}}>
-          {floor.name.toUpperCase()}
+        <div style={{position: 'absolute', right: 1920 - PLAN_BOX.left - PLAN_BOX.width, top: 56, fontFamily: FONT, direction: 'rtl', fontSize: 28, fontWeight: 300, color: GOLD, opacity: wipe / 100}}>
+          {floor.name}
         </div>
       )}
       {floor.rooms.map((room, i) => {
         const a = interpolate(local, [roomsStart + i * step, roomsStart + i * step + s(0.6)], [0, 1], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: ease});
         return (
-          <div key={room.name + i} style={{position: 'absolute', left: box.left + room.x * box.width, top: box.top + room.y * box.height, transform: `translate(-50%, -50%) translateY(${(1 - a) * 8}px)`, opacity: a, textAlign: 'center', fontFamily: FONT, whiteSpace: 'nowrap'}}>
-            <div style={{fontSize: 17, fontWeight: 500, letterSpacing: '0.14em', color: '#fff', textShadow: `0 0 6px ${BG}, 0 0 12px ${BG}`}}>{room.name.toUpperCase()}</div>
-            {room.dims && <div style={{fontSize: 15, fontWeight: 400, color: GOLD, marginTop: 3, textShadow: `0 0 6px ${BG}`}}>{room.dims}</div>}
+          <div key={room.name + i} style={{position: 'absolute', left: box.left + room.x * box.width, top: box.top + room.y * box.height, transform: `translate(-50%, -50%) translateY(${(1 - a) * 8}px)`, opacity: a, textAlign: 'center', fontFamily: FONT, direction: 'rtl', whiteSpace: 'nowrap'}}>
+            <div style={{fontSize: 22, fontWeight: 400, color: '#fff', textShadow: `0 0 6px ${BG}, 0 0 12px ${BG}`}}>{room.name}</div>
+            {room.dims && <div style={{fontSize: 18, fontWeight: 400, color: GOLD, marginTop: 1, textShadow: `0 0 6px ${BG}`}}>{room.dims}</div>}
           </div>
         );
       })}
@@ -62,28 +64,28 @@ const FloorLayer: React.FC<{floor: Floor; local: number; segment: number; fadeOu
 
 const SpecPanel: React.FC<{villa: VillaType; frame: number}> = ({villa, frame}) => {
   const rows: [string, string][] = [];
-  if (villa.builtUpArea) rows.push(['Built-up area', villa.builtUpArea]);
-  if (villa.plotArea) rows.push(['Plot size', villa.plotArea]);
-  if (villa.bedrooms != null) rows.push(['Bedrooms', String(villa.bedrooms)]);
-  if (villa.bathrooms != null) rows.push(['Bathrooms', String(villa.bathrooms)]);
+  if (villa.builtUpArea) rows.push([SPEC_LABELS.builtUpArea, villa.builtUpArea]);
+  if (villa.plotArea) rows.push([SPEC_LABELS.plotArea, villa.plotArea]);
+  if (villa.bedrooms != null) rows.push([SPEC_LABELS.bedrooms, String(villa.bedrooms)]);
+  if (villa.bathrooms != null) rows.push([SPEC_LABELS.bathrooms, String(villa.bathrooms)]);
   const outdoor = villa.outdoor ?? [];
   const appear = (i: number) => interpolate(frame, [s(3.2) + i * s(0.45), s(3.2) + i * s(0.45) + s(0.7)], [0, 1], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: ease});
   return (
-    <div style={{position: 'absolute', left: 1360, top: 200, width: 460, fontFamily: FONT, color: '#fff'}}>
-      <div style={{opacity: appear(0), fontSize: 18, letterSpacing: '0.4em', color: GOLD}}>VILLA TYPE</div>
-      <div style={{opacity: appear(0), fontSize: 52, fontWeight: 200, marginTop: 8, letterSpacing: '0.04em'}}>{villa.name}</div>
-      <div style={{height: 1, background: 'rgba(255,255,255,0.25)', margin: '28px 0', transformOrigin: 'left', transform: `scaleX(${appear(1)})`}} />
+    <div style={{position: 'absolute', left: 110, top: 200, width: 460, fontFamily: FONT, direction: 'rtl', color: '#fff'}}>
+      <div style={{opacity: appear(0), fontSize: 24, fontWeight: 300, color: GOLD}}>{SPEC_LABELS.villaType}</div>
+      <div style={{opacity: appear(0), fontSize: 60, fontWeight: 200, marginTop: 4}}>{villa.name}</div>
+      <div style={{height: 1, background: 'rgba(255,255,255,0.25)', margin: '28px 0', transformOrigin: 'right', transform: `scaleX(${appear(1)})`}} />
       {rows.map(([k, v], i) => (
         <div key={k} style={{opacity: appear(i + 1), display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', padding: '12px 0', borderBottom: '1px solid rgba(255,255,255,0.08)'}}>
-          <span style={{fontSize: 19, fontWeight: 300, color: 'rgba(255,255,255,0.7)', letterSpacing: '0.06em'}}>{k}</span>
-          <span style={{fontSize: 26, fontWeight: 300}}>{v}</span>
+          <span style={{fontSize: 24, fontWeight: 300, color: 'rgba(255,255,255,0.72)'}}>{k}</span>
+          <span style={{fontSize: 30, fontWeight: 300}}>{v}</span>
         </div>
       ))}
       {outdoor.length > 0 && (
         <div style={{opacity: appear(rows.length + 1), marginTop: 26}}>
-          <div style={{fontSize: 16, letterSpacing: '0.3em', color: GOLD}}>OUTDOOR</div>
+          <div style={{fontSize: 22, fontWeight: 300, color: GOLD}}>{SPEC_LABELS.outdoor}</div>
           {outdoor.map((o) => (
-            <div key={o} style={{fontSize: 20, fontWeight: 300, marginTop: 10, color: 'rgba(255,255,255,0.85)'}}>{o}</div>
+            <div key={o} style={{fontSize: 24, fontWeight: 300, marginTop: 8, color: 'rgba(255,255,255,0.85)'}}>{o}</div>
           ))}
         </div>
       )}
@@ -102,7 +104,7 @@ export const FloorPlanReveal: React.FC<{shot: Shot}> = ({shot}) => {
 
   if (!villa || villa.floors.length === 0) {
     return (
-      <AbsoluteFill style={{background: BG, justifyContent: 'center', alignItems: 'center', fontFamily: FONT, color: 'rgba(255,255,255,0.85)'}}>
+      <AbsoluteFill style={{background: BG, justifyContent: 'center', alignItems: 'center', fontFamily: UI_FONT, color: 'rgba(255,255,255,0.85)'}}>
         <div style={{width: 1100, textAlign: 'center'}}>
           <div style={{fontSize: 22, letterSpacing: '0.4em', color: GOLD}}>S6 · SHOT 6B · FLOOR-PLAN REVEAL</div>
           <div style={{fontSize: 44, fontWeight: 300, marginTop: 18}}>Awaiting the villa’s floor plan</div>

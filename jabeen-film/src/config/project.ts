@@ -9,9 +9,9 @@
  */
 
 export type Room = {
-  /** Name exactly as printed on the architect's plan. */
+  /** Arabic room name exactly as printed on the architect's plan. */
   name: string;
-  /** Dimensions exactly as printed on the plan, e.g. "4.20 × 5.10 m". */
+  /** Dimensions exactly as printed on the plan, e.g. "4.20 × 5.10 م". */
   dims?: string;
   /** Label anchor on the plan image, 0–1 from the image's left / top edge. */
   x: number;
@@ -19,7 +19,7 @@ export type Room = {
 };
 
 export type Floor = {
-  /** e.g. "Ground Floor" - as named on the drawings. */
+  /** e.g. "الدور الأرضي" - as named on the drawings. */
   name: string;
   /** Path under public/, e.g. "project/villa-a/plan-ground.png". */
   planImage: string;
@@ -31,10 +31,10 @@ export type Floor = {
 export type VillaType = {
   /** Short id used in asset slot names, e.g. "A" -> slot "s4-wide@A". */
   id: string;
-  /** Model name as the developer markets it. */
+  /** Model name in Arabic, as the developer markets it. */
   name: string;
-  builtUpArea?: string; // e.g. "285 m²"
-  plotArea?: string; // e.g. "400 m²"
+  builtUpArea?: string; // e.g. "285 م²" - digits exactly as on the drawings
+  plotArea?: string; // e.g. "400 م²"
   bedrooms?: number;
   bathrooms?: number;
   /** Outdoor / landscaping items stated on the drawings. */
@@ -48,24 +48,48 @@ export type VillaType = {
   roomLabels?: Partial<Record<'living' | 'kitchen' | 'circulation' | 'masterBedroom' | 'bedroom' | 'bathroom', string>>;
 };
 
+/**
+ * All on-screen copy is Arabic only. Lines marked "default" are the
+ * recommended options from the choices page and change once the client picks;
+ * null means "not confirmed", and is shown as a bracketed placeholder in the
+ * animatic and blocks the release render.
+ */
 export const PROJECT = {
-  /** Employer name as approved for the title lockup. MISSING. */
+  /** Employer, as it should read in the lockup. Public sources: Yasref. NOT CONFIRMED. */
   companyName: null as string | null,
   /** Company logo, path under public/. MISSING. */
   companyLogo: null as string | null,
+  /** JABEEN's name in Arabic as it should read in the lockup. NOT CONFIRMED. */
+  jabeenName: null as string | null,
   /** Official JABEEN logo (supplied PNG, transparent background). */
   jabeenLogo: 'brand/jabeen-logo.png',
   jabeenLogoAspect: 1497 / 1109,
+  copy: {
+    /** "A New Home Ownership Opportunity" (default). */
+    subtitle: 'فرصة جديدة لتملّك منزلك',
+    /** "Your Future Home Begins Here" (default). */
+    closing: 'بيتك المستقبلي يبدأ هنا',
+  },
   /**
-   * Neighbourhood name(s) for the S3 place label. As written in the brief:
-   * "Alaziziah, Aljabriah". Spelling, and whether the film should name one or
-   * both, is NOT yet confirmed - so it stays empty until it is.
+   * The S3 place label. One project across two neighbourhoods. The brief says
+   * "Alaziziah, Aljabriah"; the Royal Commission announcement says Al-Aziziyah
+   * and Al-Nakhil. Stays empty until JABEEN confirms.
    */
   placeLabel: null as string | null,
-  /** Shown under the place label once confirmed. */
-  placeSub: 'Yanbu · Royal Commission' as string | null,
-  /** Villa types, in the order the film should show them. MISSING. */
+  /** Second line of the place label (default). */
+  placeSub: 'الهيئة الملكية بينبع' as string | null,
+  /** The one villa model the film presents. MISSING. */
   villaTypes: [] as VillaType[],
+};
+
+/** Spec-panel captions on the floor-plan reveal. */
+export const SPEC_LABELS = {
+  villaType: 'نموذج الفيلا',
+  builtUpArea: 'مساحة البناء',
+  plotArea: 'مساحة الأرض',
+  bedrooms: 'غرف النوم',
+  bathrooms: 'دورات المياه',
+  outdoor: 'المساحات الخارجية',
 };
 
 /** Used for the animatic when no villa type has been supplied yet. */

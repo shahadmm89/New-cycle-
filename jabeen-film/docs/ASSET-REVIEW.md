@@ -1,5 +1,19 @@
 # Step 1: Asset review
 
+## Update, 14 Oct 2026: client answers
+
+| Question | Answer | Effect on the film |
+|---|---|---|
+| Language | **Arabic only** | All on-screen text is now Arabic, right to left, in IBM Plex Sans Arabic (SIL OFL). Labels sit lower-right; the floor-plan layout is mirrored. Letter-spacing is never applied to Arabic. |
+| Neighbourhoods | **One project across two neighbourhoods** | One label names both. **Conflict:** the brief says Alaziziah and Aljabriah. The [Royal Commission announcement](https://amlak.net.sa/en/107155/) says Al-Aziziyah and Al-Nakhil, and [TradeArabia](https://www.tradearabia.com/News/464968/Jabeen-in-deal-to-build-200-residential-villas-in-Saudi-industrial-city) says Al Nakheel and Al Murjan. No name is shown until JABEEN confirms. |
+| Villa models | **One model** | S4–S6 run once (the 2:30 cut as storyboarded). |
+| Location | A Google Maps short link (`maps.app.goo.gl/np5SR5m5NTtdeL5f6`) | The link can't be opened from this environment, because the network proxy blocks that host. **Please send the coordinates instead:** in Google Maps, long-press or right-click the pin and copy the two numbers. |
+| Company | "Jabeen" | Public sources ([Saudi Gulf Projects](https://www.saudigulfprojects.com/2026/07/jabeen-signs-81-8-million-agreement-with-yasref-to-develop-200-residential-villas-in-yanbu-industrial-city/), TradeArabia) describe the project as JABEEN building 200 villas for **Yasref** employees, with the Royal Commission as partner. The lockup options are on the choices page. Nothing is shown until you confirm. |
+
+Open decisions (titles, typeface, digits, production route, music, look, length) are
+collected on the **choices page** artifact. The film uses its recommended options as
+defaults in `src/config/project.ts`.
+
 Reviewed 13 Oct 2026. **One file has been supplied: the JABEEN logo.** Nothing
 else listed in the brief has arrived yet: no location, master plan, 3D models,
 renders, interiors, floor plans, dimensions or landscaping.

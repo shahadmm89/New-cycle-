@@ -77,7 +77,8 @@ const fact = (label, ok) => {
   console.log(`${ok ? 'ok     ' : 'MISSING'} ${label}`);
   if (!ok) problems.push(label);
 };
-fact('company name', !!PROJECT.companyName);
+fact('company name (Arabic)', !!PROJECT.companyName);
+fact('JABEEN name in Arabic (confirmed spelling)', !!PROJECT.jabeenName);
 fact('company logo', !!PROJECT.companyLogo && fs.existsSync(pub(PROJECT.companyLogo)));
 fact('JABEEN logo', fs.existsSync(pub(PROJECT.jabeenLogo)));
 fact('neighbourhood name (confirmed spelling)', !!PROJECT.placeLabel);

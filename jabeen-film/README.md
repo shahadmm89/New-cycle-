@@ -2,7 +2,7 @@
 
 A 2:30 cinematic film taking employees from orbit to Yanbu, into the JABEEN
 neighbourhood, through a villa and into its actual floor plan. It uses an
-orchestral score only, with no voice-over.
+orchestral score only, with no voice-over. **All on-screen text is Arabic.**
 
 **Status: animatic.** So far only the JABEEN logo has been supplied, so every
 footage shot is a labelled placeholder. Timing, typography, the floor-plan
@@ -32,7 +32,7 @@ npm run still -- 26 110   # PNG frames at those seconds -> output/stills/
 1. **Footage and renders:** put files under `public/project/` and register each against its
    shot slot in `src/config/assets.ts` (e.g. `'2A'`, `'4A@A'`, `'6B-top@A'`).
    Video replaces the placeholder as-is. Stills get a gentle camera move matching the storyboard.
-2. **Facts:** company name/logo, neighbourhood name and villa types (plans, room names,
+2. **Facts and Arabic copy:** title lines, company name/logo, JABEEN's Arabic name, neighbourhood name and villa types (plans, room names,
    dimensions, areas, counts) go in `src/config/project.ts`. Anything left empty is not shown.
 3. **Timing:** shot lengths, transitions and text cues live in `src/config/storyboard.json`.
    Adding a second villa type automatically adds a condensed pass of S4–S6.
