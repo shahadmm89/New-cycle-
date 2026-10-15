@@ -1,11 +1,54 @@
 # Step 1: Asset review
 
+## Update, 15 Oct 2026: Sumou Communities brochure (pages 29–37)
+
+Eleven brochure pages were received and saved unaltered in `public/project/brochure/pages/`.
+The clean picture areas, clear of the brochure's text panels and logos, are cropped into
+`public/project/brochure/crops/` by `render/brochure-crops.py` and placed in the animatic.
+
+| Page | Content | Used for |
+|---|---|---|
+| 29 | Al-Aziziyah "Royal" site plan · land 200,918 m² | 7A (site plan) |
+| 29 | Al-Nakhil "Elite" site plan · land 152,011 m² | 7C |
+| 30 | Al-Aziziyah location map · 239 villas (B1 101 · B2 88 · C 50) | 1C (stand-in) |
+| 30 | Al-Nakhil location map · 267 villas (A 119 · B1 66 · B2 74 · C 8) | reference |
+| 31 | Al-Aziziyah aerial render, golden hour | 2A, 3C, 8A |
+| 31 | Al-Nakhil aerial render, dusk | 3A |
+| 33 | Street at dusk, villas with timber screens | 3B |
+| 34 | Dining area with planted courtyard | 5B (replaces kitchen) |
+| 35 | Facades at dusk, Hejazi-inspired lattice screens | 4A, 4B |
+| 36 | Master bedroom | 5D |
+| 37 | Living area | 5A |
+
+### What this settles
+- **Neighbourhoods:** **Al-Aziziyah and Al-Nakhil**, both within **Sumou Communities (مجتمعات سمو)** in Yanbu.
+  This matches the Royal Commission announcement. "Aljabriah" from the original brief does not
+  appear anywhere, so the film's place label is now set to حي العزيزية · حي النخيل.
+- **Location:** the maps place Al-Aziziyah north of the Royal Commission Hospital, beside Yanbu
+  Industrial College and south of Danat Mall. Al-Nakhil is south-west of the hospital. That is
+  enough to plan the Earth Studio camera; exact coordinates are still welcome.
+
+### Issues found
+1. **Resolution.** The pages are 1080 px wide, so each 16:9 crop is upscaled about 2× and is
+   soft at 1080p. This is fine for the animatic but **not for release**. We need the original renders,
+   or the print PDF of the brochure.
+2. **Model counts contradict the text.** The Al-Aziziyah page says "two models" but lists three
+   (B1, B2, C). The Al-Nakhil page says "three models" but lists four (A, B1, B2, C).
+3. **Which villas are for employees?** The brochure totals 506 villas (239 + 267). Press reports
+   describe 200 villas for Yasref. The film states no counts until this is clarified.
+4. **Which model, and which renders show it?** The film presents one model, but the brochure
+   doesn't say which model each exterior or interior render shows. We need confirmation that
+   the chosen model's renders are the ones used.
+5. **Still missing:** floor plans and room schedule for the chosen model, so S6 stays a placeholder.
+   Also missing: kitchen, bathroom, second-bedroom and entrance renders, a ground-level
+   landscaping view, and the company logo.
+
 ## Update, 14 Oct 2026: client answers
 
 | Question | Answer | Effect on the film |
 |---|---|---|
 | Language | **Arabic only** | All on-screen text is now Arabic, right to left, in IBM Plex Sans Arabic (SIL OFL). Labels sit lower-right; the floor-plan layout is mirrored. Letter-spacing is never applied to Arabic. |
-| Neighbourhoods | **One project across two neighbourhoods** | One label names both. **Conflict:** the brief says Alaziziah and Aljabriah. The [Royal Commission announcement](https://amlak.net.sa/en/107155/) says Al-Aziziyah and Al-Nakhil, and [TradeArabia](https://www.tradearabia.com/News/464968/Jabeen-in-deal-to-build-200-residential-villas-in-Saudi-industrial-city) says Al Nakheel and Al Murjan. No name is shown until JABEEN confirms. |
+| Neighbourhoods | **One project across two neighbourhoods** (resolved 15 Oct: Al-Aziziyah and Al-Nakhil, see above) | One label names both. **Conflict:** the brief says Alaziziah and Aljabriah. The [Royal Commission announcement](https://amlak.net.sa/en/107155/) says Al-Aziziyah and Al-Nakhil, and [TradeArabia](https://www.tradearabia.com/News/464968/Jabeen-in-deal-to-build-200-residential-villas-in-Saudi-industrial-city) says Al Nakheel and Al Murjan. No name is shown until JABEEN confirms. |
 | Villa models | **One model** | S4–S6 run once (the 2:30 cut as storyboarded). |
 | Location | A Google Maps short link (`maps.app.goo.gl/np5SR5m5NTtdeL5f6`) | The link can't be opened from this environment, because the network proxy blocks that host. **Please send the coordinates instead:** in Google Maps, long-press or right-click the pin and copy the two numbers. |
 | Company | "Jabeen" | Public sources ([Saudi Gulf Projects](https://www.saudigulfprojects.com/2026/07/jabeen-signs-81-8-million-agreement-with-yasref-to-develop-200-residential-villas-in-yanbu-industrial-city/), TradeArabia) describe the project as JABEEN building 200 villas for **Yasref** employees, with the Royal Commission as partner. The lockup options are on the choices page. Nothing is shown until you confirm. |

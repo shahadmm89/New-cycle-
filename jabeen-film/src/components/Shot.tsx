@@ -58,8 +58,10 @@ export const Shot: React.FC<Props> = ({shot, life, animatic}) => {
       );
     } else if (asset?.kind === 'image') {
       body = (
-        <AbsoluteFill style={{transform: cameraTransform(shot.move, p)}}>
-          <Img src={staticFile(asset.src)} style={{width: '100%', height: '100%', objectFit: 'cover'}} />
+        <AbsoluteFill style={{background: asset.bg ?? '#000'}}>
+          <AbsoluteFill style={{transform: asset.fit === 'contain' ? `scale(${0.92 + 0.06 * p})` : cameraTransform(shot.move, p)}}>
+            <Img src={staticFile(asset.src)} style={{width: '100%', height: '100%', objectFit: asset.fit ?? 'cover'}} />
+          </AbsoluteFill>
         </AbsoluteFill>
       );
     } else {

@@ -24,12 +24,26 @@ const useReveal = (duration: number) => {
 
 const missing = (v: string | null | undefined, label: string) => v ?? `[${label}]`;
 
+/** Soft darkening behind text so it reads over bright aerials; fades with the text. */
+const Scrim: React.FC<{a: number; at: 'center' | 'lowerRight'}> = ({a, at}) => (
+  <AbsoluteFill
+    style={{
+      opacity: a,
+      background:
+        at === 'center'
+          ? 'radial-gradient(ellipse 62% 34% at 50% 50%, rgba(10,9,6,0.55) 0%, rgba(10,9,6,0.28) 55%, rgba(10,9,6,0) 100%)'
+          : 'radial-gradient(ellipse 48% 40% at 88% 88%, rgba(10,9,6,0.62) 0%, rgba(10,9,6,0.3) 50%, rgba(10,9,6,0) 100%)',
+    }}
+  />
+);
+
 const base: React.CSSProperties = {fontFamily: FONT, direction: 'rtl', color: '#fff', textShadow: SHADOW, whiteSpace: 'nowrap'};
 
 const Lockup: React.FC<{cue: TextCue}> = ({cue}) => {
   const {a, inn} = useReveal(cue.duration);
   return (
     <AbsoluteFill style={{justifyContent: 'center', alignItems: 'center', paddingBottom: 100}}>
+      <Scrim a={a} at="center" />
       <div style={{...base, fontWeight: 300, fontSize: 76, opacity: a, filter: `blur(${(1 - inn) * 8}px)`, transform: `translateY(${(1 - inn) * 10}px)`}}>
         {missing(PROJECT.companyName, 'اسم الشركة')}
         <span style={{color: GOLD, margin: '0 0.55em', fontWeight: 200}}>×</span>
@@ -43,6 +57,7 @@ const Centered: React.FC<{cue: TextCue; copy: string; size: number; y: number; w
   const {a, inn} = useReveal(cue.duration);
   return (
     <AbsoluteFill style={{justifyContent: 'center', alignItems: 'center', paddingTop: y}}>
+      {y === 0 && <Scrim a={a} at="center" />}
       <div style={{...base, fontWeight: weight, fontSize: size, opacity: a, filter: `blur(${(1 - inn) * 5}px)`, transform: `translateY(${(1 - inn) * 12}px)`}}>{copy}</div>
     </AbsoluteFill>
   );
@@ -53,6 +68,7 @@ export const LowerLabel: React.FC<{title: string; sub?: string | null; duration:
   const {a, inn} = useReveal(duration);
   return (
     <AbsoluteFill>
+      <Scrim a={a} at="lowerRight" />
       <div style={{...base, position: 'absolute', right: 120, bottom: 104, textAlign: 'right', opacity: a}}>
         <div style={{width: 64 * inn, height: 1.5, background: GOLD, marginBottom: 16, marginLeft: 'auto'}} />
         <div style={{fontSize: small ? 36 : 48, fontWeight: 300}}>{title}</div>

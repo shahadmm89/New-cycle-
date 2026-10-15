@@ -45,7 +45,7 @@ export type VillaType = {
    * Leave a shot out and it gets no label. Remove a shot's footage slot
    * entirely if the design has no such room - see docs/STORYBOARD.md.
    */
-  roomLabels?: Partial<Record<'living' | 'kitchen' | 'circulation' | 'masterBedroom' | 'bedroom' | 'bathroom', string>>;
+  roomLabels?: Partial<Record<'living' | 'kitchen' | 'dining' | 'circulation' | 'masterBedroom' | 'bedroom' | 'bathroom', string>>;
 };
 
 /**
@@ -71,11 +71,12 @@ export const PROJECT = {
     closing: 'بيتك المستقبلي يبدأ هنا',
   },
   /**
-   * The S3 place label. One project across two neighbourhoods. The brief says
-   * "Alaziziah, Aljabriah"; the Royal Commission announcement says Al-Aziziyah
-   * and Al-Nakhil. Stays empty until JABEEN confirms.
+   * The S3 place label. One project across two neighbourhoods, confirmed by the
+   * Sumou Communities brochure (pp. 29-31) and the Royal Commission
+   * announcement: Al-Aziziyah ("Royal") and Al-Nakhil ("Elite"). The brief's
+   * "Aljabriah" does not appear in either source.
    */
-  placeLabel: null as string | null,
+  placeLabel: 'حي العزيزية  ·  حي النخيل' as string | null,
   /** Second line of the place label (default). */
   placeSub: 'الهيئة الملكية بينبع' as string | null,
   /** The one villa model the film presents. MISSING. */

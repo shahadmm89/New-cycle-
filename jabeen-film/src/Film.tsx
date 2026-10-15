@@ -12,6 +12,7 @@ loadFonts();
 const ROOM_PLACEHOLDER: Record<string, string> = {
   living: 'الصالة',
   kitchen: 'المطبخ',
+  dining: 'غرفة الطعام',
   circulation: 'الدرج / الممر',
   masterBedroom: 'غرفة النوم الرئيسية',
   bedroom: 'غرفة النوم',

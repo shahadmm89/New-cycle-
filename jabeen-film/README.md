@@ -4,8 +4,8 @@ A 2:30 cinematic film taking employees from orbit to Yanbu, into the JABEEN
 neighbourhood, through a villa and into its actual floor plan. It uses an
 orchestral score only, with no voice-over. **All on-screen text is Arabic.**
 
-**Status: animatic.** So far only the JABEEN logo has been supplied, so every
-footage shot is a labelled placeholder. Timing, typography, the floor-plan
+**Status: animatic v3.** Thirteen shots now use renders from the Sumou Communities
+brochure. These are low-resolution stand-ins; the remaining shots are labelled placeholders. Timing, typography, the floor-plan
 reveal and the end frame are built and tested.
 
 | Doc | |

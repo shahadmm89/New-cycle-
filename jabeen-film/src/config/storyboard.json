@@ -165,8 +165,8 @@
           "transitionIn": "dissolve",
           "transitionDur": 1,
           "inCondensed": true,
-          "room": "kitchen",
-          "visual": "Kitchen: gentle push along the counters."
+          "room": "dining",
+          "visual": "Dining area: gentle push along the table toward the planted courtyard (brochure p.34). Swap for the kitchen if a kitchen render is supplied."
         },
         {
           "id": "5C",
