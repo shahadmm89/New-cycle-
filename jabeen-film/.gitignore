@@ -1,0 +1,10 @@
+node_modules
+output/stills
+output/.check-assets.mjs
+*.wav
+!public/audio/score.wav
+poc/clips/*-depth.npy
+demo/clips/*-depth.npy
+demo/clips/
+public/demo/clips/
+output/jabeen-demo.mp4

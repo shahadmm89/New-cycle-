@@ -1,0 +1,346 @@
+{
+  "_readme": "Extended 5-6 min shot plan. Each 'ready' shot is an image-to-video job: start_frame = the brochure page cropped to the clean picture area (render/brochure-crops.py), prompt = camera move + allowed motion + fidelity constraints. Shots marked missing/blocked cannot be made faithfully from current sources.",
+  "shots": [
+    {
+      "id": "A1",
+      "act": "Descent",
+      "dur": 8,
+      "start_frame": null,
+      "camera": "slow push from orbit",
+      "life": "none",
+      "prompt": "Photoreal view of Earth from high orbit at morning, the Arabian Peninsula and the Red Sea in sunlight, very slow forward drift, thin atmosphere glow. No changes to the buildings: keep facade geometry, window and door positions, lattice screens, pergolas, materials and colours exactly as in the start frame. No new buildings, floors or openings. No warping, no morphing, no flicker, no text.",
+      "status": "needs satellite imagery or text-to-video (generic, not project-specific)"
+    },
+    {
+      "id": "A2",
+      "act": "Descent",
+      "dur": 8,
+      "start_frame": null,
+      "camera": "descent through clouds",
+      "life": "drifting clouds",
+      "prompt": "Camera descends through soft white cumulus clouds over the Red Sea coast of Saudi Arabia in daylight, smooth continuous downward move. No changes to the buildings: keep facade geometry, window and door positions, lattice screens, pergolas, materials and colours exactly as in the start frame. No new buildings, floors or openings. No warping, no morphing, no flicker, no text.",
+      "status": "text-to-video (atmosphere only)"
+    },
+    {
+      "id": "A3",
+      "act": "Descent",
+      "dur": 8,
+      "start_frame": null,
+      "camera": "descent toward Yanbu coastline",
+      "life": "none",
+      "prompt": "Aerial descent toward the Yanbu coastline and industrial city grid in daylight. No changes to the buildings: keep facade geometry, window and door positions, lattice screens, pergolas, materials and colours exactly as in the start frame. No new buildings, floors or openings. No warping, no morphing, no flicker, no text.",
+      "status": "blocked: needs real imagery (Google Earth Studio or satellite tiles); otherwise cut"
+    },
+    {
+      "id": "A4",
+      "act": "Descent",
+      "dur": 10,
+      "start_frame": null,
+      "camera": "final descent, last frame = aerial render",
+      "life": "clouds clearing",
+      "prompt": "Camera descends through a thin cloud layer and settles on a high oblique aerial view of a residential villa neighbourhood. No changes to the buildings: keep facade geometry, window and door positions, lattice screens, pergolas, materials and colours exactly as in the start frame. No new buildings, floors or openings. No warping, no morphing, no flicker, no text.",
+      "status": "ready (first/last-frame model)",
+      "end_frame": "public/project/brochure/pages/p31-aziziyah-aerial.jpg"
+    },
+    {
+      "id": "B1",
+      "act": "Neighbourhood",
+      "dur": 8,
+      "start_frame": "public/project/brochure/pages/p31-aziziyah-aerial.jpg",
+      "camera": "high aerial establishing drift, slow lateral",
+      "life": "a few cars moving slowly on the perimeter road; trees sway gently",
+      "prompt": "Slow drone drift across the neighbourhood at high altitude. No changes to the buildings: keep facade geometry, window and door positions, lattice screens, pergolas, materials and colours exactly as in the start frame. No new buildings, floors or openings. No warping, no morphing, no flicker, no text.",
+      "status": "ready"
+    },
+    {
+      "id": "B2",
+      "act": "Neighbourhood",
+      "dur": 8,
+      "start_frame": "public/project/brochure/pages/p31-aziziyah-aerial.jpg",
+      "camera": "gradual descent toward the streets",
+      "life": "cars moving slowly; tree movement",
+      "prompt": "Drone slowly descends and pushes toward the residential streets. No changes to the buildings: keep facade geometry, window and door positions, lattice screens, pergolas, materials and colours exactly as in the start frame. No new buildings, floors or openings. No warping, no morphing, no flicker, no text.",
+      "status": "ready"
+    },
+    {
+      "id": "B3",
+      "act": "Neighbourhood",
+      "dur": 10,
+      "start_frame": "public/project/brochure/pages/p21-plaza-day.jpg",
+      "camera": "stabilised ground-level glide past the landscaped plaza",
+      "life": "residents stroll on the paths; people on the bench chat; grasses and palms move in a light breeze",
+      "prompt": "Smooth gimbal glide along the landscaped path, residents walking naturally in the background. No changes to the buildings: keep facade geometry, window and door positions, lattice screens, pergolas, materials and colours exactly as in the start frame. No new buildings, floors or openings. No warping, no morphing, no flicker, no text.",
+      "status": "ready"
+    },
+    {
+      "id": "B4",
+      "act": "Neighbourhood",
+      "dur": 10,
+      "start_frame": "public/project/brochure/pages/p22-street-day.jpg",
+      "camera": "forward-moving street journey",
+      "life": "one car drives slowly down the street; a resident walks along the sidewalk; palm fronds sway",
+      "prompt": "Stabilised forward tracking shot along the residential street in clear daylight. No changes to the buildings: keep facade geometry, window and door positions, lattice screens, pergolas, materials and colours exactly as in the start frame. No new buildings, floors or openings. No warping, no morphing, no flicker, no text.",
+      "status": "ready"
+    },
+    {
+      "id": "B5",
+      "act": "Neighbourhood",
+      "dur": 8,
+      "start_frame": "public/project/brochure/pages/p22-street-day.jpg",
+      "camera": "low-angle push up toward the facades",
+      "life": "tree leaves move; light clouds drift",
+      "prompt": "Low-angle slow push looking up at the villa facades and lattice screens against the sky. No changes to the buildings: keep facade geometry, window and door positions, lattice screens, pergolas, materials and colours exactly as in the start frame. No new buildings, floors or openings. No warping, no morphing, no flicker, no text.",
+      "status": "ready"
+    },
+    {
+      "id": "B6",
+      "act": "Neighbourhood",
+      "dur": 10,
+      "start_frame": "public/project/brochure/pages/p23-corner-day.jpg",
+      "camera": "lateral tracking shot passing several houses",
+      "life": "a resident walks toward his gate; a parked car stays parked; another car passes slowly",
+      "prompt": "Smooth lateral tracking shot moving past several villas along the paved street. No changes to the buildings: keep facade geometry, window and door positions, lattice screens, pergolas, materials and colours exactly as in the start frame. No new buildings, floors or openings. No warping, no morphing, no flicker, no text.",
+      "status": "ready"
+    },
+    {
+      "id": "B7",
+      "act": "Neighbourhood",
+      "dur": 10,
+      "start_frame": "public/project/brochure/pages/p23-corner-day.jpg",
+      "camera": "approach the street corner, gentle turn revealing the street beyond",
+      "life": "pedestrians at walking pace",
+      "prompt": "Camera approaches the street corner and makes a slow gentle turn to reveal the street, within the visible area only. No changes to the buildings: keep facade geometry, window and door positions, lattice screens, pergolas, materials and colours exactly as in the start frame. No new buildings, floors or openings. No warping, no morphing, no flicker, no text.",
+      "status": "ready"
+    },
+    {
+      "id": "B8",
+      "act": "Neighbourhood",
+      "dur": 8,
+      "start_frame": "public/project/brochure/pages/p21-plaza-day.jpg",
+      "camera": "diagonal view down the street",
+      "life": "car drives away down the street; people walk",
+      "prompt": "Slow diagonal camera move looking down the street, showing depth and the row of villas. No changes to the buildings: keep facade geometry, window and door positions, lattice screens, pergolas, materials and colours exactly as in the start frame. No new buildings, floors or openings. No warping, no morphing, no flicker, no text.",
+      "status": "ready"
+    },
+    {
+      "id": "C1",
+      "act": "Villa exterior",
+      "dur": 10,
+      "start_frame": "public/project/brochure/pages/p23-corner-day.jpg",
+      "camera": "partial orbit (max ~20°) around the selected villa's visible facade",
+      "life": "resident by the gate; leaves move",
+      "prompt": "Controlled slow partial orbit around the villa facade, staying on the visible side. No changes to the buildings: keep facade geometry, window and door positions, lattice screens, pergolas, materials and colours exactly as in the start frame. No new buildings, floors or openings. No warping, no morphing, no flicker, no text.",
+      "status": "needs: which villa model, and a daytime render of it"
+    },
+    {
+      "id": "C2",
+      "act": "Villa exterior",
+      "dur": 4,
+      "start_frame": "public/project/brochure/pages/p22-street-day.jpg",
+      "camera": "close-up detail: lattice screen",
+      "life": "dappled light shifts",
+      "prompt": "Slow macro push on the timber lattice screen, sunlight patterns shifting. No changes to the buildings: keep facade geometry, window and door positions, lattice screens, pergolas, materials and colours exactly as in the start frame. No new buildings, floors or openings. No warping, no morphing, no flicker, no text.",
+      "status": "ready"
+    },
+    {
+      "id": "C3",
+      "act": "Villa exterior",
+      "dur": 4,
+      "start_frame": "public/project/brochure/pages/p23-corner-day.jpg",
+      "camera": "close-up detail: timber gate and carport",
+      "life": "none",
+      "prompt": "Slow close-up dolly along the timber gate and carport pergola. No changes to the buildings: keep facade geometry, window and door positions, lattice screens, pergolas, materials and colours exactly as in the start frame. No new buildings, floors or openings. No warping, no morphing, no flicker, no text.",
+      "status": "ready"
+    },
+    {
+      "id": "C4",
+      "act": "Villa exterior",
+      "dur": 4,
+      "start_frame": "public/project/brochure/pages/p22-street-day.jpg",
+      "camera": "close-up detail: windows and screens, tilt up",
+      "life": "light clouds",
+      "prompt": "Gentle tilt up the facade from the gate to the upper lattice screens. No changes to the buildings: keep facade geometry, window and door positions, lattice screens, pergolas, materials and colours exactly as in the start frame. No new buildings, floors or openings. No warping, no morphing, no flicker, no text.",
+      "status": "ready"
+    },
+    {
+      "id": "C5",
+      "act": "Villa exterior",
+      "dur": 8,
+      "start_frame": "public/project/brochure/pages/p31-aziziyah-aerial.jpg",
+      "camera": "elevated view connecting villa to neighbourhood",
+      "life": "slow traffic",
+      "prompt": "Drone rises from street height to show the villa within the neighbourhood. No changes to the buildings: keep facade geometry, window and door positions, lattice screens, pergolas, materials and colours exactly as in the start frame. No new buildings, floors or openings. No warping, no morphing, no flicker, no text.",
+      "status": "ready"
+    },
+    {
+      "id": "D1",
+      "act": "Entrance",
+      "dur": 8,
+      "start_frame": null,
+      "camera": "approach the main door",
+      "life": "a resident opens the gate",
+      "prompt": "Camera approaches the villa's main entrance door. No changes to the buildings: keep facade geometry, window and door positions, lattice screens, pergolas, materials and colours exactly as in the start frame. No new buildings, floors or openings. No warping, no morphing, no flicker, no text.",
+      "status": "missing: entrance/door render"
+    },
+    {
+      "id": "D2",
+      "act": "Entrance",
+      "dur": 4,
+      "start_frame": null,
+      "camera": "through the doorway into the foyer",
+      "life": "door opens",
+      "prompt": "Camera passes through the doorway into the entrance foyer. No changes to the buildings: keep facade geometry, window and door positions, lattice screens, pergolas, materials and colours exactly as in the start frame. No new buildings, floors or openings. No warping, no morphing, no flicker, no text.",
+      "status": "missing: foyer render and floor plan"
+    },
+    {
+      "id": "E1",
+      "act": "Interior",
+      "dur": 8,
+      "start_frame": "public/project/brochure/pages/p25-living-wide.jpg",
+      "camera": "enter at eye level, slow forward to establish depth",
+      "life": "curtains move slightly; plants sway in the courtyard",
+      "prompt": "Eye-level slow forward move into the living room, natural daylight. No changes to the buildings: keep facade geometry, window and door positions, lattice screens, pergolas, materials and colours exactly as in the start frame. No new buildings, floors or openings. No warping, no morphing, no flicker, no text.",
+      "status": "ready"
+    },
+    {
+      "id": "E2",
+      "act": "Interior",
+      "dur": 6,
+      "start_frame": "public/project/brochure/pages/p25-living-wide.jpg",
+      "camera": "lateral track revealing the seating arrangement",
+      "life": "curtain movement",
+      "prompt": "Slow lateral track across the living room revealing the furniture arrangement. No changes to the buildings: keep facade geometry, window and door positions, lattice screens, pergolas, materials and colours exactly as in the start frame. No new buildings, floors or openings. No warping, no morphing, no flicker, no text.",
+      "status": "ready"
+    },
+    {
+      "id": "E3",
+      "act": "Interior",
+      "dur": 5,
+      "start_frame": "public/project/brochure/pages/p25-living-wide.jpg",
+      "camera": "tilt up to the ceiling and lighting",
+      "life": "none",
+      "prompt": "Gentle tilt up showing ceiling height and recessed lighting. No changes to the buildings: keep facade geometry, window and door positions, lattice screens, pergolas, materials and colours exactly as in the start frame. No new buildings, floors or openings. No warping, no morphing, no flicker, no text.",
+      "status": "ready"
+    },
+    {
+      "id": "E4",
+      "act": "Interior",
+      "dur": 8,
+      "start_frame": "public/project/brochure/pages/p37-living.jpg",
+      "camera": "diagonal move toward the doorway to the dining area",
+      "life": "none",
+      "prompt": "Slow diagonal glide across the living area toward the open doorway leading to the dining area. No changes to the buildings: keep facade geometry, window and door positions, lattice screens, pergolas, materials and colours exactly as in the start frame. No new buildings, floors or openings. No warping, no morphing, no flicker, no text.",
+      "status": "ready"
+    },
+    {
+      "id": "E5",
+      "act": "Interior",
+      "dur": 10,
+      "start_frame": "public/project/brochure/pages/p34-dining.jpg",
+      "camera": "move along the dining table, tilt toward the courtyard planting",
+      "life": "courtyard plants sway",
+      "prompt": "Eye-level glide along the dining table toward the planted courtyard, then a gentle tilt up the plants. No changes to the buildings: keep facade geometry, window and door positions, lattice screens, pergolas, materials and colours exactly as in the start frame. No new buildings, floors or openings. No warping, no morphing, no flicker, no text.",
+      "status": "ready"
+    },
+    {
+      "id": "E6",
+      "act": "Interior",
+      "dur": 6,
+      "start_frame": null,
+      "camera": "kitchen",
+      "life": "-",
+      "prompt": "- No changes to the buildings: keep facade geometry, window and door positions, lattice screens, pergolas, materials and colours exactly as in the start frame. No new buildings, floors or openings. No warping, no morphing, no flicker, no text.",
+      "status": "missing: kitchen render"
+    },
+    {
+      "id": "E7",
+      "act": "Interior",
+      "dur": 6,
+      "start_frame": null,
+      "camera": "corridor / staircase",
+      "life": "-",
+      "prompt": "- No changes to the buildings: keep facade geometry, window and door positions, lattice screens, pergolas, materials and colours exactly as in the start frame. No new buildings, floors or openings. No warping, no morphing, no flicker, no text.",
+      "status": "missing: corridor and staircase renders, floor plan"
+    },
+    {
+      "id": "E8",
+      "act": "Interior",
+      "dur": 10,
+      "start_frame": "public/project/brochure/pages/p36-master-bedroom.jpg",
+      "camera": "enter, slow forward, partial orbit from the room centre",
+      "life": "curtains move slightly",
+      "prompt": "Eye-level slow forward move into the master bedroom, then a slight arc toward the bed. No changes to the buildings: keep facade geometry, window and door positions, lattice screens, pergolas, materials and colours exactly as in the start frame. No new buildings, floors or openings. No warping, no morphing, no flicker, no text.",
+      "status": "ready"
+    },
+    {
+      "id": "E9",
+      "act": "Interior",
+      "dur": 5,
+      "start_frame": "public/project/brochure/pages/p36-master-bedroom.jpg",
+      "camera": "tilt down to flooring and furniture details",
+      "life": "none",
+      "prompt": "Gentle tilt down from the bed to the rug and floor finishes. No changes to the buildings: keep facade geometry, window and door positions, lattice screens, pergolas, materials and colours exactly as in the start frame. No new buildings, floors or openings. No warping, no morphing, no flicker, no text.",
+      "status": "ready"
+    },
+    {
+      "id": "E10",
+      "act": "Interior",
+      "dur": 16,
+      "start_frame": null,
+      "camera": "additional bedrooms, bathrooms, upper floor, roof terrace",
+      "life": "-",
+      "prompt": "- No changes to the buildings: keep facade geometry, window and door positions, lattice screens, pergolas, materials and colours exactly as in the start frame. No new buildings, floors or openings. No warping, no morphing, no flicker, no text.",
+      "status": "missing: renders and floor plans"
+    },
+    {
+      "id": "F1",
+      "act": "Plans",
+      "dur": 20,
+      "start_frame": null,
+      "camera": "site plans of both neighbourhoods drawn on, then dissolving into the aerial",
+      "life": "-",
+      "prompt": "Remotion graphic from pages 29 (no generation). No changes to the buildings: keep facade geometry, window and door positions, lattice screens, pergolas, materials and colours exactly as in the start frame. No new buildings, floors or openings. No warping, no morphing, no flicker, no text.",
+      "status": "ready (graphics)"
+    },
+    {
+      "id": "F2",
+      "act": "Plans",
+      "dur": 20,
+      "start_frame": null,
+      "camera": "villa floor plan reveal with room names and dimensions",
+      "life": "-",
+      "prompt": "Remotion FloorPlanReveal (no generation). No changes to the buildings: keep facade geometry, window and door positions, lattice screens, pergolas, materials and colours exactly as in the start frame. No new buildings, floors or openings. No warping, no morphing, no flicker, no text.",
+      "status": "missing: floor plans"
+    },
+    {
+      "id": "G1",
+      "act": "Landscape",
+      "dur": 10,
+      "start_frame": "public/project/brochure/pages/p21-plaza-day.jpg",
+      "camera": "ground-level glide through the landscaping",
+      "life": "residents stroll; grasses move",
+      "prompt": "Low stabilised glide through the landscaped plaza planting. No changes to the buildings: keep facade geometry, window and door positions, lattice screens, pergolas, materials and colours exactly as in the start frame. No new buildings, floors or openings. No warping, no morphing, no flicker, no text.",
+      "status": "ready"
+    },
+    {
+      "id": "H1",
+      "act": "Finale",
+      "dur": 12,
+      "start_frame": "public/project/brochure/pages/p31-aziziyah-aerial.jpg",
+      "camera": "sweeping rising aerial",
+      "life": "slow traffic; trees",
+      "prompt": "Sweeping rising drone shot over the whole neighbourhood in warm late-afternoon light. No changes to the buildings: keep facade geometry, window and door positions, lattice screens, pergolas, materials and colours exactly as in the start frame. No new buildings, floors or openings. No warping, no morphing, no flicker, no text.",
+      "status": "ready"
+    },
+    {
+      "id": "H2",
+      "act": "Finale",
+      "dur": 8,
+      "start_frame": null,
+      "camera": "end frame with logos",
+      "life": "-",
+      "prompt": "Remotion EndFrame (no generation). No changes to the buildings: keep facade geometry, window and door positions, lattice screens, pergolas, materials and colours exactly as in the start frame. No new buildings, floors or openings. No warping, no morphing, no flicker, no text.",
+      "status": "ready (graphics)"
+    }
+  ]
+}

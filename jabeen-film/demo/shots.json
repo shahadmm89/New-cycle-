@@ -1,0 +1,22 @@
+{
+  "_readme": "Free in-Claude demo (16 Oct 2026). Every shot is a depth-parallax camera move through an unaltered brochure render (render/parallax.py); boxes are the clean picture areas of the pages, clear of text panels and logos. Graphics (map, site plans) are shown whole on a paper tone.",
+  "shots": [
+    {"id": "d01-descent", "src": "public/project/brochure/pages/p31-aziziyah-aerial.jpg", "box": [46, 45, 1026, 596], "dur": 11, "clouds": true, "move": {"dolly": 0.30, "pedestal": 70, "zoom": 0.04}},
+    {"id": "d02-aerial-glide", "src": "public/project/brochure/pages/p31-aziziyah-aerial.jpg", "box": [400, 150, 1000, 488], "dur": 11, "move": {"truck": 90, "dolly": 0.10}},
+    {"id": "d03-location-map", "kind": "graphic", "src": "public/project/brochure/pages/p30-aziziyah-map.jpg", "box": [200, 320, 1080, 763], "dur": 8},
+    {"id": "d04-plaza", "src": "public/project/brochure/pages/p21-plaza-day.jpg", "box": [46, 400, 680, 757], "dur": 11, "move": {"truck": -80, "dolly": 0.10}},
+    {"id": "d05-street-forward", "src": "public/project/brochure/pages/p22-street-day.jpg", "box": [46, 130, 626, 456], "dur": 11, "move": {"dolly": 0.22, "truck": 30}},
+    {"id": "d06-corner-lateral", "src": "public/project/brochure/pages/p23-corner-day.jpg", "box": [400, 425, 1000, 763], "dur": 11, "move": {"truck": 110, "dolly": 0.06}},
+    {"id": "d07-gate-approach", "src": "public/project/brochure/pages/p23-corner-day.jpg", "box": [480, 425, 1080, 763], "dur": 8, "move": {"dolly": 0.26, "zoom": 0.06}},
+    {"id": "d08-living-enter", "src": "public/project/brochure/pages/p25-living-wide.jpg", "box": [46, 380, 690, 742], "dur": 11, "move": {"dolly": 0.20, "truck": -30}},
+    {"id": "d09-living-window", "src": "public/project/brochure/pages/p25-living-wide.jpg", "box": [46, 100, 640, 434], "dur": 9, "move": {"pedestal": 60, "truck": 50}},
+    {"id": "d10-living-to-dining", "src": "public/project/brochure/pages/p37-living.jpg", "box": [46, 330, 650, 670], "dur": 9, "move": {"truck": -70, "dolly": 0.16}},
+    {"id": "d11-dining", "src": "public/project/brochure/pages/p34-dining.jpg", "box": [46, 330, 680, 687], "dur": 10, "move": {"dolly": 0.18, "truck": 40}},
+    {"id": "d12-bedroom", "src": "public/project/brochure/pages/p36-master-bedroom.jpg", "box": [46, 420, 650, 760], "dur": 11, "move": {"truck": 70, "dolly": 0.12}},
+    {"id": "d13-plan-aziziyah", "kind": "graphic", "src": "public/project/brochure/pages/p29-aziziyah-siteplan.jpg", "box": [120, 85, 480, 700], "dur": 8},
+    {"id": "d14-plan-nakheel", "kind": "graphic", "src": "public/project/brochure/pages/p29-nakheel-siteplan.jpg", "box": [75, 225, 505, 695], "dur": 8},
+    {"id": "d15-street-dusk", "src": "public/project/brochure/pages/p33-street-dusk.jpg", "box": [46, 200, 650, 540], "dur": 10, "grade": false, "move": {"truck": 80, "dolly": 0.08}},
+    {"id": "d16-facade-dusk", "src": "public/project/brochure/pages/p35-facade-dusk.jpg", "box": [46, 385, 718, 763], "dur": 10, "grade": false, "move": {"truck": 100, "dolly": 0.07}},
+    {"id": "d17-nakheel-dusk-rise", "src": "public/project/brochure/pages/p31-nakheel-aerial.jpg", "box": [46, 45, 1000, 582], "dur": 13, "grade": false, "move": {"dolly": -0.14, "pedestal": -50, "zoom": 0.02}}
+  ]
+}

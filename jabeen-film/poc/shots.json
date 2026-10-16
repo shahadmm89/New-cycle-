@@ -1,0 +1,13 @@
+{
+  "_readme": "Proof-of-concept shots for render/parallax.py. Boxes are pixel regions of the unaltered brochure pages, clear of text panels and logos.",
+  "shots": [
+    {"id": "poc1-descent", "src": "public/project/brochure/pages/p31-aziziyah-aerial.jpg", "box": [46, 45, 1026, 596], "dur": 7,
+     "clouds": true, "move": {"dolly": 0.32, "pedestal": 60, "zoom": 0.04}},
+    {"id": "poc2-reveal", "src": "public/project/brochure/pages/p31-aziziyah-aerial.jpg", "box": [400, 150, 1000, 488], "dur": 6,
+     "move": {"truck": 90, "dolly": 0.10}},
+    {"id": "poc3-exterior", "src": "public/project/brochure/pages/p35-facade-dusk.jpg", "box": [46, 385, 718, 763], "dur": 6,
+     "move": {"truck": 110, "dolly": 0.08}},
+    {"id": "poc4-interior", "src": "public/project/brochure/pages/p37-living.jpg", "box": [46, 330, 650, 670], "dur": 6,
+     "move": {"truck": -70, "dolly": 0.16}}
+  ]
+}

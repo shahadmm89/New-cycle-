@@ -1,0 +1,302 @@
+{
+  "_readme": "Master timeline. Seconds, not frames. Read by src/lib/timeline.ts (the film) and render/temp-score.py (temp music). Scenes marked perVilla repeat once per villa type in src/config/project.ts; later types use only shots marked inCondensed. On-screen wording lives in src/config/project.ts (Arabic only); text cues here only say where and when.",
+  "fps": 24,
+  "width": 1920,
+  "height": 1080,
+  "scenes": [
+    {
+      "id": "S1",
+      "title": "From Earth to Yanbu",
+      "music": "Atmospheric: a single low string note under a soft high shimmer; the build begins as the clouds part.",
+      "shots": [
+        {
+          "id": "1A",
+          "dur": 6,
+          "move": "push",
+          "transitionIn": "fadeFromBlack",
+          "transitionDur": 2,
+          "visual": "Earth from orbit at dawn. The terminator line crosses the Arabian Peninsula; the Red Sea catches first light. Very slow drift forward."
+        },
+        {
+          "id": "1B",
+          "dur": 7,
+          "move": "descend",
+          "transitionIn": "dissolve",
+          "transitionDur": 1.5,
+          "visual": "Continuous push down toward the Red Sea coast of Saudi Arabia. High cirrus streaks past the lens."
+        },
+        {
+          "id": "1C",
+          "dur": 7,
+          "move": "descend",
+          "transitionIn": "cloudWipe",
+          "transitionDur": 1.25,
+          "visual": "The camera breaks through the cloud layer: the Yanbu coastline and the Royal Commission city grid resolve below. Heading for the project site."
+        }
+      ]
+    },
+    {
+      "id": "S2",
+      "title": "The JABEEN Project Reveal",
+      "music": "Reveal: timpani and full strings land as the site fills the frame, then settle into a sustained chord under the title.",
+      "musicCueAt": 0,
+      "shots": [
+        {
+          "id": "2A",
+          "dur": 14,
+          "move": "orbit",
+          "transitionIn": "dissolve",
+          "transitionDur": 1,
+          "visual": "Aerial reveal and slow orbit of the actual site. The master-plan line-work traces onto the terrain, then resolves into the 3D neighbourhood model (camera-matched to the aerial plate)."
+        }
+      ],
+      "text": [
+        {
+          "kind": "lockup",
+          "at": 3,
+          "until": 11.5
+        },
+        {
+          "kind": "subtitle",
+          "at": 5.5,
+          "until": 11.5
+        }
+      ]
+    },
+    {
+      "id": "S3",
+      "title": "Exploring the Neighbourhood",
+      "music": "Momentum: strings in motion, light percussion pulse.",
+      "shots": [
+        {
+          "id": "3A",
+          "dur": 7,
+          "move": "descend",
+          "transitionIn": "dissolve",
+          "transitionDur": 1,
+          "visual": "Descend from the reveal height toward the neighbourhood rooftops."
+        },
+        {
+          "id": "3B",
+          "dur": 8,
+          "move": "glide",
+          "transitionIn": "dissolve",
+          "transitionDur": 1,
+          "visual": "Low glide along a residential street from the master plan, villas passing on both sides."
+        },
+        {
+          "id": "3C",
+          "dur": 7,
+          "move": "orbit",
+          "transitionIn": "dissolve",
+          "transitionDur": 1,
+          "visual": "Slow orbit around a cluster of villas, showing the supplied landscaping and outdoor spaces."
+        }
+      ],
+      "text": [
+        {
+          "kind": "place",
+          "at": 1.5,
+          "until": 6
+        }
+      ]
+    },
+    {
+      "id": "S4",
+      "title": "Approaching the Villa",
+      "perVilla": true,
+      "music": "Transition: the pulse drops away, leaving warm low strings.",
+      "shots": [
+        {
+          "id": "4A",
+          "dur": 4,
+          "move": "push",
+          "transitionIn": "dissolve",
+          "transitionDur": 1,
+          "inCondensed": true,
+          "visual": "Wide exterior of the selected villa type in its plot."
+        },
+        {
+          "id": "4B",
+          "dur": 5,
+          "move": "push",
+          "transitionIn": "dissolve",
+          "transitionDur": 0.75,
+          "visual": "Slow dolly toward the facade: materials, openings, entrance and outdoor space."
+        },
+        {
+          "id": "4C",
+          "dur": 5,
+          "move": "push",
+          "transitionIn": "dissolve",
+          "transitionDur": 0.75,
+          "visual": "Push through the entrance; the doorway frame becomes the wipe into the interior."
+        }
+      ],
+      "text": [
+        {
+          "kind": "villaName",
+          "at": 0.75,
+          "until": 3.75
+        }
+      ]
+    },
+    {
+      "id": "S5",
+      "title": "The Interior Experience",
+      "perVilla": true,
+      "music": "Flowing: a sophisticated string theme with piano, unhurried.",
+      "musicCueAt": 0,
+      "shots": [
+        {
+          "id": "5A",
+          "dur": 6,
+          "move": "glide",
+          "transitionIn": "threshold",
+          "transitionDur": 1,
+          "inCondensed": true,
+          "room": "living",
+          "visual": "Living area: slow lateral glide revealing the space and the light."
+        },
+        {
+          "id": "5B",
+          "dur": 5,
+          "move": "glide",
+          "transitionIn": "dissolve",
+          "transitionDur": 1,
+          "inCondensed": true,
+          "room": "dining",
+          "visual": "Dining area: gentle push along the table toward the planted courtyard (brochure p.34). Swap for the kitchen if a kitchen render is supplied."
+        },
+        {
+          "id": "5C",
+          "dur": 4,
+          "move": "crane",
+          "transitionIn": "dissolve",
+          "transitionDur": 1,
+          "room": "circulation",
+          "visual": "Stair or hallway moving the camera between zones (only if the supplied design has one)."
+        },
+        {
+          "id": "5D",
+          "dur": 6,
+          "move": "glide",
+          "transitionIn": "dissolve",
+          "transitionDur": 1,
+          "inCondensed": true,
+          "room": "masterBedroom",
+          "visual": "Master bedroom: slow arc toward the window."
+        },
+        {
+          "id": "5E",
+          "dur": 4,
+          "move": "push",
+          "transitionIn": "dissolve",
+          "transitionDur": 1,
+          "room": "bedroom",
+          "visual": "Second bedroom."
+        },
+        {
+          "id": "5F",
+          "dur": 5,
+          "move": "push",
+          "transitionIn": "dissolve",
+          "transitionDur": 1,
+          "room": "bathroom",
+          "visual": "Bathroom detail: materials and fittings."
+        }
+      ]
+    },
+    {
+      "id": "S6",
+      "title": "The Architectural Floor-Plan Reveal",
+      "perVilla": true,
+      "music": "Softer: strings thin to a high sustained line and piano; space for the annotations.",
+      "musicCueAt": 0,
+      "shots": [
+        {
+          "id": "6A",
+          "dur": 4,
+          "move": "craneUp",
+          "transitionIn": "dissolve",
+          "transitionDur": 1,
+          "inCondensed": true,
+          "visual": "Crane straight up through the ceiling and roof; the roof dissolves into a cutaway as the camera settles directly overhead."
+        },
+        {
+          "id": "6B",
+          "dur": 18,
+          "move": "floorPlan",
+          "transitionIn": "cut",
+          "transitionDur": 0,
+          "inCondensed": true,
+          "condensedDur": 11,
+          "visual": "Overhead cutaway render, camera-matched to the plan, crossfades into the actual 2D floor plan. Lines draw on; room names, dimensions and the specification panel appear in sequence."
+        }
+      ]
+    },
+    {
+      "id": "S7",
+      "title": "Neighbourhood and Landscaping",
+      "music": "Rebuild: the theme returns, fuller, rising toward the finale.",
+      "musicCueAt": 0,
+      "shots": [
+        {
+          "id": "7A",
+          "dur": 5,
+          "move": "craneUp",
+          "transitionIn": "dissolve",
+          "transitionDur": 1.25,
+          "visual": "Pull up and out from the villa plan into the site/landscape plan, which dissolves into the realistic 3D environment."
+        },
+        {
+          "id": "7B",
+          "dur": 5,
+          "move": "glide",
+          "transitionIn": "dissolve",
+          "transitionDur": 1,
+          "visual": "Ground-level glide through the supplied landscaping and outdoor areas."
+        },
+        {
+          "id": "7C",
+          "dur": 4,
+          "move": "orbit",
+          "transitionIn": "dissolve",
+          "transitionDur": 1,
+          "visual": "Low aerial across the streets and landscape, villa in context."
+        }
+      ]
+    },
+    {
+      "id": "S8",
+      "title": "Inspirational Closing",
+      "music": "Finale: full orchestra, uplifting; resolves on a long final chord over the end frame.",
+      "musicCueAt": 0,
+      "shots": [
+        {
+          "id": "8A",
+          "dur": 9,
+          "move": "orbit",
+          "transitionIn": "dissolve",
+          "transitionDur": 1.25,
+          "visual": "Sweeping golden-hour aerial rising over the whole neighbourhood."
+        },
+        {
+          "id": "8B",
+          "dur": 5,
+          "move": "endFrame",
+          "transitionIn": "dissolve",
+          "transitionDur": 1.5,
+          "visual": "End frame: company and JABEEN logos on a warm ivory field, original colours preserved."
+        }
+      ],
+      "text": [
+        {
+          "kind": "closing",
+          "at": 2.5,
+          "until": 8.5
+        }
+      ]
+    }
+  ]
+}
