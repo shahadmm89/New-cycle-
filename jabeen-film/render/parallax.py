@@ -62,7 +62,49 @@ def fractal_clouds(h, w, seed):
     return np.clip((acc - 0.45) * 3.2, 0, 1)
 
 
+def open_ffmpeg(out_path):
+    return subprocess.Popen(
+        ["ffmpeg", "-loglevel", "error", "-y", "-f", "rawvideo", "-pix_fmt", "bgr24", "-s", f"{W}x{H}",
+         "-r", str(FPS), "-i", "-", "-c:v", "libx264", "-crf", "15", "-preset", "slow",
+         "-pix_fmt", "yuv420p", "-colorspace", "bt709", "-color_primaries", "bt709", "-color_trc", "bt709", out_path],
+        stdin=subprocess.PIPE)
+
+
+def finish(frame, rng, grade):
+    """Shared look: partial grey-world white balance toward neutral daylight, gentle contrast, fine grain."""
+    if grade:
+        means = frame.reshape(-1, 3).mean(0)
+        frame = frame * (1 + 0.35 * (means.mean() / np.maximum(means, 1) - 1))
+        frame = (frame - 128) * 1.04 + 128
+    frame = frame + rng.normal(0, 2.2, frame.shape[:2])[..., None]
+    return np.clip(frame, 0, 255).astype(np.uint8)
+
+
+def render_graphic(shot, out_path):
+    page = cv2.imread(shot["src"], cv2.IMREAD_COLOR)
+    x0, y0, x1, y1 = shot["box"]
+    img = page[y0:y1, x0:x1]
+    bg = np.array(shot.get("bg", [232, 235, 236]), np.float32)
+    frames = int(round(shot["dur"] * FPS))
+    ff = open_ffmpeg(out_path)
+    rng = np.random.default_rng(1)
+    for f in range(frames):
+        t = ease(f / max(1, frames - 1))
+        sc = (0.86 + 0.07 * t) * min(W / img.shape[1], H / img.shape[0])
+        w, h = int(img.shape[1] * sc), int(img.shape[0] * sc)
+        canvas = np.empty((H, W, 3), np.float32)
+        canvas[:] = bg
+        im = cv2.resize(img, (w, h), interpolation=cv2.INTER_LANCZOS4).astype(np.float32)
+        ox, oy = (W - w) // 2, (H - h) // 2
+        canvas[oy:oy + h, ox:ox + w] = im
+        ff.stdin.write(finish(canvas, rng, False).tobytes())
+    ff.stdin.close()
+    ff.wait()
+
+
 def render_shot(shot, out_path):
+    if shot.get("kind") == "graphic":
+        return render_graphic(shot, out_path)
     page = cv2.imread(shot["src"], cv2.IMREAD_COLOR)
     x0, y0, x1, y1 = shot["box"]
     img = page[y0:y1, x0:x1]
@@ -84,11 +126,8 @@ def render_shot(shot, out_path):
     if shot.get("clouds"):
         clouds = [fractal_clouds(bh, bw, s) for s in (3, 7, 11)]
 
-    ff = subprocess.Popen(
-        ["ffmpeg", "-loglevel", "error", "-y", "-f", "rawvideo", "-pix_fmt", "bgr24", "-s", f"{W}x{H}",
-         "-r", str(FPS), "-i", "-", "-c:v", "libx264", "-crf", "16", "-preset", "slow",
-         "-pix_fmt", "yuv420p", "-colorspace", "bt709", "-color_primaries", "bt709", "-color_trc", "bt709", out_path],
-        stdin=subprocess.PIPE)
+    ff = open_ffmpeg(out_path)
+    rng = np.random.default_rng(7)
 
     for f in range(frames):
         acc = np.zeros((H, W, 3), np.float32)
@@ -117,7 +156,7 @@ def render_shot(shot, out_path):
                     a = (layer * fade * (0.95 - 0.2 * i))[..., None]
                     frame = frame * (1 - a) + 245 * a
             acc += frame
-        ff.stdin.write(np.clip(acc / SUB, 0, 255).astype(np.uint8).tobytes())
+        ff.stdin.write(finish(acc / SUB, rng, shot.get("grade", True)).tobytes())
     ff.stdin.close()
     ff.wait()
     np.save(out_path.replace(".mp4", "-depth.npy"), cv2.resize(dep, (480, 270)))
@@ -128,5 +167,8 @@ if __name__ == "__main__":
     os.makedirs(out_dir, exist_ok=True)
     for shot in spec["shots"]:
         p = os.path.join(out_dir, shot["id"] + ".mp4")
+        if os.path.exists(p) and "--force" not in sys.argv:
+            print("exists", p)
+            continue
         render_shot(shot, p)
         print("rendered", p)

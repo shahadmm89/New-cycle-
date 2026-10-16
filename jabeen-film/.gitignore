@@ -4,3 +4,4 @@ output/.check-assets.mjs
 *.wav
 !public/audio/score.wav
 poc/clips/*-depth.npy
+demo/clips/*-depth.npy

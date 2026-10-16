@@ -82,6 +82,8 @@ export const TextLayer: React.FC<{cue: TextCue}> = ({cue}) => {
   switch (cue.kind) {
     case 'lockup':
       return <Lockup cue={cue} />;
+    case 'subtitleHero':
+      return <Centered cue={cue} copy={PROJECT.copy.subtitle} size={72} y={0} weight={200} />;
     case 'subtitle':
       return <Centered cue={cue} copy={PROJECT.copy.subtitle} size={38} y={90} weight={300} />;
     case 'closing':

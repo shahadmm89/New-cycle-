@@ -2,6 +2,7 @@ import React from 'react';
 import {Composition} from 'remotion';
 import {Film, FilmProps} from './Film';
 import {FPS, WIDTH, HEIGHT, TIMELINE} from './lib/timeline';
+import {Demo, DEMO_TOTAL} from './Demo';
 
 export const RemotionRoot: React.FC = () => (
   <>
@@ -25,6 +26,16 @@ export const RemotionRoot: React.FC = () => (
       width={WIDTH}
       height={HEIGHT}
       defaultProps={{animatic: false, music: 'audio/score.wav'}}
+    />
+    {/* Free in-Claude demo built from depth-parallax clips (demo/shots.json). */}
+    <Composition
+      id="JabeenDemo"
+      component={Demo}
+      durationInFrames={DEMO_TOTAL}
+      fps={FPS}
+      width={WIDTH}
+      height={HEIGHT}
+      defaultProps={{music: 'audio/demo-score.mp3'}}
     />
   </>
 );
