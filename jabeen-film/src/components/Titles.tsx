@@ -64,15 +64,15 @@ const Centered: React.FC<{cue: TextCue; copy: string; size: number; y: number; w
 };
 
 /** Lower-right label (where an Arabic reader starts): thin gold rule, name, optional sub-line. */
-export const LowerLabel: React.FC<{title: string; sub?: string | null; duration: number; small?: boolean}> = ({title, sub, duration, small}) => {
+export const LowerLabel: React.FC<{title: string; sub?: string | null; duration: number; small?: boolean; dark?: boolean}> = ({title, sub, duration, small, dark}) => {
   const {a, inn} = useReveal(duration);
   return (
     <AbsoluteFill>
-      <Scrim a={a} at="lowerRight" />
-      <div style={{...base, position: 'absolute', right: 120, bottom: 104, textAlign: 'right', opacity: a}}>
+      {!dark && <Scrim a={a} at="lowerRight" />}
+      <div style={{...base, ...(dark ? {color: '#1b1913', textShadow: 'none'} : {}), position: 'absolute', right: 120, bottom: 104, textAlign: 'right', opacity: a}}>
         <div style={{width: 64 * inn, height: 1.5, background: GOLD, marginBottom: 16, marginLeft: 'auto'}} />
         <div style={{fontSize: small ? 36 : 48, fontWeight: 300}}>{title}</div>
-        {sub && <div style={{fontSize: small ? 22 : 26, fontWeight: 300, color: 'rgba(255,255,255,0.78)', marginTop: 6}}>{sub}</div>}
+        {sub && <div style={{fontSize: small ? 22 : 26, fontWeight: 300, color: dark ? 'rgba(27,25,19,0.7)' : 'rgba(255,255,255,0.78)', marginTop: 6}}>{sub}</div>}
       </div>
     </AbsoluteFill>
   );

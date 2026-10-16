@@ -36,7 +36,7 @@ if (mode === 'film') {
 fs.mkdirSync(outDir, {recursive: true});
 console.log('> bundling…');
 const serveUrl = await bundle({entryPoint: path.join(root, 'src', 'index.ts'), publicDir: path.join(root, 'public')});
-const id = mode === 'film' ? 'JabeenFilm' : 'JabeenAnimatic';
+const id = mode === 'film' ? 'JabeenFilm' : mode === 'demo' ? 'JabeenDemo' : 'JabeenAnimatic';
 const composition = await selectComposition({serveUrl, id, inputProps: {}, browserExecutable});
 
 if (mode === 'still') {
@@ -50,7 +50,7 @@ if (mode === 'still') {
   process.exit(0);
 }
 
-const outputLocation = path.join(outDir, mode === 'film' ? 'jabeen-film.mp4' : 'jabeen-animatic.mp4');
+const outputLocation = path.join(outDir, mode === 'film' ? 'jabeen-film.mp4' : mode === 'demo' ? 'jabeen-demo.mp4' : 'jabeen-animatic.mp4');
 console.log(`> rendering ${id}: ${composition.durationInFrames} frames @ ${composition.fps}fps, scale ${scale}`);
 let last = -1;
 await renderMedia({
@@ -59,7 +59,7 @@ await renderMedia({
   codec: 'h264',
   pixelFormat: 'yuv420p',
   colorSpace: 'bt709',
-  crf: mode === 'film' ? 14 : 20,
+  crf: mode === 'film' || mode === 'demo' ? 16 : 20,
   x264Preset: mode === 'film' ? 'slow' : 'medium',
   imageFormat: 'jpeg',
   jpegQuality: 92,

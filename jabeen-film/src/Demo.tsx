@@ -45,6 +45,8 @@ for (const s of DEMO_SHOTS) {
 }
 export const DEMO_TOTAL = cursor + XF + END - XF;
 
+const GRAPHICS = new Set(['d03-location-map', 'd13-plan-aziziyah', 'd14-plan-nakheel']);
+
 const Clip: React.FC<{id: string; dur: number; first: boolean; threshold: boolean}> = ({id, dur, first, threshold}) => {
   const f = useCurrentFrame();
   const fadeIn = first ? interpolate(f, [0, 1.5 * FPS], [0, 1], {extrapolateRight: 'clamp'}) : interpolate(f, [0, XF], [0, 1], {extrapolateRight: 'clamp', easing: Easing.bezier(0.33, 0, 0.2, 1)});
@@ -53,7 +55,7 @@ const Clip: React.FC<{id: string; dur: number; first: boolean; threshold: boolea
     <AbsoluteFill style={{opacity: first ? 1 : fadeIn, filter: bloom !== 1 ? `brightness(${bloom})` : undefined}}>
       <OffthreadVideo src={staticFile(`demo/clips/${id}.mp4`)} muted style={{width: '100%', height: '100%'}} />
       {first && <AbsoluteFill style={{background: '#000', opacity: 1 - fadeIn}} />}
-      <AbsoluteFill style={{background: 'radial-gradient(ellipse at center, rgba(0,0,0,0) 60%, rgba(0,0,0,0.28) 100%)'}} />
+      {!GRAPHICS.has(id) && <AbsoluteFill style={{background: 'radial-gradient(ellipse at center, rgba(0,0,0,0) 60%, rgba(0,0,0,0.28) 100%)'}} />}
       {void dur}
     </AbsoluteFill>
   );
@@ -72,7 +74,7 @@ export const Demo: React.FC<{music: string | null}> = ({music}) => {
             <Clip id={s.id} dur={s.dur} first={i === 0} threshold={s.id === 'd08-living-enter'} />
             {label && (
               <Sequence from={Math.round(1.2 * FPS)} durationInFrames={textDur}>
-                <LowerLabel title={label.title} sub={label.sub} duration={textDur} small={!label.sub} />
+                <LowerLabel title={label.title} sub={label.sub} duration={textDur} small={!label.sub} dark={GRAPHICS.has(s.id)} />
               </Sequence>
             )}
             {title && (

@@ -6,3 +6,4 @@ output/.check-assets.mjs
 poc/clips/*-depth.npy
 demo/clips/*-depth.npy
 demo/clips/
+public/demo/clips/
