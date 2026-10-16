@@ -16,6 +16,11 @@ CROPS = [
   ('p31-aziziyah-aerial', 'aziziyah-cluster', (400, 150, 1000, 488)),
   ('p31-nakheel-aerial', 'nakheel-aerial', (46, 45, 1000, 582)),
   ('p30-aziziyah-map', 'aziziyah-map', (200, 320, 988, 763)),
+  # Pages 21-25, supplied 16 Oct: daytime exteriors and a wider living room.
+  ('p25-living-wide', 'living-wide', (46, 380, 690, 742)),
+  ('p22-street-day', 'street-day', (46, 130, 626, 456)),
+  ('p21-plaza-day', 'plaza-day', (46, 400, 680, 757)),
+  ('p23-corner-day', 'corner-day', (400, 425, 1000, 763)),
 ]
 for page, name, box in CROPS:
     im = Image.open(f'{P}/{page}.jpg').convert('RGB').crop(box)
